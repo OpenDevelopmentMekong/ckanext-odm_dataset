@@ -1,0 +1,4 @@
+
+        [ckan.plugins]
+        odm_theme=ckanext.odm_theme.plugin:OdmThemePlugin
+    
