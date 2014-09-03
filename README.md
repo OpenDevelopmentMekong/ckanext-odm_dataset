@@ -12,5 +12,5 @@ Copy the ckanext-odm_theme folder to /usr/lib/ckan/default/src/
 
 Run the setup script
 
-<code>cd ckanext-odm_theme
-python setup.py develop</code>
+<code>cd ckanext-odm_theme</code>
+<code>python setup.py develop</code>
