@@ -1,3 +1,5 @@
+{% ckan_extends %}
+
 {% import 'macros/form.html' as form %}
 
 {% block package_basic_fields_title %}
@@ -48,7 +50,7 @@
 
 {% block package_basic_fields_org %}
 
-  {% resource 'odm_theme/odm_theme_review_system_logic.js' %}
+  {% resource 'odm_theme/odm_theme_review_template_logic.js' %}
 
   {# if we have a default group then this wants remembering #}
   {% if data.group_id %}
@@ -63,11 +65,12 @@
   {% set show_visibility_selector = dataset_has_organization or (organizations_available and (user_is_sysadmin or dataset_is_draft)) %}
 
   {% if show_organizations_selector and show_visibility_selector %}
-    <div data-module="odm_theme_review_system_logic">
+    <div data-module="dataset-visibility odm_theme_review_template_logic">
   {% endif %}
 
   {% if show_organizations_selector %}
     {% set existing_org = data.owner_org or data.group_id %}
+
     <div class="control-group">
       <label for="field-organizations" class="control-label">{{ _('Organization') }}</label>
       <div class="controls">
@@ -83,26 +86,41 @@
         </select>
       </div>
     </div>
-  {% endif %}
 
-  {% if show_visibility_selector %}
-    {% block package_metadata_fields_visibility %}
-      <div class="control-group">
-        <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
-        <div id="field-private-container" class="controls">
-          <select id="field-private" name="private">
-            {% for option in [('True', _('Private')), ('False', _('Public'))] %}
-            <option value="{{ option[0] }}" {% if option[0] == data.private|trim %}selected="selected"{% endif %}>{{ option[1] }}</option>
-            {% endfor %}
-          </select>
+    {% if show_visibility_selector %}
+      {% block package_metadata_fields_visibility %}
+        <div class="control-group">
+          <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
+          <div class="controls">
+            <select id="field-private" name="private">  
+              
+              {# Obtain organization name #}              
+              {% for organization in organizations_available %}
+                {% if (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %}
+                {% set organization_name = organization.id %}
+                {% endif %}
+              {% endfor %}
+
+              {% if h.odm_theme_is_user_admin_of_organisation('odm-myanmar') %}
+                {% set choices = [('True', _('Private')), ('False', _('Public'))]%}
+              {% else %}
+                {% set choices = [('True', _('Private'))] %}
+              {% endif %}
+                        
+              {% for option in choices %}
+                <option value="{{ option[0] }}" {% if option[0] == data.private|trim %}selected="selected"{% endif %}>{{ option[1] }}</option>
+              {% endfor %}
+            </select>
+          </div>          
         </div>
-      </div>
-    {% endblock %}
+      {% endblock %}
+    {% endif %}
+
   {% endif %}
 
   {% if show_organizations_selector and show_visibility_selector %}
     </div>
-  {% endif %}
+  {% endif %} 
 
 
   {% if data.id and h.check_access('package_delete', {'id': data.id}) and data.state != 'active' %}
