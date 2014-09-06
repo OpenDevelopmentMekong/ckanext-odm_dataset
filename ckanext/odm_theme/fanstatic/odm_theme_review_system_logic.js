@@ -29,17 +29,25 @@ ckan.module('odm_theme_review_system_logic', function ($, _) {
       visibility_backup: $('#field-private').clone(),
       currentValue: null,
       user_id: null,
+      owner_org: null,
       debug: true
     },
 
     initialize: function () {
 
-      if (this.options.debug) console.log("odm_theme_review_system_logic initialized for element: ", this.el);
+      if (this.options.debug) console.log("odm_theme_review_system_logic initialized for element: ", this.el, this.options.owner_org);
 
       $.proxyAll(this, /_on/);
       this.options.currentValue = this.options.visibility.val();
       this.options.organizations.on('change', this._onOrganizationChange);
       this._onOrganizationChange();
+
+      // In case owner_org is initialized, we won't wait for _onOrganizationChange
+      // we call member_list directly
+      if (this.options.owner_org){
+        var params = { 'id': this.options.owner_org, 'object_type': 'user', 'capacity': 'admin' };
+        this.sandbox.client.call('POST', 'member_list', params, this._onDone);    
+      }      
 
     },
 
