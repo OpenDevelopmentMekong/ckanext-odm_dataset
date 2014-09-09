@@ -1,14 +1,14 @@
 ckanext-odm_theme
 =================
 
-A CKAN extension which provides with template files which replace CKAN's default UI. 
+A CKAN extension which provides with template files which replace CKAN's default UI and adds some javascript logic.
 
 
 # Installation
 
 In order to install this CKAN Extension:
 
-Copy the ckanext-odm_theme folder to /usr/lib/ckan/default/src/
+clone the ckanext-odm_theme folder to /usr/lib/ckan/default/src/
 
 Run the setup script
 
