@@ -7,57 +7,57 @@ import ckan.plugins.toolkit as toolkit
 
 log = logging.getLogger(__name__)
 
-def most_popular_groups():
-        '''Return a sorted list of the groups with the most datasets.'''
+def most_popular_groups():    
+    '''Return a sorted list of the groups with the most datasets.'''
 
-        # Get a list of all the site's groups from CKAN, sorted by number of
-        # datasets.
-        groups = toolkit.get_action('group_list')(
-            data_dict={'sort': 'packages desc', 'all_fields': True})
+    # Get a list of all the site's groups from CKAN, sorted by number of
+    # datasets.
+    groups = toolkit.get_action('group_list')(
+        data_dict={'sort': 'packages desc', 'all_fields': True})
 
-        # Truncate the list to the 10 most popular groups only.
-        groups = groups[:10]
+    # Truncate the list to the 10 most popular groups only.
+    groups = groups[:10]
 
-        return groups
+    return groups
 
 def is_user_admin_of_organisation(organization_name):
     
-        '''Returns wether the current user has the Admin role in the specified organisation'''   
+    '''Returns wether the current user has the Admin role in the specified organisation'''   
 
-        user_id = toolkit.c.userobj.id        
+    user_id = toolkit.c.userobj.id        
 
-        log.debug('is_user_admin_of_organisation: %s %s', user_id, organization_name)         
-        
-        if organization_name is 'None':
-
-            return False
-
-        try:
-
-            # Retrieve admin members from the specified organisation            
-            members = toolkit.get_action('member_list')(
-            data_dict={'id': organization_name, 'object_type': 'user', 'capacity': 'admin'})
-
-        except toolkit.ObjectNotFound:
-
-            return False
-
-        # 'members' is a list of (user_id, object_type, capacity) tuples, we're
-        # only interested in the user_ids.
-        member_ids = [member_tuple[0] for member_tuple in members]
-
-        try:
-                        
-            # Finally, we can test whether the user is a member of the curators group.
-            if user_id in member_ids:
-
-                return True                    
-
-        except toolkit.Invalid:
-
-            return False
+    log.debug('is_user_admin_of_organisation: %s %s', user_id, organization_name)         
+    
+    if organization_name is 'None':
 
         return False
+
+    try:
+
+        # Retrieve admin members from the specified organisation            
+        members = toolkit.get_action('member_list')(
+        data_dict={'id': organization_name, 'object_type': 'user', 'capacity': 'admin'})
+
+    except toolkit.ObjectNotFound:
+
+        return False
+
+    # 'members' is a list of (user_id, object_type, capacity) tuples, we're
+    # only interested in the user_ids.
+    member_ids = [member_tuple[0] for member_tuple in members]
+
+    try:
+                    
+        # Finally, we can test whether the user is a member of the curators group.
+        if user_id in member_ids:
+
+            return True                    
+
+    except toolkit.Invalid:
+
+        return False
+
+    return False
         
 
 class OdmThemePlugin(plugins.SingletonPlugin):
