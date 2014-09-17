@@ -24,6 +24,19 @@
   {{ form.input('tag_string', id='field-tags', label=_('Tags'), placeholder=_('eg. economy, mental health, government'), value=data.tag_string, error=errors.tags, classes=['control-full'], attrs=tag_attrs) }}
 {% endblock %}
 
+{% block package_basic_fields_taxonomy %}
+<div class="control-group">
+    <label class="control-label" for="field-taxonomy">{{ _("Tags in Taxonomy") }}</label>
+    <div class="controls">
+      <select multiple id="field-taxonomy" name="taxonomy" data-module="autocomplete" placeholder=_('eg. economy, mental health, government')>
+        {% for tag in h.odm_utils_get_taxonomy_tags()  %}
+          <option value="{{ tag }}" {% if tag in data.tag_string %}selected="selected"{% endif %}>{{ tag }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+{% endblock%}
+
 {% block package_basic_fields_license %}
 <div class="control-group">
   {% set error = errors.license_id %}
