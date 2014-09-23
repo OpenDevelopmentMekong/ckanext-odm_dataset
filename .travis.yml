@@ -1,12 +1,16 @@
 language: python
 python:
-  - "2.6"
-  - "2.7"
+#  - "2.6"
+	- "2.7"
 #  - "3.2"
 #  - "3.3"
 
 # command to install dependencies
 install:
-  - "pip install -r requirements.txt"
+	- "pip install -r requirements.txt"
+# environment variables
+env:
+	matrix:
+		- PLUGIN_HOME=/usr/lib/ckan/default/src/ckanext-odm_theme
 # command to run tests
-script: nosetests
+script: nosetests --ckan --with-pylons=$PLUGIN_HOME/test.ini $PLUGIN_HOME/ckanext/odm_theme/tests/
