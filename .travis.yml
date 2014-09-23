@@ -1,7 +1,7 @@
 ---
 language: python
 python:
-	- "2.7"
+  - "2.7"
 before_install:
   - "sudo apt-get update -qq"
   - "sudo apt-get install -y python-dev postgresql libpq-dev python-pip python-virtualenv git-core solr-jetty openjdk-6-jdk"
@@ -57,6 +57,6 @@ before_install:
 env:
   matrix:
     - TESTS_HOME=/usr/lib/ckan/default/src/ckanext-odm_theme
-install:
+#install:
   #- "pip install -r requirements.txt"
 script: "nosetests --ckan --with-pylons=/etc/ckan/default/development.ini $TESTS_HOME/ckanext/odm_theme/tests/"
