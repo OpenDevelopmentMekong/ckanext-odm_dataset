@@ -58,5 +58,5 @@ env:
   matrix:
     - TESTS_HOME=/usr/lib/ckan/default/src/ckanext-odm_theme
 install:
-  - "pip install -r requirements.txt"
+  #- "pip install -r requirements.txt"
 script: "nosetests --ckan --with-pylons=/etc/ckan/default/development.ini $TESTS_HOME/ckanext/odm_theme/tests/"
