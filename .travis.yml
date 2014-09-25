@@ -31,7 +31,7 @@ before_install:
   #- "sed -i.bak '/^ckan.site_id=/s/=.*/=default' /etc/ckan/default/development.ini"
   # Download raw config files from github: development.ini and jetty
   - "cd /etc/ckan/default"
-  - "sudo wget -O development.ini https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-scripting/deployment-scripts/deployment-scripts/ckan_deployment/development.ini?token=384894__eyJzY29wZSI6IlJhd0Jsb2I6T3BlbkRldmVsb3BtZW50TWVrb25nL29kbS1zY3JpcHRpbmcvZGVwbG95bWVudC1zY3JpcHRzL2RlcGxveW1lbnQtc2NyaXB0cy9ja2FuX2RlcGxveW1lbnQvZGV2ZWxvcG1lbnQuaW5pIiwiZXhwaXJlcyI6MTQxMjIwMjA5N30%3D--4507b08d36e6d26a7c7913b6af68904d36a874b0"
+  - "sudo wget -O development.ini https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-scripting/deployment-scripts/deployment-scripts/ckan_deployment/development.ini?token=384894__eyJzY29wZSI6IlJhd0Jsb2I6T3BlbkRldmVsb3BtZW50TWVrb25nL29kbS1zY3JpcHRpbmcvZGVwbG95bWVudC1zY3JpcHRzL2RlcGxveW1lbnQtc2NyaXB0cy9ja2FuX2RlcGxveW1lbnQvZGV2ZWxvcG1lbnQuaW5pIiwiZXhwaXJlcyI6MTQxMjIwODQwMn0%3D--f14039736d7fefabc7ea338626a2a052471ec949"
   - "cd /etc/default"
   - "sudo wget -O jetty https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-scripting/deployment-scripts/deployment-scripts/ckan_deployment/jetty?token=384894__eyJzY29wZSI6IlJhd0Jsb2I6T3BlbkRldmVsb3BtZW50TWVrb25nL29kbS1zY3JpcHRpbmcvZGVwbG95bWVudC1zY3JpcHRzL2RlcGxveW1lbnQtc2NyaXB0cy9ja2FuX2RlcGxveW1lbnQvamV0dHkiLCJleHBpcmVzIjoxNDEyMTcwMTMwfQ%3D%3D--18b9c4caa2e60fb2ffac45c0285c309d79f95483"
   # Once the repo becomes public, instead of the lines above, we clone odm-scripting repo and copy config files to the path they belong: development.ini and jetty
