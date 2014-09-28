@@ -41,7 +41,7 @@ install:
   # Clone plugin
   - "mkdir -p $TESTS_HOME"
   - "cd $TESTS_HOME"
-  - "git clone -b travis_integration https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git ."
+  - "git clone -b odm_theme-0.2 --depth 1 https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git ."
   - "pip install -r requirements.txt"
   - "python setup.py develop"
 
