@@ -16,22 +16,21 @@
     <div class="row row2">
       <div class="span6 col2">
 
-        {# % snippet 'home/snippets/featured_organization.html' % #} 
-        <h2>Put something here</h2>  
+        {# % snippet 'home/snippets/featured_organization.html' % #}
 
       </div>
       <div class="span6 col1">
 
         {# % snippet 'home/snippets/featured_group.html' %#}
-        
+
         {# Show a list of the site's most popular groups. #}
         <h3>Most popular groups</h3>
         <ul>
           {% for group in h.odm_theme_most_popular_groups() %}
             <li>{{ group.display_name }}</li>
-          {% endfor %}          
+          {% endfor %}
         </ul>
-        
+
       </div>
     </div>
   </div>
