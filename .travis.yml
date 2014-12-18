@@ -16,8 +16,8 @@ install:
   - "virtualenv --no-site-packages /usr/lib/ckan/default"
   - ". /usr/lib/ckan/default/bin/activate"
 
-  # Download CKAN 2.2 stable release
-  - "pip install -e 'git+https://github.com/ckan/ckan.git@ckan-2.2#egg=ckan'"
+  # Download CKAN 2.2.1 stable release
+  - "pip install -e 'git+https://github.com/ckan/ckan.git@ckan-2.2.1#egg=ckan'"
   - "pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt"
   - "pip install -r /usr/lib/ckan/default/src/ckan/dev-requirements.txt"
 

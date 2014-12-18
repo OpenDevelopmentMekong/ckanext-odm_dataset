@@ -1,6 +1,8 @@
 ckanext-odm_theme
 =================
 
+[![Build Status](https://travis-ci.org/OpenDevelopmentMekong/ckanext-odm_theme.svg?branch=master)](https://travis-ci.org/OpenDevelopmentMekong/ckanext-odm_theme)
+
 A CKAN extension which provides with template files replacing CKAN's default UI and adding some javascript logic.
 
 # Installation
