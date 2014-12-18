@@ -30,7 +30,7 @@ ckan.module('odm_theme_review_system_logic', function ($, _) {
       currentValue: null,
       user_id: null,
       owner_org: null,
-      debug: true
+      debug: false
     },
 
     initialize: function () {
@@ -122,6 +122,9 @@ ckan.module('odm_theme_review_system_logic', function ($, _) {
       // Do not disable field.
       //this.options.visibility.prop('disabled', true);
 
+      //Show disclaimer
+      $("#field-private-disclaimer").show();
+
     },
 
     _resetAllOptions: function(){
@@ -132,7 +135,10 @@ ckan.module('odm_theme_review_system_logic', function ($, _) {
 
       this.options.visibility = this.options.visibility_backup.clone();
 
-      $('#field-private-container').html(this.options.visibility);
+      $('#field-private').replaceWith(this.options.visibility);
+
+      //Hide disclaimer
+      $("#field-private-disclaimer").hide();
     }
 
   };
