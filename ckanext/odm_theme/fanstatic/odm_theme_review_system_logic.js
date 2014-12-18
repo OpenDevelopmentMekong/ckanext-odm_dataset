@@ -4,22 +4,22 @@
 /* odm_theme_review_system_logic
  *
  * Review System Logic
- * 
+ *
  * This Javascript modules extends the functionalities provided by
  * the CKAN base module dataset-visibility.js which was originally
  * referenced in the package_basic_fields.html snippet (The one which
  * generates the form to create/edit datasets)
- * 
+ *
  * The additional lines of code aim to implement following Issue:
  * https://github.com/OpenDevelopmentMekong/ckanext-odm_theme/issues/1
  *
- * Import in templates using 
+ * Import in templates using
  * {% resource 'odm_theme/odm_theme_review_system_logic.js' %}
  *
  */
 
 ckan.module('odm_theme_review_system_logic', function ($, _) {
-  
+
   return {
 
     currentValue: false,
@@ -46,8 +46,8 @@ ckan.module('odm_theme_review_system_logic', function ($, _) {
       // we call member_list directly
       if (this.options.owner_org){
         var params = { 'id': this.options.owner_org, 'object_type': 'user', 'capacity': 'admin' };
-        this.sandbox.client.call('POST', 'member_list', params, this._onDone);    
-      }      
+        this.sandbox.client.call('POST', 'member_list', params, this._onDone);
+      }
 
     },
 
@@ -60,10 +60,10 @@ ckan.module('odm_theme_review_system_logic', function ($, _) {
 
       // If there is any organisation on the list (the user belongs to it)
       if (orgaInTheList) {
-     
-        // Call the API to check whether the user has Admin role in the orga     
+
+        // Call the API to check whether the user has Admin role in the orga
         var params = { 'id': orgaInTheList, 'object_type': 'user', 'capacity': 'admin' };
-        this.sandbox.client.call('POST', 'member_list', params, this._onDone);                   
+        this.sandbox.client.call('POST', 'member_list', params, this._onDone);
 
       } else {
 
@@ -72,26 +72,25 @@ ckan.module('odm_theme_review_system_logic', function ($, _) {
 
       }
 
-      
     },
 
     _onDone: function(response) {
 
       var debug = this.options.debug;
-      var user_id = this.options.user_id;      
+      var user_id = this.options.user_id;
       var showPublicOption = false;
 
       if (response.success){
 
         // we need to extract the ids of the admins found
-        var result = response.result;        
+        var result = response.result;
 
-        result.map( function(member) {      
+        result.map( function(member) {
 
           // if the user is on the list it means it is admin for that orga
           if (member[0] == user_id){
 
-            showPublicOption = true;         
+            showPublicOption = true;
 
           }
 
@@ -103,13 +102,13 @@ ckan.module('odm_theme_review_system_logic', function ($, _) {
 
         if (debug) console.log("Member is an admin, restore <select>");
 
-        this._resetAllOptions();       
+        this._resetAllOptions();
 
       }else{
 
         if (debug) console.log("Member is not an admin, hiding Public option");
 
-        this._removePublicOption();  
+        this._removePublicOption();
 
       }
     },
@@ -117,11 +116,11 @@ ckan.module('odm_theme_review_system_logic', function ($, _) {
     _removePublicOption: function() {
 
       this.options.visibility.find('option').filter(function () {
-        return $(this).val() === 'False';   
-      }).remove();  
+        return $(this).val() === 'False';
+      }).remove();
 
       // Do not disable field.
-      //this.options.visibility.prop('disabled', true);    
+      //this.options.visibility.prop('disabled', true);
 
     },
 
