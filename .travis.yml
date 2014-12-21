@@ -4,20 +4,17 @@ python:
   - "2.7"
 env:
   global:
-    - TESTS_HOME=/usr/lib/ckan/default/src/ckanext-odm_theme
+    - PLUGIN_HOME=/usr/lib/ckan/default/src/ckanext-odm_theme
+    - CKAN_HOME=/usr/lib/ckan/default/src/ckan
     - TESTS_FOLDER=/usr/lib/ckan/default/src/ckanext-odm_theme/ckanext/odm_theme/tests
 install:
-  # - "mkdir -p ~/ckan/lib"
-  # - "sudo ln -s ~/ckan/lib /usr/lib/ckan"
-  # - "mkdir -p ~/ckan/etc"
-  # - "sudo ln -s ~/ckan/etc /etc/ckan"
   - "sudo mkdir -p /usr/lib/ckan/default"
   - "sudo chown `whoami` /usr/lib/ckan/default"
   - "virtualenv --no-site-packages /usr/lib/ckan/default"
   - ". /usr/lib/ckan/default/bin/activate"
 
-  # Download CKAN 2.2.1 stable release
-  - "pip install -e 'git+https://github.com/ckan/ckan.git@ckan-2.2.1#egg=ckan'"
+  # Download CKAN 2.2.1 (own clone) stable release
+  - "pip install -e 'git+https://github.com/OpenDevelopmentMekong/ckan.git@ckan-2.2.1_lang_ext#egg=ckan'"
   - "pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt"
   - "pip install -r /usr/lib/ckan/default/src/ckan/dev-requirements.txt"
 
@@ -39,9 +36,9 @@ install:
   - "pip install -e 'git+https://github.com/ckan/ckanapi.git@ckanapi-3.3#egg=ckanapi'"
 
   # Clone plugin
-  - "mkdir -p $TESTS_HOME"
-  - "cd $TESTS_HOME"
-  - "git clone -b odm_theme-0.2 --depth 1 https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git ."
+  - "mkdir -p $PLUGIN_HOME"
+  - "cd $PLUGIN_HOME"
+  - "git clone --depth 1 https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git ."
   - "pip install -r requirements.txt"
   - "python setup.py develop"
 
@@ -61,7 +58,7 @@ install:
 
   # Init DB
   - "cd /usr/lib/ckan/default/src/ckan"
-  - "paster db init -c $TESTS_HOME/test.ini"
-  - "ln -s /usr/lib/ckan/default/src/ckan/who.ini /etc/ckan/default/who.ini"
+  - "paster db init -c $CKAN_HOME/test.ini"
+  - "ln -s $CKAN_HOME/who.ini /etc/ckan/default/who.ini"
 
 script: "nosetests --ckan --with-pylons=$TESTS_HOME/test.ini $TESTS_FOLDER"
