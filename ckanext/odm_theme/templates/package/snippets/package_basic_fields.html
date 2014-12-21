@@ -30,7 +30,7 @@
     <div class="controls">
       <select multiple id="field-taxonomy" name="taxonomy" data-module="autocomplete" placeholder=_('eg. economy, mental health, government')>
         {% for tag in h.odm_utils_get_taxonomy_tags()  %}
-        {% if tag not in data.tag_string %} <option value="{{ tag }}">{{ tag }}</option>{% endif %}
+        {% if tag not in data.tag_string %} <option value="{{ tag }}">{% trans %}{{ tag }}{% endtrans %}</option>{% endif %}
         {% endfor %}
       </select>
     </div>
