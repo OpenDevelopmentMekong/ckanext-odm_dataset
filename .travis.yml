@@ -61,4 +61,4 @@ install:
   - "paster db init -c $CKAN_HOME/test.ini"
   - "ln -s $CKAN_HOME/who.ini /etc/ckan/default/who.ini"
 
-script: "nosetests --ckan --with-pylons=$TESTS_HOME/test.ini $TESTS_FOLDER"
+script: "nosetests --ckan --with-pylons=$CKAN_HOME/test.ini $TESTS_FOLDER"
