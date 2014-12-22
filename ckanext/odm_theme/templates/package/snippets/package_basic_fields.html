@@ -25,16 +25,19 @@
 {% endblock %}
 
 {% block package_basic_fields_taxonomy %}
-<div class="control-group">
-    <label class="control-label" for="field-taxonomy">{{ _("Tags in Taxonomy") }}</label>
-    <div class="controls">
-      <select multiple id="field-taxonomy" name="taxonomy" data-module="autocomplete" placeholder=_('eg. economy, mental health, government')>
-        {% for tag in h.odm_utils_get_taxonomy_tags()  %}
-        {% if tag not in data.tag_string %} <option value="{{ tag }}">{% trans %}{{ tag }}{% endtrans %}</option>{% endif %}
-        {% endfor %}
-      </select>
+  {% set taxonomy_tags = h.odm_utils_get_taxonomy_tags()%}
+  {% if taxonomy_tags|length > 0 %}
+    <div class="control-group">
+      <label class="control-label" for="field-taxonomy">{{ _("Tags in Taxonomy") }}</label>
+      <div class="controls">
+        <select multiple id="field-taxonomy" name="taxonomy" data-module="autocomplete" placeholder=_('eg. economy, mental health, government')>
+          {% for tag in taxonomy_tags %}
+          {% if tag not in data.tag_string %} <option value="{{ tag }}">{% trans %}{{ tag }}{% endtrans %}</option>{% endif %}
+          {% endfor %}
+        </select>
+      </div>
     </div>
-  </div>
+  {% endif %}
 {% endblock%}
 
 {% block package_basic_fields_license %}
