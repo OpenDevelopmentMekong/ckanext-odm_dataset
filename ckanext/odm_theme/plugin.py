@@ -4,7 +4,6 @@
 import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-from ckan.lib.navl.validators import (ignore_missing,keep_extras,not_empty,empty,ignore,if_empty_same_as,not_missing,ignore_empty)
 
 log = logging.getLogger(__name__)
 
