@@ -59,7 +59,7 @@
     </tbody>
   </table>
 
-  <h3>{{ _('ODM Metadata') }}</h3>
+  <h3>{{ _('Open Development Network Metadata Template') }}</h3>
   <table class="table table-striped table-bordered table-condensed">
     <thead>
       <tr>
@@ -70,15 +70,17 @@
     <tbody>
       {% block package_odm_fields %}
 
-        {% block extras scoped %}
-        {% for extra in h.sorted_extras(pkg_dict.extras) %}
-        {% set key, value = extra %}
-        <tr rel="dc:relation" resource="_:extra{{ i }}">
-          <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
-          <td class="dataset-details" property="rdf:value">{{ value }}</td>
-        </tr>
+        {% for field in h.odm_theme_metadata_fields() %}
+          {% set field_name = field[0] %}
+          {% set field_label = field[1] %}
+
+          {% if pkg_dict[field_name] %}
+            <tr>
+              <th scope="row" class="dataset-label">{{ _(field_label) }}</th>
+              <td class="dataset-details">{{ pkg_dict[field_name] }}</td>
+            </tr>
+          {% endif %}
         {% endfor %}
-        {% endblock %}
 
       {% endblock %}
     </tbody>

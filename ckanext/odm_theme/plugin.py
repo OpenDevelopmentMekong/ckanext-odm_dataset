@@ -4,8 +4,19 @@
 import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
+import odm_theme_helper
 
 log = logging.getLogger(__name__)
+
+def metadata_fields():
+    '''Return a list of metadata fields'''
+
+    log.debug('metadata_fields')
+
+    return odm_theme_helper.metadata_fields
 
 def most_popular_groups():
     '''Return a sorted list of the groups with the most datasets.'''
@@ -79,126 +90,35 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         '''
         return {
             'odm_theme_most_popular_groups': most_popular_groups,
+            'odm_theme_metadata_fields': metadata_fields,
             'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
         }
 
     def _modify_package_schema_write(self, schema):
-        schema.update({
-            'odm_language': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_date_created': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_date_uploaded': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_date_modified': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_temporal_range': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_spatial_range': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_accuracy': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_logical_consistency': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_completeness': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_process': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_access_and_use_constraints': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_metadata_reference_information': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'odm_attributes': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_to_extras')]
-        })
-        schema.update({
-            'taxonomy': [toolkit.get_validator('ignore_missing'),
-              toolkit.get_converter('convert_to_tags')('taxonomy')]
-        })
+
+        for field in odm_theme_helper.metadata_fields:
+          schema.update({
+              field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
+          })
+
+        for taxonomy in odm_theme_helper.taxonomy_fields:
+          schema.update({
+              taxonomy[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(taxonomy[0])]
+          })
 
         return schema
 
     def _modify_package_schema_read(self, schema):
-        schema.update({
-            'odm_language': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_date_created': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_date_uploaded': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_date_modified': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_temporal_range': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_spatial_range': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_accuracy': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_logical_consistency': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_completeness': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_process': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_access_and_use_constraints': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_metadata_reference_information': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'odm_attributes': [toolkit.get_validator('ignore_missing'),
-                            toolkit.get_converter('convert_from_extras')]
-        })
-        schema.update({
-            'taxonomy': [toolkit.get_validator('ignore_missing'),
-              toolkit.get_converter('convert_from_tags')('taxonomy')]
-        })
+
+        for field in odm_theme_helper.metadata_fields:
+          schema.update({
+              field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
+          })
+
+        for taxonomy in odm_theme_helper.taxonomy_fields:
+          schema.update({
+              taxonomy[0]: [toolkit.get_converter('convert_from_tags')(taxonomy[0]),toolkit.get_validator('ignore_missing')]
+          })
 
         return schema
 
