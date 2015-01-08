@@ -32,17 +32,6 @@ def get_localized_tag(tag):
 
   return tag
 
-def get_translation_info(tags_string):
-
-  '''Checks if the current language is different than english'''
-
-  log.debug('needs_translation_info')
-
-  if (pylons.request.environ['CKAN_LANG'] == 'en'):
-    return ""
-
-  return get_localized_tag_string(tags_string)
-
 def get_localized_tag_string(tags_string):
 
   '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
@@ -136,12 +125,11 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
         '''
         return {
-        'odm_theme_get_localized_tag_string': get_localized_tag_string,
-            'odm_theme_get_localized_tag': get_localized_tag,
-            'odm_theme_get_translation_info': get_translation_info,
-            'odm_theme_most_popular_groups': most_popular_groups,
-            'odm_theme_metadata_fields': metadata_fields,
-            'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
+          'odm_theme_get_localized_tag_string': get_localized_tag_string,
+          'odm_theme_get_localized_tag': get_localized_tag,
+          'odm_theme_most_popular_groups': most_popular_groups,
+          'odm_theme_metadata_fields': metadata_fields,
+          'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
         }
 
     def _modify_package_schema_write(self, schema):
