@@ -1,6 +1,8 @@
 '''plugin.py
 
 '''
+import ckan
+import pylons
 import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
@@ -10,6 +12,40 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 import odm_theme_helper
 
 log = logging.getLogger(__name__)
+
+def get_localized_tag(tag):
+
+  '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
+
+  log.debug('odm_theme_get_localized_tag: %s', tag)
+
+  desired_lang_code = pylons.request.environ['CKAN_LANG']
+
+  translations = ckan.logic.action.get.term_translation_show(
+          {'model': ckan.model},
+          {'terms': (tag)})
+
+  # Transform the translations into a more convenient structure.
+  for translation in translations:
+    if translation['lang_code'] == desired_lang_code:
+      return translation['term_translation']
+
+  return tag
+
+def get_localized_tag_string(tags_string):
+
+  '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
+
+  log.debug('get_localized_tag_string: %s', tags_string)
+
+  translated_array = []
+  for tag in tags_string.split(', '):
+    translated_array.append(get_localized_tag(tag))
+
+  if len(translated_array)==0:
+    return ''
+
+  return ','.join(translated_array)
 
 def metadata_fields():
     '''Return a list of metadata fields'''
@@ -89,9 +125,11 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
         '''
         return {
-            'odm_theme_most_popular_groups': most_popular_groups,
-            'odm_theme_metadata_fields': metadata_fields,
-            'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
+          'odm_theme_get_localized_tag_string': get_localized_tag_string,
+          'odm_theme_get_localized_tag': get_localized_tag,
+          'odm_theme_most_popular_groups': most_popular_groups,
+          'odm_theme_metadata_fields': metadata_fields,
+          'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
         }
 
     def _modify_package_schema_write(self, schema):
