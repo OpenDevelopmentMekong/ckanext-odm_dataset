@@ -54,6 +54,13 @@ def metadata_fields():
 
     return odm_theme_helper.metadata_fields
 
+def library_fields():
+    '''Return a list of library fields'''
+
+    log.debug('library_fields')
+
+    return odm_theme_helper.library_fields
+
 def most_popular_groups():
     '''Return a sorted list of the groups with the most datasets.'''
 
@@ -66,6 +73,28 @@ def most_popular_groups():
     groups = groups[:10]
 
     return groups
+
+def is_library_group(group_id):
+
+    '''Returns wether the current group is the library group'''
+
+    log.debug('is_library_group: %s', group_id)
+
+    if group_id is 'None':
+
+        return False
+
+    try:
+
+        # Retrieve admin members from the specified organisation
+        groups = toolkit.get_action('group_list')(
+        data_dict={'groups': 'library-group'})
+
+    except toolkit.ObjectNotFound:
+
+        return False
+
+    return (len(groups) > 0)
 
 def is_user_admin_of_organisation(organization_name):
 
@@ -129,14 +158,16 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
           'odm_theme_get_localized_tag': get_localized_tag,
           'odm_theme_most_popular_groups': most_popular_groups,
           'odm_theme_metadata_fields': metadata_fields,
+          'odm_theme_library_fields': library_fields,
+          'odm_theme_is_library_group': is_library_group,
           'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
         }
 
     def _modify_package_schema_write(self, schema):
 
-        for field in odm_theme_helper.metadata_fields:
+        for metadata_field in odm_theme_helper.metadata_fields:
           schema.update({
-              field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
+              metadata_field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
           })
 
         for taxonomy in odm_theme_helper.taxonomy_fields:
@@ -144,18 +175,28 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
               taxonomy[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(taxonomy[0])]
           })
 
+        for library_field in odm_theme_helper.library_fields:
+          schema.update({
+              library_field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
+          })
+
         return schema
 
     def _modify_package_schema_read(self, schema):
 
-        for field in odm_theme_helper.metadata_fields:
+        for metadata_field in odm_theme_helper.metadata_fields:
           schema.update({
-              field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
+              metadata_field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
           })
 
         for taxonomy in odm_theme_helper.taxonomy_fields:
           schema.update({
               taxonomy[0]: [toolkit.get_converter('convert_from_tags')(taxonomy[0]),toolkit.get_validator('ignore_missing')]
+          })
+
+        for library_field in odm_theme_helper.library_fields:
+          schema.update({
+              library_field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
           })
 
         return schema
