@@ -79,7 +79,7 @@ def is_library_orga(orga_id):
 
   log.debug('is_library_orga: %s', orga_id)
 
-  if orga_id is 'None':
+  if orga_id is None:
     return False
 
   try:
@@ -88,6 +88,16 @@ def is_library_orga(orga_id):
     return False
 
   return orga['name'] == 'odm-library'
+
+def get_orga_or_group(orga_id,group_id):
+  '''Returns orga or group'''
+
+  if orga_id is not None:
+    return orga_id
+  elif group_id is not None:
+    return group_id
+
+  return None
 
 def is_user_admin_of_organisation(organization_name):
   '''Returns wether the current user has the Admin role in the specified organisation'''
@@ -151,6 +161,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_metadata_fields': metadata_fields,
       'odm_theme_library_fields': library_fields,
       'odm_theme_is_library_orga': is_library_orga,
+      'odm_theme_get_orga_or_group': get_orga_or_group,
       'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
     }
 
