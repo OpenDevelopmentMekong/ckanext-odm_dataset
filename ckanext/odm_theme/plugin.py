@@ -48,176 +48,160 @@ def get_localized_tag_string(tags_string):
   return ','.join(translated_array)
 
 def metadata_fields():
-    '''Return a list of metadata fields'''
+  '''Return a list of metadata fields'''
 
-    log.debug('metadata_fields')
+  log.debug('metadata_fields')
 
-    return odm_theme_helper.metadata_fields
+  return odm_theme_helper.metadata_fields
 
 def library_fields():
-    '''Return a list of library fields'''
+  '''Return a list of library fields'''
 
-    log.debug('library_fields')
+  log.debug('library_fields')
 
-    return odm_theme_helper.library_fields
+  return odm_theme_helper.library_fields
 
 def most_popular_groups():
-    '''Return a sorted list of the groups with the most datasets.'''
+  '''Return a sorted list of the groups with the most datasets.'''
 
-    # Get a list of all the site's groups from CKAN, sorted by number of
-    # datasets.
-    groups = toolkit.get_action('group_list')(
-        data_dict={'sort': 'packages desc', 'all_fields': True})
+  # Get a list of all the site's groups from CKAN, sorted by number of
+  # datasets.
+  groups = toolkit.get_action('group_list')(
+      data_dict={'sort': 'packages desc', 'all_fields': True})
 
-    # Truncate the list to the 10 most popular groups only.
-    groups = groups[:10]
+  # Truncate the list to the 10 most popular groups only.
+  groups = groups[:10]
 
-    return groups
+  return groups
 
-def is_library_group(group_id):
+def is_library_orga(orga_id):
+  '''Returns wether the current orga is the library orga'''
 
-    '''Returns wether the current group is the library group'''
+  log.debug('is_library_orga: %s', orga_id)
 
-    log.debug('is_library_group: %s', group_id)
-
-    if group_id is 'None':
-
-        return False
-
-    try:
-
-        # Retrieve admin members from the specified organisation
-        groups = toolkit.get_action('group_list')(
-        data_dict={'groups': 'library-group'})
-
-    except toolkit.ObjectNotFound:
-
-        return False
-
-    return (len(groups) > 0)
-
-def is_user_admin_of_organisation(organization_name):
-
-    '''Returns wether the current user has the Admin role in the specified organisation'''
-
-    user_id = toolkit.c.userobj.id
-
-    log.debug('is_user_admin_of_organisation: %s %s', user_id, organization_name)
-
-    if organization_name is 'None':
-
-        return False
-
-    try:
-
-        # Retrieve admin members from the specified organisation
-        members = toolkit.get_action('member_list')(
-        data_dict={'id': organization_name, 'object_type': 'user', 'capacity': 'admin'})
-
-    except toolkit.ObjectNotFound:
-
-        return False
-
-    # 'members' is a list of (user_id, object_type, capacity) tuples, we're
-    # only interested in the user_ids.
-    member_ids = [member_tuple[0] for member_tuple in members]
-
-    try:
-
-        # Finally, we can test whether the user is a member of the curators group.
-        if user_id in member_ids:
-
-            return True
-
-    except toolkit.Invalid:
-
-        return False
-
+  if orga_id is 'None':
     return False
 
+  try:
+    orga = toolkit.get_action('organization_show')(data_dict={'id': orga_id})
+  except toolkit.ObjectNotFound:
+    return False
+
+  return orga['name'] == 'odm-library'
+
+def is_user_admin_of_organisation(organization_name):
+  '''Returns wether the current user has the Admin role in the specified organisation'''
+
+  user_id = toolkit.c.userobj.id
+
+  log.debug('is_user_admin_of_organisation: %s %s', user_id, organization_name)
+
+  if organization_name is 'None':
+    return False
+
+  try:
+    members = toolkit.get_action('member_list')(
+    data_dict={'id': organization_name, 'object_type': 'user', 'capacity': 'admin'})
+
+  except toolkit.ObjectNotFound:
+    return False
+
+  member_ids = [member_tuple[0] for member_tuple in members]
+
+  try:
+    if user_id in member_ids:
+      return True
+
+  except toolkit.Invalid:
+    return False
+
+  return False
+
 class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
-    '''ODM theme plugin.
+  '''ODM theme plugin.
+
+  '''
+
+  plugins.implements(plugins.IDatasetForm)
+  plugins.implements(plugins.IConfigurer)
+  plugins.implements(plugins.ITemplateHelpers)
+
+  def update_config(self, config):
+    '''Update plugin config
 
     '''
+    toolkit.add_template_directory(config, 'templates')
+    toolkit.add_resource('fanstatic', 'odm_theme')
 
-    plugins.implements(plugins.IDatasetForm)
-    plugins.implements(plugins.IConfigurer)
-    plugins.implements(plugins.ITemplateHelpers)
+  def get_helpers(self):
+    '''Register the plugin's functions above as a template helper function.
 
-    def update_config(self, config):
+    '''
+    return {
+      'odm_theme_get_localized_tag_string': get_localized_tag_string,
+      'odm_theme_get_localized_tag': get_localized_tag,
+      'odm_theme_most_popular_groups': most_popular_groups,
+      'odm_theme_metadata_fields': metadata_fields,
+      'odm_theme_library_fields': library_fields,
+      'odm_theme_is_library_orga': is_library_orga,
+      'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
+    }
 
-        toolkit.add_template_directory(config, 'templates')
-        toolkit.add_resource('fanstatic', 'odm_theme')
+  def _modify_package_schema_write(self, schema):
 
-    def get_helpers(self):
-        '''Register the plugin's functions above as a template helper function.
+    for metadata_field in odm_theme_helper.metadata_fields:
+      schema.update({
+          metadata_field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
+      })
 
-        '''
-        return {
-          'odm_theme_get_localized_tag_string': get_localized_tag_string,
-          'odm_theme_get_localized_tag': get_localized_tag,
-          'odm_theme_most_popular_groups': most_popular_groups,
-          'odm_theme_metadata_fields': metadata_fields,
-          'odm_theme_library_fields': library_fields,
-          'odm_theme_is_library_group': is_library_group,
-          'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
-        }
+    for taxonomy in odm_theme_helper.taxonomy_fields:
+      schema.update({
+          taxonomy[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(taxonomy[0])]
+      })
 
-    def _modify_package_schema_write(self, schema):
+    for library_field in odm_theme_helper.library_fields:
+      schema.update({
+          library_field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
+      })
 
-        for metadata_field in odm_theme_helper.metadata_fields:
-          schema.update({
-              metadata_field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
-          })
+    return schema
 
-        for taxonomy in odm_theme_helper.taxonomy_fields:
-          schema.update({
-              taxonomy[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(taxonomy[0])]
-          })
+  def _modify_package_schema_read(self, schema):
 
-        for library_field in odm_theme_helper.library_fields:
-          schema.update({
-              library_field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
-          })
+    for metadata_field in odm_theme_helper.metadata_fields:
+      schema.update({
+          metadata_field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
+      })
 
-        return schema
+    for taxonomy in odm_theme_helper.taxonomy_fields:
+      schema.update({
+          taxonomy[0]: [toolkit.get_converter('convert_from_tags')(taxonomy[0]),toolkit.get_validator('ignore_missing')]
+      })
 
-    def _modify_package_schema_read(self, schema):
+    for library_field in odm_theme_helper.library_fields:
+      schema.update({
+          library_field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
+      })
 
-        for metadata_field in odm_theme_helper.metadata_fields:
-          schema.update({
-              metadata_field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-          })
+    return schema
 
-        for taxonomy in odm_theme_helper.taxonomy_fields:
-          schema.update({
-              taxonomy[0]: [toolkit.get_converter('convert_from_tags')(taxonomy[0]),toolkit.get_validator('ignore_missing')]
-          })
+  def create_package_schema(self):
+    schema = super(OdmThemePlugin, self).create_package_schema()
+    schema = self._modify_package_schema_write(schema)
+    return schema
 
-        for library_field in odm_theme_helper.library_fields:
-          schema.update({
-              library_field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-          })
+  def update_package_schema(self):
+    schema = super(OdmThemePlugin, self).update_package_schema()
+    schema = self._modify_package_schema_write(schema)
+    return schema
 
-        return schema
+  def show_package_schema(self):
+    schema = super(OdmThemePlugin, self).show_package_schema()
+    schema = self._modify_package_schema_read(schema)
+    return schema
 
-    def create_package_schema(self):
-        schema = super(OdmThemePlugin, self).create_package_schema()
-        schema = self._modify_package_schema_write(schema)
-        return schema
+  def is_fallback(self):
+    return True
 
-    def update_package_schema(self):
-        schema = super(OdmThemePlugin, self).update_package_schema()
-        schema = self._modify_package_schema_write(schema)
-        return schema
-
-    def show_package_schema(self):
-        schema = super(OdmThemePlugin, self).show_package_schema()
-        schema = self._modify_package_schema_read(schema)
-        return schema
-
-    def is_fallback(self):
-        return True
-
-    def package_types(self):
-        return []
+  def package_types(self):
+    return []

@@ -125,7 +125,15 @@
 
   </div>
 
-  {# {% if h.odm_theme_is_library_group(data.group_id) %} #}
+  {% if data.owner_org %}
+   {% set is_library_orga = h.odm_theme_is_library_orga(data.owner_org) %}
+  {% endif %}
+
+  {% if data.group_id %}
+   {% set is_library_group = h.odm_theme_is_library_orga(data.group_id) %}
+  {% endif %}
+
+  {% if is_library_orga or is_library_group %}
     {% block library_publications %}
       <div class="control-group">
 
@@ -136,7 +144,7 @@
         {% endblock %}
 
         {% block package_metadata_fields_marc21_022 %}
-          {{ form.input('marc21_022', label=_('ISBN'), id='field-package_metadata_fields_marc21_022', placeholder=_('International Standard Serial Number (ISSN) a unique numeric commercial serial identifier based upon the 8-digitSeriel standard number.'), value=data.marc21_022, error=errors.marc21_022, classes=['control-full']) }}
+          {{ form.input('marc21_022', label=_('ISSN'), id='field-package_metadata_fields_marc21_022', placeholder=_('International Standard Serial Number (ISSN) a unique numeric commercial serial identifier based upon the 8-digitSeriel standard number.'), value=data.marc21_022, error=errors.marc21_022, classes=['control-full']) }}
         {% endblock %}
 
         {% block package_metadata_fields_marc21_084 %}
@@ -210,7 +218,7 @@
       </div>
 
     {% endblock%}
-  {# {% endif %} #}
+  {% endif %}
 
   {% if data.id and h.check_access('package_delete', {'id': data.id}) and data.state != 'active' %}
     <div class="control-group">
