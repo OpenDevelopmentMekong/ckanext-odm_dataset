@@ -2,6 +2,8 @@
 
 {% block package_metadata_fields %}
 
+  <h3>{{ _('Open Development Network Metadata Template') }}</h3>
+
   {% block package_metadata_fields_odm_language %}
     {{ form.input('odm_language', label=_('Language'), id='field-odm_language', placeholder=_('List of languages in which the asset is available.'), value=data.odm_language, error=errors.odm_language, classes=['control-full']) }}
   {% endblock %}
