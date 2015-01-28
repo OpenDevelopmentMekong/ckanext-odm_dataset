@@ -102,12 +102,11 @@
         {% if h.check_config_permission('create_unowned_dataset') %}
            <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No organization') }}</option>
         {% endif %}
-        {% for organization in organizations_available %}
-          {# get out first org from users list only if there is not an existing org #}
+        {% for organization in organizations_available %}          
+          {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %}
           {% if h.odm_theme_is_library_orga(organization.id) and show_library_fields %}
-          <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{ organization.name }}</option>
+           <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{ organization.name }}</option>
           {% elif not show_library_fields and not h.odm_theme_is_library_orga(organization.id)%}
-           {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %}
            <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{ organization.name }}</option>
           {% endif %}
         {% endfor %}
