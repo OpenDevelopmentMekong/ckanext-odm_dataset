@@ -125,6 +125,13 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.IDatasetForm)
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
+  plugins.implements(plugins.IRoutes, inherit=True)
+
+  def before_map(self, m):
+    m.connect('library', #name of path route
+        '/library', #url to map path to
+        controller='ckanext.odm_theme.controller:ThemeController',action='library')
+    return m
 
   def update_config(self, config):
     '''Update plugin config

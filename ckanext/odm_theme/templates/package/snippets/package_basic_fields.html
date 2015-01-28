@@ -65,7 +65,17 @@
 </div>
 {% endblock %}
 
-{% block package_basic_fields_org %}
+{% if data.owner_org %}
+{% set is_library_orga = h.odm_theme_is_library_orga(data.owner_org) %}
+{% endif %}
+
+{% if data.group_id %}
+{% set is_library_group = h.odm_theme_is_library_orga(data.group_id) %}
+{% endif %}
+
+{% set show_library_fields = is_library_orga or is_library_group %}
+
+{% block package_basic_fields_orga %}
 
   {% resource 'odm_theme/odm_theme_review_system_logic.js' %}
 
@@ -88,7 +98,11 @@
     <div class="control-group">
       <label for="field-organizations" class="control-label">{{ _('Organization') }}</label>
       <div class="controls">
+       {% if show_library_fields %}
+        <select id="field-organizations" name="owner_org" data-module="autocomplete" DISABLED>
+       {% else %}
         <select id="field-organizations" name="owner_org" data-module="autocomplete">
+       {% endif %}
           {% if h.check_config_permission('create_unowned_dataset') %}
              <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No organization') }}</option>
           {% endif %}
@@ -125,15 +139,7 @@
 
   </div>
 
-  {% if data.owner_org %}
-   {% set is_library_orga = h.odm_theme_is_library_orga(data.owner_org) %}
-  {% endif %}
-
-  {% if data.group_id %}
-   {% set is_library_group = h.odm_theme_is_library_orga(data.group_id) %}
-  {% endif %}
-
-  {% if is_library_orga or is_library_group %}
+  {% if  show_library_fields %}
     {% block library_publications %}
       <div class="control-group">
 
