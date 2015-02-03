@@ -46,7 +46,7 @@ install:
   - "cd /etc/default"
   - "sudo echo 'NO_START=0' | sudo tee -a jetty"
   - "sudo echo 'JETTY_HOST=127.0.0.1' | sudo tee -a jetty"
-  - "sudo echo 'JETTY_PORT=8983' | sudo tee -a jetty"
+  - "sudo echo 'JETTY_PORT=8080' | sudo tee -a jetty"
   - "sudo echo 'JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64/' | sudo tee -a jetty"
 
   # Start Jetty, link Solr schema.xml
