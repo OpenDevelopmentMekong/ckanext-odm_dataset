@@ -5,7 +5,6 @@ python:
 env:
   global:
     - PLUGIN_HOME=/usr/lib/ckan/default/src/ckanext-odm_theme
-    - CKAN_HOME=/usr/lib/ckan/default/src/ckan
     - TESTS_FOLDER=/usr/lib/ckan/default/src/ckanext-odm_theme/ckanext/odm_theme/tests
 install:
   - "sudo mkdir -p /usr/lib/ckan/default"
@@ -26,7 +25,7 @@ install:
   # Set up the test databases
   - sudo -u postgres createdb -O ckan_default ckan_test -E utf-8
   - sudo -u postgres createdb -O ckan_default datastore_test -E utf-8
-  - paster datastore set-permissions -c test-core.ini | sudo -u postgres psql
+  - paster datastore set-permissions -c $PLUGIN_HOME/test.ini | sudo -u postgres psql
 
   - "sudo mkdir -p /etc/ckan/default"
   - "sudo chown -R `whoami` /etc/ckan/"
@@ -47,7 +46,7 @@ install:
   - "cd /etc/default"
   - "sudo echo 'NO_START=0' | sudo tee -a jetty"
   - "sudo echo 'JETTY_HOST=127.0.0.1' | sudo tee -a jetty"
-  - "sudo echo 'JETTY_PORT=8983' | sudo tee -a jetty"
+  - "sudo echo 'JETTY_PORT=8080' | sudo tee -a jetty"
   - "sudo echo 'JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64/' | sudo tee -a jetty"
 
   # Start Jetty, link Solr schema.xml
@@ -58,7 +57,7 @@ install:
 
   # Init DB
   - "cd /usr/lib/ckan/default/src/ckan"
-  - "paster db init -c $CKAN_HOME/test.ini"
-  - "ln -s $CKAN_HOME/who.ini /etc/ckan/default/who.ini"
+  - "paster db init -c $PLUGIN_HOME/test.ini"
+  - "ln -s $PLUGIN_HOME/test-who.ini /etc/ckan/default/who.ini"
 
-script: "nosetests --ckan --with-pylons=$CKAN_HOME/test.ini $TESTS_FOLDER"
+script: "nosetests --ckan --with-pylons=$PLUGIN_HOME/test.ini $TESTS_FOLDER"

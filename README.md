@@ -15,6 +15,17 @@ In order to install this CKAN Extension:
 
     <code>cd ckanext-odm_theme & python setup.py develop</code>
 
+# Testing
+
+  In order to test it:
+
+  * Make sure that test.ini is properly configured, specially noting the values of:
+    * **solr_url**
+    * **who.config_file**
+
+  * Run tests:
+    <code>nosetests --ckan --with-pylons=test.ini ckanext/odm_theme/tests/</code>
+
 # Copyright and License
 
 This material is copyright (c) 2014-2015 East-West Management Institute, Inc. (EWMI).
