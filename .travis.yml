@@ -13,7 +13,7 @@ install:
   - ". /usr/lib/ckan/default/bin/activate"
 
   # Download CKAN 2.2.1 (own clone) stable release
-  - "pip install -e 'git+https://github.com/OpenDevelopmentMekong/ckan.git@ckan-2.2.1_lang_ext#egg=ckan'"
+  - "pip install -e 'git+https://github.com/OpenDevelopmentMekong/ckan.git@master#egg=ckan'"
   - "pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt"
   - "pip install -r /usr/lib/ckan/default/src/ckan/dev-requirements.txt"
 
