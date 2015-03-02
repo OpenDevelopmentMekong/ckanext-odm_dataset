@@ -1,5 +1,5 @@
 <div role="main" class="hero">
-  <div class="container">
+  <div class="container intro">
     <div class="row row1">
      <div class="span6 col1">
       <h1>{{ _('Welcome') }}</h1>
@@ -8,13 +8,14 @@
      <div class="span3 col2">
       {% if h.check_access('package_create') %}
        <h2>{{ _('Contribute') }}</h2>
-       {% link_for _('Add Dataset'), controller='package', action='new', class_='btn btn-primary', icon='plus-sign-alt' %}
+       {% link_for _('Add Dataset'), controller='package', action='new', class_='btn btn-large btn-primary', icon='plus-sign-alt' %}
       {% endif %}
       <h2>{{ _('Need help?') }}</h2>
       <p>{{ _('You will find lots of useful information on our documentation.') }}</p>
-      <a target="_blank" href="http://wiki.opendevelopmentmekong.net"><button class="btn btn-primary" type="submit" name="documentation"><i class="icon-info-sign"></i>{{ _('Documentation') }}</button></a>
+      <a target="_blank" href="http://wiki.opendevelopmentmekong.net"><button class="btn btn-large btn-primary" type="submit" name="documentation"><i class="icon-info-sign"></i>{{ _('Documentation') }}</button></a>
      </div>
      <div class="span3 col3">
+      <h2>{{ _('Statistics') }}</h2>
       {% snippet 'home/snippets/stats.html' %}
      </div>
     </div>

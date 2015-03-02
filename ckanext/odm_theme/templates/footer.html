@@ -8,25 +8,23 @@
     {% endblock %}
     {% block footer_content %}
      <div class="row row2">
-       <!-- <nav class="footer-links"> -->
-         {% block footer_nav %}
-         <div class="span3 col1">
-          <a href="http://opendevelopmentmekong.net/about-us/">{{ _('About us') }}</a>
-         </div>
-         <div class="span3 col2">
-          <a href="http://opendevelopmentmekong.net/contact/">{{ _('Contact') }}</a>
-         </div>
-         <div class="span3 col3">
-          <a href="http://opendevelopmentmekong.net/disclaimer/">{{ _('Disclaimer') }}</a>
-         </div>
-         <div class="span3 col4">
-          {% snippet "snippets/language_selector.html" %}
-          <p><strong>{% trans %}Powered by{% endtrans %}</strong></p>
-          <p><a href="http://ckan.org"><img src="../../../base/images/ckan-logo-footer.png"></img></a></p>
-          <p><a href="http://www.opendefinition.org/okd/"><img src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png"></a></p>
-         </div>
-         {% endblock %}
-       <!-- </nav> -->
+       {% block footer_nav %}
+       <div class="span3 col1 footer-nav">
+        <a href="http://opendevelopmentmekong.net/about-us/">{{ _('About us') }}</a>
+       </div>
+       <div class="span3 col2 footer-nav">
+        <a href="http://opendevelopmentmekong.net/contact/">{{ _('Contact') }}</a>
+       </div>
+       <div class="span3 col3 footer-nav">
+        <a href="http://opendevelopmentmekong.net/disclaimer/">{{ _('Disclaimer') }}</a>
+       </div>
+       <div class="span3 col4 footer-nav">
+        {% snippet "snippets/language_selector.html" %}
+        <p><strong>{% trans %}Powered by{% endtrans %}</strong></p>
+        <p><a href="http://ckan.org"><img src="../../../base/images/ckan-logo-footer.png"></img></a></p>
+        <p><a href="http://www.opendefinition.org/okd/"><img src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png"></a></p>
+       </div>
+       {% endblock %}
      </div>
     {% endblock %}
   </div>
