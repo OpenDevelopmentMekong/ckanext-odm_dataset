@@ -61,7 +61,7 @@ def library_fields():
 
   return odm_theme_helper.library_fields
 
-def most_popular_groups():
+def popular_groups():
   '''Return a sorted list of the groups with the most datasets.'''
 
   # Get a list of all the site's groups from CKAN, sorted by number of
@@ -73,6 +73,26 @@ def most_popular_groups():
   groups = groups[:10]
 
   return groups
+
+def recent_datasets():
+  '''Return a sorted list of the datasets updated recently.'''
+
+  # Get a list of all the site's groups from CKAN, sorted by number of
+  # datasets.
+  dataset = toolkit.get_action('current_package_list_with_resources')(
+      data_dict={'limit': 10})
+
+  return dataset
+
+def popular_datasets(limit):
+  '''Return a sorted list of the most popular datasets.'''
+
+  # Get a list of all the site's groups from CKAN, sorted by number of
+  # datasets.
+  result_dict = toolkit.get_action('package_search')(
+      data_dict={'sort': 'views_recent desc', 'rows': limit})
+
+  return result_dict['results']
 
 def is_library_orga(orga_id):
   '''Returns wether the current orga is the library orga'''
@@ -157,7 +177,9 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     return {
       'odm_theme_get_localized_tag_string': get_localized_tag_string,
       'odm_theme_get_localized_tag': get_localized_tag,
-      'odm_theme_most_popular_groups': most_popular_groups,
+      'odm_theme_popular_groups': popular_groups,
+      'odm_theme_recent_datasets': recent_datasets,
+      'odm_theme_popular_datasets': popular_datasets,
       'odm_theme_metadata_fields': metadata_fields,
       'odm_theme_library_fields': library_fields,
       'odm_theme_is_library_orga': is_library_orga,

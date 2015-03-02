@@ -1,0 +1,39 @@
+<footer class="site-footer">
+  <div class="container">
+    {% block footer_disclaimer %}
+     <div class="row row1">
+      <p>{{ _('This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. Article summaries are copyrighted by their respective sources. This Open Development Cambodia (ODC) site is compiled from available documentation and provides data without fee for general informational purposes only. It is not a commercial research service. Information is posted only after a careful vetting and verification process, however ODC cannot guarantee accuracy, completeness or reliability from third party sources in every instance. Site users are encouraged to do additional research in support of their activities and to share the results of that research with our team at info@opendevcam.net to further improve site accuracy.') }}</p>
+      <p>{{ _('In deference to Cambodian law, Open Development Cambodia (ODC) site users understand and agree to take full responsibility for reliance on any site information provided and to hold harmless and waive any and all liability against individuals or entities associated with its development, form and content for any loss, harm or damage suffered as a result of its use.') }}</p>
+     </div>
+    {% endblock %}
+    {% block footer_content %}
+     <div class="row row2">
+       <!-- <nav class="footer-links"> -->
+         {% block footer_nav %}
+         <div class="span3 col1">
+          <a href="http://opendevelopmentmekong.net/about-us/">{{ _('About us') }}</a>
+         </div>
+         <div class="span3 col2">
+          <a href="http://opendevelopmentmekong.net/contact/">{{ _('Contact') }}</a>
+         </div>
+         <div class="span3 col3">
+          <a href="http://opendevelopmentmekong.net/disclaimer/">{{ _('Disclaimer') }}</a>
+         </div>
+         <div class="span3 col4">
+          {% snippet "snippets/language_selector.html" %}
+          <p><strong>{% trans %}Powered by{% endtrans %}</strong></p>
+          <p><a href="http://ckan.org"><img src="../../../base/images/ckan-logo-footer.png"></img></a></p>
+          <p><a href="http://www.opendefinition.org/okd/"><img src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png"></a></p>
+         </div>
+         {% endblock %}
+       <!-- </nav> -->
+     </div>
+    {% endblock %}
+  </div>
+
+  {% block footer_debug %}
+    {% if g.debug %}
+      {% include 'snippets/debug.html' %}
+    {% endif %}
+  {% endblock %}
+</footer>

@@ -1,0 +1,10 @@
+<div class="box">
+ <div class="inner">
+  <h3>{{_('Popular datasets')}}</h3>
+  <ul>
+    {% for dataset in h.odm_theme_popular_datasets(10) %}
+      <li>{{ dataset.title }}</li>
+    {% endfor %}
+  </ul>
+ </div>
+</div>
