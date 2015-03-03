@@ -1,20 +1,27 @@
 <div role="main" class="hero">
   <div class="container intro">
     <div class="row row1">
-     <div class="span6 col1">
-      <h1>{{ _('Welcome') }}</h1>
-      <p>{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor.') }}</p>
+     <div class="span9 col1">
+      <h1>{{ _('Welcome to ODM') }}</h1>
+      <p>{{ _('Open Development Mekong (ODM) provides information on development trends in the Mekong Region to increase public awareness, enable individual analysis, improve information sharing, and inform debate - all contributing to sustainable development from a social, economic and environmental perspective.') }}</p>
+      <div class="intro-buttons">
+       <ul>
+        <li>
+         <h2>{{ _('Contribute') }}</h2>
+         {% link_for _('Add Dataset'), controller='package', action='new', class_='btn btn-large btn-primary', icon='plus-sign-alt' %}
+        </li>
+        <li>
+         <h2>{{ _('Need Help?') }}</h2>
+         <a target="_blank" href="http://wiki.opendevelopmentmekong.net"><button class="btn btn-large btn-primary" type="submit" name="documentation"><i class="icon-info-sign"></i>{{ _('Documentation') }}</button></a>
+        </li>
+        <li>
+         <h2>{{ _('Discover more') }}</h2>
+         <a target="_blank" href="http://opendevelopmentmekong.net"><button class="btn btn-large btn-primary" type="submit" name="web"><i class="icon-info-sign"></i>{{ _('Visit ODM\'s website') }}</button></a>
+        </li>
+       </ul>
+      </div>
      </div>
      <div class="span3 col2">
-      {% if h.check_access('package_create') %}
-       <h2>{{ _('Contribute') }}</h2>
-       {% link_for _('Add Dataset'), controller='package', action='new', class_='btn btn-large btn-primary', icon='plus-sign-alt' %}
-      {% endif %}
-      <h2>{{ _('Need help?') }}</h2>
-      <p>{{ _('You will find lots of useful information on our documentation.') }}</p>
-      <a target="_blank" href="http://wiki.opendevelopmentmekong.net"><button class="btn btn-large btn-primary" type="submit" name="documentation"><i class="icon-info-sign"></i>{{ _('Documentation') }}</button></a>
-     </div>
-     <div class="span3 col3">
       <h2>{{ _('Statistics') }}</h2>
       {% snippet 'home/snippets/stats.html' %}
      </div>

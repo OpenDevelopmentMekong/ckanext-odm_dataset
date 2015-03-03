@@ -4869,8 +4869,7 @@ a.tag:hover {
   padding: 7px 25px;
   font-size: 14px;
   line-height: 1.3;
-  color: #ffffff;
-  background-color: #373c6a;
+  background-color: #F6F6F6;
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
 }
@@ -7114,6 +7113,14 @@ h4 small {
 .hero .intro{
   padding: 10px;
 }
+.intro-buttons ul, ol{
+  margin: 0px;
+}
+.intro-buttons li{
+ float: left;
+ list-style: none;
+ margin-right: 20px;
+}
 .context-info .module-content {
   padding: 15px;
 }
@@ -7326,6 +7333,7 @@ h4 small {
   min-height: 30px;
   color: #ffffff;
   background-color: #292d56;
+  backgroun-image: none;
 }
 .account-masthead:before,
 .account-masthead:after {

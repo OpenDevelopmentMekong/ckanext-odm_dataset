@@ -169,6 +169,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''
     toolkit.add_template_directory(config, 'templates')
     toolkit.add_resource('fanstatic', 'odm_theme')
+    toolkit.add_public_directory(config, 'public')
 
   def get_helpers(self):
     '''Register the plugin's functions above as a template helper function.
