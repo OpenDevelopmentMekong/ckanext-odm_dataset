@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block package_basic_fields_taxonomy %}
-{% set taxonomy_tags = h.odm_utils_get_taxonomy_tags() %}
+{% set taxonomy_tags = h.odm_utils_get_taxonomy_tags('taxonomy') %}
 {% if taxonomy_tags|length > 0 %}
 <div class="control-group">
   <label class="control-label" for="field-taxonomy">{{ _("Tags") }}</label>
@@ -102,7 +102,7 @@
         {% if h.check_config_permission('create_unowned_dataset') %}
            <option value="" {% if not selected_org and data.id %} selected="selected" {% endif %}>{{ _('No organization') }}</option>
         {% endif %}
-        {% for organization in organizations_available %}          
+        {% for organization in organizations_available %}
           {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %}
           {% if h.odm_theme_is_library_orga(organization.id) and show_library_fields %}
            <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{ organization.name }}</option>
