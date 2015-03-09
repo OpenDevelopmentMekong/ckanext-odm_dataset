@@ -10,6 +10,7 @@
     <tbody>
       {% block package_additional_info %}
 
+        {#
         {% if pkg_dict.url %}
         <tr>
           <th scope="row" class="dataset-label">{{ _('Source') }}</th>
@@ -28,6 +29,8 @@
           <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
         </tr>
         {% endif %}
+
+        #}
 
         {% if pkg_dict.maintainer_email %}
         <tr>
