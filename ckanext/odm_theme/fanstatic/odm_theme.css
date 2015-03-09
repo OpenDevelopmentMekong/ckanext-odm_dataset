@@ -7496,7 +7496,7 @@ h4 small {
   min-height: 55px;
   color: #ffffff;
   background: #4c4c4c;
-  padding: 20px 0;
+  padding: 20px 0px;
 }
 .site-footer:before,
 .site-footer:after {
@@ -7592,6 +7592,9 @@ h4 small {
 }
 .footer-links ul li {
   margin-bottom: 5px;
+}
+.footer-disclaimer{
+ padding: 0px 0px 0px 20px;
 }
 .attribution small {
   color: #fff;
