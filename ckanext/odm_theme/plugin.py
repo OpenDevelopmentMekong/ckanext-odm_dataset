@@ -13,8 +13,16 @@ import odm_theme_helper
 
 log = logging.getLogger(__name__)
 
-def get_localized_tag(tag):
+def validate_not_empty(value,context):
+  '''Returns if a string is empty or not'''
 
+  log.debug('validate_not_empty: %s', value)
+
+  if not value:
+    raise toolkit.Invalid('Missing value')
+  return value
+
+def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
   log.debug('odm_theme_get_localized_tag: %s', tag)
@@ -33,7 +41,6 @@ def get_localized_tag(tag):
   return tag
 
 def get_localized_tag_string(tags_string):
-
   '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
 
   log.debug('get_localized_tag_string: %s', tags_string)
@@ -159,8 +166,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   def before_map(self, m):
     m.connect('library', #name of path route
-        '/library', #url to map path to
-        controller='ckanext.odm_theme.controller:ThemeController',action='library')
+      '/library', #url to map path to
+      controller='ckanext.odm_theme.controller:ThemeController',action='library')
     return m
 
   def update_config(self, config):
@@ -191,38 +198,38 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   def _modify_package_schema_write(self, schema):
 
     for metadata_field in odm_theme_helper.metadata_fields:
-      schema.update({
-          metadata_field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
-      })
-
-    for taxonomy in odm_theme_helper.taxonomy_fields:
-      schema.update({
-          taxonomy[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(taxonomy[0])]
-      })
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
+      if metadata_field[2]:
+        validators_and_converters.insert(1,validate_not_empty)
+      schema.update({metadata_field[0]: validators_and_converters})
 
     for library_field in odm_theme_helper.library_fields:
-      schema.update({
-          library_field[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
-      })
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
+      if library_field[2]:
+        validators_and_converters.insert(1,validate_not_empty)
+      schema.update({library_field[0]: validators_and_converters})
+
+    for taxonomy in odm_theme_helper.taxonomy_fields:
+      schema.update({taxonomy[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(taxonomy[0])]})
 
     return schema
 
   def _modify_package_schema_read(self, schema):
 
     for metadata_field in odm_theme_helper.metadata_fields:
-      schema.update({
-          metadata_field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      })
-
-    for taxonomy in odm_theme_helper.taxonomy_fields:
-      schema.update({
-          taxonomy[0]: [toolkit.get_converter('convert_from_tags')(taxonomy[0]),toolkit.get_validator('ignore_missing')]
-      })
+      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
+      if metadata_field[2]:
+        validators_and_converters.append(validate_not_empty)
+      schema.update({metadata_field[0]: validators_and_converters})
 
     for library_field in odm_theme_helper.library_fields:
-      schema.update({
-          library_field[0]: [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      })
+      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
+      if library_field[2]:
+        validators_and_converters.append(validate_not_empty)
+      schema.update({library_field[0]: validators_and_converters})
+
+    for taxonomy in odm_theme_helper.taxonomy_fields:
+      schema.update({taxonomy[0]: [toolkit.get_converter('convert_from_tags')(taxonomy[0]),toolkit.get_validator('ignore_missing')]})
 
     return schema
 

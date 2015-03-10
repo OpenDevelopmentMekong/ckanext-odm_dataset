@@ -15,11 +15,12 @@ metadata_fields = [
 ('odm_process','Process(es)',True),
 ('odm_source','Source(s)',True),
 ('author','Contact',True),
-('author_email','Contact Email',False),
+('author_email','Contact Email',True),
 ('odm_access_and_use_constraints','Access and use constraints',False),
 ('url','Download URL',False),
 ('odm_metadata_reference_information','Metadata reference information',False),
-('odm_attributes','Attributes',False)]
+('odm_attributes','Attributes',False)
+]
 
 taxonomy_fields = [('taxonomy','Tags in taxonomy')]
 
@@ -44,4 +45,5 @@ library_fields = [
 ('marc21_700','Co-Author',False),
 ('marc21_710','Co-Author (Corporate)',False),
 ('marc21_850','Institution',False),
-('marc21_852','Location',False)]
+('marc21_852','Location',False)
+]
