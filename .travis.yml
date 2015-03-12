@@ -42,6 +42,7 @@ install:
   - "python setup.py develop"
 
   # Install Jetty and configure solr
+  - "sudo apt-get update"
   - "sudo apt-get install --yes solr-jetty"
   - "cd /etc/default"
   - "sudo echo 'NO_START=0' | sudo tee -a jetty"
