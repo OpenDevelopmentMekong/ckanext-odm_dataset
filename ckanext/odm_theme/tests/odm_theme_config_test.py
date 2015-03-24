@@ -17,7 +17,7 @@ GEOSERVER_MAP={'ontology':'*','organization':'cambodia-organization','groups':[{
 NGL_MAP={'ontology':'*','organization':'odm-library','groups':[{'name':'library-group'},{'name':'cambodia-group'}]}
 
 # ODC
-ODC_MAP=[{'ontology':'ODC/News','organization':'cambodia-organization','groups':[{'name':'news-group'},{'name':'cambodia-group'}]}]
+ODC_MAP=[{'ontology':'ODC/News','organization':'cambodia-organization','groups':[{'name':'news-group'},{'name':'cambodia-group'}],'field_prefixes':[]}]
 
 # Tag vocabularies
 TAXONOMY_TAG_VOCAB='taxonomy'
