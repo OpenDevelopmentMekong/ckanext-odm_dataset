@@ -1,2 +1,3 @@
 *.pyc
 .remote-sync.json
+**/odm_theme_config.py
