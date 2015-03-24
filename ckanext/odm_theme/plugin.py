@@ -13,6 +13,17 @@ import odm_theme_helper
 
 log = logging.getLogger(__name__)
 
+def get_taxonomy_tags(taxonomy_vocab_name):
+
+  try:
+
+    taxonomy_tags = toolkit.get_action('tag_list')(data_dict={'vocabulary_id': taxonomy_vocab_name})
+    return taxonomy_tags
+
+  except toolkit.ObjectNotFound:
+
+    return []
+
 def validate_not_empty(value,context):
   '''Returns if a string is empty or not'''
 
@@ -192,7 +203,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_library_fields': library_fields,
       'odm_theme_is_library_orga': is_library_orga,
       'odm_theme_get_orga_or_group': get_orga_or_group,
-      'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation
+      'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation,
+      'odm_theme_get_taxonomy_tags': get_taxonomy_tags
     }
 
   def _modify_package_schema_write(self, schema):
