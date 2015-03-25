@@ -128,6 +128,8 @@ class ODMImporter():
         continue
 
       dataset_metadata = self._map_record_to_ckan_dataset_dict(record)
+      dataset_metadata = self._set_extras_from_record_to_ckan_dataset_dict(dataset_metadata,record)
+
       if (dataset_metadata is None) or (dataset_metadata["name"] == ''):
         print("Dataset does not have any title or ISBN, unique name cannot be generated")
         continue
@@ -300,6 +302,7 @@ class ODMImporter():
 
                 # Create dictionary with data to create/update datasets on CKAN
                 dataset_metadata = self._map_geoserver_feature_to_ckan_dataset(response_dict['featureType'],urltocall,taxonomy_tags,config)
+                dataset_metadata = self._set_extras_from_layer_to_ckan_dataset_dict(dataset_metadata)
 
                 # Get id of organization from its name and add it to dataset_metadata
                 dataset_metadata['id'] = ''
@@ -493,7 +496,7 @@ class ODMImporter():
     if (params_dict['name'] is None):
       params_dict['name'] = str(uuid.uuid4())
     params_dict['name'] = self._prepare_string_for_ckan_name(params_dict['name'])
-    params_dict['author'] = config.IMPORTER_USER
+    params_dict['author'] = config.IMPORTER_NAME
     params_dict['author_email'] = config.IMPORTER_EMAIL
     params_dict['state'] = 'active'
     params_dict['notes'] = elem.find('content:encoded',root.nsmap).text
@@ -509,6 +512,10 @@ class ODMImporter():
   def _set_extras_from_xml_item_to_ckan_dataset_dict(self,params_dict,config_item,root,elem,config):
 
     params_dict['extras'] = []
+
+    # Add Spatial Range
+    params_dict['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+
     if (elem.find('link') is not None):
       params_dict['extras'].append(dict({'key': 'Published under','value': elem.find('link').text}))
     if (elem.find('pubDate') is not None):
@@ -583,60 +590,69 @@ class ODMImporter():
     if record.author():
       params_dict['author'] = unicode(record.author())
 
-    params_dict['extras'] = []
+    return params_dict
+
+  def _set_extras_from_record_to_ckan_dataset_dict(self,dataset_metadata,record):
+
+    if dataset_metadata is None:
+      return None
+      
+    dataset_metadata['extras'] = []
+    dataset_metadata['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+
     # ISBN
     if record.isbn():
-      params_dict['extras'].append(dict({'key': 'marc21_020','value': unicode(record.isbn())}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_020','value': unicode(record.isbn())}))
     # ISSN
     if record['022']:
-      params_dict['extras'].append(dict({'key': 'marc21_022','value': unicode(record['022'].value())}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_022','value': unicode(record['022'].value())}))
     # Classification
     if record['084']:
-      params_dict['extras'].append(dict({'key': 'marc21_084','value': unicode(record['084'].value())}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_084','value': unicode(record['084'].value())}))
     # Corporate Author
     if record['110']:
-      params_dict['extras'].append(dict({'key': 'marc21_110','value': unicode(record['110'].value())}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_110','value': unicode(record['110'].value())}))
     # Varying Form of Title
     if record['246']:
-      params_dict['extras'].append(dict({'key': 'marc21_246','value': unicode(record['246'].value())}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_246','value': unicode(record['246'].value())}))
     # Edition
     if record['250']:
-      params_dict['extras'].append(dict({'key': 'marc21_250','value': unicode(record['250'].value())}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_250','value': unicode(record['250'].value())}))
     # Publication Name
     if record['260'] and record['260']['a']:
-      params_dict['extras'].append(dict({'key': 'marc21_260a','value': unicode(record['260']['a'])}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_260a','value': unicode(record['260']['a'])}))
     # Publication Place
     if record['260'] and record['260']['b']:
-      params_dict['extras'].append(dict({'key': 'marc21_260b','value': unicode(record['260']['b'])}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_260b','value': unicode(record['260']['b'])}))
     # Publication Date
     if record['260'] and record['260']['c']:
-      params_dict['extras'].append(dict({'key': 'marc21_260c','value': unicode(record['260']['c'])}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_260c','value': unicode(record['260']['c'])}))
     # Pagination
     if record.physicaldescription():
-      params_dict['extras'].append(dict({'key': 'marc21_300','value': unicode(','.join([e.value() for e in record.physicaldescription()]))}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_300','value': unicode(','.join([e.value() for e in record.physicaldescription()]))}))
     # General Note
     if record.notes():
-      params_dict['extras'].append(dict({'key': 'marc21_500','value': unicode(','.join([e.value() for e in record.notes()]))}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_500','value': unicode(','.join([e.value() for e in record.notes()]))}))
     # Subject
     if record.subjects():
-      params_dict['extras'].append(dict({'key': 'marc21_650','value': unicode(','.join([e.value() for e in record.subjects()]))}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_650','value': unicode(','.join([e.value() for e in record.subjects()]))}))
     # Subject (Geographic Name)
     if record['651']:
-      params_dict['extras'].append(dict({'key': 'marc21_651','value': unicode(record['651'].value())}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_651','value': unicode(record['651'].value())}))
     # Keyword
     if record['653']:
-      params_dict['extras'].append(dict({'key': 'marc21_653','value': unicode(','.join([e.value() for e in record.get_fields('653')]))}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_653','value': unicode(','.join([e.value() for e in record.get_fields('653')]))}))
     # Added entries
     if record.addedentries():
-      params_dict['extras'].append(dict({'key': 'marc21_700','value': unicode(','.join([e.value() for e in record.addedentries()]))}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_700','value': unicode(','.join([e.value() for e in record.addedentries()]))}))
     # Institution
     if record['850']:
-      params_dict['extras'].append(dict({'key': 'marc21_850','value': unicode(record['850'].value())}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_850','value': unicode(record['850'].value())}))
     # Location
     if record.location():
-      params_dict['extras'].append(dict({'key': 'marc21_852','value': unicode(','.join([e.value() for e in record.location()]))}))
+      dataset_metadata['extras'].append(dict({'key': 'marc21_852','value': unicode(','.join([e.value() for e in record.location()]))}))
 
-    return params_dict
+    return dataset_metadata
 
   def _generate_temp_filename(self,ext):
     return str(uuid.uuid4()) + "." + str(ext)
@@ -701,7 +717,9 @@ class ODMImporter():
 
     # First, extract the information from the layer (Title, Abstract, Tags)
     params_dict = {}
-    params_dict['author'] = 'ODM Importer'
+
+    params_dict['author'] = config.IMPORTER_NAME
+    params_dict['author_email'] = config.IMPORTER_EMAIL
 
     # The dataset id will be set when we find or create it
     params_dict['state'] = 'active'
@@ -737,6 +755,13 @@ class ODMImporter():
         params_dict['tags'].append({'name':category_name})
 
     return params_dict
+
+  def _set_extras_from_layer_to_ckan_dataset_dict(self,dataset_metadata):
+
+    dataset_metadata['extras'] = []
+    dataset_metadata['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+
+    return dataset_metadata
 
   # Utilty function that goes through the tree structure of a dictionary recursively
   # and appends them to taxonomy_tag_vocabulary for them to be inserted later

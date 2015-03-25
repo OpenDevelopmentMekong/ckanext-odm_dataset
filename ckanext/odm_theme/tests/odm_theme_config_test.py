@@ -23,5 +23,5 @@ ODC_MAP=[{'ontology':'ODC/News','organization':'cambodia-organization','groups':
 TAXONOMY_TAG_VOCAB='taxonomy'
 
 # Importer infos
-IMPORTER_USER='ODM Importer'
+IMPORTER_NAME='ODM Importer'
 IMPORTER_EMAIL='info@opendevmekong.net'
