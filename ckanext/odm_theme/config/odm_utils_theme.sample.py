@@ -35,3 +35,7 @@ DELETE_LIMIT=500
 
 # Tag vocabularies
 TAXONOMY_TAG_VOCAB='taxonomy'
+
+# Importer infos
+IMPORTER_USER='ODM Importer'
+IMPORTER_EMAIL='info@opendevmekong.net'

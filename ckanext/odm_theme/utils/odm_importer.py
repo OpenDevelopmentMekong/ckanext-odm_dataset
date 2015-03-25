@@ -31,15 +31,15 @@ class ODMImporter():
   # creates archived datasets.
   def import_odc_contents(self,github_utils,ckanapi_utils,config):
 
-    for item in config.ODC_MAP:
+    for config_item in config.ODC_MAP:
 
-      ontology = item['ontology']
+      ontology = config_item['ontology']
       ontology_xml = github_utils.get_odc_ontology(ontology)
 
       taxonomy_tags = ckanapi_utils.get_all_tags_from_tag_vocabulary({'vocabulary_id':config.TAXONOMY_TAG_VOCAB});
 
       try:
-        organization = item['organization']
+        organization = config_item['organization']
         orga = ckanapi_utils.get_organization_id_from_name(organization)
       except ckanapi.NotFound:
         print("Organization " + organization + " not found, please check config")
@@ -66,9 +66,8 @@ class ODMImporter():
                     counter += 1
                     continue
 
-                  dataset_metadata = self._map_xml_item_to_ckan_dataset_dict(root,elem,taxonomy_tags)
-                  dataset_metadata['owner_org'] = orga['id']
-                  dataset_metadata['groups'] = item['groups']
+                  dataset_metadata = self._map_xml_item_to_ckan_dataset_dict(orga,root,elem,config_item,taxonomy_tags,config)
+                  dataset_metadata = self._set_extras_from_xml_item_to_ckan_dataset_dict(dataset_metadata,config_item,root,elem,config)
 
                   try:
 
@@ -86,26 +85,7 @@ class ODMImporter():
                     dataset_metadata = ckanapi_utils.create_package(dataset_metadata)
                     print("Dataset created ",dataset_metadata['id'],dataset_metadata['title'])
 
-                  # Inspect extras, look for valid URLs or fields specified on item['field_prefixes'] and add them as resources
-                  for  extra in dataset_metadata['extras']:
-                    if (extra['value'] is not None):
-                      add_resource = False
-                      field_key = extra['key']
-                      field_value = extra['value']
-                      resource_format = 'html'
-                      if self._is_valid_url(field_value):
-                        add_resource = True
-                        resource_format = 'html'
-                      else:
-                        for field_prefix in item['field_prefixes']:
-                          if field_key == field_prefix['field']:
-                            field_value = field_prefix['prefix'] + field_value
-                            add_resource = True
-                            resource_format = self._get_ext(field_value)
-
-                      if add_resource:
-                        resource_dict = self._create_metadata_dictionary_for_resource(dataset_metadata['id'],field_value,dataset_metadata['title'],self._capitalize_name(field_key),resource_format)
-                        created_resource = ckanapi_utils.create_resource(resource_dict)
+                  self._add_extras_urls_as_resources(dataset_metadata,config_item,ckanapi_utils)
 
               elem.clear()
 
@@ -502,32 +482,39 @@ class ODMImporter():
 
     return True
 
-  def _map_xml_item_to_ckan_dataset_dict(self,root,item,taxonomy_tags):
+  def _map_xml_item_to_ckan_dataset_dict(self,orga,root,elem,config_item,taxonomy_tags,config):
 
     params_dict = {}
     params_dict['id'] = ''
-    params_dict['title'] = item.find('title').text
-    params_dict['name'] = item.find('wp:post_name',root.nsmap).text
+    params_dict['owner_org'] = orga['id']
+    params_dict['groups'] = config_item['groups']
+    params_dict['title'] = elem.find('title').text
+    params_dict['name'] = elem.find('wp:post_name',root.nsmap).text
     if (params_dict['name'] is None):
       params_dict['name'] = str(uuid.uuid4())
     params_dict['name'] = self._prepare_string_for_ckan_name(params_dict['name'])
-    params_dict['author'] = 'ODM Importer'
+    params_dict['author'] = config.IMPORTER_USER
+    params_dict['author_email'] = config.IMPORTER_EMAIL
     params_dict['state'] = 'active'
-    params_dict['notes'] = item.find('content:encoded',root.nsmap).text
+    params_dict['notes'] = elem.find('content:encoded',root.nsmap).text
 
     params_dict['tags'] = []
-    for category in item.findall('category'):
+    for category in elem.findall('category'):
       category_name = self._prepare_string_for_ckan_tag_name(category.text)
       if (category_name in taxonomy_tags):
         params_dict['tags'].append({'name':category_name})
 
+    return params_dict
+
+  def _set_extras_from_xml_item_to_ckan_dataset_dict(self,params_dict,config_item,root,elem,config):
+
     params_dict['extras'] = []
-    if (item.find('link') is not None):
-      params_dict['extras'].append(dict({'key': 'Published under','value': item.find('link').text}))
-    if (item.find('pubDate') is not None):
-      params_dict['extras'].append(dict({'key': 'Publication date','value': item.find('pubDate').text}))
+    if (elem.find('link') is not None):
+      params_dict['extras'].append(dict({'key': 'Published under','value': elem.find('link').text}))
+    if (elem.find('pubDate') is not None):
+      params_dict['extras'].append(dict({'key': 'Publication date','value': elem.find('pubDate').text}))
     added_meta = list()
-    for meta in item.findall('wp:postmeta',root.nsmap):
+    for meta in elem.findall('wp:postmeta',root.nsmap):
       meta_key = meta.find('wp:meta_key',root.nsmap).text
       meta_key_copy = meta_key
       meta_value = meta.find('wp:meta_value',root.nsmap).text
@@ -538,6 +525,29 @@ class ODMImporter():
         added_meta.append(meta_key_copy)
 
     return params_dict
+
+  def _add_extras_urls_as_resources(self,dataset_metadata,config_item,ckanapi_utils):
+
+    # Inspect extras, look for valid URLs or fields specified on item['field_prefixes'] and add them as resources
+    for  extra in dataset_metadata['extras']:
+      if (extra['value'] is not None):
+        add_resource = False
+        field_key = extra['key']
+        field_value = extra['value']
+        resource_format = 'html'
+        if self._is_valid_url(field_value):
+          add_resource = True
+          resource_format = 'html'
+        else:
+          for field_prefix in config_item['field_prefixes']:
+            if field_key == field_prefix['field']:
+              field_value = field_prefix['prefix'] + field_value
+              add_resource = True
+              resource_format = self._get_ext(field_value)
+
+        if add_resource:
+          resource_dict = self._create_metadata_dictionary_for_resource(dataset_metadata['id'],field_value,dataset_metadata['title'],self._capitalize_name(field_key),resource_format)
+          created_resource = ckanapi_utils.create_resource(resource_dict)
 
   def _map_record_to_ckan_dataset_dict(self,record):
 
