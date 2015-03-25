@@ -10,8 +10,28 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 import odm_theme_helper
+import datetime
+import time
 
 log = logging.getLogger(__name__)
+
+def convert_to_extras(key, data, errors, context):
+    """
+    Rewrite of the same-named function in ckan.logic.converters that is
+    accurately wrong. I've submitted a bug/fix to CKAN so this function can
+    probably be removed at some later date, if/when the patch is merged.
+    """
+
+    log.debug('convert_to_extras: %s', key)
+
+    # There is no tally for the number of fields converted to extras.
+    extras = [k for k in data.keys() if k[0] == 'extras' and len(k) > 1]
+    new_pos = 0
+    if extras:
+        extras.sort()
+        new_pos = extras[-1][-2] + 1  # e.g. ('extras', 5, 'value')
+    data[('extras', new_pos, 'key')] = key[-1]
+    data[('extras', new_pos, 'value')] = data[key]
 
 def get_taxonomy_tags(taxonomy_vocab_name):
 
@@ -64,6 +84,13 @@ def get_localized_tag_string(tags_string):
     return ''
 
   return ','.join(translated_array)
+
+def odc_fields():
+  '''Return a list of metadata fields'''
+
+  log.debug('odc_fields')
+
+  return odm_theme_helper.odc_fields
 
 def metadata_fields():
   '''Return a list of metadata fields'''
@@ -199,6 +226,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_popular_groups': popular_groups,
       'odm_theme_recent_datasets': recent_datasets,
       'odm_theme_popular_datasets': popular_datasets,
+      'odm_theme_odc_fields': odc_fields,
       'odm_theme_metadata_fields': metadata_fields,
       'odm_theme_library_fields': library_fields,
       'odm_theme_is_library_orga': is_library_orga,
@@ -210,16 +238,22 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   def _modify_package_schema_write(self, schema):
 
     for metadata_field in odm_theme_helper.metadata_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),convert_to_extras, ]
       if metadata_field[2]:
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({metadata_field[0]: validators_and_converters})
 
     for library_field in odm_theme_helper.library_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras')]
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),convert_to_extras, ]
       if library_field[2]:
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({library_field[0]: validators_and_converters})
+
+    for odc_field in odm_theme_helper.odc_fields:
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),convert_to_extras, ]
+      if odc_field[2]:
+        validators_and_converters.insert(1,validate_not_empty)
+      schema.update({odc_field[0]: validators_and_converters})
 
     for taxonomy in odm_theme_helper.taxonomy_fields:
       schema.update({taxonomy[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(taxonomy[0])]})
@@ -239,6 +273,12 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       if library_field[2]:
         validators_and_converters.append(validate_not_empty)
       schema.update({library_field[0]: validators_and_converters})
+
+    for odc_field in odm_theme_helper.odc_fields:
+      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
+      if odc_field[2]:
+        validators_and_converters.append(validate_not_empty)
+      schema.update({odc_field[0]: validators_and_converters})
 
     for taxonomy in odm_theme_helper.taxonomy_fields:
       schema.update({taxonomy[0]: [toolkit.get_converter('convert_from_tags')(taxonomy[0]),toolkit.get_validator('ignore_missing')]})
