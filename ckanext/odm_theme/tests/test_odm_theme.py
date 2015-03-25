@@ -38,10 +38,7 @@ class TestOdmThemePlugin(object):
     self.log = logging.getLogger(__name__)
     self.log.debug('setup_class')
 
-    try:
-      p.load('odm_theme')
-    except Exception as e:
-      print('odm_theme plugin already loaded')
+    self._loadPlugin()
 
     tests.CreateTestData.create()
 
@@ -66,7 +63,7 @@ class TestOdmThemePlugin(object):
 
     # We have to unload the plugin we loaded, so it doesn't affect any
     # tests that run after ours.
-    p.unload('odm_theme')
+    self._unloadPlugin()
 
   @classmethod
   def _initContext(self):
@@ -86,6 +83,24 @@ class TestOdmThemePlugin(object):
       'user': sysadmin['name'],
       'apikey': sysadmin['apikey']
     }
+
+  @classmethod
+  def _loadPlugin(self):
+    '''loads the plugin
+
+    '''
+    try:
+      p.load('odm_theme')
+    except Exception as e:
+      print('odm_theme plugin already loaded')
+
+  @classmethod
+  def _unloadPlugin(self):
+    '''unloads the plugin
+
+    '''
+
+    p.unload('odm_theme')
 
   @classmethod
   def _createOrganizationsAndGroups(self,ckanapiutils):
