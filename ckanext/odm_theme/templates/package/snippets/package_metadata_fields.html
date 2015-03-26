@@ -35,7 +35,7 @@
 
   {% block package_metadata_fields_odm_language %}
 		<div class="control-group">
-		  <label class="control-label" for="field-odm_language">{{ _("Language") }}</label>
+		  <label class="control-label" for="field-odm_language">{{ _('Language') }}</label>
 		  <div class="controls control-full">
 		    <select multiple id="field-odm_language" name="odm_language" data-module="autocomplete" placeholder="_('Language(s) of the dataset, including resources within dataset')">
 		      {% for language in h.odm_theme_languages() %}
@@ -50,7 +50,6 @@
 		    </select>
 		  </div>
 		</div>
-
   {% endblock %}
 
   {% block package_metadata_fields_odm_date_created %}
@@ -70,7 +69,21 @@
   {% endblock %}
 
   {% block package_metadata_fields_odm_spatial_range %}
-    {{ form.input('odm_spatial_range', label=_('Spatial Range'), id='field-odm_spatial_range', placeholder=_('The geographic area that the dataset is relevant to (i.e. Cambodia; Laos).'), value=data.odm_spatial_range, error=errors.odm_spatial_range, classes=['control-full']) }}
+		<div class="control-group">
+			<label class="control-label" for="field-odm_spatial_range">{{ _('Spatial Range') }}</label>
+			<div class="controls control-full">
+				<select multiple id="field-odm_spatial_range" name="odm_spatial_range" data-module="autocomplete" placeholder="_('The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).">
+					{% for country in h.odm_theme_countries() %}
+						{% set country_name = country[0] %}
+						{% if country_name not in data.odm_spatial_range %}
+							<option value="{{ country_name }}">{% trans %} {{country_name}}{% endtrans %}</option>
+						{% else %}
+							<option selected="selected" value="{{ country_name }}">{% trans %} {{country_name}}{% endtrans %}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+		</div>
   {% endblock %}
 
   {% block package_metadata_fields_odm_accuracy %}

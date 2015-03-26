@@ -49,7 +49,7 @@ def validate_not_empty(value,context):
 
   log.debug('validate_not_empty: %s', value)
 
-  if not value:
+  if not value or len(value) is None:
     raise toolkit.Invalid('Missing value')
   return value
 
@@ -84,6 +84,13 @@ def get_localized_tag_string(tags_string):
     return ''
 
   return ','.join(translated_array)
+
+def countries():
+  '''Return a list of countries'''
+
+  log.debug('countries')
+
+  return odm_theme_helper.countries
 
 def languages():
   '''Return a list of languages'''
@@ -234,6 +241,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_recent_datasets': recent_datasets,
       'odm_theme_popular_datasets': popular_datasets,
       'odm_theme_languages': languages,
+      'odm_theme_countries': countries,
       'odm_theme_odc_fields': odc_fields,
       'odm_theme_metadata_fields': metadata_fields,
       'odm_theme_library_fields': library_fields,
