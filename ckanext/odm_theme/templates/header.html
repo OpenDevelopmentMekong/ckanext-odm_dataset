@@ -68,6 +68,7 @@
  {% endif %}
  {% endblock %}
  <div class="container">
+
   {# The .header-image class hides the main text and uses image replacement for the title #}
   <hgroup class="{{ g.header_class }}">
 
@@ -113,5 +114,17 @@
 
    </div>
   </div>
+ </header>
+
+ <header class="sec_header">
+   <div class="row row1">
+
+     <div class="span12 offset2 col1">
+       {% set tags = h.get_facet_items_dict('tags', limit=10) %}
+       {% for tag in tags %}
+          <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 28) }}</a>
+       {% endfor %}
+     </div>
+   </div>
  </header>
  {% endblock %}
