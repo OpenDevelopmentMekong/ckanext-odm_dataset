@@ -144,7 +144,7 @@ class ODMImporter():
         counter += 1
         continue
 
-      dataset_metadata = self._map_record_to_ckan_dataset_dict(record)
+      dataset_metadata = self._map_record_to_ckan_dataset_dict(record,config)
       dataset_metadata = self._set_extras_from_record_to_ckan_dataset_dict(dataset_metadata,record,config)
 
       if (dataset_metadata is None) or (dataset_metadata["name"] == ''):
@@ -583,7 +583,7 @@ class ODMImporter():
           resource_dict = self._create_metadata_dictionary_for_resource(dataset_metadata['id'],field_value,dataset_metadata['title'],self._capitalize_name(field_key),resource_format)
           created_resource = ckanapi_utils.create_resource(resource_dict)
 
-  def _map_record_to_ckan_dataset_dict(self,record):
+  def _map_record_to_ckan_dataset_dict(self,record,config):
 
     # First, extract the information from the layer (Title, Abstract, Tags)
     params_dict = {}
