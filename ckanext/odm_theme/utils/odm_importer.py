@@ -544,10 +544,12 @@ class ODMImporter():
     languages = []
     for meta in elem.findall('wp:postmeta',root.nsmap):
       meta_key = meta.find('wp:meta_key',root.nsmap).text
-      if (meta_key.endswith('_kh')) and ('kh' not in languages):
-        languages.append('kh')
-      if (meta_key.endswith('_en')) and ('en' not in languages):
-        languages.append('en')
+      if meta_key.endswith('_kh'):
+        if 'kh' not in languages:
+          languages.append('kh')
+      if meta_key.endswith('_en'):
+        if 'en' not in languages:
+          languages.append('en')
     if len(languages) is not None:
       params_dict['extras'].append(dict({'key': 'odm_language','value': ",".join(languages)}))
 
