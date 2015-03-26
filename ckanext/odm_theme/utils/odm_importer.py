@@ -9,6 +9,7 @@ import traceback
 import ckan
 import ckanapi
 import re
+import sys
 import os
 import io
 import uuid
@@ -16,11 +17,16 @@ import lxml
 import urlparse
 from pymarc import MARCReader,marcxml
 from lxml import etree
+sys.path.append(os.path.join(os.path.dirname(__file__), "../lib"))
+import odm_theme_helper
 
 # Class containing methods to import data into CKAN
 class ODMImporter():
 
   def __init__(self):
+
+    self.log = logging.getLogger(__name__)
+    self.log.debug('init ODMImporter')
 
     self.temppath = '/var/tmp/'
     return
@@ -69,6 +75,10 @@ class ODMImporter():
                   dataset_metadata = self._map_xml_item_to_ckan_dataset_dict(orga,root,elem,config_item,taxonomy_tags,config)
                   dataset_metadata = self._set_extras_from_xml_item_to_ckan_dataset_dict(dataset_metadata,config_item,root,elem,config)
 
+                  if (config.DEBUG):
+                    print(dataset_metadata)
+                    self.log.debug(dataset_metadata)
+
                   try:
 
                     response = ckanapi_utils.get_package_contents(dataset_metadata['name'])
@@ -82,10 +92,17 @@ class ODMImporter():
 
                   except (ckanapi.SearchError,ckanapi.NotFound) as e:
 
-                    dataset_metadata = ckanapi_utils.create_package(dataset_metadata)
-                    print("Dataset created ",dataset_metadata['id'],dataset_metadata['title'])
+                    try:
 
-                  self._add_extras_urls_as_resources(dataset_metadata,config_item,ckanapi_utils)
+                      dataset_metadata = ckanapi_utils.create_package(dataset_metadata)
+                      print("Dataset created ",dataset_metadata['id'],dataset_metadata['title'])
+
+                    except TypeError as e:
+
+                      print(e)
+
+                  if 'id' in dataset_metadata:
+                    self._add_extras_urls_as_resources(dataset_metadata,config_item,ckanapi_utils)
 
               elem.clear()
 
@@ -488,7 +505,6 @@ class ODMImporter():
   def _map_xml_item_to_ckan_dataset_dict(self,orga,root,elem,config_item,taxonomy_tags,config):
 
     params_dict = {}
-    params_dict['id'] = ''
     params_dict['owner_org'] = orga['id']
     params_dict['groups'] = config_item['groups']
     params_dict['title'] = elem.find('title').text
@@ -501,11 +517,15 @@ class ODMImporter():
     params_dict['state'] = 'active'
     params_dict['notes'] = elem.find('content:encoded',root.nsmap).text
 
-    params_dict['tags'] = []
+
+    tags = []
     for category in elem.findall('category'):
       category_name = self._prepare_string_for_ckan_tag_name(category.text)
       if (category_name in taxonomy_tags):
-        params_dict['tags'].append({'name':category_name})
+        tags.append({'name':category_name})
+
+    if len(tags):
+      params_dict['tags'] = list(tags)
 
     return params_dict
 
@@ -517,30 +537,34 @@ class ODMImporter():
     params_dict['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
 
     if (elem.find('link') is not None):
-      params_dict['extras'].append(dict({'key': 'Published under','value': elem.find('link').text}))
+      params_dict['extras'].append(dict({'key': 'published_under','value': elem.find('link').text}))
     if (elem.find('pubDate') is not None):
-      params_dict['extras'].append(dict({'key': 'Publication date','value': elem.find('pubDate').text}))
+      params_dict['extras'].append(dict({'key': 'published_date','value': elem.find('pubDate').text}))
     added_meta = list()
     for meta in elem.findall('wp:postmeta',root.nsmap):
       meta_key = meta.find('wp:meta_key',root.nsmap).text
-      meta_key_copy = meta_key
-      meta_value = meta.find('wp:meta_value',root.nsmap).text
-      if ((meta_value is not None) and (meta_value is not "")):
-        if meta_key in added_meta:
-          meta_key = meta_key + '_' + str(added_meta.count(meta_key))
-        params_dict['extras'].append(dict({'key': meta_key,'value': meta_value}))
-        added_meta.append(meta_key_copy)
+      supported_fields = odm_theme_helper.odc_fields + odm_theme_helper.metadata_fields + odm_theme_helper.library_fields
+      if self._is_key_in_fields(meta_key,supported_fields):
+        meta_key_copy = meta_key
+        meta_value = meta.find('wp:meta_value',root.nsmap).text
+        if ((meta_value is not None) and (meta_value is not "")):
+          if meta_key in added_meta:
+            meta_key = meta_key + '_' + str(added_meta.count(meta_key))
+          params_dict['extras'].append(dict({'key': meta_key,'value': meta_value}))
+          added_meta.append(meta_key_copy)
 
     return params_dict
 
   def _add_extras_urls_as_resources(self,dataset_metadata,config_item,ckanapi_utils):
 
     # Inspect extras, look for valid URLs or fields specified on item['field_prefixes'] and add them as resources
-    for  extra in dataset_metadata['extras']:
-      if (extra['value'] is not None):
+    supported_fields = odm_theme_helper.odc_fields + odm_theme_helper.metadata_fields + odm_theme_helper.library_fields
+    for  field in supported_fields:
+      extra = field[0]
+      if extra in dataset_metadata:
         add_resource = False
-        field_key = extra['key']
-        field_value = extra['value']
+        field_key = field[0]
+        field_value = dataset_metadata[extra]
         resource_format = 'html'
         if self._is_valid_url(field_value):
           add_resource = True
@@ -596,7 +620,7 @@ class ODMImporter():
 
     if dataset_metadata is None:
       return None
-      
+
     dataset_metadata['extras'] = []
     dataset_metadata['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
 
@@ -808,6 +832,14 @@ class ODMImporter():
 
         # Iterate deeper
         self._inspect_taxonomy_dict_fill_list(child,term_list)
+
+  def _is_key_in_fields(self,key,fields):
+
+    for field in fields:
+      if key == field[0]:
+        return True
+
+    return False
 
   def _cap_string(self,string, length):
     return string if len(string)<=length else string[0:length-1]

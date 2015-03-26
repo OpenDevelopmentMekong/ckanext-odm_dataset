@@ -1,6 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+odc_fields = [
+('file_name_kh','File (Khmer)',False),
+('file_name_en','File (English)',False),
+('adopted_date','Adopted Date',False),
+('number_en','Number (English)',False),
+('number_kh','Number (Khmer)',False),
+('published_date','Publication date',False),
+('published_under','Published under',False)
+]
+
 metadata_fields = [
 ('odm_format','Format',True),
 ('odm_language','Language',True),
@@ -14,10 +24,10 @@ metadata_fields = [
 ('odm_completeness','Completeness',False),
 ('odm_process','Process(es)',True),
 ('odm_source','Source(s)',True),
-('author','Contact',True),
-('author_email','Contact Email',True),
+('odm_contact','Contact',True),
+('odm_contact_email','Contact Email',True),
 ('odm_access_and_use_constraints','Access and use constraints',False),
-('url','Download URL',False),
+('odm_url','Download URL',False),
 ('odm_metadata_reference_information','Metadata reference information',False),
 ('odm_attributes','Attributes',False)
 ]
