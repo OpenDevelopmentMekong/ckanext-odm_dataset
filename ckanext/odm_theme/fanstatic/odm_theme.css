@@ -4,6 +4,7 @@ Light Blue (topbar): #373c6a
 Lighter Blue: #6393d2
 Dark grey: #333333
 Grey (footer): #4c4c4c
+Light grey: #eeeeee
 */
 
 article,
@@ -4751,6 +4752,28 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+.sec_header {
+  background: #fff;
+  border-bottom: 1px solid #4c4c4c;
+  padding: 10px;
+}
+.header_tag {
+  display: inline-block;
+  margin-bottom: 4px;
+  color: #111111;
+  background-color: #f6f6f6;
+  padding: 1px 10px;
+  border: 1px solid #dddddd;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+}
+a.header_tag:hover {
+  text-decoration: none;
+  background-color: #373c6a;
+  color: #fff;
+  border: 1px solid #fff;
+}
 .tag {
   display: inline-block;
   margin-bottom: 4px;
@@ -4761,18 +4784,13 @@ a.badge:focus {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
-  -webkit-box-shadow: inset 0 1px 0 #ffffff;
-  -moz-box-shadow: inset 0 1px 0 #ffffff;
-  box-shadow: inset 0 1px 0 #ffffff;
 }
 a.tag:hover {
   text-decoration: none;
   color: #fff;
-  background-color: #30778d;
-  border: 1px solid #235767;
-  -webkit-box-shadow: inset 0 1px 0 #3d97b3;
-  -moz-box-shadow: inset 0 1px 0 #3d97b3;
-  box-shadow: inset 0 1px 0 #3d97b3;
+  background-color: #373c6a;
+  border: 1px solid #ffffff;
+  box-shadow: none;
 }
 .pill {
   display: inline-block;
