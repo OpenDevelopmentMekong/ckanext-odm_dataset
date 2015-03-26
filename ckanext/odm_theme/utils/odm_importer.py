@@ -536,9 +536,22 @@ class ODMImporter():
     # Add Spatial Range
     params_dict['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
 
+    # Add Contact
     params_dict['extras'].append(dict({'key': 'odm_contact','value': config.IMPORTER_NAME}))
     params_dict['extras'].append(dict({'key': 'odm_contact_email','value': config.IMPORTER_EMAIL}))
 
+    # Add Language
+    languages = []
+    for meta in elem.findall('wp:postmeta',root.nsmap):
+      meta_key = meta.find('wp:meta_key',root.nsmap).text
+      if (meta_key.endswith('_kh')) and ('kh' not in languages):
+        languages.append('kh')
+      if (meta_key.endswith('_en')) and ('en' not in languages):
+        languages.append('en')
+    if len(languages) is not None:
+      params_dict['extras'].append(dict({'key': 'odm_language','value': ",".join(languages)}))
+
+    # Published under is optional
     # if (elem.find('link') is not None):
     #   params_dict['extras'].append(dict({'key': 'published_under','value': elem.find('link').text}))
     if (elem.find('pubDate') is not None):
@@ -624,9 +637,16 @@ class ODMImporter():
       return None
 
     dataset_metadata['extras'] = []
+
+    # Spatial range
     dataset_metadata['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+
+    # Contact
     dataset_metadata['extras'].append(dict({'key': 'odm_contact','value': config.IMPORTER_NAME}))
     dataset_metadata['extras'].append(dict({'key': 'odm_contact_email','value': config.IMPORTER_EMAIL}))
+
+    # Language
+    dataset_metadata['extras'].append(dict({'key': 'odm_language','value': 'en'}))
 
     # ISBN
     if record.isbn():
@@ -790,9 +810,19 @@ class ODMImporter():
   def _set_extras_from_layer_to_ckan_dataset_dict(self,dataset_metadata,config):
 
     dataset_metadata['extras'] = []
+
+    # Spatial range
     dataset_metadata['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+
+    # Contact
     dataset_metadata['extras'].append(dict({'key': 'odm_contact','value': config.IMPORTER_NAME}))
     dataset_metadata['extras'].append(dict({'key': 'odm_contact_email','value': config.IMPORTER_EMAIL}))
+
+    # Add Language
+    if dataset_metadata['name'].endswith('_kh'):
+      dataset_metadata['extras'].append(dict({'key': 'odm_language','value': 'kh'}))
+    else:
+      dataset_metadata['extras'].append(dict({'key': 'odm_language','value': 'en'}))
 
     return dataset_metadata
 
