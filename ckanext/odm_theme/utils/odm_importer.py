@@ -145,7 +145,7 @@ class ODMImporter():
         continue
 
       dataset_metadata = self._map_record_to_ckan_dataset_dict(record)
-      dataset_metadata = self._set_extras_from_record_to_ckan_dataset_dict(dataset_metadata,record)
+      dataset_metadata = self._set_extras_from_record_to_ckan_dataset_dict(dataset_metadata,record,config)
 
       if (dataset_metadata is None) or (dataset_metadata["name"] == ''):
         print("Dataset does not have any title or ISBN, unique name cannot be generated")
@@ -319,7 +319,7 @@ class ODMImporter():
 
                 # Create dictionary with data to create/update datasets on CKAN
                 dataset_metadata = self._map_geoserver_feature_to_ckan_dataset(response_dict['featureType'],urltocall,taxonomy_tags,config)
-                dataset_metadata = self._set_extras_from_layer_to_ckan_dataset_dict(dataset_metadata)
+                dataset_metadata = self._set_extras_from_layer_to_ckan_dataset_dict(dataset_metadata,config)
 
                 # Get id of organization from its name and add it to dataset_metadata
                 dataset_metadata['id'] = ''
@@ -536,8 +536,11 @@ class ODMImporter():
     # Add Spatial Range
     params_dict['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
 
-    if (elem.find('link') is not None):
-      params_dict['extras'].append(dict({'key': 'published_under','value': elem.find('link').text}))
+    params_dict['extras'].append(dict({'key': 'odm_contact','value': config.IMPORTER_NAME}))
+    params_dict['extras'].append(dict({'key': 'odm_contact_email','value': config.IMPORTER_EMAIL}))
+
+    # if (elem.find('link') is not None):
+    #   params_dict['extras'].append(dict({'key': 'published_under','value': elem.find('link').text}))
     if (elem.find('pubDate') is not None):
       params_dict['extras'].append(dict({'key': 'published_date','value': elem.find('pubDate').text}))
     added_meta = list()
@@ -587,6 +590,9 @@ class ODMImporter():
     params_dict['id'] = ''
     params_dict['state'] = 'active'
 
+    params_dict['author'] = config.IMPORTER_NAME
+    params_dict['author_email'] = config.IMPORTER_EMAIL
+
     try:
 
       if record.title():
@@ -610,19 +616,17 @@ class ODMImporter():
     if record['520']:
       params_dict['notes'] = unicode(record['520'].value())
 
-    # Author
-    if record.author():
-      params_dict['author'] = unicode(record.author())
-
     return params_dict
 
-  def _set_extras_from_record_to_ckan_dataset_dict(self,dataset_metadata,record):
+  def _set_extras_from_record_to_ckan_dataset_dict(self,dataset_metadata,record,config):
 
     if dataset_metadata is None:
       return None
 
     dataset_metadata['extras'] = []
     dataset_metadata['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+    dataset_metadata['extras'].append(dict({'key': 'odm_contact','value': config.IMPORTER_NAME}))
+    dataset_metadata['extras'].append(dict({'key': 'odm_contact_email','value': config.IMPORTER_EMAIL}))
 
     # ISBN
     if record.isbn():
@@ -633,6 +637,9 @@ class ODMImporter():
     # Classification
     if record['084']:
       dataset_metadata['extras'].append(dict({'key': 'marc21_084','value': unicode(record['084'].value())}))
+    # Author
+    if record['100']:
+      dataset_metadata['extras'].append(dict({'key': 'marc21_100','value': unicode(record['100'].value())}))
     # Corporate Author
     if record['110']:
       dataset_metadata['extras'].append(dict({'key': 'marc21_110','value': unicode(record['110'].value())}))
@@ -780,10 +787,12 @@ class ODMImporter():
 
     return params_dict
 
-  def _set_extras_from_layer_to_ckan_dataset_dict(self,dataset_metadata):
+  def _set_extras_from_layer_to_ckan_dataset_dict(self,dataset_metadata,config):
 
     dataset_metadata['extras'] = []
     dataset_metadata['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+    dataset_metadata['extras'].append(dict({'key': 'odm_contact','value': config.IMPORTER_NAME}))
+    dataset_metadata['extras'].append(dict({'key': 'odm_contact_email','value': config.IMPORTER_EMAIL}))
 
     return dataset_metadata
 
