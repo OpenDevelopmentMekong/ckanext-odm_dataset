@@ -2,6 +2,11 @@
 
 {% block package_metadata_fields %}
 
+	{% resource 'odm_theme/moment.js' %}
+  {% resource 'odm_theme/daterangepicker.js' %}
+  {% resource 'odm_theme/daterangepicker-bs3.css' %}
+  {% resource 'odm_theme/daterangepicker-module.js' %}
+
 	{# # Following 3 fields are already implemented in the Metadata template fields
 		{% block package_metadata_fields_url %}
 	    {{ form.input('url', label=_('Source'), id='field-url', placeholder=_('http://example.com/dataset.json'), value=data.url, error=errors.url, classes=['control-medium']) }}
@@ -29,10 +34,6 @@
     {{ form.input('odm_format', label=_('Format'), id='field-odm_format', placeholder=_('List of file formats in which the dataset\'s resources are available (i.e. txt; doc;geojson etc)'), value=data.odm_format, error=errors.odm_format, classes=['control-full']) }}
   {% endblock %}
 
-	{% block package_basic_fields_tags %}
-		{{ form.hidden('language_string', value="") }}
-	{% endblock %}
-
   {% block package_metadata_fields_odm_language %}
 		<div class="control-group">
 		  <label class="control-label" for="field-odm_language">{{ _('Language') }}</label>
@@ -53,19 +54,39 @@
   {% endblock %}
 
   {% block package_metadata_fields_odm_date_created %}
-    {{ form.input('odm_date_created', label=_('Date created'), id='field-odm_date_created', placeholder=_('Date the dataset was first published by its creator.'), value=data.odm_date_created, error=errors.odm_date_created, classes=['control-full']) }}
-  {% endblock %}
+		<div class="control-group">
+			<label class="control-label" for="field-odm_date_created">{{ _('Date created') }}</label>
+			<div class="controls control-full">
+				<input type="text" id="field-odm_date_created" value="{{data.odm_date_created}}" placeholder="_('Date the dataset was first published by its creator.')" name="odm_date_created" class="odm_datepicker" data-module="datepicker-module"/>
+			</div>
+	  </div>
+	{% endblock %}
 
   {% block package_metadata_fields_odm_date_uploaded %}
-    {{ form.input('odm_date_uploaded', label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full']) }}
+		<div class="control-group">
+			<label class="control-label" for="field-odm_date_uploaded">{{ _('Date uploaded') }}</label>
+			<div class="controls control-full">
+				<input type="text" id="field-odm_date_uploaded" value="{{data.odm_date_uploaded}}" placeholder="_('Date the dataset was first uploaded to the OD CKAN database.')" name="odm_date_uploaded" class="odm_datepicker" data-module="datepicker-module"/>
+			</div>
+		</div>
   {% endblock %}
 
   {% block package_metadata_fields_odm_date_modified %}
-    {{ form.input('odm_date_modified', label=_('Date modified'), id='field-odm_date_modified', placeholder=_('Date a new version or update of the dataset was uploaded to the OD CKAN database.'), value=data.odm_date_modified, error=errors.odm_date_modified, classes=['control-full']) }}
+		<div class="control-group">
+			<label class="control-label" for="field-odm_date_modified">{{ _('Date modified') }}</label>
+			<div class="controls control-full">
+				<input type="text" id="field-odm_date_modified" value="{{data.odm_date_modified}}" placeholder="_('Date a new version or update of the dataset was uploaded to the OD CKAN database.')" name="odm_date_modified" class="odm_datepicker" data-module="datepicker-module"/>
+			</div>
+		</div>
   {% endblock %}
 
   {% block package_metadata_fields_odm_temporal_range %}
-    {{ form.input('odm_temporal_range', label=_('Temporal Range'), id='field-odm_temporal_range', placeholder=_('The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).'), value=data.odm_temporal_range, error=errors.odm_temporal_range, classes=['control-full']) }}
+		<div class="control-group">
+			<label class="control-label" for="field-odm_temporal_range">{{ _('Temporal Range') }}</label>
+			<div class="controls control-full">
+				<input type="text" id="field-odm_temporal_range" value="{{data.odm_temporal_range}}" placeholder="_('The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).')" name="odm_temporal_range" class="odm_daterangepicker" data-module="daterangepicker-module"/>
+			</div>
+		</div>
   {% endblock %}
 
   {% block package_metadata_fields_odm_spatial_range %}
