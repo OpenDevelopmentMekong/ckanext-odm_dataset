@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+languages = [
+('en','English'),
+('kh','Khmer'),
+('vi','Vietnamese'),
+('lo','Lao'),
+('th','Thai'),
+('my','Burmese')
+]
+
 odc_fields = [
 ('file_name_kh','File (Khmer)',False),
 ('file_name_en','File (English)',False),

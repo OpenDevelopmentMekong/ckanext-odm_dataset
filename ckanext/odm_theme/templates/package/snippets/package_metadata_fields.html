@@ -29,8 +29,28 @@
     {{ form.input('odm_format', label=_('Format'), id='field-odm_format', placeholder=_('List of file formats in which the dataset\'s resources are available (i.e. txt; doc;geojson etc)'), value=data.odm_format, error=errors.odm_format, classes=['control-full']) }}
   {% endblock %}
 
+	{% block package_basic_fields_tags %}
+		{{ form.hidden('language_string', value="") }}
+	{% endblock %}
+
   {% block package_metadata_fields_odm_language %}
-    {{ form.input('odm_language', label=_('Language'), id='field-odm_language', placeholder=_('Language(s) of the dataset, including resources within dataset'), value=data.odm_language, error=errors.odm_language, classes=['control-full']) }}
+		<div class="control-group">
+		  <label class="control-label" for="field-odm_language">{{ _("Language") }}</label>
+		  <div class="controls control-full">
+		    <select multiple id="field-odm_language" name="odm_language" data-module="autocomplete" placeholder="_('Language(s) of the dataset, including resources within dataset')">
+		      {% for language in h.odm_theme_languages() %}
+						{% set lang_code = language[0] %}
+						{% set lang = language[1] %}
+			      {% if lang_code not in data.odm_language %}
+			        <option value="{{ lang_code }}">{% trans %} {{lang}}{% endtrans %}</option>
+			      {% else %}
+			        <option selected="selected" value="{{ lang_code }}">{% trans %} {{lang}}{% endtrans %}</option>
+			      {% endif %}
+		      {% endfor %}
+		    </select>
+		  </div>
+		</div>
+
   {% endblock %}
 
   {% block package_metadata_fields_odm_date_created %}

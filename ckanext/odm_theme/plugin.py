@@ -85,8 +85,15 @@ def get_localized_tag_string(tags_string):
 
   return ','.join(translated_array)
 
+def languages():
+  '''Return a list of languages'''
+
+  log.debug('languages')
+
+  return odm_theme_helper.languages
+
 def odc_fields():
-  '''Return a list of metadata fields'''
+  '''Return a list of odc fields'''
 
   log.debug('odc_fields')
 
@@ -226,6 +233,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_popular_groups': popular_groups,
       'odm_theme_recent_datasets': recent_datasets,
       'odm_theme_popular_datasets': popular_datasets,
+      'odm_theme_languages': languages,
       'odm_theme_odc_fields': odc_fields,
       'odm_theme_metadata_fields': metadata_fields,
       'odm_theme_library_fields': library_fields,
