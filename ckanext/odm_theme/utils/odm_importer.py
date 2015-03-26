@@ -25,6 +25,9 @@ class ODMImporter():
 
   def __init__(self):
 
+    self.log = logging.getLogger(__name__)
+    self.log.debug('init ODMImporter')
+
     self.temppath = '/var/tmp/'
     return
 
@@ -74,6 +77,7 @@ class ODMImporter():
 
                   if (config.DEBUG):
                     print(dataset_metadata)
+                    self.log.debug(dataset_metadata)
 
                   try:
 
@@ -539,7 +543,8 @@ class ODMImporter():
     added_meta = list()
     for meta in elem.findall('wp:postmeta',root.nsmap):
       meta_key = meta.find('wp:meta_key',root.nsmap).text
-      if self._is_key_in_fields(meta_key,odm_theme_helper.odc_fields):
+      supported_fields = odm_theme_helper.odc_fields + odm_theme_helper.metadata_fields + odm_theme_helper.library_fields
+      if self._is_key_in_fields(meta_key,supported_fields):
         meta_key_copy = meta_key
         meta_value = meta.find('wp:meta_value',root.nsmap).text
         if ((meta_value is not None) and (meta_value is not "")):
@@ -553,11 +558,13 @@ class ODMImporter():
   def _add_extras_urls_as_resources(self,dataset_metadata,config_item,ckanapi_utils):
 
     # Inspect extras, look for valid URLs or fields specified on item['field_prefixes'] and add them as resources
-    for  extra in dataset_metadata['extras']:
-      if (extra['value'] is not None):
+    supported_fields = odm_theme_helper.odc_fields + odm_theme_helper.metadata_fields + odm_theme_helper.library_fields
+    for  field in supported_fields:
+      extra = field[0]
+      if extra in dataset_metadata:
         add_resource = False
-        field_key = extra['key']
-        field_value = extra['value']
+        field_key = field[0]
+        field_value = dataset_metadata[extra]
         resource_format = 'html'
         if self._is_valid_url(field_value):
           add_resource = True
