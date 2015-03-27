@@ -142,9 +142,9 @@
     {{ form.markdown('odm_source', label=_('Source(s)'), id='field-odm_source', placeholder=_('Ordered citations for all information sources that went into producing the dataset.'), value=data.odm_source, error=errors.odm_source, classes=['control-full']) }}
   {% endblock %}
 
-  {% block package_metadata_odm_author %}
-    {{ form.input('odm_author', label=_('Contact'), id='field-odm_author', placeholder=_('Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset.'), value=data.odm_author, error=errors.odm_author, classes=['control-full']) }}
-    {{ form.input('odm_author_email', label=_('Contact Email'), id='field-author-email', placeholder=_('joe@example.com'), value=data.author_email, error=errors.author_email, classes=['control-full']) }}
+  {% block package_metadata_odm_contact %}
+    {{ form.input('odm_contact', label=_('Contact'), id='field-odm_contact', placeholder=_('Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset.'), value=data.odm_contact, error=errors.odm_contact, classes=['control-full']) }}
+    {{ form.input('odm_contact_email', label=_('Contact Email'), id='field-odm_contact_email', placeholder=_('joe@example.com'), value=data.odm_contact_email, error=errors.odm_contact_email, classes=['control-full']) }}
   {% endblock %}
 
   {% block package_metadata_fields_odm_access_and_use_constraints %}

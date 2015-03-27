@@ -77,6 +77,10 @@
 
 {% block package_basic_fields_orga %}
 
+  {% resource 'odm_theme/moment.js' %}
+  {% resource 'odm_theme/daterangepicker.js' %}
+  {% resource 'odm_theme/daterangepicker-bs3.css' %}
+  {% resource 'odm_theme/daterangepicker-module.js' %}
   {% resource 'odm_theme/odm_theme_review_system_logic.js' %}
 
   {# if we have a default group then this wants remembering #}
@@ -156,6 +160,10 @@
           {{ form.input('marc21_084', label=_('Classification'), id='field-marc21_084', placeholder=_('Classification Number assigned by ODC Cambodia to identify its shelf location.'), value=data.marc21_084, error=errors.marc21_084, classes=['control-full']) }}
         {% endblock %}
 
+        {% block package_metadata_fields_marc21_100 %}
+          {{ form.input('marc21_100', label=_('Author'), id='field-marc21_100', placeholder=_('Main Entry-Personal Name (author).'), value=data.marc21_100, error=errors.marc21_100, classes=['control-full']) }}
+        {% endblock %}
+
         {% block package_metadata_fields_marc21_110 %}
           {{ form.input('marc21_110', label=_('Corporate Author'), id='field-marc21_110', placeholder=_('Main Entry-Corporate Name (corporate author).'), value=data.marc21_110, error=errors.marc21_110, classes=['control-full']) }}
         {% endblock %}
@@ -177,7 +185,12 @@
         {% endblock %}
 
         {% block package_metadata_fields_marc21_260c %}
-          {{ form.input('marc21_260c', label=_('Publication Date'), id='field-marc21_260c', placeholder=_('Date published.'), value=data.marc21_260c, error=errors.marc21_260c, classes=['control-full']) }}
+          <div class="control-group">
+            <label class="control-label" for="field-marc21_260c">{{ _('Publication Date') }}</label>
+            <div class="controls control-full">
+              <input type="text" id="field-marc21_260c" value="{{data.marc21_260c}}" placeholder="_('Date published.')" name="marc21_260c" class="odm_datepicker" data-module="datepicker-module"/>
+            </div>
+          </div>
         {% endblock %}
 
         {% block package_metadata_fields_marc21_300 %}
