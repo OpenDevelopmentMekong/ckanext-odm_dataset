@@ -49,6 +49,7 @@ Example:
         <span class="banner">{{ _('Popular') }}</span>
       {% endif %}
 			{% if image_urls %}
+				<a>{{image_urls|last}}</a>
 	    	<img class="dataset_thumb_s" src="{{image_urls|last}}"></img>
 	    {% endif %}
       {% if notes %}
