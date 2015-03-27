@@ -30,11 +30,11 @@ odc_fields = [
 metadata_fields = [
 ('odm_format','Format',True),
 ('odm_language','Language',True),
-('odm_date_created','Date created',True),
-('odm_date_uploaded','Date uploaded',True),
-('odm_date_modified','Date modified',True),
-('odm_temporal_range','Temporal range',True),
-('odm_spatial_range','Spatial range',False),
+('odm_date_created','Date Created',True),
+('odm_date_uploaded','Date Uploaded',True),
+('odm_date_modified','Date Modified',True),
+('odm_temporal_range','Temporal Range',True),
+('odm_spatial_range','Spatial Range',False),
 ('odm_accuracy','Accuracy',False),
 ('odm_logical_consistency','Logical Consistency',False),
 ('odm_completeness','Completeness',False),
@@ -42,9 +42,9 @@ metadata_fields = [
 ('odm_source','Source(s)',True),
 ('odm_contact','Contact',True),
 ('odm_contact_email','Contact Email',True),
-('odm_access_and_use_constraints','Access and use constraints',False),
+('odm_access_and_use_constraints','Access and Use Constraints',False),
 ('odm_url','Download URL',False),
-('odm_metadata_reference_information','Metadata reference information',False),
+('odm_metadata_reference_information','Metadata Reference Information',False),
 ('odm_attributes','Attributes',False)
 ]
 
