@@ -31,8 +31,8 @@ class TestGeoserverRestApi (IGeoserverRestApi):
   def get_layers(self):
 
     # return JSON dictionary
-    json_string = '<layers><layer><name>Agriculture_Fishing:map_rice_ecosystem_kh</name><atom:link rel="alternate" href="http://geoserver.opendevelopmentmekong.net/geoserver/gwc/rest/layers/Agriculture_Fishing%3Amap_rice_ecosystem_kh.xml" type="text/xml"/></layer>'
-    return json.loads(json_string)
+    json_string = '<layers><layer><name>Agriculture_Fishing:map_rice_ecosystem_kh</name><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="alternate" href="http://geoserver.opendevelopmentmekong.net/geoserver/gwc/rest/layers/Agriculture_Fishing%3Amap_rice_ecosystem_kh.xml" type="text/xml"/></layer></layers>'
+    return json_string
 
   def get_geojson_from_url(self,url):
 

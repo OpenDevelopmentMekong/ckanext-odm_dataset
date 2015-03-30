@@ -10,10 +10,9 @@
 
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), "../utils"))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
 import ckanapi_utils
-import ckan
-import ckanapi
+from odm_importer import ODMImporter
 
 try:
   sys.path.append(os.path.join(os.path.dirname(__file__), "../config"))
@@ -23,25 +22,5 @@ except ImportError as e:
 
 ckanapiutils = ckanapi_utils.RealCkanApi(config)
 
-try:
-
-  orga_datasets = {}
-  params = {'id':config.DELETE_GROUP_NAME,'limit':config.DELETE_LIMIT}
-  datasets = ckanapiutils.get_packages_in_group(params)
-
-  for dataset in datasets:
-    if dataset['owner_org'] not in orga_datasets.keys():
-      orga_datasets[dataset['owner_org']] = []
-    orga_datasets[dataset['owner_org']].append(dataset['id'])
-    if (config.DEBUG):
-      print(orga_datasets)
-
-  for orga_id in orga_datasets.keys():
-    params = {'datasets':orga_datasets[orga_id],'org_id':orga_id}
-    ckanapiutils.delete_packages_list(params)
-
-except ckanapi.NotFound:
-
-  print 'Group ' + config.DELETE_GROUP_NAME + ' not found'
-
-print("COMPLETED delete_datasets_in_group")
+importer = ODMImporter()
+importer.delete_datasets_in_group(ckanapiutils,config)

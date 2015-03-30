@@ -30,8 +30,7 @@ ODC_MAP=[{'ontology':'ODC/laws','organization':'cambodia-organization','groups':
 ODM_ADMINS_PASS='odmadmin'
 
 # Delete datasets in group
-DELETE_GROUP_NAME='news-group'
-DELETE_LIMIT=500
+DELETE_MAP={'group':'laws-group','limit':500,'field_filter':{'odm_contact':'ODM Importer','odm_contact_email':'info@opendevmekong.net'}}
 
 # Tag vocabularies
 TAXONOMY_TAG_VOCAB='taxonomy'
