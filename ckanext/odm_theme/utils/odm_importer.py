@@ -31,6 +31,43 @@ class ODMImporter():
     self.temppath = '/var/tmp/'
     return
 
+  # Deletes the datasets of a certain group
+  # Collects IDs of datasets belonging to the group specified in the config
+  # and calls bulk_update_delete to mark them all for deletion
+  def delete_datasets_in_group(self,ckanapi_utils,config):
+
+    try:
+
+      orga_datasets = {}
+      params = {'id':config.DELETE_MAP['group'],'limit':config.DELETE_MAP['limit']}
+      datasets = ckanapi_utils.get_packages_in_group(params)
+
+      for dataset in datasets:
+        matching_extras = []
+        for extra in dataset['extras']:
+          for field_key in config.DELETE_MAP['field_filter'].keys():
+            if extra['key'] == field_key and extra['value'] == config.DELETE_MAP['field_filter'][field_key]:
+              if field_key not in matching_extras:
+                matching_extras.append(field_key)
+
+        if len(matching_extras) == len(config.DELETE_MAP['field_filter'].keys()):
+          if dataset['owner_org'] not in orga_datasets.keys():
+            orga_datasets[dataset['owner_org']] = []
+          orga_datasets[dataset['owner_org']].append(dataset['id'])
+
+      if (config.DEBUG):
+        print(orga_datasets)
+
+      for orga_id in orga_datasets.keys():
+        params = {'datasets':orga_datasets[orga_id],'org_id':orga_id}
+        ckanapi_utils.delete_packages_list(params)
+
+    except ckanapi.NotFound:
+
+      print 'Group ' + config.DELETE_MAP['group'] + ' not found'
+
+    print("COMPLETED delete_datasets_in_group")
+
   # Import odc contents into CKAN
   # Pulls the exported XML files from the current ODC Website
   # ( hosted under https://github.com/OpenDevelopmentMekong/odm-migration ) and

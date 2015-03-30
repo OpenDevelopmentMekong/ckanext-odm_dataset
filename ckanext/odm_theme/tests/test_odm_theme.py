@@ -16,7 +16,7 @@ import ckan.tests as tests
 import ckan.new_tests.factories as factories
 import ckan.plugins as p
 import logging
-
+import ckanapi
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "../utils"))
@@ -142,6 +142,35 @@ class TestOdmThemePlugin(object):
 
     importer = ODMImporter()
     importer.import_taxonomy_tag_dictionaries(githubutils,ckanapiutils,config)
+
+  def test_delete_datasets_in_group(self):
+    '''test_delete_datasets_in_group
+
+    '''
+
+    self.log.debug('Running test: test_delete_datasets_in_group')
+
+    self._initContext()
+    githubutils = github_utils.TestGithubApi()
+    ckanapiutils = ckanapi_utils.TestCkanApi(self.app,self.context)
+    self._createOrganizationsAndGroups(ckanapiutils)
+    self._initTaxonomyTagVocabulary(ckanapiutils,githubutils)
+
+    # Add test dataset
+    dataset_metadata = {'name':'testdataset','notes':'testdataset notes','groups':[{'name':config.DELETE_MAP['group']}]}
+    created_dataset = ckanapiutils.create_package(dataset_metadata)
+
+    # Remove datasets from group
+    importer = ODMImporter()
+    importer.delete_datasets_in_group(ckanapiutils,config)
+
+    params = {'id':config.DELETE_MAP['group']}
+    datasets = ckanapiutils.get_packages_in_group(params)
+
+    if len(datasets) > 0:
+      assert False
+
+    assert True
 
   def test_import_odc_contents(self):
     '''test_import_odc_contents
