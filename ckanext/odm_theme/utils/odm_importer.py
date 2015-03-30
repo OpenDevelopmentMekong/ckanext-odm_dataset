@@ -351,16 +351,11 @@ class ODMImporter():
           resource_dict = self._create_metadata_dictionary_for_resource(dataset_metadata['id'],ol_url,dataset_metadata['title'],'Data representation [Open Layers]','html')
           created_resource = ckanapi_utils.create_resource(resource_dict)
 
-          print(ol_url)
-
           try:
 
             temp_file_path = self._generate_temp_filename('geojson')
-
             geojson_url = self._generate_ows_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_name,'json')
             geojson_file = geoserver_utils.download_file(geojson_url,temp_file_path)
-
-            print(geojson_url)
 
             resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],geojson_url,temp_file_path,dataset_metadata['title'],'Data representation [Geojson]','geojson')
             ckanapi_utils.create_resource_with_file_upload(resource_dict)
@@ -384,8 +379,6 @@ class ODMImporter():
 
               file_url = self._generate_wms_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_name,file_format['mime'])
               file_contents = geoserver_utils.download_file(file_url,temp_file_path)
-
-              print(file_url)
 
               resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],file_url,temp_file_path,dataset_metadata['title'],"Data representation ["+file_format['ext']+"]",file_format['ext'])
               ckanapi_utils.create_resource_with_file_upload(resource_dict)
