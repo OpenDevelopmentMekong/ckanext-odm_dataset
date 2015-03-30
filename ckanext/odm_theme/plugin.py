@@ -12,8 +12,21 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 import odm_theme_helper
 import datetime
 import time
+from urlparse import urlparse
 
 log = logging.getLogger(__name__)
+
+def localize_resource_url(url):
+  """
+  Converts a absolute URL in a relative, chopping out the domain
+  """
+  parsed = urlparse(url)
+  str_index = url.index(parsed.netloc)
+  str_length = len(parsed.netloc)
+
+  localized = url[str_index+str_length:]
+
+  return localized
 
 def convert_to_extras(key, data, errors, context):
     """
@@ -235,6 +248,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     '''
     return {
+      'odm_theme_localize_resource_url': localize_resource_url,
       'odm_theme_get_localized_tag_string': get_localized_tag_string,
       'odm_theme_get_localized_tag': get_localized_tag,
       'odm_theme_popular_groups': popular_groups,

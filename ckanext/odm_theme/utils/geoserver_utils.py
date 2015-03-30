@@ -12,12 +12,6 @@ class IGeoserverRestApi:
   def get_layers(self):
     raise NotImplementedError
 
-  def get_layer(self,url):
-    raise NotImplementedError
-
-  def get_feature_type(self,url):
-    raise NotImplementedError
-
   def get_geojson_from_url(self,url):
     raise NotImplementedError
 
@@ -37,19 +31,7 @@ class TestGeoserverRestApi (IGeoserverRestApi):
   def get_layers(self):
 
     # return JSON dictionary
-    json_string = '{"layers":{"layer":[{"name":"Provinces","href":"http://64.91.228.155:8181/geoserver/rest/layers/Provinces.json"},{"name":"map_agricultural_family_living_with_rice_land_area_kh","href":"http://64.91.228.155:8181/geoserver/rest/layers/map_agricultural_family_living_with_rice_land_area_kh.json"}]}}'
-    return json.loads(json_string)
-
-  def get_layer(self,url):
-
-    # return JSON dictionary
-    json_string = '{"layer":{"name":"Provinces","type":"VECTOR","defaultStyle":{"name":"Provinces 2011","href":"http://64.91.228.155:8181/geoserver/rest/workspaces/Topography/styles/Provinces+2011.json"},"resource":{"@class":"featureType","name":"Provinces","href":"http://64.91.228.155:8181/geoserver/rest/workspaces/Topography/datastores/Province_2011/featuretypes/Provinces.json"},"enabled":true,"attribution":{"logoWidth":0,"logoHeight":0}}}'
-    return json.loads(json_string)
-
-  def get_feature_type(self,url):
-
-    # return JSON dictionary
-    json_string = '{"featureType":{"name":"Provinces","nativeName":"Provinces","namespace":{"name":"Topography","href":"http://64.91.228.155:8181/geoserver/rest/namespaces/Topography.json"},"title":"Provinces","description":"Contents of file","keywords":{"string":["features","Provinces"]}}}'
+    json_string = '<layers><layer><name>Agriculture_Fishing:map_rice_ecosystem_kh</name><atom:link rel="alternate" href="http://geoserver.opendevelopmentmekong.net/geoserver/gwc/rest/layers/Agriculture_Fishing%3Amap_rice_ecosystem_kh.xml" type="text/xml"/></layer>'
     return json.loads(json_string)
 
   def get_geojson_from_url(self,url):
@@ -76,39 +58,15 @@ class RealGeoserverRestApi (IGeoserverRestApi):
 
   def get_layers(self):
 
-    request = urllib2.Request(self.geoserver_url+'rest/layers.json')
+    request = urllib2.Request(self.geoserver_url+'gwc/rest/layers.xml')
     request.add_header('Authorization', self.geoserver_auth)
 
     # Make the HTTP request.
     response = urllib2.urlopen(request)
     assert response.code == 200
 
-    # return JSON dictionary
-    return json.loads(response.read())
-
-  def get_layer(self,url):
-
-    request = urllib2.Request(url)
-    request.add_header('Authorization', self.geoserver_auth)
-
-    # Make the HTTP request.
-    response = urllib2.urlopen(request)
-    assert response.code == 200
-
-    # return JSON dictionary
-    return json.loads(response.read())
-
-  def get_feature_type(self,url):
-
-    request = urllib2.Request(url)
-    request.add_header('Authorization', self.geoserver_auth)
-
-    # Make the HTTP request.
-    response = urllib2.urlopen(request)
-    assert response.code == 200
-
-    # return JSON dictionary
-    return json.loads(response.read())
+    # return XML content
+    return response.read()
 
   def get_geojson_from_url(self,url):
 

@@ -42,7 +42,7 @@ class ODMImporter():
       ontology = config_item['ontology']
       ontology_xml = github_utils.get_odc_ontology(ontology)
 
-      taxonomy_tags = ckanapi_utils.get_all_tags_from_tag_vocabulary({'vocabulary_id':config.TAXONOMY_TAG_VOCAB});
+      taxonomy_tags = ckanapi_utils.get_all_tags_from_tag_vocabulary({'vocabulary_id':config.TAXONOMY_TAG_VOCAB})
 
       try:
         organization = config_item['organization']
@@ -283,10 +283,6 @@ class ODMImporter():
 
     log = logging.getLogger(__name__)
 
-    # Use geoserver_utils to get a dictionary with the layers
-    response_dict = geoserver_utils.get_layers()
-    counter = 0
-
     try:
       organization = config.GEOSERVER_MAP['organization']
       orga = ckanapi_utils.get_organization_id_from_name(organization)
@@ -294,116 +290,113 @@ class ODMImporter():
       print("Organization " + organization + " not found, please check config")
       return False
 
-    taxonomy_tags = ckanapi_utils.get_all_tags_from_tag_vocabulary({'vocabulary_id':config.TAXONOMY_TAG_VOCAB});
+    taxonomy_tags = ckanapi_utils.get_all_tags_from_tag_vocabulary({'vocabulary_id':config.TAXONOMY_TAG_VOCAB})
 
-    for key1, dict1 in response_dict.iteritems():
-      if key1 == 'layers':
-        for key2, dict2 in dict1.iteritems():
-          if key2 == 'layer':
-            for item in dict2:
+    # Use geoserver_utils to get a dictionary with the layers
+    response_dict = geoserver_utils.get_layers()
+    context = etree.iterparse(io.BytesIO(response_dict), events=('end', ))
+    context = iter(context)
+    root = context.next()[1]
+    counter = 0
 
-              if ((int(config.SKIP_N_DATASETS) > 0) and (counter < int(config.SKIP_N_DATASETS))):
-                counter += 1
-                continue
+    for event, elem in context:
 
-              # Now follow the link to a more detailed file
-              urltocall = item['href']
-              response_dict = geoserver_utils.get_layer(urltocall)
+      if event == "end" and elem.tag == "layer":
 
-              try:
+        if (elem.find('name') is not None):
+          name = elem.find('name').text
+          feature_namespace = name.split(":")[0]
+          feature_name = name.split(":")[1]
+          feature_title = self._prettify_name(feature_name)
 
-                # And again, another jump
-                response_dict = geoserver_utils.get_feature_type(response_dict['layer']['resource']['href'])
-                feature_original_title = response_dict['featureType']['title']
-                feature_namespace = response_dict['featureType']['namespace']['name']
+        try:
 
-                # Create dictionary with data to create/update datasets on CKAN
-                dataset_metadata = self._map_geoserver_feature_to_ckan_dataset(response_dict['featureType'],urltocall,taxonomy_tags,config)
-                dataset_metadata = self._set_extras_from_layer_to_ckan_dataset_dict(dataset_metadata,config)
+          # Create dictionary with data to create/update datasets on CKAN
+          dataset_metadata = self._map_geoserver_feature_to_ckan_dataset(feature_namespace,feature_name,feature_title,taxonomy_tags,config)
+          dataset_metadata = self._set_extras_from_layer_to_ckan_dataset_dict(dataset_metadata,config)
 
-                # Get id of organization from its name and add it to dataset_metadata
-                dataset_metadata['id'] = ''
-                dataset_metadata['owner_org'] = orga['id']
-                dataset_metadata['groups']	= config.GEOSERVER_MAP['groups']
+          # Get id of organization from its name and add it to dataset_metadata
+          dataset_metadata['id'] = ''
+          dataset_metadata['owner_org'] = orga['id']
+          dataset_metadata['groups']	= config.GEOSERVER_MAP['groups']
 
-                if (config.DEBUG):
-                  print(dataset_metadata)
+          if (config.DEBUG):
+            print(dataset_metadata)
 
-                try:
+          try:
 
-                  # Search for the dataset
-                  response = ckanapi_utils.get_package_contents(dataset_metadata['name'].lower())
+            # Search for the dataset
+            response = ckanapi_utils.get_package_contents(dataset_metadata['name'].lower())
 
-                  # if SKIP_EXISTING is set, skip this one
-                  if config.SKIP_EXISTING:
-                    print("Dataset skipped ",dataset_metadata['id'],dataset_metadata['name'])
-                    continue
+            # if SKIP_EXISTING is set, skip this one
+            if config.SKIP_EXISTING:
+              print("Dataset skipped ",dataset_metadata['id'],dataset_metadata['name'])
+              continue
 
-                  # Lets modify it
-                  modified_dataset = ckanapi_utils.update_package(dataset_metadata)
-                  dataset_metadata['id'] = modified_dataset['id']
+            # Lets modify it
+            modified_dataset = ckanapi_utils.update_package(dataset_metadata)
+            dataset_metadata['id'] = modified_dataset['id']
 
-                  print("Dataset modified ",modified_dataset['id'],modified_dataset['title'])
+            print("Dataset modified ",modified_dataset['id'],modified_dataset['title'])
 
-                except (ckanapi.SearchError,ckanapi.NotFound) as e1:
+          except (ckanapi.SearchError,ckanapi.NotFound) as e1:
 
-                  # Lets create it
-                  created_dataset = ckanapi_utils.create_package(dataset_metadata)
-                  dataset_metadata['id'] = created_dataset['id']
+            # Lets create it
+            created_dataset = ckanapi_utils.create_package(dataset_metadata)
+            dataset_metadata['id'] = created_dataset['id']
 
-                  print("Dataset created ",created_dataset['id'],created_dataset['title'])
+            print("Dataset created ",created_dataset['id'],created_dataset['title'])
 
-                ol_url = self._generate_wms_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_original_title,'application/openlayers')
-                resource_dict = self._create_metadata_dictionary_for_resource(dataset_metadata['id'],ol_url,dataset_metadata['title'],'Data representation [Open Layers]','html')
-                created_resource = ckanapi_utils.create_resource(resource_dict)
+          ol_url = self._generate_wms_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_name,'application/openlayers')
+          resource_dict = self._create_metadata_dictionary_for_resource(dataset_metadata['id'],ol_url,dataset_metadata['title'],'Data representation [Open Layers]','html')
+          created_resource = ckanapi_utils.create_resource(resource_dict)
 
-                try:
+          try:
 
-                  temp_file_path = self._generate_temp_filename('geojson')
+            temp_file_path = self._generate_temp_filename('geojson')
+            geojson_url = self._generate_ows_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_name,'json')
+            geojson_file = geoserver_utils.download_file(geojson_url,temp_file_path)
 
-                  geojson_url = self._generate_ows_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_original_title,'json')
-                  geojson_file = geoserver_utils.download_file(geojson_url,temp_file_path)
+            resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],geojson_url,temp_file_path,dataset_metadata['title'],'Data representation [Geojson]','geojson')
+            ckanapi_utils.create_resource_with_file_upload(resource_dict)
+            if os.path.exists(temp_file_path):
+              os.remove(temp_file_path)
 
-                  resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],geojson_url,temp_file_path,dataset_metadata['title'],'Data representation [Geojson]','geojson')
-                  ckanapi_utils.create_resource_with_file_upload(resource_dict)
-                  if os.path.exists(temp_file_path):
-                    os.remove(temp_file_path)
+          except (urllib2.HTTPError, ValueError) as e3:
+            if (config.DEBUG):
+              traceback.print_exc()
 
-                except (urllib2.HTTPError, ValueError) as e3:
-                  if (config.DEBUG):
-                    traceback.print_exc()
+          file_formats = [
+            {'mime':'image/png','ext':'png'},
+            {'mime':'application/pdf','ext':'pdf'}
+          ]
 
-                file_formats = [
-                  {'mime':'image/png','ext':'png'},
-                  {'mime':'application/pdf','ext':'pdf'}
-                ]
+          for file_format in file_formats:
 
-                for file_format in file_formats:
+            try:
 
-                  try:
+              temp_file_path = self._generate_temp_filename(file_format['ext'])
 
-                    temp_file_path = self._generate_temp_filename(file_format['ext'])
+              file_url = self._generate_wms_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_name,file_format['mime'])
+              file_contents = geoserver_utils.download_file(file_url,temp_file_path)
 
-                    file_url = self._generate_wms_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_original_title,file_format['mime'])
-                    file_contents = geoserver_utils.download_file(file_url,temp_file_path)
+              resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],file_url,temp_file_path,dataset_metadata['title'],"Data representation ["+file_format['ext']+"]",file_format['ext'])
+              ckanapi_utils.create_resource_with_file_upload(resource_dict)
+              if os.path.exists(temp_file_path):
+                os.remove(temp_file_path)
 
-                    resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],file_url,temp_file_path,dataset_metadata['title'],"Data representation ["+file_format['ext']+"]",file_format['ext'])
-                    ckanapi_utils.create_resource_with_file_upload(resource_dict)
-                    if os.path.exists(temp_file_path):
-                      os.remove(temp_file_path)
+            except (urllib2.HTTPError, ValueError) as e3:
+              if (config.DEBUG):
+                traceback.print_exc()
 
-                  except (urllib2.HTTPError, ValueError) as e3:
-                    if (config.DEBUG):
-                      traceback.print_exc()
+        except ckanapi.NotFound:
+          if (config.DEBUG):
+            traceback.print_exc()
 
-              except ckanapi.NotFound:
-                if (config.DEBUG):
-                  traceback.print_exc()
-
-              except (KeyError,ValueError) as e2:
-                if (config.DEBUG):
-                  traceback.print_exc()
-                continue
+        except (KeyError,ValueError) as e2:
+          if (config.DEBUG):
+            traceback.print_exc()
+          continue
 
     print("COMPLETED import_from_geoserver")
 
@@ -769,7 +762,7 @@ class ODMImporter():
   # Function that maps the <feature> data structure returned by GeoServer
   # and maps it to a dictionary to be used later to create/update the
   # corresponding datasets on CKAN
-  def _map_geoserver_feature_to_ckan_dataset(self,feature,link_to_feature,taxonomy_tags,config):
+  def _map_geoserver_feature_to_ckan_dataset(self,feature_namespace,feature_name,feature_title,taxonomy_tags,config):
 
     # First, extract the information from the layer (Title, Abstract, Tags)
     params_dict = {}
@@ -781,34 +774,20 @@ class ODMImporter():
     params_dict['state'] = 'active'
 
     # Extract title (Mandatory)
-    if 'title' in feature:
-      params_dict['title'] = feature['title']
-      params_dict['title'] = self._prettify_name(params_dict['title'])
-    else:
-      raise KeyError()
+    params_dict['title'] = feature_title
 
     # Extract name (Mandatory, lowcase and without characters except _-')
-    if 'name' in feature:
-      params_dict['name'] = feature['name'].lower()
-    else:
-      params_dict['name'] = params_dict['title']
-
-    # Replace non-ascii characters and whitespaces
-    params_dict['name'] = self._prepare_string_for_ckan_name(params_dict['name'])
+    params_dict['name'] = self._prepare_string_for_ckan_name(feature_name)
 
     # Notes / Description / Abstract
-    if 'abstract' in feature:
-      params_dict['notes'] = feature['abstract']
-    else:
-      params_dict['notes'] = 'Imported Geoserver Layer: '+params_dict['title'] + '.'
+    params_dict['notes'] = 'Imported Geoserver Layer: '+params_dict['title'] + '.'
 
-    if 'namespace' in feature:
-      params_dict['tags'] = []
-      category_name = self._prepare_string_for_ckan_tag_name(feature['namespace']['name'])
-      if (config.DEBUG):
-        print(category_name)
-      if (category_name in taxonomy_tags):
-        params_dict['tags'].append({'name':category_name})
+    params_dict['tags'] = []
+    category_name = self._prepare_string_for_ckan_tag_name(feature_namespace)
+    if (config.DEBUG):
+      print(category_name)
+    if (category_name in taxonomy_tags):
+      params_dict['tags'].append({'name':category_name})
 
     return params_dict
 

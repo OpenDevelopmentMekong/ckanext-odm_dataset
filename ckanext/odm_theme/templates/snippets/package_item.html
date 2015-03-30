@@ -18,11 +18,11 @@ Example:
 {% set title = package.title or package.name %}
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 
-{% set image_urls = [] %}
+{% set image_resources = [] %}
 {% if package.resources and not hide_resources %}
 	{% for resource in package.resources %}
 		{% if (resource.format.lower() == 'jpg') or (resource.format.lower() == 'png') %}
-			{% do image_urls.append(resource.url) %}
+			{% do image_resources.append(resource) %}
 		{% endif %}
 	{% endfor %}
 {% endif %}
@@ -48,8 +48,9 @@ Example:
       {% if banner %}
         <span class="banner">{{ _('Popular') }}</span>
       {% endif %}
-			{% if image_urls %}
-	    	<img class="dataset_thumb_s" src="{{image_urls|last}}"></img>
+			{% set resource = image_resources|last %}
+			{% if resource %}
+	    	<img class="dataset_thumb_s" src="{{ h.odm_theme_localize_resource_url(resource.url) }}"></img>
 	    {% endif %}
       {% if notes %}
         <div>
