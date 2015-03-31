@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 countries = [
-	('Cambodia','Cambodia'),
-	('Vietnam','Vietnam'),
-	('Laos','Laos'),
-	('Thailand','Thailand'),
-	('Myanmar','Myanmar')
+  ('Cambodia','Cambodia'),
+  ('Vietnam','Vietnam'),
+  ('Laos','Laos'),
+  ('Thailand','Thailand'),
+  ('Myanmar','Myanmar')
 ]
 
 languages = [
