@@ -20,7 +20,7 @@ GEOSERVER_AUTH='AUTH'
 GEOSERVER_MAP={'ontology':'*','organization':'cambodia-organization','groups':[{'name':'maps-group'},{'name':'cambodia-group'}]}
 
 # NewGenLib
-NGL_URL=''
+NGL_URL='URL'
 NGL_MAP={'ontology':'*','organization':'odm-library','groups':[{'name':'library-group'},{'name':'cambodia-group'}]}
 
 # ODC
