@@ -34,6 +34,8 @@ DELETE_MAP={'group':'laws-group','limit':500,'field_filter':{'odm_contact':'ODM 
 
 # Tag vocabularies
 TAXONOMY_TAG_VOCAB='taxonomy'
+SUBJECT_LIST_TAG_VOCAB='subject-list'
+SUPPORTED_LANGS=['en','vi','th', 'km']
 
 # Importer infos
 IMPORTER_NAME='ODM Importer'

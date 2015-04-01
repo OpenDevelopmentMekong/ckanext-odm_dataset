@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block package_basic_fields_taxonomy %}
-{% set taxonomy_tags = h.odm_theme_get_taxonomy_tags('taxonomy') %}
+{% set taxonomy_tags = h.odm_theme_tag_dictionaries('taxonomy') %}
 {% if taxonomy_tags|length > 0 %}
 <div class="control-group">
   <label class="control-label" for="field-taxonomy">{{ _("Tags") }}</label>
@@ -205,9 +205,32 @@
           {{ form.markdown('marc21_520', label=_('Summary'), id='field-marc21_520', placeholder=_('Abstract or Summary of book or article.'), value=data.marc21_520, error=errors.marc21_520, classes=['control-full']) }}
         {% endblock %}
 
+        {#
+          {% block package_metadata_fields_marc21_650 %}
+            {{ form.input('marc21_650', label=_('Subject'), id='field-marc21_650', placeholder=_('Subject Heading-Topical Term based on Library of Congress Subject Heading.'), value=data.marc21_650, error=errors.marc21_650, classes=['control-full'], attrs={'data-module': 'autocomplete', 'data-module-source': h.odm_theme_tag_dictionaries('subject-list')}) }}
+          {% endblock %}
+        #}
+
         {% block package_metadata_fields_marc21_650 %}
-          {{ form.input('marc21_650', label=_('Subject'), id='field-marc21_650', placeholder=_('Subject Heading-Topical Term based on Library of Congress Subject Heading.'), value=data.marc21_650, error=errors.marc21_650, classes=['control-full'], attrs={'data-module': 'autocomplete', 'data-module-tags': ''}) }}
-        {% endblock %}
+          {% set subject_list_tags = h.odm_theme_tag_dictionaries('subject-list') %}
+          {% if subject_list_tags|length > 0 %}
+          <div class="control-group">
+            <label class="control-label" for="field-marc21_650">{{ _("Subject") }}</label>
+            <div class="controls control-full">
+              <select multiple id="field-marc21_650" name="marc21_650" data-module="autocomplete" placeholder="{{ _("Subject Heading-Topical Term based on Library of Congress Subject Heading.") }}">
+                {% for tag in subject_list_tags %}
+                {% if tag not in data.marc21_650 %}
+                  <option value="{{ tag }}">{{ h.odm_theme_get_localized_tag(tag) }}</option>
+                {% else %}
+                  <option selected="selected" value="{{ tag }}">{{ h.odm_theme_get_localized_tag(tag) }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          {% endif %}
+        {% endblock%}
+
 
         {% block package_metadata_fields_marc21_651 %}
           {{ form.input('marc21_651', label=_('Subject (Geographic Name)'), id='field-marc21_651', placeholder=_('Subject -Geographic Name.'), value=data.marc21_651, error=errors.marc21_651, classes=['control-full']) }}

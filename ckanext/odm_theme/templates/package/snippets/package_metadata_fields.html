@@ -144,7 +144,7 @@
 
   {% block package_metadata_odm_contact %}
     {{ form.input('odm_contact', label=_('Contact'), id='field-odm_contact', placeholder=_('Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset.'), value=data.odm_contact, error=errors.odm_contact, classes=['control-full']) }}
-    {{ form.input('odm_contact_email', label=_('Contact Email'), id='field-odm_contact_email', placeholder=_('joe@example.com'), value=data.odm_contact_email, error=errors.odm_contact_email, classes=['control-full']) }}
+    {{ form.input('odm_contact_email', label=_('Contact Email'), id='field-odm_contact_email', type='email', placeholder=_('joe@example.com'), value=data.odm_contact_email, error=errors.odm_contact_email, classes=['control-full']) }}
   {% endblock %}
 
   {% block package_metadata_fields_odm_access_and_use_constraints %}
@@ -152,7 +152,7 @@
   {% endblock %}
 
   {% block package_metadata_fields_odm_url %}
-    {{ form.input('odm_url', label=_('Download URL'), id='field-odm_url', placeholder=_('Unique URL for the current dataset'), value=data.odm_url, error=errors.odm_url, classes=['control-full']) }}
+    {{ form.input('odm_url', label=_('Download URL'), id='field-odm_url', type='url', placeholder=_('Unique URL for the current dataset'), value=data.odm_url, error=errors.odm_url, classes=['control-full']) }}
   {% endblock %}
 
   {% block package_metadata_fields_odm_metadata_reference_information %}
