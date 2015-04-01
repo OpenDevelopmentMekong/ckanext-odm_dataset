@@ -17,9 +17,8 @@ from urlparse import urlparse
 log = logging.getLogger(__name__)
 
 def localize_resource_url(url):
-  """
-  Converts a absolute URL in a relative, chopping out the domain
-  """
+  '''Converts a absolute URL in a relative, chopping out the domain'''
+
   parsed = urlparse(url)
   str_index = url.index(parsed.netloc)
   str_length = len(parsed.netloc)
@@ -29,25 +28,21 @@ def localize_resource_url(url):
   return localized
 
 def convert_to_extras(key, data, errors, context):
-    """
-    Rewrite of the same-named function in ckan.logic.converters that is
-    accurately wrong. I've submitted a bug/fix to CKAN so this function can
-    probably be removed at some later date, if/when the patch is merged.
-    """
+  '''Rewrite of the same-named function in ckan.logic.converters that is accurately wrong. I've submitted a bug/fix to CKAN so this function can probably be removed at some later date, if/when the patch is merged.'''
 
-    log.debug('convert_to_extras: %s', key)
+  log.debug('convert_to_extras: %s', key)
 
-    # There is no tally for the number of fields converted to extras.
-    extras = [k for k in data.keys() if k[0] == 'extras' and len(k) > 1]
-    new_pos = 0
-    if extras:
-        extras.sort()
-        new_pos = extras[-1][-2] + 1  # e.g. ('extras', 5, 'value')
-    data[('extras', new_pos, 'key')] = key[-1]
-    data[('extras', new_pos, 'value')] = data[key]
+  # There is no tally for the number of fields converted to extras.
+  extras = [k for k in data.keys() if k[0] == 'extras' and len(k) > 1]
+  new_pos = 0
+  if extras:
+      extras.sort()
+      new_pos = extras[-1][-2] + 1  # e.g. ('extras', 5, 'value')
+  data[('extras', new_pos, 'key')] = key[-1]
+  data[('extras', new_pos, 'value')] = data[key]
 
 def get_taxonomy_tags(taxonomy_vocab_name):
-
+  '''Returns the taxonomy tags'''
   try:
 
     taxonomy_tags = toolkit.get_action('tag_list')(data_dict={'vocabulary_id': taxonomy_vocab_name})
@@ -220,9 +215,7 @@ def is_user_admin_of_organisation(organization_name):
   return False
 
 class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
-  '''ODM theme plugin.
-
-  '''
+  '''ODM theme plugin.'''
 
   plugins.implements(plugins.IDatasetForm)
   plugins.implements(plugins.IConfigurer)
@@ -236,17 +229,15 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     return m
 
   def update_config(self, config):
-    '''Update plugin config
+    '''Update plugin config'''
 
-    '''
     toolkit.add_template_directory(config, 'templates')
     toolkit.add_resource('fanstatic', 'odm_theme')
     toolkit.add_public_directory(config, 'public')
 
   def get_helpers(self):
-    '''Register the plugin's functions above as a template helper function.
+    '''Register the plugin's functions above as a template helper function.'''
 
-    '''
     return {
       'odm_theme_localize_resource_url': localize_resource_url,
       'odm_theme_get_localized_tag_string': get_localized_tag_string,
