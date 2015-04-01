@@ -388,6 +388,10 @@ class ODMImporter():
           resource_dict = self._create_metadata_dictionary_for_resource(dataset_metadata['id'],ol_url,dataset_metadata['title'],'Data representation [Open Layers]','html')
           created_resource = ckanapi_utils.create_resource(resource_dict)
 
+          ol_url = self._generate_wms_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_name,'application/vnd.google-earth.kml')
+          resource_dict = self._create_metadata_dictionary_for_resource(dataset_metadata['id'],ol_url,dataset_metadata['title'],'Data representation KML]','kml')
+          created_resource = ckanapi_utils.create_resource(resource_dict)
+
           try:
 
             temp_file_path = self._generate_temp_filename('geojson')
@@ -395,6 +399,21 @@ class ODMImporter():
             geojson_file = geoserver_utils.download_file(geojson_url,temp_file_path)
 
             resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],geojson_url,temp_file_path,dataset_metadata['title'],'Data representation [Geojson]','geojson')
+            ckanapi_utils.create_resource_with_file_upload(resource_dict)
+            if os.path.exists(temp_file_path):
+              os.remove(temp_file_path)
+
+          except (urllib2.HTTPError, ValueError) as e3:
+            if (config.DEBUG):
+              traceback.print_exc()
+
+          try:
+
+            temp_file_path = self._generate_temp_filename('csv')
+            csv_url = self._generate_ows_download_url(geoserver_utils.geoserver_url,feature_namespace,feature_name,'csv')
+            csv_file = geoserver_utils.download_file(csv_url,temp_file_path)
+
+            resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],csv_file,temp_file_path,dataset_metadata['title'],'Data representation [CSV]','csv')
             ckanapi_utils.create_resource_with_file_upload(resource_dict)
             if os.path.exists(temp_file_path):
               os.remove(temp_file_path)
