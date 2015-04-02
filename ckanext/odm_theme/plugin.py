@@ -13,6 +13,7 @@ import odm_theme_helper
 import datetime
 import time
 from urlparse import urlparse
+import json
 
 log = logging.getLogger(__name__)
 
@@ -41,16 +42,35 @@ def convert_to_extras(key, data, errors, context):
   data[('extras', new_pos, 'key')] = key[-1]
   data[('extras', new_pos, 'value')] = data[key]
 
-def get_taxonomy_tags(taxonomy_vocab_name):
-  '''Returns the taxonomy tags'''
+def get_tag_dictionaries(vocab_id):
+  '''Returns the tag dictionary for the specified vocab_id'''
+
   try:
 
-    taxonomy_tags = toolkit.get_action('tag_list')(data_dict={'vocabulary_id': taxonomy_vocab_name})
-    return taxonomy_tags
+    tag_dictionaries = toolkit.get_action('tag_list')(data_dict={'vocabulary_id': vocab_id})
+    return tag_dictionaries
 
   except toolkit.ObjectNotFound:
 
     return []
+
+def get_tag_dictionaries_json(vocab_id):
+  '''Returns the tag dictionary for the specified vocab_id, in json format and adding indexes'''
+
+  return jsonify_list(get_tag_dictionaries(vocab_id))
+
+def jsonify_list(input_list):
+  '''Returns the tag dictionary for the specified vocab_id, in json format and adding indexes'''
+
+  items = []
+
+  if not isinstance(input_list, list):
+    return items
+
+  for item in input_list:
+    items.append({'id':item,'text':get_localized_tag(item)})
+
+  return json.dumps(items)
 
 def validate_not_empty(value,context):
   '''Returns if a string is empty or not'''
@@ -253,7 +273,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_is_library_orga': is_library_orga,
       'odm_theme_get_orga_or_group': get_orga_or_group,
       'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation,
-      'odm_theme_get_taxonomy_tags': get_taxonomy_tags
+      'odm_theme_tag_dictionaries': get_tag_dictionaries,
+      'odm_theme_jsonify_list': jsonify_list
     }
 
   def _modify_package_schema_write(self, schema):
@@ -276,8 +297,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({odc_field[0]: validators_and_converters})
 
-    for taxonomy in odm_theme_helper.taxonomy_fields:
-      schema.update({taxonomy[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(taxonomy[0])]})
+    for tag_dictionary in odm_theme_helper.tag_dictionaries:
+      schema.update({tag_dictionary[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(tag_dictionary[0])]})
 
     return schema
 
@@ -301,8 +322,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         validators_and_converters.append(validate_not_empty)
       schema.update({odc_field[0]: validators_and_converters})
 
-    for taxonomy in odm_theme_helper.taxonomy_fields:
-      schema.update({taxonomy[0]: [toolkit.get_converter('convert_from_tags')(taxonomy[0]),toolkit.get_validator('ignore_missing')]})
+    for tag_dictionary in odm_theme_helper.tag_dictionaries:
+      schema.update({tag_dictionary[0]: [toolkit.get_converter('convert_from_tags')(tag_dictionary[0]),toolkit.get_validator('ignore_missing')]})
 
     return schema
 

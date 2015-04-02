@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block package_basic_fields_taxonomy %}
-{% set taxonomy_tags = h.odm_theme_get_taxonomy_tags('taxonomy') %}
+{% set taxonomy_tags = h.odm_theme_tag_dictionaries('taxonomy') %}
 {% if taxonomy_tags|length > 0 %}
 <div class="control-group">
   <label class="control-label" for="field-taxonomy">{{ _("Tags") }}</label>
@@ -82,6 +82,7 @@
   {% resource 'odm_theme/daterangepicker-bs3.css' %}
   {% resource 'odm_theme/daterangepicker-module.js' %}
   {% resource 'odm_theme/odm_theme_review_system_logic.js' %}
+  {% resource 'odm_theme/free-multiselect-module.js' %}
 
   {# if we have a default group then this wants remembering #}
   {% if data.group_id %}
@@ -206,8 +207,29 @@
         {% endblock %}
 
         {% block package_metadata_fields_marc21_650 %}
-          {{ form.input('marc21_650', label=_('Subject'), id='field-marc21_650', placeholder=_('Subject Heading-Topical Term based on Library of Congress Subject Heading.'), value=data.marc21_650, error=errors.marc21_650, classes=['control-full'], attrs={'data-module': 'autocomplete', 'data-module-tags': ''}) }}
+
+          {% if data.marc21_650 %}
+            {% set initial_values = data.marc21_650.split(',') %}
+          {% else %}
+            {% set initial_values = [] %}
+          {% endif%}
+
+          {{ form.input('marc21_650', label=_('Subject'), id='field-marc21_650', placeholder=_('Subject Heading-Topical Term based on Library of Congress Subject Heading.'), value=data.marc21_650, error=errors.marc21_650, classes=['control-full'], attrs={'data-module': 'free-multiselect-module', 'data-module-suggestions': h.odm_theme_jsonify_list(h.odm_theme_tag_dictionaries('subject-list')), 'data-module-init_value': h.odm_theme_jsonify_list(initial_values)}) }}
         {% endblock %}
+
+        {#
+          {% block package_metadata_fields_marc21_650 %}
+            {% set subject_list_tags = h.odm_theme_tag_dictionaries('subject-list') %}
+            {% if subject_list_tags|length > 0 %}
+            <div class="control-group">
+              <label class="control-label" for="field-marc21_650">{{ _("Subject") }}</label>
+              <div class="controls control-full">
+                <input id="field-marc21_650" name="marc21_650" value={{data.marc21_650}} class="free-multiselect" data-module="free-multiselect-module" data-module-suggestions="{{h.odm_theme_tag_dictionaries_json('subject-list')}}" placeholder="{{ _("Subject Heading-Topical Term based on Library of Congress Subject Heading.") }}">
+              </div>
+            </div>
+            {% endif %}
+          {% endblock%}
+        #}
 
         {% block package_metadata_fields_marc21_651 %}
           {{ form.input('marc21_651', label=_('Subject (Geographic Name)'), id='field-marc21_651', placeholder=_('Subject -Geographic Name.'), value=data.marc21_651, error=errors.marc21_651, classes=['control-full']) }}

@@ -26,4 +26,4 @@ githubutils = github_utils.RealGithubApi()
 ckanapiutils = ckanapi_utils.RealCkanApi(config)
 
 importer = ODMImporter()
-importer.import_taxonomy_term_translations(githubutils,ckanapiutils,config)
+importer.import_subject_list_term_translations(githubutils,ckanapiutils,config)

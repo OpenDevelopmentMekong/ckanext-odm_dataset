@@ -48,7 +48,7 @@ metadata_fields = [
 ('odm_attributes','Attributes',False)
 ]
 
-taxonomy_fields = [('taxonomy','Tags in taxonomy')]
+tag_dictionaries = [('taxonomy','subject-list')]
 
 library_fields = [
 ('marc21_020','ISBN',False),
