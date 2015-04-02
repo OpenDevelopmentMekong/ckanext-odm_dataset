@@ -67,7 +67,7 @@
 		<div class="control-group">
 		  <label class="control-label" for="field-odm_language">{{ _('Language') }}</label>
 		  <div class="controls control-full">
-		    <select multiple id="field-odm_language" name="odm_language" data-module="autocomplete" placeholder="_('Language(s) of the dataset, including resources within dataset')">
+		    <select multiple id="field-odm_language" name="odm_language" data-module="autocomplete" placeholder="{{_('Language(s) of the dataset, including resources within dataset')}}">
 		      {% for language in h.odm_theme_languages() %}
 						{% set lang_code = language[0] %}
 						{% set lang = language[1] %}
@@ -86,7 +86,7 @@
 		<div class="control-group">
 			<label class="control-label" for="field-odm_date_created">{{ _('Date created') }}</label>
 			<div class="controls control-full">
-				<input type="text" id="field-odm_date_created" value="{{data.odm_date_created}}" placeholder="_('Date the dataset was first published by its creator.')" name="odm_date_created" class="odm_datepicker" data-module="datepicker-module"/>
+				<input type="text" id="field-odm_date_created" value="{{data.odm_date_created}}" placeholder="{{_('Date the dataset was first published by its creator.')}}" name="odm_date_created" class="odm_datepicker" data-module="datepicker-module"/>
 			</div>
 	  </div>
 	{% endblock %}
@@ -95,7 +95,7 @@
 		<div class="control-group">
 			<label class="control-label" for="field-odm_date_uploaded">{{ _('Date uploaded') }}</label>
 			<div class="controls control-full">
-				<input type="text" id="field-odm_date_uploaded" value="{{data.odm_date_uploaded}}" placeholder="_('Date the dataset was first uploaded to the OD CKAN database.')" name="odm_date_uploaded" class="odm_datepicker" data-module="datepicker-module"/>
+				<input type="text" id="field-odm_date_uploaded" value="{{data.odm_date_uploaded}}" placeholder="{{_('Date the dataset was first uploaded to the OD CKAN database.')}}" name="odm_date_uploaded" class="odm_datepicker" data-module="datepicker-module"/>
 			</div>
 		</div>
   {% endblock %}
@@ -104,7 +104,7 @@
 		<div class="control-group">
 			<label class="control-label" for="field-odm_date_modified">{{ _('Date modified') }}</label>
 			<div class="controls control-full">
-				<input type="text" id="field-odm_date_modified" value="{{data.odm_date_modified}}" placeholder="_('Date a new version or update of the dataset was uploaded to the OD CKAN database.')" name="odm_date_modified" class="odm_datepicker" data-module="datepicker-module"/>
+				<input type="text" id="field-odm_date_modified" value="{{data.odm_date_modified}}" placeholder="{{_('Date a new version or update of the dataset was uploaded to the OD CKAN database.')}}" name="odm_date_modified" class="odm_datepicker" data-module="datepicker-module"/>
 			</div>
 		</div>
   {% endblock %}
@@ -113,7 +113,7 @@
 		<div class="control-group">
 			<label class="control-label" for="field-odm_temporal_range">{{ _('Temporal Range') }}</label>
 			<div class="controls control-full">
-				<input type="text" id="field-odm_temporal_range" value="{{data.odm_temporal_range}}" placeholder="_('The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).')" name="odm_temporal_range" class="odm_daterangepicker" data-module="daterangepicker-module"/>
+				<input type="text" id="field-odm_temporal_range" value="{{data.odm_temporal_range}}" placeholder="{{_('The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).')}}" name="odm_temporal_range" class="odm_daterangepicker" data-module="daterangepicker-module"/>
 			</div>
 		</div>
   {% endblock %}
@@ -123,7 +123,7 @@
 			<div class="control-group">
 				<label class="control-label" for="field-odm_spatial_range">{{ _('Spatial Range') }}</label>
 				<div class="controls control-full">
-					<select multiple id="field-odm_spatial_range" name="odm_spatial_range" data-module="autocomplete" placeholder="_('The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).">
+					<select multiple id="field-odm_spatial_range" name="odm_spatial_range" data-module="autocomplete" placeholder="{{_('The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).')}}">
 						{% for country in h.odm_theme_countries() %}
 							{% set country_name = country[0] %}
 							{% if country_name not in data.odm_spatial_range %}
