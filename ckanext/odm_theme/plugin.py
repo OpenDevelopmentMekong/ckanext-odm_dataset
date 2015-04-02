@@ -72,6 +72,19 @@ def jsonify_list(input_list):
 
   return json.dumps(items)
 
+def year_choices():
+  '''Returns a list of years between actual year and minYear '''
+
+  items = []
+  maxYear = datetime.date.today().year
+  minYear = maxYear - 500
+  count = maxYear
+  while count > minYear:
+    items.append(count)
+    count++
+
+  return items
+
 def validate_not_empty(value,context):
   '''Returns if a string is empty or not'''
 
@@ -274,7 +287,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_get_orga_or_group': get_orga_or_group,
       'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation,
       'odm_theme_tag_dictionaries': get_tag_dictionaries,
-      'odm_theme_jsonify_list': jsonify_list
+      'odm_theme_jsonify_list': jsonify_list,
+      'odm_theme_year_choices':  year_choices
     }
 
   def _modify_package_schema_write(self, schema):

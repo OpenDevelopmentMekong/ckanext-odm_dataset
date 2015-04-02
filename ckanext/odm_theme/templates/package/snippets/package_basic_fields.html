@@ -174,24 +174,19 @@
         {% endblock %}
 
         {% block package_metadata_fields_marc21_250 %}
-          {{ form.input('marc21_250', label=_('Edition'), id='field-marc21_250', placeholder=_('Version of publication.'), value=data.marc21_250, error=errors.marc21_250, classes=['control-full']) }}
+          {{ form.input('marc21_250', label=_('Edition'), id='field-marc21_250', placeholder=_('Version of publication'), value=data.marc21_250, error=errors.marc21_250, classes=['control-full']) }}
         {% endblock %}
 
         {% block package_metadata_fields_marc21_260a %}
-          {{ form.input('marc21_260a', label=_('Publication Name'), id='field-marc21_260a', placeholder=_('Publisher.'), value=data.marc21_260a, error=errors.marc21_260a, classes=['control-full']) }}
+          {{ form.input('marc21_260a', label=_('Publication Place'), id='field-marc21_260a', placeholder=_('Place of publisher'), value=data.marc21_260a, error=errors.marc21_260a, classes=['control-full']) }}
         {% endblock %}
 
         {% block package_metadata_fields_marc21_260b %}
-          {{ form.input('marc21_260b', label=_('Publication Place'), id='field-marc21_260b', placeholder=_('Place of publisher.'), value=data.marc21_260b, error=errors.marc21_260b, classes=['control-full']) }}
+          {{ form.input('marc21_260b', label=_('Publication Name'), id='field-marc21_260b', placeholder=_('Publisher'), value=data.marc21_260b, error=errors.marc21_260b, classes=['control-full']) }}
         {% endblock %}
 
         {% block package_metadata_fields_marc21_260c %}
-          <div class="control-group">
-            <label class="control-label" for="field-marc21_260c">{{ _('Publication Date') }}</label>
-            <div class="controls control-full">
-              <input type="text" id="field-marc21_260c" value="{{data.marc21_260c}}" placeholder="{{_('Date published.')}}" name="marc21_260c" class="odm_datepicker" data-module="datepicker-module"/>
-            </div>
-          </div>
+          {{ form.input('marc21_260c', label=_('Publication Date'), id='field-marc21_260c', type='number', placeholder=_('Date published (YYYY)'), value=data.marc21_260c, error=errors.marc21_260c, classes=['control-full']) }}
         {% endblock %}
 
         {% block package_metadata_fields_marc21_300 %}
