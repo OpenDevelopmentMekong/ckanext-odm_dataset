@@ -23,19 +23,19 @@ Example:
 
 <ol class="stages {{ class }}">
   <li class="first {{ s1 }}">
-		{% if is_library_orga %}
-			{% if s1 != 'complete' %}
-				<span class="highlight">{{ _('Add library record') }}</span>
-			{% else %}
-				<button class="highlight" name="save" value="go-dataset" type="submit">{{ _('Add library record') }}</button>
-			{% endif %}
-		{% else %}
-			{% if s1 != 'complete' %}
-				<span class="highlight">{{ _('Create dataset') }}</span>
-			{% else %}
-				<button class="highlight" name="save" value="go-dataset" type="submit">{{ _('Create dataset') }}</button>
-			{% endif %}
-		{% endif %}
+  {% if is_library_orga %}
+   {% if s1 != 'complete' %}
+    <span class="highlight">{{ _('Add library record') }}</span>
+   {% else %}
+    <button class="highlight" name="save" value="go-dataset" type="submit">{{ _('Add library record') }}</button>
+   {% endif %}
+  {% else %}
+   {% if s1 != 'complete' %}
+    <span class="highlight">{{ _('Create dataset') }}</span>
+   {% else %}
+    <button class="highlight" name="save" value="go-dataset" type="submit">{{ _('Create dataset') }}</button>
+   {% endif %}
+  {% endif %}
 
   </li>
   <li class="middle {{ s2 }}">

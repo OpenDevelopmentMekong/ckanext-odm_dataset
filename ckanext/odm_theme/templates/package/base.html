@@ -19,10 +19,10 @@
     <li{{ self.breadcrumb_content_selected() }}>{% link_for dataset|truncate(30), controller='package', action='read', id=pkg.name %}</li>
   {% else %}
     <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
-		{% if h.odm_theme_get_in_library() %}
-    	<li class="active"><a href="">{{ _('Add library record') }}</a></li>
-		{% else %}
-			<li class="active"><a href="">{{ _('Create Dataset') }}</a></li>
+  {% if h.odm_theme_get_in_library() %}
+     <li class="active"><a href="">{{ _('Add library record') }}</a></li>
+  {% else %}
+   <li class="active"><a href="">{{ _('Create Dataset') }}</a></li>
     {% endif %}
   {% endif %}
 {% endblock %}
