@@ -4,7 +4,7 @@ this.ckan.module('multiselect-module-languages', function($, _) {
       console.log("multiselect-module-languages " + this.options.suggestions);
       console.log($(this).find('input'));
 
-      $(this).find('input').select2({
+      $('#field-odm_language').select2({
         multiple: true,
         data: this.options.suggestions
       });
