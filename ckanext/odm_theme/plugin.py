@@ -79,6 +79,8 @@ def get_tag_dictionaries_json(vocab_id):
 def jsonify_list(input_list):
   '''Returns the tag dictionary for the specified vocab_id, in json format and adding indexes'''
 
+  log.debug('jsonify_list: %s', input_list)
+
   items = []
 
   if not isinstance(input_list, list):
@@ -86,6 +88,28 @@ def jsonify_list(input_list):
 
   for item in input_list:
     items.append({'id':item,'text':get_localized_tag(item)})
+
+  return json.dumps(items)
+
+def jsonify_countries():
+  '''Returns the tag dictionary for the countries'''
+
+  log.debug('jsonify_countries')
+
+  items = []
+  for country in countries():
+    items.append({'id':country[0],'text':country[0]})
+
+  return json.dumps(items)
+
+def jsonify_languages():
+  '''Returns the tag dictionary for the languages'''
+
+  log.debug('jsonify_languages')
+
+  items = []
+  for language in languages():
+    items.append({'id':language[1],'text':language[1]})
 
   return json.dumps(items)
 
@@ -296,7 +320,9 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_get_orga_or_group': get_orga_or_group,
       'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation,
       'odm_theme_tag_dictionaries': get_tag_dictionaries,
-      'odm_theme_jsonify_list': jsonify_list
+      'odm_theme_jsonify_list': jsonify_list,
+      'odm_theme_jsonify_countries': jsonify_countries,
+      'odm_theme_jsonify_languages': jsonify_languages
     }
 
   def _modify_package_schema_write(self, schema):

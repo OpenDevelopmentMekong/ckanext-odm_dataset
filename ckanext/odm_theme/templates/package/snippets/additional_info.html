@@ -10,39 +10,39 @@
     <tbody>
       {% block package_additional_info %}
 
-				{# # Following 3 fields are already implemented in the Metadata template fields
-	        {% if pkg_dict.url %}
-	        <tr>
-	          <th scope="row" class="dataset-label">{{ _('Source') }}</th>
-	          <td class="dataset-details" property="foaf:homepage">{{ h.link_to(pkg_dict.url, pkg_dict.url, rel='foaf:homepage', target='_blank') }}</td>
-	        </tr>
-	        {% endif %}
+    {# # Following 3 fields are already implemented in the Metadata template fields
+         {% if pkg_dict.url %}
+         <tr>
+           <th scope="row" class="dataset-label">{{ _('Source') }}</th>
+           <td class="dataset-details" property="foaf:homepage">{{ h.link_to(pkg_dict.url, pkg_dict.url, rel='foaf:homepage', target='_blank') }}</td>
+         </tr>
+         {% endif %}
 
-	        {% if pkg_dict.author_email %}
-	        <tr>
-	          <th scope="row" class="dataset-label">{{ _("Author") }}</th>
-	          <td class="dataset-details" property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author) }}</td>
-	        </tr>
-	        {% elif pkg_dict.author %}
-	        <tr>
-	          <th scope="row" class="dataset-label">{{ _("Author") }}</th>
-	          <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
-	        </tr>
-	        {% endif %}
+         {% if pkg_dict.author_email %}
+         <tr>
+           <th scope="row" class="dataset-label">{{ _("Author") }}</th>
+           <td class="dataset-details" property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author) }}</td>
+         </tr>
+         {% elif pkg_dict.author %}
+         <tr>
+           <th scope="row" class="dataset-label">{{ _("Author") }}</th>
+           <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
+         </tr>
+         {% endif %}
 
-	        {% if pkg_dict.maintainer_email %}
-	        <tr>
-	          <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
-	          <td class="dataset-details" property="dc:contributor">{{ h.mail_to(email_address=pkg_dict.maintainer_email, name=pkg_dict.maintainer) }}</td>
-	        </tr>
-	        {% elif pkg_dict.maintainer %}
-	        <tr>
-	          <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
-	          <td class="dataset-details" property="dc:contributor">{{ pkg_dict.maintainer }}</td>
-	        </tr>
-	        {% endif %}
+         {% if pkg_dict.maintainer_email %}
+         <tr>
+           <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
+           <td class="dataset-details" property="dc:contributor">{{ h.mail_to(email_address=pkg_dict.maintainer_email, name=pkg_dict.maintainer) }}</td>
+         </tr>
+         {% elif pkg_dict.maintainer %}
+         <tr>
+           <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
+           <td class="dataset-details" property="dc:contributor">{{ pkg_dict.maintainer }}</td>
+         </tr>
+         {% endif %}
 
-				#}
+    #}
 
         {% if pkg_dict.version %}
         <tr>
@@ -51,28 +51,28 @@
         </tr>
         {% endif %}
 
-				{% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+    {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
         <tr>
           <th scope="row" class="dataset-label">{{ _("State") }}</th>
           <td class="dataset-details">{{ pkg_dict.state }}</td>
         </tr>
         {% endif %}
 
-				{% block package_odc_fields %}
+    {% block package_odc_fields %}
 
-	        {% for field in h.odm_theme_odc_fields() %}
-	          {% set field_name = field[0] %}
-	          {% set field_label = field[1] %}
+         {% for field in h.odm_theme_odc_fields() %}
+           {% set field_name = field[0] %}
+           {% set field_label = field[1] %}
 
-	          {% if pkg_dict[field_name] %}
-	            <tr>
-	              <th scope="row" class="dataset-label">{{ _(field_label) }}</th>
-	              <td class="dataset-details">{{ pkg_dict[field_name] }}</td>
-	            </tr>
-	          {% endif %}
-	        {% endfor %}
+           {% if pkg_dict[field_name] %}
+             <tr>
+               <th scope="row" class="dataset-label">{{ _(field_label) }}</th>
+               <td class="dataset-details">{{ pkg_dict[field_name] }}</td>
+             </tr>
+           {% endif %}
+         {% endfor %}
 
-	      {% endblock %}
+       {% endblock %}
 
         {% block extras scoped %}
         {% for extra in h.sorted_extras(pkg_dict.extras) %}
