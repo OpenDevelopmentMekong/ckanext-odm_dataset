@@ -17,6 +17,23 @@ import json
 
 log = logging.getLogger(__name__)
 
+in_library = False
+
+def set_in_library(value):
+  '''Sets the in_library value'''
+  global in_library
+
+  log.debug('set_in_library: %s', value)
+
+  in_library = value
+
+def get_in_library():
+  '''Gets the in_library value'''
+
+  log.debug('get_in_library: %s', in_library)
+
+  return in_library
+
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
 
@@ -246,6 +263,9 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     m.connect('library', #name of path route
       '/library', #url to map path to
       controller='ckanext.odm_theme.controller:ThemeController',action='library')
+    m.connect('search_no_library', #name of path route
+      '/search_no_library', #url to map path to
+      controller='ckanext.odm_theme.controller:ThemeController',action='search_no_library')
     return m
 
   def update_config(self, config):
@@ -259,6 +279,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as a template helper function.'''
 
     return {
+      'odm_theme_set_in_library': set_in_library,
+      'odm_theme_get_in_library': get_in_library,
       'odm_theme_localize_resource_url': localize_resource_url,
       'odm_theme_get_localized_tag_string': get_localized_tag_string,
       'odm_theme_get_localized_tag': get_localized_tag,
