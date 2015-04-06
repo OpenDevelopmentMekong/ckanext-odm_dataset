@@ -20,7 +20,7 @@ NGL_MAP={'ontology':'*','organization':'odm-library','groups':[{'name':'library-
 ODC_MAP=[{'ontology':'ODC/News','organization':'cambodia-organization','groups':[{'name':'news-group'},{'name':'laws-group'},{'name':'cambodia-group'}],'field_prefixes':[]}]
 
 # DELETE
-DELETE_MAP={'group':'laws-group','limit':500,'field_filter':{}}
+DELETE_MAP={'organization':'odm-library','group':'laws-group','limit':500,'field_filter':{}}
 
 # Tag vocabularies
 TAXONOMY_TAG_VOCAB='taxonomy'

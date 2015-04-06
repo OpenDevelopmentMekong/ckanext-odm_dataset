@@ -72,6 +72,9 @@ class ICkanApi:
   def get_packages_in_group(self,params):
     raise NotImplementedError
 
+  def get_packages_in_organization(self,params):
+    raise NotImplementedError
+
   def delete_packages_list(self,params):
     raise NotImplementedError
 
@@ -170,6 +173,12 @@ class TestCkanApi (ICkanApi):
   def get_packages_in_group(self,params):
 
     return self.api.call_action('group_package_show',params)
+
+  def get_packages_in_organization(self,params):
+
+    result = self.api.action.organization_show(id=params['id'],include_datasets=True)
+
+    return result['datasets']
 
   def delete_packages_list(self,params):
 
@@ -272,6 +281,12 @@ class RealCkanApi (ICkanApi):
   def get_packages_in_group(self,params):
 
     return self.api.call_action('group_package_show',params)
+
+  def get_packages_in_organization(self,params):
+
+    result = self.api.action.organization_show(id=params['id'],include_datasets=True)
+
+    return result['packages']
 
   def delete_packages_list(self,params):
 
