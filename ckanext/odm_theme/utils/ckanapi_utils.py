@@ -178,7 +178,7 @@ class TestCkanApi (ICkanApi):
 
     result = self.api.action.organization_show(id=params['id'],include_datasets=True)
 
-    return result['datasets']
+    return result['packages']
 
   def delete_packages_list(self,params):
 
