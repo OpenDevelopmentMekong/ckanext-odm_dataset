@@ -113,6 +113,7 @@ class TestOdmThemePlugin(object):
     orgas = []
     orgas.append(config.GEOSERVER_MAP['organization'])
     orgas.append(config.NGL_MAP['organization'])
+    orgas.append(config.DELETE_MAP['organization'])
     for item in config.ODC_MAP:
       orgas.append(item['organization'])
 
@@ -156,8 +157,11 @@ class TestOdmThemePlugin(object):
     self._createOrganizationsAndGroups(ckanapiutils)
     self._initTaxonomyTagVocabulary(ckanapiutils,githubutils)
 
+    organization = config.DELETE_MAP['organization']
+    orga = ckanapiutils.get_organization_id_from_name(organization)
+
     # Add test dataset
-    dataset_metadata = {'name':'testdataset','notes':'testdataset notes','groups':[{'name':config.DELETE_MAP['group']}]}
+    dataset_metadata = {'name':'testdataset','owner_org':orga['id'],'notes':'testdataset notes','groups':[{'name':config.DELETE_MAP['group']}]}
     created_dataset = ckanapiutils.create_package(dataset_metadata)
 
     # Remove datasets from group
