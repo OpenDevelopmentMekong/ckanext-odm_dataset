@@ -109,7 +109,7 @@ def jsonify_languages():
 
   items = []
   for language in languages():
-    items.append({'id':language[1],'text':language[1]})
+    items.append({'id':language[0],'text':language[1]})
 
   return json.dumps(items)
 

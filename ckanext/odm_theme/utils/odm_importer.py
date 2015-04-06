@@ -720,10 +720,8 @@ class ODMImporter():
       if meta_key.endswith('_en'):
         if 'en' not in languages:
           languages.append('en')
-    if len(languages) == 1:
+    if len(languages) > 0:
       params_dict['extras'].append(dict({'key': 'odm_language','value': ",".join(languages)}))
-    elif len(languages) > 1:
-      params_dict['extras'].append(dict({'key': 'odm_language','value': "{" + ",".join(languages) + "}"}))
 
     # Published under is optional
     # if (elem.find('link') is not None):
