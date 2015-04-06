@@ -39,21 +39,31 @@ class ODMImporter():
     try:
 
       orga_datasets = {}
-      params = {'id':config.DELETE_MAP['group'],'limit':config.DELETE_MAP['limit']}
-      datasets = ckanapi_utils.get_packages_in_group(params)
+      datasets = []
+      counter = 0
+
+      if 'organization' in config.DELETE_MAP:
+        params = {'id':config.DELETE_MAP['organization']}
+        datasets = ckanapi_utils.get_packages_in_organization(params)
+      else:
+        params = {'id':config.DELETE_MAP['group'],'limit':config.DELETE_MAP['limit']}
+        datasets = ckanapi_utils.get_packages_in_group(params)
 
       for dataset in datasets:
-        matching_extras = []
-        for extra in dataset['extras']:
+        if counter < int(config.DELETE_MAP['limit']):
+
+          matching_extras = []
+          supported_fields = odm_theme_helper.odc_fields + odm_theme_helper.metadata_fields + odm_theme_helper.library_fields
           for field_key in config.DELETE_MAP['field_filter'].keys():
-            if extra['key'] == field_key and extra['value'] == config.DELETE_MAP['field_filter'][field_key]:
+            if field_key in dataset and dataset[field_key] == config.DELETE_MAP['field_filter'][field_key]:
               if field_key not in matching_extras:
                 matching_extras.append(field_key)
 
-        if len(matching_extras) == len(config.DELETE_MAP['field_filter'].keys()):
-          if dataset['owner_org'] not in orga_datasets.keys():
-            orga_datasets[dataset['owner_org']] = []
-          orga_datasets[dataset['owner_org']].append(dataset['id'])
+          if len(matching_extras) == len(config.DELETE_MAP['field_filter'].keys()):
+            if dataset['owner_org'] not in orga_datasets.keys():
+              orga_datasets[dataset['owner_org']] = []
+            orga_datasets[dataset['owner_org']].append(dataset['id'])
+            counter = counter + 1
 
       if (config.DEBUG):
         print(orga_datasets)
