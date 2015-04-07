@@ -766,10 +766,15 @@ class ODMImporter():
 
         if add_resource:
 
-          temp_file_path = self._generate_temp_filename(self._get_ext(field_value))
-          self._download_file(field_value,temp_file_path)
-          resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],"N/A",temp_file_path,dataset_metadata['title'],self._capitalize_name(field_key),self._get_ext(field_value))
-          created_resource = ckanapi_utils.create_resource_with_file_upload(resource_dict)
+          try:
+
+            temp_file_path = self._generate_temp_filename(self._get_ext(field_value))
+            self._download_file(field_value,temp_file_path)
+            resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],"N/A",temp_file_path,dataset_metadata['title'],self._capitalize_name(field_key),self._get_ext(field_value))
+            created_resource = ckanapi_utils.create_resource_with_file_upload(resource_dict)
+
+          except (UnicodeError):
+              traceback.print_exc()
 
   def _map_record_to_ckan_dataset_dict(self,record,config):
 
