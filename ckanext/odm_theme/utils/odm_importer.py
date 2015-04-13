@@ -218,20 +218,6 @@ class ODMImporter():
         dataset_metadata['id'] = created_dataset['id']
         print("Dataset created ",created_dataset['id'],created_dataset['title'])
 
-      # try:
-      #
-      #   coverImage = github_utils.get_cover_image_for_library_record(dataset_metadata["name"])
-      #   if (coverImage != None):
-      #     temp_file_path = self._generate_temp_filename('jpg')
-      #     resource_dict = self._create_metadata_dictionary_for_upload(dataset_metadata['id'],"N/A",temp_file_path,"Cover Image",dataset_metadata['name'],'jpg')
-      #     ckanapi_utils.create_resource_with_file_upload(resource_dict)
-      #     if os.path.exists(temp_file_path):
-      #       os.remove(temp_file_path)
-      #
-      # except (urllib2.HTTPError, ValueError, OSError) as e:
-      #   if (config.DEBUG):
-      #     traceback.print_exc()
-
       try:
 
         temp_file_path = self._generate_temp_filename('xml')
@@ -701,14 +687,12 @@ class ODMImporter():
 
   def _set_extras_from_xml_item_to_ckan_dataset_dict(self,params_dict,config_item,root,elem,config):
 
-    params_dict['extras'] = []
-
     # Add Spatial Range
-    params_dict['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+    params_dict['odm_spatial_range'] = 'Cambodia'
 
     # Add Contact
-    params_dict['extras'].append(dict({'key': 'odm_contact','value': config.IMPORTER_NAME}))
-    params_dict['extras'].append(dict({'key': 'odm_contact_email','value': config.IMPORTER_EMAIL}))
+    params_dict['odm_contact'] = config.IMPORTER_NAME
+    params_dict['odm_contact_email'] = config.IMPORTER_EMAIL
 
     # Add Language
     languages = []
@@ -721,13 +705,10 @@ class ODMImporter():
         if 'en' not in languages:
           languages.append('en')
     if len(languages) > 0:
-      params_dict['extras'].append(dict({'key': 'odm_language','value': ",".join(languages)}))
+      params_dict['odm_language'] = ",".join(languages)
 
-    # Published under is optional
-    # if (elem.find('link') is not None):
-    #   params_dict['extras'].append(dict({'key': 'published_under','value': elem.find('link').text}))
     if (elem.find('pubDate') is not None):
-      params_dict['extras'].append(dict({'key': 'published_date','value': elem.find('pubDate').text}))
+      params_dict['published_date'] = elem.find('pubDate').text
     added_meta = list()
     for meta in elem.findall('wp:postmeta',root.nsmap):
       meta_key = meta.find('wp:meta_key',root.nsmap).text
@@ -738,7 +719,7 @@ class ODMImporter():
         if ((meta_value is not None) and (meta_value is not "")):
           if meta_key in added_meta:
             meta_key = meta_key + '_' + str(added_meta.count(meta_key))
-          params_dict['extras'].append(dict({'key': meta_key,'value': meta_value}))
+          params_dict[meta_key] = meta_value
           added_meta.append(meta_key_copy)
 
     return params_dict
@@ -816,72 +797,70 @@ class ODMImporter():
     if dataset_metadata is None:
       return None
 
-    dataset_metadata['extras'] = []
-
     # Spatial range
-    dataset_metadata['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+    dataset_metadata['odm_spatial_range'] = 'Cambodia'
 
     # Contact
-    dataset_metadata['extras'].append(dict({'key': 'odm_contact','value': config.IMPORTER_NAME}))
-    dataset_metadata['extras'].append(dict({'key': 'odm_contact_email','value': config.IMPORTER_EMAIL}))
+    dataset_metadata['odm_contact'] = config.IMPORTER_NAME
+    dataset_metadata['odm_contact_email'] = config.IMPORTER_EMAIL
 
     # Language
-    dataset_metadata['extras'].append(dict({'key': 'odm_language','value': 'en'}))
+    dataset_metadata['odm_language'] = 'en'
 
     # ISBN
     if record.isbn():
-      dataset_metadata['extras'].append(dict({'key': 'marc21_020','value': unicode(record.isbn())}))
+      dataset_metadata['marc21_020'] = unicode(record.isbn())
     # ISSN
     if record['022']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_022','value': unicode(record['022'].value())}))
+      dataset_metadata['marc21_022'] = unicode(record['022'].value())
     # Classification
     if record['084']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_084','value': unicode(record['084'].value())}))
+      dataset_metadata['marc21_084'] = unicode(record['084'].value())
     # Author
     if record['100']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_100','value': unicode(record['100'].value())}))
+      dataset_metadata['marc21_100'] = unicode(record['100'].value())
     # Corporate Author
     if record['110']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_110','value': unicode(record['110'].value())}))
+      dataset_metadata['marc21_110'] = unicode(record['110'].value())
     # Varying Form of Title
     if record['246']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_246','value': unicode(record['246'].value())}))
+      dataset_metadata['marc21_246'] = unicode(record['246'].value())
     # Edition
     if record['250']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_250','value': unicode(record['250'].value())}))
+      dataset_metadata['marc21_250'] = unicode(record['250'].value())
     # Publication Name
     if record['260'] and record['260']['a']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_260a','value': unicode(record['260']['a'])}))
+      dataset_metadata['marc21_260a'] = unicode(record['260']['a'])
     # Publication Place
     if record['260'] and record['260']['b']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_260b','value': unicode(record['260']['b'])}))
+      dataset_metadata['marc21_260b'] = unicode(record['260']['b'])
     # Publication Date
     if record['260'] and record['260']['c']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_260c','value': unicode(record['260']['c'])}))
+      dataset_metadata['marc21_260c'] = unicode(record['260']['c'])
     # Pagination
     if record.physicaldescription():
-      dataset_metadata['extras'].append(dict({'key': 'marc21_300','value': unicode(','.join([e.value() for e in record.physicaldescription()]))}))
+      dataset_metadata['marc21_300'] = unicode(','.join([e.value() for e in record.physicaldescription()]))
     # General Note
     if record.notes():
-      dataset_metadata['extras'].append(dict({'key': 'marc21_500','value': unicode(','.join([e.value() for e in record.notes()]))}))
+      dataset_metadata['marc21_500'] = unicode(','.join([e.value() for e in record.notes()]))
     # Subject
     if record.subjects():
-      dataset_metadata['extras'].append(dict({'key': 'marc21_650','value': unicode(','.join([e.value() for e in record.subjects()]))}))
+      dataset_metadata['marc21_650'] = unicode(','.join([e.value() for e in record.subjects()]))
     # Subject (Geographic Name)
     if record['651']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_651','value': unicode(record['651'].value())}))
+      dataset_metadata['marc21_651'] = unicode(record['651'].value())
     # Keyword
     if record['653']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_653','value': unicode(','.join([e.value() for e in record.get_fields('653')]))}))
+      dataset_metadata['marc21_653'] = unicode(','.join([e.value() for e in record.get_fields('653')]))
     # Added entries
     if record.addedentries():
-      dataset_metadata['extras'].append(dict({'key': 'marc21_700','value': unicode(','.join([e.value() for e in record.addedentries()]))}))
+      dataset_metadata['marc21_700'] = unicode(','.join([e.value() for e in record.addedentries()]))
     # Institution
     if record['850']:
-      dataset_metadata['extras'].append(dict({'key': 'marc21_850','value': unicode(record['850'].value())}))
+      dataset_metadata['marc21_850'] = unicode(record['850'].value())
     # Location
     if record.location():
-      dataset_metadata['extras'].append(dict({'key': 'marc21_852','value': unicode(','.join([e.value() for e in record.location()]))}))
+      dataset_metadata['marc21_852'] = unicode(','.join([e.value() for e in record.location()]))
 
     return dataset_metadata
 
@@ -975,20 +954,18 @@ class ODMImporter():
 
   def _set_extras_from_layer_to_ckan_dataset_dict(self,dataset_metadata,config):
 
-    dataset_metadata['extras'] = []
-
     # Spatial range
-    dataset_metadata['extras'].append(dict({'key': 'odm_spatial_range','value': 'Cambodia'}))
+    dataset_metadata['odm_spatial_range'] = 'Cambodia'
 
     # Contact
-    dataset_metadata['extras'].append(dict({'key': 'odm_contact','value': config.IMPORTER_NAME}))
-    dataset_metadata['extras'].append(dict({'key': 'odm_contact_email','value': config.IMPORTER_EMAIL}))
+    dataset_metadata['odm_contact'] = config.IMPORTER_NAME
+    dataset_metadata['odm_contact_email'] = config.IMPORTER_EMAIL
 
     # Add Language
     if dataset_metadata['name'].endswith('_kh'):
-      dataset_metadata['extras'].append(dict({'key': 'odm_language','value': 'kh'}))
+      dataset_metadata['odm_language'] = 'kh'
     else:
-      dataset_metadata['extras'].append(dict({'key': 'odm_language','value': 'en'}))
+      dataset_metadata['odm_language'] = 'en'
 
     return dataset_metadata
 
