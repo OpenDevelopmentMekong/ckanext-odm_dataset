@@ -45,20 +45,6 @@ def localize_resource_url(url):
 
   return localized
 
-def convert_to_extras(key, data, errors, context):
-  '''Rewrite of the same-named function in ckan.logic.converters that is accurately wrong. I've submitted a bug/fix to CKAN so this function can probably be removed at some later date, if/when the patch is merged.'''
-
-  log.debug('convert_to_extras: %s', key)
-
-  # There is no tally for the number of fields converted to extras.
-  extras = [k for k in data.keys() if k[0] == 'extras' and len(k) > 1]
-  new_pos = 0
-  if extras:
-      extras.sort()
-      new_pos = extras[-1][-2] + 1  # e.g. ('extras', 5, 'value')
-  data[('extras', new_pos, 'key')] = key[-1]
-  data[('extras', new_pos, 'value')] = data[key]
-
 def get_tag_dictionaries(vocab_id):
   '''Returns the tag dictionary for the specified vocab_id'''
 
@@ -328,19 +314,19 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   def _modify_package_schema_write(self, schema):
 
     for metadata_field in odm_theme_helper.metadata_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),convert_to_extras, ]
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
       if metadata_field[2]:
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({metadata_field[0]: validators_and_converters})
 
     for library_field in odm_theme_helper.library_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),convert_to_extras, ]
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
       if library_field[2]:
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({library_field[0]: validators_and_converters})
 
     for odc_field in odm_theme_helper.odc_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),convert_to_extras, ]
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
       if odc_field[2]:
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({odc_field[0]: validators_and_converters})
