@@ -136,6 +136,9 @@ a {
 .btn-danger{
  color: #fff;
 }
+.btn-warning{
+ color: #fff;
+}
 .btn-link {
   border-color: transparent;
   cursor: pointer;
