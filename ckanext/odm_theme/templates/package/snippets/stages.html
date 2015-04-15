@@ -17,8 +17,6 @@ Example:
 {% if s1 != 'uncomplete' %}{% set class = 'stage-1' %}{% endif %}
 {% if s2 != 'uncomplete' %}{% set class = 'stage-2' %}{% endif %}
 
-{% set is_library_orga = h.odm_theme_get_in_library() %}
-
 <ol class="stages {{ class }}">
   <li class="first {{ s1 }}">
    {% if is_library_orga %}

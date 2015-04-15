@@ -1,5 +1,3 @@
-{% set is_library_orga = h.odm_theme_get_in_library() %}
-
 <li>{% link_for _('Datasets'), controller='package', action='search', highlight_actions = 'new index' %}</li>
 {% if is_library_orga %}
  <li class="active">{% link_for _('Add library record'), controller='package', action='new' %}</li>
