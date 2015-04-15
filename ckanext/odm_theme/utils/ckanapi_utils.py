@@ -234,7 +234,7 @@ class RealCkanApi (ICkanApi):
 
   def create_resource_with_file_upload(self,params):
 
-    return requests.post(self.ckan_url+'/api/action/resource_create',data={'package_id':params['package_id'],'name':params['name'],'description':params['description'],'format':params['format']},headers={'X-CKAN-API-Key':self.ckan_auth},files=[('upload', file(params['upload']))])
+    return self.api.call_action('resource_create',params,files={'upload': params['upload']})    
 
   def create_tag(self,params):
 

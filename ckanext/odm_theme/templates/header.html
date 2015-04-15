@@ -116,15 +116,18 @@
   </div>
  </header>
 
- <header class="sec_header">
-   <div class="row row1">
+ {% set tags = h.get_facet_items_dict('tags', limit=10) %}
 
-     <div class="span12 offset2 col1">
-       {% set tags = h.get_facet_items_dict('tags', limit=10) %}
-       {% for tag in tags %}
-          <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 28) }}</a>
-       {% endfor %}
-     </div>
-   </div>
- </header>
+ {% if tags %}
+ <header class="sec_header">
+    <div class="container">
+      <hgroup>
+        {% for tag in tags %}
+           <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 28) }}</a>
+        {% endfor %}
+      </hgroup>
+    </div>
+  </header>
+ {% endif %}
+
  {% endblock %}
