@@ -12,6 +12,12 @@ import requests
 # Interface definition
 class ICkanApi:
 
+  def search_packages(self,params):
+    raise NotImplementedError
+
+  def get_package_list(self,params):
+    raise NotImplementedError
+
   def get_organization_id_from_name(self,organization):
     raise NotImplementedError
 
@@ -87,6 +93,14 @@ class TestCkanApi (ICkanApi):
     self.test_app = test_app
     self.ckan_auth = context['apikey']
     self.api = ckanapi.TestAppCKAN(self.test_app,apikey=self.ckan_auth)
+
+  def search_packages(self,params):
+
+    return self.api.call_action('package_search',params)
+
+  def get_package_list(self,params):
+
+    return self.api.call_action('package_list',params)
 
   def get_organization_id_from_name(self,organization):
 
@@ -196,6 +210,14 @@ class RealCkanApi (ICkanApi):
 
     return
 
+  def search_packages(self,params):
+
+    return self.api.call_action('package_search',params)
+
+  def get_package_list(self,params):
+
+    return self.api.call_action('package_list',params)
+
   def get_organization_id_from_name(self,organization):
 
     return self.api.action.organization_show(id=organization,include_datasets=False)
@@ -234,7 +256,7 @@ class RealCkanApi (ICkanApi):
 
   def create_resource_with_file_upload(self,params):
 
-    return self.api.call_action('resource_create',params,files={'upload': params['upload']})    
+    return self.api.call_action('resource_create',params,files={'upload': params['upload']})
 
   def create_tag(self,params):
 

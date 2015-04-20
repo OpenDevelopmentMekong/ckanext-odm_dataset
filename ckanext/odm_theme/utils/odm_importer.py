@@ -41,25 +41,44 @@ class ODMImporter():
       orga_datasets = {}
       datasets = []
       counter = 0
-
+      state_filter = None
+      if 'state' in config.DELETE_MAP:
+        state_filter = config.DELETE_MAP['state']
+      field_filter = None
+      if 'field_filter' in config.DELETE_MAP:
+        field_filter = config.DELETE_MAP['field_filter']
       if 'organization' in config.DELETE_MAP:
         params = {'id':config.DELETE_MAP['organization']}
         datasets = ckanapi_utils.get_packages_in_organization(params)
-      else:
+      elif 'group' in config.DELETE_MAP:
         params = {'id':config.DELETE_MAP['group'],'limit':config.DELETE_MAP['limit']}
         datasets = ckanapi_utils.get_packages_in_group(params)
+      else:
+        params = {'rows':config.DELETE_MAP['limit']}
+        if state_filter is not None:
+          params['fq'] = '+state:'+state_filter
+        datasets = ckanapi_utils.search_packages(params)['results']
 
       for dataset in datasets:
         if counter < int(config.DELETE_MAP['limit']):
 
-          matching_extras = []
-          supported_fields = odm_theme_helper.odc_fields + odm_theme_helper.metadata_fields + odm_theme_helper.library_fields
-          for field_key in config.DELETE_MAP['field_filter'].keys():
-            if field_key in dataset and dataset[field_key] == config.DELETE_MAP['field_filter'][field_key]:
-              if field_key not in matching_extras:
-                matching_extras.append(field_key)
+          filter_matching = True
+          if field_filter is not None:
+            matching_extras = []
+            supported_fields = odm_theme_helper.odc_fields + odm_theme_helper.metadata_fields + odm_theme_helper.library_fields
+            for field_key in field_filter.keys():
+              if field_key in dataset and dataset[field_key] == field_filter[field_key]:
+                if field_key not in matching_extras:
+                  matching_extras.append(field_key)
 
-          if len(matching_extras) == len(config.DELETE_MAP['field_filter'].keys()):
+            if len(matching_extras) != len(field_filter.keys()):
+              filter_matching = False
+
+          state_matching = True
+          if state_filter is not None and dataset['state'] != state_filter:
+            state_matching = False
+
+          if state_matching and filter_matching:
             if dataset['owner_org'] not in orga_datasets.keys():
               orga_datasets[dataset['owner_org']] = []
             orga_datasets[dataset['owner_org']].append(dataset['id'])
@@ -70,7 +89,7 @@ class ODMImporter():
 
       for orga_id in orga_datasets.keys():
         params = {'datasets':orga_datasets[orga_id],'org_id':orga_id}
-        ckanapi_utils.delete_packages_list(params)
+        #ckanapi_utils.delete_packages_list(params)
 
     except ckanapi.NotFound:
 
