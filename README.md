@@ -11,16 +11,16 @@ In order to install this CKAN Extension:
 
   * clone the ckanext-odm_theme folder to the src/ folder in the target CKAN instance.
 
-	```
-	git clone https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git
-	cd ckanext-odm_theme
-	```
+ ```
+ git clone https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git
+ cd ckanext-odm_theme
+ ```
 
-	* Install dependencies
-	<code>pip install -r requirements.txt</code>
+ * Install dependencies
+ <code>pip install -r requirements.txt</code>
 
-	* Setup plugin
-	<code>python setup.py develop</code>
+ * Setup plugin
+ <code>python setup.py develop</code>
 
 # Testing
 
