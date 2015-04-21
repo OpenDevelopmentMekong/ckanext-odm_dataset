@@ -37,7 +37,7 @@ install:
   # Clone plugin
   - "mkdir -p $PLUGIN_HOME"
   - "cd $PLUGIN_HOME"
-  - "git clone --depth 1 https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git ."
+  - "git clone -b impl-131 --depth 1 https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git ."
   - "pip install -r requirements.txt"
   - "python setup.py develop"
 
