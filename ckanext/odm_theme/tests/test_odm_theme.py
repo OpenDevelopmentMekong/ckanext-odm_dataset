@@ -172,7 +172,7 @@ class TestOdmThemePlugin(object):
     params = {'fq':'+id:'+dataset_id}
     datasets = ckanapiutils.search_packages(params)
 
-    if datasets['count'] > 0:
+    if len(datasets['results']) > 0:
       assert False
 
     assert True
