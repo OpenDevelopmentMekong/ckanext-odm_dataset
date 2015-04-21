@@ -932,7 +932,7 @@ class ODMImporter():
     params_dict = dict({})
     params_dict['package_id'] = dataset_id
     params_dict['url'] = url
-    params_dict['upload'] = open(path)
+    params_dict['upload'] = path
     params_dict['name'] = self._prettify_name(name)
     params_dict['description'] = description
     params_dict['format'] = format
