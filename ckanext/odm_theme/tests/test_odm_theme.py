@@ -161,17 +161,18 @@ class TestOdmThemePlugin(object):
     orga = ckanapiutils.get_organization_id_from_name(organization)
 
     # Add test dataset
-    dataset_metadata = {'name':'testdataset','owner_org':orga['id'],'notes':'testdataset notes','groups':[{'name':config.DELETE_MAP['group']}]}
+    dataset_metadata = {'name':'testdataset','state':'active','owner_org':orga['id'],'notes':'testdataset notes','groups':[{'name':config.DELETE_MAP['group']}]}
     created_dataset = ckanapiutils.create_package(dataset_metadata)
+    dataset_id = created_dataset['id']
 
     # Remove datasets from group
     importer = ODMImporter()
     importer.delete_datasets_in_group(ckanapiutils,config)
 
-    params = {'id':config.DELETE_MAP['group']}
-    datasets = ckanapiutils.get_packages_in_group(params)
+    params = {'fq':'+id:'+dataset_id}
+    datasets = ckanapiutils.search_packages(params)
 
-    if len(datasets) > 0:
+    if datasets['count'] > 0:
       assert False
 
     assert True

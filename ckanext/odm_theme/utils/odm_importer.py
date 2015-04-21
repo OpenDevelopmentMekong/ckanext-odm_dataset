@@ -89,7 +89,7 @@ class ODMImporter():
 
       for orga_id in orga_datasets.keys():
         params = {'datasets':orga_datasets[orga_id],'org_id':orga_id}
-        #ckanapi_utils.delete_packages_list(params)
+        ckanapi_utils.delete_packages_list(params)
 
     except ckanapi.NotFound:
 
