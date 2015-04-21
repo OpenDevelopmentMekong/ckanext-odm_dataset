@@ -12,8 +12,8 @@ install:
   - "virtualenv --no-site-packages /usr/lib/ckan/default"
   - ". /usr/lib/ckan/default/bin/activate"
 
-  # Download CKAN 2.2.1 (own clone) stable release
-  - "pip install -e 'git+https://github.com/OpenDevelopmentMekong/ckan.git@master#egg=ckan'"
+  # Download CKAN 2.3 (own clone) stable release
+  - "pip install -e 'git+https://github.com/OpenDevelopmentMekong/ckan-2.3.git@master#egg=ckan'"
   - "pip install -r /usr/lib/ckan/default/src/ckan/requirements.txt"
   - "pip install -r /usr/lib/ckan/default/src/ckan/dev-requirements.txt"
 
