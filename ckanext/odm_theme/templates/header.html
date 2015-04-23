@@ -123,7 +123,7 @@
     <div class="container">
       <hgroup>
         {% for tag in tags %}
-           <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name, 28) }}</a>
+           <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.odm_theme_get_localized_tag(tag.display_name) }}</a>
         {% endfor %}
       </hgroup>
     </div>
