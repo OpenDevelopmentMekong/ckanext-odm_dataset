@@ -47,10 +47,7 @@
 {% endblock %}
 
 {% block organization_facets %}
- {{ h.snippet('snippets/facet_list.html', title=c.facet_titles['license_id'], name='license_id', extras={'id':c.group_dict.id}) }}
- {% for facet in c.facet_titles %}
-   {% if facet != 'license_id' %}
+  {% for facet in c.facet_titles %}
     {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, extras={'id':c.group_dict.id}) }}
-   {% endif %}
- {% endfor %}
+  {% endfor %}
 {% endblock %}

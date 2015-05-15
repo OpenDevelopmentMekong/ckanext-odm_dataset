@@ -14,6 +14,7 @@ import datetime
 import time
 from urlparse import urlparse
 import json
+import collections
 
 log = logging.getLogger(__name__)
 
@@ -268,6 +269,47 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
+  plugins.implements(plugins.IFacets)
+
+  def dataset_facets(self, facets_dict, package_type):
+
+      facets_dict = {
+                'license_id': toolkit._('License'),
+                'organization': toolkit._('Organizations'),
+                'groups': toolkit._('Groups'),
+                'tags': toolkit._('Tags'),
+                'res_format': toolkit._('Formats'),
+                'odm_language': toolkit._('Language'),
+                'odm_spatial_range': toolkit._('Country')
+                }
+
+      return facets_dict
+
+  def group_facets(self, facets_dict, group_type, package_type):
+
+      group_facets = {
+                'license_id': toolkit._('License'),
+                'organization': toolkit._('Organizations'),
+                'tags': toolkit._('Tags'),
+                'res_format': toolkit._('Formats'),
+                'odm_language': toolkit._('Language'),
+                'odm_spatial_range': toolkit._('Country')
+                }
+
+      return group_facets
+
+  def organization_facets(self, facets_dict, organization_type, package_type):
+
+      organization_facets = {
+                'license_id': toolkit._('License'),
+                'groups': toolkit._('Groups'),
+                'tags': toolkit._('Tags'),
+                'res_format': toolkit._('Formats'),
+                'odm_language': toolkit._('Language'),
+                'odm_spatial_range': toolkit._('Country')
+                }
+
+      return organization_facets
 
   def before_map(self, m):
     m.connect('library', #name of path route
