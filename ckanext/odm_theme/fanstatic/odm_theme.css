@@ -946,6 +946,23 @@ body {
   border-bottom: 1px solid #ededed;
   padding: 10px;
 }
+.sec_header h4{
+ margin: 2px 0px;
+}
+.country-selection ul{
+ margin: 0px;
+}
+.country-selection li{
+ float: left;
+ list-style: none;
+ margin: 4px;
+}
+.country-selection a{
+ border: 2px solid #fff;
+}
+.country-selection a:hover{
+ border: 2px solid #ededed;
+}
 .header_tag {
   display: inline-block;
   margin-bottom: 4px;
