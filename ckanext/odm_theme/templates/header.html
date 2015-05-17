@@ -122,9 +122,23 @@
  <header class="sec_header">
     <div class="container">
       <hgroup>
-        {% for tag in tags %}
-           <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.odm_theme_get_localized_tag(tag.display_name) }}</a>
-        {% endfor %}
+       <div class="row">
+         <div class="span9 col1">
+          <h4>{{ _('Browse by topic') }}</h4>
+          {% for tag in tags %}
+             <a class="header_tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.odm_theme_get_localized_tag(tag.display_name) }}</a>
+          {% endfor %}
+         </div>
+         <div class="span3 col2 country-selection">
+          <h4>{{ _('Browse by country') }}</h4>
+          <ul>
+           <li><a href="dataset?odm_spatial_range=Cambodia"><img src="/flags/cambodia.png"/></a></li>
+           <li><a href="dataset?odm_spatial_range=Laos"><img src="/flags/laos.png"/></a></li>
+           <li><a href="dataset?odm_spatial_range=Myanmar"><img src="/flags/myanmar.png"/></a></li>
+           <li><a href="dataset?odm_spatial_range=Thailand"><img src="/flags/thailand.png"/></a></li>
+           <li><a href="dataset?odm_spatial_range=Vietnam"><img src="/flags/vietnam.png"/></a></li>
+          </ul>
+         </div>
       </hgroup>
     </div>
   </header>
