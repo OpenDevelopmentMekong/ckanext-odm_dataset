@@ -6,7 +6,7 @@ version = '1.2.0'
 setup(
     name='ckanext-odm_theme',
     version=version,
-    description="ODM CKAN's theme extension",
+    description="OD Mekong CKAN's theme extension",
     long_description='''
     ''',
     classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers

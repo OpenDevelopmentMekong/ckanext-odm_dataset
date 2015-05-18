@@ -3,7 +3,7 @@
 
 # Insert initial ODM Data
 # This script initialises the CKAN Instance with a list of organizations, groups and users:
-# organizations (ODM Cambodia, ODM Laos, ODM Thailand, ODM Vietnam, ODM Myanmar)
+# organizations (OD Mekong Cambodia, OD Mekong Laos, OD Mekong Thailand, OD Mekong Vietnam, OD Mekong Myanmar)
 # Groups (Cambodia, Laos, Thailand, Vietnam, Myanmar)
 # Users (odmcambodia, odmlaos, odmthailand, odmvietnam, odmmyanmar)
 
@@ -26,13 +26,13 @@ except ImportError as e:
 ckanapiutils = ckanapi_utils.RealCkanApi(config)
 
 # Add Users
-for user in [{'name':'odmmekong','email':'mekong@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'ODM Mekong admin'},
-              {'name':'odmcambodia','email':'cambodia@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'ODM Cambodia admin'},
-              {'name':'odmlaos','email':'laos@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'ODM Laos admin'},
-              {'name':'odmthailand','email':'thailand@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'ODM Thailand admin'},
-              {'name':'odmvietnam','email':'vietnam@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'ODM Vietnam admin'},
-              {'name':'odmmyanmar','email':'myanmar@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'ODM Myanmar admin'},
-              {'name':'odmlibrary','email':'library@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'ODM Library admin'}]:
+for user in [{'name':'odmmekong','email':'mekong@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Mekong admin'},
+              {'name':'odmcambodia','email':'cambodia@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Cambodia admin'},
+              {'name':'odmlaos','email':'laos@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Laos admin'},
+              {'name':'odmthailand','email':'thailand@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Thailand admin'},
+              {'name':'odmvietnam','email':'vietnam@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Vietnam admin'},
+              {'name':'odmmyanmar','email':'myanmar@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Myanmar admin'},
+              {'name':'odmlibrary','email':'library@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Library admin'}]:
 
   try:
 
@@ -43,13 +43,13 @@ for user in [{'name':'odmmekong','email':'mekong@opendevelopmentmekong.net','pas
     print 'User ' + user['name'] + ' already added'
 
 # Add organizations
-for organization in [{'name':'mekong-organization','title':'Open Development Mekong','desc':'ODM Mekong regional organization'},
+for organization in [{'name':'mekong-organization','title':'Open Development Mekong','desc':'OD Mekong regional organization'},
                       {'name':'cambodia-organization','title':'Open Development Cambodia','desc':'Cambodia-based organizations and partners'},
                       {'name':'laos-organization','title':'Open Development Laos','desc':'Laos-based organizations and partners'},
                       {'name':'thailand-organization','title':'Open Development Thailand','desc':'Thailand-based organizations and partners'},
                       {'name':'vietnam-organization','title':'Open Development Vietnam','desc':'Vietnam-based organizations and partners'},
                       {'name':'myanmar-organization','title':'Open Development Myanmar','desc':'Myanmar-based organizations and partners'},
-                      {'name':'odm-library','title':'OD Library','desc':'ODM Library staff'}]:
+                      {'name':'odm-library','title':'OD Library','desc':'OD Mekong Library staff'}]:
 
   try:
 
