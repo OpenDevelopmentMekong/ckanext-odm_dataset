@@ -40,8 +40,8 @@
   {% endblock %}
 
   {% block search_title %}
-    {% if not no_title %}     
-      <h2>{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type, odmlibrary=odmlibrary %}</h2>
+    {% if not no_title %}
+      <h2>{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</h2>
     {% endif %}
   {% endblock %}
 

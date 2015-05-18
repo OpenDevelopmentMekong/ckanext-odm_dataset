@@ -1,14 +1,7 @@
 {% extends "organization/read_base.html" %}
 
-{% set is_library_orga = h.odm_theme_is_library_orga(c.group_dict.name) %}
-{% set dummy = h.odm_theme_set_in_library(is_library_orga) %}
-
 {% block page_primary_action %}
   {% if h.check_access('package_create', {'owner_org': c.group_dict.id}) %}
-
- {% if is_library_orga %}
-    {% link_for _('Add library record'), controller='package', action='new', group=c.group_dict.id, class_='btn btn-primary', icon='plus-sign-alt' %}
-   {% else %}
     {% link_for _('Add Dataset'), controller='package', action='new', group=c.group_dict.id, class_='btn btn-primary', icon='plus-sign-alt' %}
    {% endif %}
   {% endif %}
@@ -30,11 +23,7 @@
         (_('Last Modified'), 'metadata_modified desc'),
         (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
       %}
-      {% if c.group_dict.name == 'odm-library' %}
-       {% snippet 'snippets/search_form.html', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, placeholder=_('Search library records...'), show_empty=request.params, fields=c.fields, odmlibrary=True %}
-      {% else %}
-       {% snippet 'snippets/search_form.html', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, placeholder=_('Search datasets...'), show_empty=request.params, fields=c.fields %}
-      {% endif %}
+      {% snippet 'snippets/search_form.html', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, placeholder=_('Search datasets...'), show_empty=request.params, fields=c.fields %}
     {% endblock %}
   {% block packages_list %}
     {% if c.page.items %}

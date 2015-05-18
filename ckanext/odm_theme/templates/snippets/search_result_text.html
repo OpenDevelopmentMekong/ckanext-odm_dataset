@@ -5,25 +5,17 @@ Displays a test for results of a search.
 query        - The text that was searched for
 count        - The number of results for the search
 type         - Search result type (dataset, group, organization)
-odmlibrary		- Is this being shown within the library
 
 Example:
 
-  {% snippet 'snippets/search_result_text.html', query=query, count=count, type='dataset', odmlibrary=False %}
+  {% snippet 'snippets/search_result_text.html', query=query, count=count, type='dataset' %}
 
 #}
 {% if type == 'dataset' %}
- {% if odmlibrary == True %}
-  {% set text_query = ungettext('{number} library records found for "{query}"', '{number} library records found for "{query}"', count) %}
-  {% set text_query_none = _('No library records found for "{query}"') %}
-  {% set text_no_query = ungettext('{number} library records found', '{number} library records found', count) %}
-  {% set text_no_query_none = _('No library records found') %}
- {% else %}
   {% set text_query = ungettext('{number} dataset found for "{query}"', '{number} datasets found for "{query}"', count) %}
   {% set text_query_none = _('No datasets found for "{query}"') %}
   {% set text_no_query = ungettext('{number} dataset found', '{number} datasets found', count) %}
   {% set text_no_query_none = _('No datasets found') %}
- {% endif %}
 
 {% elif type == 'group' %}
   {% set text_query = ungettext('{number} group found for "{query}"', '{number} groups found for "{query}"', count) %}

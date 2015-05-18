@@ -1,3 +1,4 @@
 *.pyc
 .remote-sync.json
 **/odm_theme_config.py
+ckanext_odm_theme.egg-info

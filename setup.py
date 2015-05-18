@@ -14,7 +14,7 @@ setup(
     author='Alex Corbi',
     author_email='mail@lifeformapps.com',
     url='http://www.lifeformapps.com',
-    license='',
+    license='AGPL3',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     namespace_packages=['ckanext', 'ckanext.odm_theme'],
     include_package_data=True,

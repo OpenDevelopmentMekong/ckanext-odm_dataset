@@ -76,7 +76,7 @@
    {% if g.site_logo %}
    <a class="logo" href="{{ h.url('home') }}"><img width="300px" src="/odm_logo.png" alt="{{ g.site_title }} Logo" title="{{ g.site_title }} Logo" /></a>
    {% else %}
-   <h1>
+   <h1
     <a href="{{ h.url('home') }}">{{ g.site_title }}</a>
    </h1>
    {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
@@ -92,10 +92,9 @@
     <ul class="nav nav-pills">
      {% block header_site_navigation_tabs %}
      {{ h.build_nav_main(
-      ('search_no_library', _('Datasets')),
+      ('search', _('Datasets')),
       ('organizations_index', _('Organizations')),
-      ('group_index', _('Groups')),
-      ('library', _('Library'))
+      ('group_index', _('Groups'))
       ) }}
       {% endblock %}
      </ul>
