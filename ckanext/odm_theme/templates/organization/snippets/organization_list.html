@@ -10,8 +10,6 @@
 #}
 <ul class="media-grid" data-module="media-grid">
   {% for organization in organizations %}
-    {% if organization.name != 'odm-library' %}
-      {% snippet "organization/snippets/organization_item.html", organization=organization, position=loop.index %}
-    {% endif %}
+    {% snippet "organization/snippets/organization_item.html", organization=organization, position=loop.index %}
   {% endfor %}
 </ul>
