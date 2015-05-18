@@ -30,7 +30,7 @@ ODC_MAP=[{'ontology':'ODC/laws','organization':'cambodia-organization','groups':
 ODM_ADMINS_PASS='odmadmin'
 
 # Delete datasets in group
-DELETE_MAP={'organization':'odm-library','group':'laws-group','state':'draft','limit':500,'field_filter':{'odm_contact':'ODM Importer','odm_contact_email':'info@opendevmekong.net'}}
+DELETE_MAP={'organization':'odm-library','group':'laws-group','state':'draft','limit':500,'field_filter':{'odm_contact':'OD Mekong Importer','odm_contact_email':'info@opendevmekong.net'}}
 
 # Tag vocabularies
 TAXONOMY_TAG_VOCAB='taxonomy'
@@ -38,5 +38,5 @@ SUBJECT_LIST_TAG_VOCAB='subject-list'
 SUPPORTED_LANGS=['en','vi','th', 'km']
 
 # Importer infos
-IMPORTER_NAME='ODM Importer'
+IMPORTER_NAME='OD Mekong Importer'
 IMPORTER_EMAIL='info@opendevmekong.net'

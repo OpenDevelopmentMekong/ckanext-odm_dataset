@@ -263,7 +263,7 @@ def is_user_admin_of_organisation(organization_name):
   return False
 
 class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
-  '''ODM theme plugin.'''
+  '''OD Mekong theme plugin.'''
 
   plugins.implements(plugins.IDatasetForm)
   plugins.implements(plugins.IConfigurer)

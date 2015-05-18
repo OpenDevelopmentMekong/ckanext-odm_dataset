@@ -28,5 +28,5 @@ SUBJECT_LIST_TAG_VOCAB='subject-list'
 SUPPORTED_LANGS=['en','vi','th', 'km']
 
 # Importer infos
-IMPORTER_NAME='ODM Importer'
+IMPORTER_NAME='OD Mekong Importer'
 IMPORTER_EMAIL='info@opendevmekong.net'
