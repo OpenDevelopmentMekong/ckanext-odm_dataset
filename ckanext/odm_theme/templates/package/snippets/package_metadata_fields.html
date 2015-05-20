@@ -95,18 +95,4 @@
    {{ form.markdown('odm_attributes', label=_('Attributes'), id='field-odm_attributes', placeholder=_('Details about the information content of the dataset.'), value=data.odm_attributes, error=errors.odm_attributes, classes=['control-full']) }}
  {% endblock %}
 
- {#
-  <h3>{{ _('Add extra fields if needed') }}</h3>
-
-   {% block package_metadata_fields_custom %}
-     {% block custom_fields %}
-       {% snippet 'snippets/custom_form_fields.html', extras=data.extras, errors=errors, limit=1 %}
-     {% endblock %}
-   {% endblock %}
-
-  {% block dataset_fields %}
-
-  {% endblock %}
- #}
-
 {% endblock %}
