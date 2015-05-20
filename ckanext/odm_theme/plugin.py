@@ -361,4 +361,4 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     return True
 
   def package_types(self):
-    return []
+    return ['dataset']
