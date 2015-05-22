@@ -285,7 +285,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   def get_helpers(self):
     '''Register the plugin's functions above as a template helper function.'''
 
-    return {      
+    return {
       'odm_theme_localize_resource_url': localize_resource_url,
       'odm_theme_get_localized_tag_string': get_localized_tag_string,
       'odm_theme_get_localized_tag': get_localized_tag,
@@ -361,4 +361,4 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     return True
 
   def package_types(self):
-    return ['dataset']
+    return []

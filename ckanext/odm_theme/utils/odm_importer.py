@@ -31,7 +31,7 @@ class ODMImporter():
     self.temppath = '/var/tmp/'
     return
 
-  # Deletes the datasets of a certain group
+  # Deletes the datasets of a certain group/organization
   # Collects IDs of datasets belonging to the group specified in the config
   # and calls bulk_update_delete to mark them all for deletion
   def delete_datasets_in_group(self,ckanapi_utils,config):
@@ -96,6 +96,76 @@ class ODMImporter():
       print 'Group ' + config.DELETE_MAP['group'] + ' not found'
 
     print("COMPLETED delete_datasets_in_group")
+
+  # Changes the type of the datasets of a certain group/organization
+  # Gathers a list of datasets and changes their type one by one
+  # NOTE!!!! Changing the dataset type programatically is currently avoided,
+  # tweaking the code indicated on https://github.com/ckan/ckan/commit/7224d4c76e2f74af52ae9af6798cf3ed1c6034c9
+  # allows to run this function.
+  def change_dataset_type_in_group(self,ckanapi_utils,config):
+
+    try:
+
+      datasets = []
+      counter = 0
+      state_filter = None
+      if 'state' in config.CHANGE_TYPE_MAP:
+        state_filter = config.CHANGE_TYPE_MAP['state']
+      field_filter = None
+      if 'field_filter' in config.CHANGE_TYPE_MAP:
+        field_filter = config.CHANGE_TYPE_MAP['field_filter']
+      if 'organization' in config.CHANGE_TYPE_MAP:
+        params = {'id':config.CHANGE_TYPE_MAP['organization']}
+        datasets = ckanapi_utils.get_packages_in_organization(params)
+      elif 'group' in config.CHANGE_TYPE_MAP:
+        params = {'id':config.CHANGE_TYPE_MAP['group'],'limit':config.CHANGE_TYPE_MAP['limit']}
+        datasets = ckanapi_utils.get_packages_in_group(params)
+      else:
+        params = {'rows':config.CHANGE_TYPE_MAP['limit']}
+        if state_filter is not None:
+          params['fq'] = '+state:'+state_filter
+        datasets = ckanapi_utils.search_packages(params)['results']
+
+      for dataset in datasets:
+        if counter < int(config.CHANGE_TYPE_MAP['limit']):
+
+          filter_matching = True
+          if field_filter is not None:
+            matching_extras = []
+            supported_fields = odm_theme_helper.odc_fields + odm_theme_helper.metadata_fields + odm_theme_helper.library_fields
+            for field_key in field_filter.keys():
+              if field_key in dataset and dataset[field_key] == field_filter[field_key]:
+                if field_key not in matching_extras:
+                  matching_extras.append(field_key)
+
+            if len(matching_extras) != len(field_filter.keys()):
+              filter_matching = False
+
+          state_matching = True
+          if state_filter is not None and dataset['state'] != state_filter:
+            state_matching = False
+
+          if state_matching and filter_matching:
+
+            try:
+
+              dataset_metadata = ckanapi_utils.get_package_contents(dataset['id'])
+              dataset_metadata['type'] = config.CHANGE_TYPE_MAP['type']
+              dataset_metadata = ckanapi_utils.update_package(dataset_metadata)
+              print("Dataset modified ",dataset_metadata['id'],dataset_metadata['title'],dataset_metadata['type'])
+              counter = counter + 1
+
+            except (ckanapi.SearchError,ckanapi.NotFound) as e:
+
+              if (config.DEBUG):
+                print(e)
+
+    except ckanapi.NotFound as e:
+
+      if (config.DEBUG):
+        print(e)
+
+    print("COMPLETED change_dataset_type_in_group")
 
   # Import odc contents into CKAN
   # Pulls the exported XML files from the current ODC Website
@@ -165,7 +235,8 @@ class ODMImporter():
 
                     except TypeError as e:
 
-                      print(e)
+                      if (config.DEBUG):
+                        print(e)
 
                   if 'id' in dataset_metadata:
                     self._add_extras_urls_as_resources(dataset_metadata,config_item,ckanapi_utils)
@@ -680,6 +751,13 @@ class ODMImporter():
   def _map_xml_item_to_ckan_dataset_dict(self,orga,root,elem,config_item,taxonomy_tags,config):
 
     params_dict = {}
+    # Specify the package_type
+    if ('package_type' in  config.ODC_MAP):
+      params_dict['type'] = config.ODC_MAP['package_type']
+
+    params_dict['maintainer'] = config.IMPORTER_NAME
+    params_dict['maintainer_email'] = config.IMPORTER_EMAIL
+
     params_dict['owner_org'] = orga['id']
     params_dict['groups'] = config_item['groups']
     params_dict['title'] = elem.find('title').text
@@ -687,17 +765,16 @@ class ODMImporter():
     if (params_dict['name'] is None):
       params_dict['name'] = str(uuid.uuid4())
     params_dict['name'] = self._prepare_string_for_ckan_name(params_dict['name'])
-    params_dict['author'] = config.IMPORTER_NAME
-    params_dict['author_email'] = config.IMPORTER_EMAIL
     params_dict['state'] = 'active'
     params_dict['notes'] = elem.find('content:encoded',root.nsmap).text
 
-
     tags = []
+    params_dict['taxonomy'] = []
     for category in elem.findall('category'):
       category_name = self._prepare_string_for_ckan_tag_name(category.text)
       if (category_name in taxonomy_tags):
         tags.append({'name':category_name})
+        params_dict['taxonomy'].append(category_name)
 
     if len(tags):
       params_dict['tags'] = list(tags)
@@ -708,10 +785,6 @@ class ODMImporter():
 
     # Add Spatial Range
     params_dict['odm_spatial_range'] = 'Cambodia'
-
-    # Add Contact
-    params_dict['odm_contact'] = config.IMPORTER_NAME
-    params_dict['odm_contact_email'] = config.IMPORTER_EMAIL
 
     # Add Language
     languages = []
@@ -783,8 +856,12 @@ class ODMImporter():
     params_dict['id'] = ''
     params_dict['state'] = 'active'
 
-    params_dict['author'] = config.IMPORTER_NAME
-    params_dict['author_email'] = config.IMPORTER_EMAIL
+    # Specify the package_type
+    if ('package_type' in  config.NGL_MAP):
+      params_dict['type'] = config.NGL_MAP['package_type']
+
+    params_dict['maintainer'] = config.IMPORTER_NAME
+    params_dict['maintainer_email'] = config.IMPORTER_EMAIL
 
     try:
 
@@ -818,10 +895,6 @@ class ODMImporter():
 
     # Spatial range
     dataset_metadata['odm_spatial_range'] = 'Cambodia'
-
-    # Contact
-    dataset_metadata['odm_contact'] = config.IMPORTER_NAME
-    dataset_metadata['odm_contact_email'] = config.IMPORTER_EMAIL
 
     # Language
     dataset_metadata['odm_language'] = 'en'
@@ -947,8 +1020,12 @@ class ODMImporter():
     # First, extract the information from the layer (Title, Abstract, Tags)
     params_dict = {}
 
-    params_dict['author'] = config.IMPORTER_NAME
-    params_dict['author_email'] = config.IMPORTER_EMAIL
+    # Specify the package_type
+    if ('package_type' in  config.GEOSERVER_MAP):
+      params_dict['type'] = config.GEOSERVER_MAP['package_type']
+
+    params_dict['maintainer'] = config.IMPORTER_NAME
+    params_dict['maintainer_email'] = config.IMPORTER_EMAIL
 
     # The dataset id will be set when we find or create it
     params_dict['state'] = 'active'
@@ -963,11 +1040,13 @@ class ODMImporter():
     params_dict['notes'] = 'Imported Geoserver Layer: '+params_dict['title'] + '.'
 
     params_dict['tags'] = []
+    params_dict['taxonomy'] = []
     category_name = self._prepare_string_for_ckan_tag_name(feature_namespace)
     if (config.DEBUG):
       print(category_name)
     if (category_name in taxonomy_tags):
       params_dict['tags'].append({'name':category_name})
+      params_dict['taxonomy'].append(category_name)
 
     return params_dict
 
@@ -975,10 +1054,6 @@ class ODMImporter():
 
     # Spatial range
     dataset_metadata['odm_spatial_range'] = 'Cambodia'
-
-    # Contact
-    dataset_metadata['odm_contact'] = config.IMPORTER_NAME
-    dataset_metadata['odm_contact_email'] = config.IMPORTER_EMAIL
 
     # Add Language
     if dataset_metadata['name'].endswith('_kh'):

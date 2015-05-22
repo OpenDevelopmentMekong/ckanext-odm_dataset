@@ -39,6 +39,9 @@ class ICkanApi:
   def update_package(self,params):
     raise NotImplementedError
 
+  def patch_package(self,params):
+    raise NotImplementedError
+
   def create_package(self,params):
     raise NotImplementedError
 
@@ -129,6 +132,10 @@ class TestCkanApi (ICkanApi):
   def update_package(self,params):
 
     return self.api.call_action('package_update',params)
+
+  def patch_package(self,params):
+
+    return self.api.patch.call_action('package_patch',params)
 
   def create_package(self,params):
 
@@ -245,6 +252,10 @@ class RealCkanApi (ICkanApi):
   def update_package(self,params):
 
     return self.api.call_action('package_update',params)
+
+  def patch_package(self,params):
+
+    return self.api.patch.call_action('package_patch',params)
 
   def create_package(self,params):
 

@@ -8,10 +8,6 @@
   {% resource 'odm_theme/daterangepicker-module.js' %}
  {% resource 'odm_theme/multiselect-module.js' %}
 
- {% block package_metadata_fields_version %}
-   {{ form.input('version', label=_('Version'), id='field-version', placeholder=_('1.0'), value=data.version, error=errors.version, classes=['control-full']) }}
- {% endblock %}
-
   {% block package_odc_fields %}
    {% for field in h.odm_theme_odc_fields() %}
     {% set field_name = field[0] %}
@@ -81,10 +77,6 @@
 
  {% block package_metadata_fields_odm_access_and_use_constraints %}
    {{ form.markdown('odm_access_and_use_constraints', label=_('Access and Use Constraints'), id='field-odm_access_and_use_constraints', placeholder=_('A few sentences describing legal considerations for people who access the website and/or use its contents.'), value=data.odm_access_and_use_constraints, error=errors.odm_access_and_use_constraints, classes=['control-full']) }}
- {% endblock %}
-
- {% block package_metadata_fields_odm_url %}
-   {{ form.input('odm_url', label=_('Download URL'), id='field-odm_url', type='url', placeholder=_('Unique URL for the current dataset'), value=data.odm_url, error=errors.odm_url, classes=['control-full']) }}
  {% endblock %}
 
  {% block package_metadata_fields_odm_metadata_reference_information %}

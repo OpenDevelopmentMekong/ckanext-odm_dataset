@@ -13,7 +13,7 @@
     {% set dataset = pkg.title or pkg.name %}
     {% if pkg.organization %}
       <li>{% link_for _('Organizations'), controller='organization', action='index' %}</li>
-      <li>{% link_for organization|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</li>
+      <li>{% link_for pkg.organization.title|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</li>
     {% else %}
       <li>{% link_for _('Datasets'), controller='package', action='search' %}</li>
     {% endif %}
