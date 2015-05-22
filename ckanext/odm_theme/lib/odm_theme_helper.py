@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 countries = [
+  ('Global','Global'),
+  ('ASEAN','ASEAN'),
+  ('Greater Mekong Subregion (GMS)','Greater Mekong Subregion (GMS)'),
+  ('Lower Mekong Basin','Lower Mekong Basin'),
+  ('Lower Mekong countries','Lower Mekong countries'),
   ('Cambodia','Cambodia'),
   ('Vietnam','Vietnam'),
   ('Laos','Laos'),
