@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 countries = [
+  ('Global','Global'),
+  ('ASEAN','ASEAN'),
+  ('Greater Mekong Subregion (GMS)','Greater Mekong Subregion (GMS)'),
+  ('Lower Mekong Basin','Lower Mekong Basin'),
+  ('Lower Mekong countries','Lower Mekong countries'),
   ('Cambodia','Cambodia'),
   ('Vietnam','Vietnam'),
   ('Laos','Laos'),
@@ -32,9 +37,9 @@ metadata_fields = [
 ('odm_language','Language',True),
 ('odm_date_created','Date Created',True),
 ('odm_date_uploaded','Date Uploaded',True),
-('odm_date_modified','Date Modified',True),
-('odm_temporal_range','Temporal Range',True),
-('odm_spatial_range','Spatial Range',False),
+('odm_date_modified','Date Modified',False),
+('odm_temporal_range','Temporal Range',False),
+('odm_spatial_range','Spatial Range',True),
 ('odm_accuracy','Accuracy',False),
 ('odm_logical_consistency','Logical Consistency',False),
 ('odm_completeness','Completeness',False),
@@ -43,12 +48,9 @@ metadata_fields = [
 ('odm_contact','Contact',True),
 ('odm_contact_email','Contact Email',True),
 ('odm_access_and_use_constraints','Access and Use Constraints',False),
-('odm_url','Download URL',False),
 ('odm_metadata_reference_information','Metadata Reference Information',False),
 ('odm_attributes','Attributes',False)
 ]
-
-tag_dictionaries = [('taxonomy','subject-list')]
 
 library_fields = [
 ('marc21_020','ISBN',False),
@@ -73,3 +75,5 @@ library_fields = [
 ('marc21_850','Institution',False),
 ('marc21_852','Location',False)
 ]
+
+tag_dictionaries = [('taxonomy','subject-list')]

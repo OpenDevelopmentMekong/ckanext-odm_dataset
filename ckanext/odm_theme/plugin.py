@@ -18,23 +18,6 @@ import collections
 
 log = logging.getLogger(__name__)
 
-in_library = False
-
-def set_in_library(value):
-  '''Sets the in_library value'''
-  global in_library
-
-  log.debug('set_in_library: %s', value)
-
-  in_library = value
-
-def get_in_library():
-  '''Gets the in_library value'''
-
-  log.debug('get_in_library: %s', in_library)
-
-  return in_library
-
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
 
@@ -169,13 +152,6 @@ def metadata_fields():
 
   return odm_theme_helper.metadata_fields
 
-def library_fields():
-  '''Return a list of library fields'''
-
-  log.debug('library_fields')
-
-  return odm_theme_helper.library_fields
-
 def popular_groups():
   '''Return a sorted list of the groups with the most datasets.'''
 
@@ -208,21 +184,6 @@ def popular_datasets(limit):
       data_dict={'sort': 'views_recent desc', 'rows': limit})
 
   return result_dict['results']
-
-def is_library_orga(orga_id):
-  '''Returns wether the current orga is the library orga'''
-
-  log.debug('is_library_orga: %s', orga_id)
-
-  if orga_id is None:
-    return False
-
-  try:
-    orga = toolkit.get_action('organization_show')(data_dict={'id': orga_id})
-  except toolkit.ObjectNotFound:
-    return False
-
-  return orga['name'] == 'odm-library'
 
 def get_orga_or_group(orga_id,group_id):
   '''Returns orga or group'''
@@ -312,12 +273,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       return organization_facets
 
   def before_map(self, m):
-    m.connect('library', #name of path route
-      '/library', #url to map path to
-      controller='ckanext.odm_theme.controller:ThemeController',action='library')
-    m.connect('search_no_library', #name of path route
-      '/search_no_library', #url to map path to
-      controller='ckanext.odm_theme.controller:ThemeController',action='search_no_library')
     return m
 
   def update_config(self, config):
@@ -331,8 +286,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as a template helper function.'''
 
     return {
-      'odm_theme_set_in_library': set_in_library,
-      'odm_theme_get_in_library': get_in_library,
       'odm_theme_localize_resource_url': localize_resource_url,
       'odm_theme_get_localized_tag_string': get_localized_tag_string,
       'odm_theme_get_localized_tag': get_localized_tag,
@@ -343,8 +296,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_countries': countries,
       'odm_theme_odc_fields': odc_fields,
       'odm_theme_metadata_fields': metadata_fields,
-      'odm_theme_library_fields': library_fields,
-      'odm_theme_is_library_orga': is_library_orga,
       'odm_theme_get_orga_or_group': get_orga_or_group,
       'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation,
       'odm_theme_tag_dictionaries': get_tag_dictionaries,
@@ -360,12 +311,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       if metadata_field[2]:
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({metadata_field[0]: validators_and_converters})
-
-    for library_field in odm_theme_helper.library_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
-      if library_field[2]:
-        validators_and_converters.insert(1,validate_not_empty)
-      schema.update({library_field[0]: validators_and_converters})
 
     for odc_field in odm_theme_helper.odc_fields:
       validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
@@ -385,12 +330,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       if metadata_field[2]:
         validators_and_converters.append(validate_not_empty)
       schema.update({metadata_field[0]: validators_and_converters})
-
-    for library_field in odm_theme_helper.library_fields:
-      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      if library_field[2]:
-        validators_and_converters.append(validate_not_empty)
-      schema.update({library_field[0]: validators_and_converters})
 
     for odc_field in odm_theme_helper.odc_fields:
       validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]

@@ -11,10 +11,10 @@ SKIP_N_DATASETS = 0
 SKIP_EXISTING = True
 
 # Geoserver
-GEOSERVER_MAP={'ontology':'*','organization':'cambodia-organization','groups':[{'name':'maps-group'},{'name':'cambodia-group'}]}
+GEOSERVER_MAP={'ontology':'*','organization':'cambodia-organization','groups':[{'name':'maps-group'}]}
 
 # NewGenLib
-NGL_MAP={'ontology':'*','organization':'odm-library','groups':[{'name':'library-group'},{'name':'cambodia-group'}]}
+NGL_MAP={'ontology':'*','organization':'odm-library','groups':[{'name':'library-group'}]}
 
 # ODC
 ODC_MAP=[{'ontology':'ODC/News','organization':'cambodia-organization','groups':[{'name':'news-group'},{'name':'laws-group'},{'name':'cambodia-group'}],'field_prefixes':[]}]

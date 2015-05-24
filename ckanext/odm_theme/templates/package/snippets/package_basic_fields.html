@@ -65,16 +65,6 @@
 </div>
 {% endblock %}
 
-{% if data.group_id %}
-  {% set library_group =  h.odm_theme_is_library_orga(data.group_id) %}
-{% endif %}
-
-{% if data.owner_org %}
- {% set library_org =  h.odm_theme_is_library_orga(data.owner_org) %}
-{% endif %}
-
-{% set show_library_fields = library_group or library_org %}
-
 {% block package_basic_fields_orga %}
 
   {% resource 'odm_theme/moment.js' %}
@@ -109,11 +99,7 @@
         {% endif %}
         {% for organization in organizations_available %}
           {% set selected_org = (existing_org and existing_org == organization.id) or (not existing_org and not data.id and organization.id == organizations_available[0].id) %}
-          {% if h.odm_theme_is_library_orga(organization.id) and show_library_fields %}
            <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{ organization.name }}</option>
-          {% elif not show_library_fields and not h.odm_theme_is_library_orga(organization.id)%}
-           <option value="{{ organization.id }}" {% if selected_org %} selected="selected" {% endif %}>{{ organization.name }}</option>
-          {% endif %}
         {% endfor %}
        </select>
       </div>
@@ -141,119 +127,16 @@
     {% endblock %}
   {% endif %}
 
+  {% block package_metadata_fields_version %}
+    {{ form.input('version', label=_('Version'), id='field-version', placeholder=_('1.0'), value=data.version, error=errors.version, classes=['control-full']) }}
+  {% endblock %}
+
+  {% block package_metadata_fields_maintainer %}
+     {{ form.input('maintainer', label=_('Maintainer'), id='field-maintainer', placeholder=_('Joe Bloggs'), value=data.maintainer, error=errors.maintainer, classes=['control-full']) }}
+     {{ form.input('maintainer_email', label=_('Maintainer Email'), id='field-maintainer-email', placeholder=_('joe@example.com'), value=data.maintainer_email, error=errors.maintainer_email, classes=['control-full']) }}
+  {% endblock %}
+
   </div>
-
-  {% if show_library_fields %}
-    {% block library_publications %}
-      <div class="control-group">
-
-        <h3>{{ _('Open Development Network Library publication') }}</h3>
-
-        {% block package_metadata_fields_marc21_020 %}
-          {{ form.input('marc21_020', label=_('ISBN'), id='field-package_metadata_fields_marc21_020', placeholder=_('The International Standard Book Number (ISBN) is a unique numeric commercial book identifier based upon the 10 or 13-digit Standard Book Numbering (SBN).'), value=data.marc21_020, error=errors.marc21_020, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_022 %}
-          {{ form.input('marc21_022', label=_('ISSN'), id='field-package_metadata_fields_marc21_022', placeholder=_('International Standard Serial Number (ISSN) a unique numeric commercial serial identifier based upon the 8-digitSeriel standard number.'), value=data.marc21_022, error=errors.marc21_022, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_084 %}
-          {{ form.input('marc21_084', label=_('Classification'), id='field-marc21_084', placeholder=_('Classification Number assigned by ODC Cambodia to identify its shelf location.'), value=data.marc21_084, error=errors.marc21_084, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_100 %}
-          {{ form.input('marc21_100', label=_('Author'), id='field-marc21_100', placeholder=_('Main Entry-Personal Name (author).'), value=data.marc21_100, error=errors.marc21_100, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_110 %}
-          {{ form.input('marc21_110', label=_('Corporate Author'), id='field-marc21_110', placeholder=_('Main Entry-Corporate Name (corporate author).'), value=data.marc21_110, error=errors.marc21_110, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_246 %}
-          {{ form.input('marc21_246', label=_('Varying Form of Title'), id='field-marc21_246', placeholder=_('Parallel title or translation.'), value=data.marc21_246, error=errors.marc21_246, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_250 %}
-          {{ form.input('marc21_250', label=_('Edition'), id='field-marc21_250', placeholder=_('Version of publication'), value=data.marc21_250, error=errors.marc21_250, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_260a %}
-          {{ form.input('marc21_260a', label=_('Publication Place'), id='field-marc21_260a', placeholder=_('Place of publisher'), value=data.marc21_260a, error=errors.marc21_260a, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_260b %}
-          {{ form.input('marc21_260b', label=_('Publication Name'), id='field-marc21_260b', placeholder=_('Publisher'), value=data.marc21_260b, error=errors.marc21_260b, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_260c %}
-          {{ form.input('marc21_260c', label=_('Publication Date'), id='field-marc21_260c', type='number', placeholder=_('Date published (YYYY)'), value=data.marc21_260c, error=errors.marc21_260c, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_300 %}
-          {{ form.input('marc21_300', label=_('Pagination'), id='field-marc21_300', placeholder=_('Physical Description (pagination).'), value=data.marc21_300, error=errors.marc21_300, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_500 %}
-          {{ form.input('marc21_500', label=_('General Note'), id='field-marc21_500', placeholder=_('General Note.'), value=data.marc21_500, error=errors.marc21_500, classes=['control-full'], attrs={'data-module': 'autocomplete', 'data-module-tags': ''}) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_520 %}
-          {{ form.markdown('marc21_520', label=_('Summary'), id='field-marc21_520', placeholder=_('Abstract or Summary of book or article.'), value=data.marc21_520, error=errors.marc21_520, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_650 %}
-
-          {% if data.marc21_650 %}
-            {% set initial_values = data.marc21_650.split(',') %}
-          {% else %}
-            {% set initial_values = [] %}
-          {% endif%}
-
-          {{ form.input('marc21_650', label=_('Subject'), id='field-marc21_650', placeholder=_('Subject Heading-Topical Term based on Library of Congress Subject Heading.'), value=data.marc21_650, error=errors.marc21_650, classes=['control-full'], attrs={'data-module': 'free-multiselect-module', 'data-module-suggestions': h.odm_theme_jsonify_list(h.odm_theme_tag_dictionaries('subject-list')), 'data-module-init_value': h.odm_theme_jsonify_list(initial_values)}) }}
-        {% endblock %}
-
-        {#
-          {% block package_metadata_fields_marc21_650 %}
-            {% set subject_list_tags = h.odm_theme_tag_dictionaries('subject-list') %}
-            {% if subject_list_tags|length > 0 %}
-            <div class="control-group">
-              <label class="control-label" for="field-marc21_650">{{ _("Subject") }}</label>
-              <div class="controls control-full">
-                <input id="field-marc21_650" name="marc21_650" value={{data.marc21_650}} class="free-multiselect" data-module="free-multiselect-module" data-module-suggestions="{{h.odm_theme_tag_dictionaries_json('subject-list')}}" placeholder="{{ _("Subject Heading-Topical Term based on Library of Congress Subject Heading.") }}">
-              </div>
-            </div>
-            {% endif %}
-          {% endblock%}
-        #}
-
-        {% block package_metadata_fields_marc21_651 %}
-          {{ form.input('marc21_651', label=_('Subject (Geographic Name)'), id='field-marc21_651', placeholder=_('Subject -Geographic Name.'), value=data.marc21_651, error=errors.marc21_651, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_653 %}
-          {{ form.input('marc21_653', label=_('Keyword'), id='field-marc21_653', placeholder=_('Index Term-Uncontrolled (keyword), Any words that the cataloguer chooses to identify the texts.'), value=data.marc21_653, error=errors.marc21_653, classes=['control-full'], attrs={'data-module': 'autocomplete', 'data-module-tags': ''}) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_700 %}
-          {{ form.input('marc21_700', label=_('Co-Author'), id='field-marc21_700', placeholder=_('Personal Name (co-author), more than one author.'), value=data.marc21_700, error=errors.marc21_700, classes=['control-full'], attrs={'data-module': 'autocomplete', 'data-module-tags': ''}) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_710 %}
-          {{ form.input('marc21_710', label=_('Co-Author (Corporate)'), id='field-marc21_710', placeholder=_('Corporate Name, more than one Corporate.'), value=data.marc21_710, error=errors.marc21_710, classes=['control-full'], attrs={'data-module': 'autocomplete', 'data-module-tags': ''}) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_850 %}
-          {{ form.input('marc21_850', label=_('Institution'), id='field-marc21_850', placeholder=_('Holding Institution.'), value=data.marc21_850, error=errors.marc21_850, classes=['control-full']) }}
-        {% endblock %}
-
-        {% block package_metadata_fields_marc21_852 %}
-          {{ form.input('marc21_852', label=_('Location'), id='field-marc21_852', placeholder=_('Location of asset.'), value=data.marc21_852, error=errors.marc21_852, classes=['control-full'], attrs={'data-module': 'autocomplete', 'data-module-tags': ''}) }}
-        {% endblock %}
-
-      </div>
-
-    {% endblock%}
-  {% endif %}
 
   {% if data.id and h.check_access('package_delete', {'id': data.id}) and data.state != 'active' %}
     <div class="control-group">
