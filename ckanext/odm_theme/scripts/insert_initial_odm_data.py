@@ -31,8 +31,7 @@ for user in [{'name':'odmmekong','email':'mekong@opendevelopmentmekong.net','pas
               {'name':'odmlaos','email':'laos@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Laos admin'},
               {'name':'odmthailand','email':'thailand@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Thailand admin'},
               {'name':'odmvietnam','email':'vietnam@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Vietnam admin'},
-              {'name':'odmmyanmar','email':'myanmar@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Myanmar admin'},
-              {'name':'odmlibrary','email':'library@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Library admin'}]:
+              {'name':'odmmyanmar','email':'myanmar@opendevelopmentmekong.net','pass':config.ODM_ADMINS_PASS,'desc':'OD Mekong Myanmar admin'}]:
 
   try:
 
@@ -48,8 +47,7 @@ for organization in [{'name':'mekong-organization','title':'Open Development Mek
                       {'name':'laos-organization','title':'Open Development Laos','desc':'Laos-based organizations and partners'},
                       {'name':'thailand-organization','title':'Open Development Thailand','desc':'Thailand-based organizations and partners'},
                       {'name':'vietnam-organization','title':'Open Development Vietnam','desc':'Vietnam-based organizations and partners'},
-                      {'name':'myanmar-organization','title':'Open Development Myanmar','desc':'Myanmar-based organizations and partners'},
-                      {'name':'odm-library','title':'OD Library','desc':'OD Mekong Library staff'}]:
+                      {'name':'myanmar-organization','title':'Open Development Myanmar','desc':'Myanmar-based organizations and partners'}]:
 
   try:
 
@@ -65,8 +63,7 @@ for role in [{'organization':'mekong-organization','user':'odmmekong','role':'ad
               {'organization':'laos-organization','user':'odmlaos','role':'admin'},
               {'organization':'thailand-organization','user':'odmthailand','role':'admin'},
               {'organization':'vietnam-organization','user':'odmvietnam','role':'admin'},
-              {'organization':'myanmar-organization','user':'odmmyanmar','role':'admin'},
-              {'organization':'odm-library','user':'odmlibrary','role':'admin'}]:
+              {'organization':'myanmar-organization','user':'odmmyanmar','role':'admin'}]:
 
   try:
 

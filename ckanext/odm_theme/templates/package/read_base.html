@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block content_action %}
-  {% if h.check_access('package_update', {'id':pkg.id }) and pkg.creator_user_id == c.userobj.id %}
+  {% if c.userobj.sysadmin or (h.check_access('package_update', {'id':pkg.id }) and pkg.creator_user_id == c.userobj.id) %}
     {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn', icon='wrench' %}
   {% endif %}
 {% endblock %}

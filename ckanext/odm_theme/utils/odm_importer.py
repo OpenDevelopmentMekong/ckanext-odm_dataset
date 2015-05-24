@@ -150,6 +150,11 @@ class ODMImporter():
             try:
 
               dataset_metadata = ckanapi_utils.get_package_contents(dataset['id'])
+
+              if dataset_metadata['type'] == config.CHANGE_TYPE_MAP['type']:
+                print("Dataset skipped ",dataset_metadata['name'])
+                continue
+
               dataset_metadata['type'] = config.CHANGE_TYPE_MAP['type']
               dataset_metadata = ckanapi_utils.update_package(dataset_metadata)
               print("Dataset modified ",dataset_metadata['id'],dataset_metadata['title'],dataset_metadata['type'])
@@ -288,7 +293,7 @@ class ODMImporter():
         print("Dataset does not have any title or ISBN, unique name cannot be generated")
         continue
       dataset_metadata['owner_org'] = orga['id']
-      dataset_metadata['groups']	= config.NGL_MAP['groups']
+      dataset_metadata['groups'] = config.NGL_MAP['groups']
 
       try:
 
