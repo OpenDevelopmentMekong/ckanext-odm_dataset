@@ -8,34 +8,35 @@
   {% resource 'odm_theme/daterangepicker-module.js' %}
  {% resource 'odm_theme/multiselect-module.js' %}
 
-  {% block package_odc_fields %}
-   {% for field in h.odm_theme_odc_fields() %}
-    {% set field_name = field[0] %}
-    {% set field_label = field[1] %}
-    {% set field_id = 'field-'+field_name %}
+ {% block package_odc_fields %}
+  {% for field in h.odm_theme_odc_fields() %}
+   {% set field_name = field[0] %}
+   {% set field_label = field[1] %}
+   {% set field_id = 'field-'+field_name %}
 
-    {% if data[field_name] %}
-     {{ form.input(field_name, label=field_label, id=field_id, value=data[field_name], error=errors[field_name], classes=['control-full']) }}
-    {% endif %}
-   {% endfor %}
-  {% endblock %}
+   {% if data[field_name] %}
+    {{ form.input(field_name, label=field_label, id=field_id, value=data[field_name], error=errors[field_name], classes=['control-full']) }}
+   {% endif %}
+  {% endfor %}
+ {% endblock %}
 
-  <h3>{{ _('Open Development Network Metadata Template') }}</h3>
+ <h3>{{ _('Open Development Network Metadata Template') }}</h3>
 
-   {% block package_metadata_fields_odm_format %}
-     {{ form.input('odm_format', label=_('Format'), id='field-odm_format', placeholder=_('List of file formats in which the dataset\'s resources are available (i.e. txt; doc;geojson etc)'), value=data.odm_format, error=errors.odm_format, classes=['control-full']) }}
-   {% endblock %}
+ {% block package_metadata_fields_odm_format %}
+   {% set format_attrs = {'data-module': 'autocomplete', 'data-module-source': '/api/2/util/resource/format_autocomplete?incomplete=?'} %}
+   {{ form.input('odm_format', is_required=true, label=_('Format'), id='field-odm_format', placeholder=_('List of file formats in which the dataset\'s resources are available (i.e. txt; doc;geojson etc)'), value=data.odm_format, error=errors.odm_format, classes=['control-full'], attrs=format_attrs) }}
+ {% endblock %}
 
-  {% block package_metadata_fields_odm_language %}
-  {{ form.input('odm_language', label=_('Language'), id='field-odm_language', placeholder=_('Language(s) of the dataset, including resources within dataset'), value=data.odm_language, error=errors.odm_language, classes=['control-full'], attrs={'data-module': 'multiselect-module-languages', 'data-module-suggestions': h.odm_theme_jsonify_languages()}) }}
-  {% endblock %}
+ {% block package_metadata_fields_odm_language %}
+  {{ form.input('odm_language', is_required=true, label=_('Language'), id='field-odm_language', placeholder=_('Language(s) of the dataset, including resources within dataset'), value=data.odm_language, error=errors.odm_language, classes=['control-full'], attrs={'data-module': 'multiselect-module-languages', 'data-module-suggestions': h.odm_theme_jsonify_languages()}) }}
+ {% endblock %}
 
  {% block package_metadata_fields_odm_date_created %}
-  {{ form.input('odm_date_created', label=_('Date created'), id='field-odm_date_created', placeholder=_('Date the dataset was first published by its creator.'), value=data.odm_date_created, error=errors.odm_date_created, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
-  {% endblock %}
+  {{ form.input('odm_date_created', is_required=true, label=_('Date created'), id='field-odm_date_created', placeholder=_('Date the dataset was first published by its creator.'), value=data.odm_date_created, error=errors.odm_date_created, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+ {% endblock %}
 
  {% block package_metadata_fields_odm_date_uploaded %}
-  {{ form.input('odm_date_uploaded', label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+  {{ form.input('odm_date_uploaded', is_required=true, label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
   {% endblock %}
 
  {% block package_metadata_fields_odm_date_modified %}
@@ -47,7 +48,7 @@
  {% endblock %}
 
  {% block package_metadata_fields_odm_spatial_range %}
-   {{ form.input('odm_spatial_range', label=_('Spatial Range'), id='field-odm_spatial_range', placeholder=_('The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).'), value=data.odm_spatial_range, error=errors.odm_spatial_range, classes=['control-full'], attrs={'data-module': 'multiselect-module-countries', 'data-module-suggestions': h.odm_theme_jsonify_countries()}) }}
+   {{ form.input('odm_spatial_range', is_required=true, label=_('Spatial Range'), id='field-odm_spatial_range', placeholder=_('The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).'), value=data.odm_spatial_range, error=errors.odm_spatial_range, classes=['control-full'], attrs={'data-module': 'multiselect-module-countries', 'data-module-suggestions': h.odm_theme_jsonify_countries()}) }}
  {% endblock %}
 
  {% block package_metadata_fields_odm_accuracy %}
@@ -63,16 +64,16 @@
  {% endblock %}
 
  {% block package_metadata_fields_odm_process %}
-   {{ form.markdown('odm_process', label=_('Process(es)'), id='field-odm_process', placeholder=_('The steps taken to acquire, aggregate, or transform any of the resources in the dataset.'), value=data.odm_process, error=errors.odm_process, classes=['control-full']) }}
+   {{ form.markdown('odm_process', is_required=true, label=_('Process(es)'), id='field-odm_process', placeholder=_('The steps taken to acquire, aggregate, or transform any of the resources in the dataset.'), value=data.odm_process, error=errors.odm_process, classes=['control-full']) }}
  {% endblock %}
 
  {% block package_metadata_fields_odm_sources %}
-   {{ form.markdown('odm_source', label=_('Source(s)'), id='field-odm_source', placeholder=_('Ordered citations for all information sources that went into producing the dataset.'), value=data.odm_source, error=errors.odm_source, classes=['control-full']) }}
+   {{ form.markdown('odm_source', is_required=true, label=_('Source(s)'), id='field-odm_source', placeholder=_('Ordered citations for all information sources that went into producing the dataset.'), value=data.odm_source, error=errors.odm_source, classes=['control-full']) }}
  {% endblock %}
 
  {% block package_metadata_odm_contact %}
-   {{ form.input('odm_contact', label=_('Contact'), id='field-odm_contact', placeholder=_('Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset.'), value=data.odm_contact, error=errors.odm_contact, classes=['control-full']) }}
-   {{ form.input('odm_contact_email', label=_('Contact Email'), id='field-odm_contact_email', type='email', placeholder=_('joe@example.com'), value=data.odm_contact_email, error=errors.odm_contact_email, classes=['control-full']) }}
+   {{ form.input('odm_contact', is_required=true, label=_('Contact'), id='field-odm_contact', placeholder=_('Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset.'), value=data.odm_contact, error=errors.odm_contact, classes=['control-full']) }}
+   {{ form.input('odm_contact_email', is_required=true, label=_('Contact Email'), id='field-odm_contact_email', type='email', placeholder=_('joe@example.com'), value=data.odm_contact_email, error=errors.odm_contact_email, classes=['control-full']) }}
  {% endblock %}
 
  {% block package_metadata_fields_odm_access_and_use_constraints %}

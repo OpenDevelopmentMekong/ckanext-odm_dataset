@@ -8,18 +8,18 @@
   {% resource 'odm_theme/daterangepicker-module.js' %}
  {% resource 'odm_theme/multiselect-module.js' %}
 
-  <h3>{{ _('Open Development Network Metadata Template') }}</h3>
+ <h3>{{ _('Open Development Network Metadata Template') }}</h3>
 
-  {% block package_metadata_fields_odm_language %}
-  {{ form.input('odm_language', label=_('Language'), id='field-odm_language', placeholder=_('Language(s) of the dataset, including resources within dataset'), value=data.odm_language, error=errors.odm_language, classes=['control-full'], attrs={'data-module': 'multiselect-module-languages', 'data-module-suggestions': h.odm_theme_jsonify_languages()}) }}
-  {% endblock %}
+ {% block package_metadata_fields_odm_language %}
+  {{ form.input('odm_language', is_required=true, label=_('Language'), id='field-odm_language', placeholder=_('Language(s) of the dataset, including resources within dataset'), value=data.odm_language, error=errors.odm_language, classes=['control-full'], attrs={'data-module': 'multiselect-module-languages', 'data-module-suggestions': h.odm_theme_jsonify_languages()}) }}
+ {% endblock %}
 
  {% block package_metadata_fields_odm_date_uploaded %}
-  {{ form.input('odm_date_uploaded', label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
-  {% endblock %}
+  {{ form.input('odm_date_uploaded', is_required=true, label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+ {% endblock %}
 
  {% block package_metadata_fields_odm_spatial_range %}
-   {{ form.input('odm_spatial_range', label=_('Spatial Range'), id='field-odm_spatial_range', placeholder=_('The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).'), value=data.odm_spatial_range, error=errors.odm_spatial_range, classes=['control-full'], attrs={'data-module': 'multiselect-module-countries', 'data-module-suggestions': h.odm_theme_jsonify_countries()}) }}
+   {{ form.input('odm_spatial_range', is_required=true, label=_('Spatial Range'), id='field-odm_spatial_range', placeholder=_('The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).'), value=data.odm_spatial_range, error=errors.odm_spatial_range, classes=['control-full'], attrs={'data-module': 'multiselect-module-countries', 'data-module-suggestions': h.odm_theme_jsonify_countries()}) }}
  {% endblock %}
 
 {% endblock %}
