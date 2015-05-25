@@ -74,12 +74,7 @@ for role in [{'organization':'mekong-organization','user':'odmmekong','role':'ad
     print 'User ' + role['user'] + ' already admined'
 
 # Add Groups
-for group in [{'name':'cambodia-group','title':'Cambodia','desc':'Group for Cambodia'},
-              {'name':'laos-group','title':'Laos','desc':'Group for Laos'},
-              {'name':'thailand-group','title':'Thailand','desc':'Group for Thailand'},
-              {'name':'vietnam-group','title':'Vietnam','desc':'Group for Vietnam'},
-              {'name':'myanmar-group','title':'Myanmar','desc':'Group for Myanmar'},
-              {'name':'maps-group','title':'Maps','desc':'Group for Maps'},
+for group in [{'name':'maps-group','title':'Maps','desc':'Group for Maps'},
               {'name':'news-group','title':'News','desc':'Group for News'},
               {'name':'laws-group','title':'Laws','desc':'Group for Laws'}]:
 
