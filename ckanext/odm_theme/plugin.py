@@ -18,6 +18,10 @@ import collections
 
 log = logging.getLogger(__name__)
 
+def last_dataset():
+  '''Returns the last created dataset'''
+  return odm_theme_helper.last_dataset
+
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
 
@@ -231,6 +235,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
   plugins.implements(plugins.IFacets)
+  plugins.implements(plugins.IPackageController, inherit=True)
+  plugins.implements(plugins.IResourceController, inherit=True)
 
   def dataset_facets(self, facets_dict, package_type):
 
@@ -286,6 +292,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as a template helper function.'''
 
     return {
+      'odm_theme_last_dataset': last_dataset,
       'odm_theme_localize_resource_url': localize_resource_url,
       'odm_theme_get_localized_tag_string': get_localized_tag_string,
       'odm_theme_get_localized_tag': get_localized_tag,
@@ -362,3 +369,13 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   def package_types(self):
     return []
+
+  def after_create(self, context, pkg_dict):
+
+    log.debug('after_create: %s', pkg_dict)
+
+    odm_theme_helper.last_dataset = pkg_dict
+
+  def after_update(self, context, pkg_dict):
+
+    log.debug('after_update: %s', pkg_dict)
