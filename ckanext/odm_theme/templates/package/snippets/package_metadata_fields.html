@@ -22,11 +22,6 @@
 
  <h3>{{ _('Open Development Network Metadata Template') }}</h3>
 
- {% block package_metadata_fields_odm_format %}
-   {% set format_attrs = {'data-module': 'autocomplete', 'data-module-source': '/api/2/util/resource/format_autocomplete?incomplete=?'} %}
-   {{ form.input('odm_format', is_required=true, label=_('Format'), id='field-odm_format', placeholder=_('List of file formats in which the dataset\'s resources are available (i.e. txt; doc;geojson etc)'), value=data.odm_format, error=errors.odm_format, classes=['control-full'], attrs=format_attrs) }}
- {% endblock %}
-
  {% block package_metadata_fields_odm_language %}
   {{ form.input('odm_language', is_required=true, label=_('Language'), id='field-odm_language', placeholder=_('Language(s) of the dataset, including resources within dataset'), value=data.odm_language, error=errors.odm_language, classes=['control-full'], attrs={'data-module': 'multiselect-module-languages', 'data-module-suggestions': h.odm_theme_jsonify_languages()}) }}
  {% endblock %}
