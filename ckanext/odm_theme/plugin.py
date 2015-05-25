@@ -6,6 +6,7 @@ import pylons
 import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from pylons import session
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
@@ -20,7 +21,7 @@ log = logging.getLogger(__name__)
 
 def last_dataset():
   '''Returns the last created dataset'''
-  return odm_theme_helper.last_dataset
+  return session['last_dataset']
 
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
@@ -236,7 +237,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.IRoutes, inherit=True)
   plugins.implements(plugins.IFacets)
   plugins.implements(plugins.IPackageController, inherit=True)
-  plugins.implements(plugins.IResourceController, inherit=True)
 
   def dataset_facets(self, facets_dict, package_type):
 
@@ -370,12 +370,15 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   def package_types(self):
     return []
 
-  def after_create(self, context, pkg_dict):
+  def before_view(self,pkg_dict):
+    log.debug('before_view: %s', pkg_dict)
 
+    session['last_dataset'] = {}
+
+  def after_create(self, context, pkg_dict):
     log.debug('after_create: %s', pkg_dict)
 
-    odm_theme_helper.last_dataset = pkg_dict
+    session['last_dataset'] = pkg_dict
 
   def after_update(self, context, pkg_dict):
-
     log.debug('after_update: %s', pkg_dict)

@@ -73,6 +73,4 @@ library_fields = [
 ('marc21_852','Location',False)
 ]
 
-last_dataset = {}
-
 tag_dictionaries = [('taxonomy','subject-list')]
