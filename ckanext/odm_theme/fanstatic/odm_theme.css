@@ -1006,3 +1006,7 @@ a.header_tag:hover {
   margin-bottom: 10px;
   border: 1px solid #ededed;
 }
+.readonly{
+  background-color: #fff !important;
+  cursor: default !important;
+}

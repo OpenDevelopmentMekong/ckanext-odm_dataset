@@ -22,25 +22,20 @@
 
  <h3>{{ _('Open Development Network Metadata Template') }}</h3>
 
- {% block package_metadata_fields_odm_format %}
-   {% set format_attrs = {'data-module': 'autocomplete', 'data-module-source': '/api/2/util/resource/format_autocomplete?incomplete=?'} %}
-   {{ form.input('odm_format', is_required=true, label=_('Format'), id='field-odm_format', placeholder=_('List of file formats in which the dataset\'s resources are available (i.e. txt; doc;geojson etc)'), value=data.odm_format, error=errors.odm_format, classes=['control-full'], attrs=format_attrs) }}
- {% endblock %}
-
  {% block package_metadata_fields_odm_language %}
   {{ form.input('odm_language', is_required=true, label=_('Language'), id='field-odm_language', placeholder=_('Language(s) of the dataset, including resources within dataset'), value=data.odm_language, error=errors.odm_language, classes=['control-full'], attrs={'data-module': 'multiselect-module-languages', 'data-module-suggestions': h.odm_theme_jsonify_languages()}) }}
  {% endblock %}
 
  {% block package_metadata_fields_odm_date_created %}
-  {{ form.input('odm_date_created', is_required=true, label=_('Date created'), id='field-odm_date_created', placeholder=_('Date the dataset was first published by its creator.'), value=data.odm_date_created, error=errors.odm_date_created, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+  {{ form.input_readonly('odm_date_created', is_required=true, label=_('Date created'), id='field-odm_date_created', placeholder=_('Date the dataset was first published by its creator.'), value=data.odm_date_created, error=errors.odm_date_created, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
  {% endblock %}
 
  {% block package_metadata_fields_odm_date_uploaded %}
-  {{ form.input('odm_date_uploaded', is_required=true, label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+  {{ form.input_readonly('odm_date_uploaded', is_required=true, label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
   {% endblock %}
 
  {% block package_metadata_fields_odm_date_modified %}
-  {{ form.input('odm_date_modified', label=_('Date Modified'), id='field-odm_date_modified', placeholder=_('Date a new version or update of the dataset was uploaded to the OD CKAN database.'), value=data.odm_date_modified, error=errors.odm_date_modified, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+  {{ form.input_readonly('odm_date_modified', label=_('Date Modified'), id='field-odm_date_modified', placeholder=_('Date a new version or update of the dataset was uploaded to the OD CKAN database.'), value=data.odm_date_modified, error=errors.odm_date_modified, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
   {% endblock %}
 
  {% block package_metadata_fields_odm_temporal_range %}

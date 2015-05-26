@@ -231,6 +231,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
   plugins.implements(plugins.IFacets)
+  plugins.implements(plugins.IPackageController, inherit=True)
 
   def dataset_facets(self, facets_dict, package_type):
 
@@ -362,3 +363,12 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   def package_types(self):
     return []
+
+  def before_view(self,pkg_dict):
+    log.debug('before_view: %s', pkg_dict['name'])
+
+  def after_create(self, context, pkg_dict):
+    log.debug('after_create: %s', pkg_dict['name'])
+
+  def after_update(self, context, pkg_dict):
+    log.debug('after_update: %s', pkg_dict['name'])

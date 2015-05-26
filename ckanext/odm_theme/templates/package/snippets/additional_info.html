@@ -25,6 +25,31 @@
         </tr>
        {% endif %}
 
+       {% if pkg_dict.maintainer_email %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
+            <td class="dataset-details" property="dc:contributor">{{ h.mail_to(email_address=pkg_dict.maintainer_email, name=pkg_dict.maintainer) }}</td>
+          </tr>
+        {% elif pkg_dict.maintainer %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
+            <td class="dataset-details" property="dc:contributor">{{ pkg_dict.maintainer }}</td>
+          </tr>
+        {% endif %}
+
+        {% if pkg_dict.metadata_modified %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _("Last Updated") }}</th>
+            <td class="dataset-details">{{ h.render_datetime(pkg_dict.metadata_modified, with_hours=True) }}</td>
+          </tr>
+        {% endif %}
+        {% if pkg_dict.metadata_created %}
+          <tr>
+            <th scope="row" class="dataset-label">{{ _("Created") }}</th>
+            <td class="dataset-details">{{ h.render_datetime(pkg_dict.metadata_created, with_hours=True) }}</td>
+          </tr>
+        {% endif %}
+
     {% block package_odc_fields %}
 
       {% for field in h.odm_theme_odc_fields() %}

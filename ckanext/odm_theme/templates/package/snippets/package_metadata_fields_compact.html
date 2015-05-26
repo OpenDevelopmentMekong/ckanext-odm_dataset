@@ -15,7 +15,7 @@
  {% endblock %}
 
  {% block package_metadata_fields_odm_date_uploaded %}
-  {{ form.input('odm_date_uploaded', is_required=true, label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
+  {{ form.input_readonly('odm_date_uploaded', is_required=true, label=_('Date uploaded'), id='field-odm_date_uploaded', placeholder=_('Date the dataset was first uploaded to the OD CKAN database.'), value=data.odm_date_uploaded, error=errors.odm_date_uploaded, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}
  {% endblock %}
 
  {% block package_metadata_fields_odm_spatial_range %}
