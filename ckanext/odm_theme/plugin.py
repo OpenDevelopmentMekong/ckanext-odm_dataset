@@ -6,7 +6,6 @@ import pylons
 import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-from pylons import session
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
@@ -18,10 +17,6 @@ import json
 import collections
 
 log = logging.getLogger(__name__)
-
-def last_dataset():
-  '''Returns the last created dataset'''
-  return session['last_dataset']
 
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
@@ -292,7 +287,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as a template helper function.'''
 
     return {
-      'odm_theme_last_dataset': last_dataset,
       'odm_theme_localize_resource_url': localize_resource_url,
       'odm_theme_get_localized_tag_string': get_localized_tag_string,
       'odm_theme_get_localized_tag': get_localized_tag,
@@ -371,14 +365,10 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     return []
 
   def before_view(self,pkg_dict):
-    log.debug('before_view: %s', pkg_dict)
-
-    session['last_dataset'] = {}
+    log.debug('before_view: %s', pkg_dict['name'])
 
   def after_create(self, context, pkg_dict):
-    log.debug('after_create: %s', pkg_dict)
-
-    session['last_dataset'] = pkg_dict
+    log.debug('after_create: %s', pkg_dict['name'])
 
   def after_update(self, context, pkg_dict):
-    log.debug('after_update: %s', pkg_dict)
+    log.debug('after_update: %s', pkg_dict['name'])

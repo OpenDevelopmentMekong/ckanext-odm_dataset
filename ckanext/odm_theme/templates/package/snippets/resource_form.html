@@ -3,9 +3,9 @@
 {% set last_dataset = h.odm_theme_last_dataset() %}
 
 {% block basic_fields_name %}
-  {{ form.input('name', id='field-name', label=_('Name'), placeholder=_('eg. January 2011 Gold Prices'), value=last_dataset['title'], error=errors.name, classes=['control-full']) }}
+  {{ form.input('name', id='field-name', label=_('Name'), placeholder=_('eg. January 2011 Gold Prices'), value=data.name, error=errors.name, classes=['control-full']) }}
 {% endblock %}
 
 {% block basic_fields_description %}
-  {{ form.markdown('description', id='field-description', label=_('Description'), placeholder=_('Some useful notes about the data'), value=last_dataset['notes'], error=errors.description) }}
+  {{ form.markdown('description', id='field-description', label=_('Description'), placeholder=_('Some useful notes about the data'), value=data.description, error=errors.description) }}
 {% endblock %}
