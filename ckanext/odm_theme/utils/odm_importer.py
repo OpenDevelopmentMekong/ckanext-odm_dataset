@@ -1077,23 +1077,31 @@ class ODMImporter():
         # Has children
         for child in inspected_dict['children']:
 
+          self._add_taxonomy_tag(taxonomy_tag_vocabulary,child['name'])
+
           # Iterate deeper
           self._inspect_json_create_tags(child,taxonomy_tag_vocabulary)
 
     else:
 
-      # Is a leaf, create tag and assign to taxonomy vocabulary
-      tag_name = self._prepare_string_for_ckan_tag_name(inspected_dict['name'])
-      tag = {'name': tag_name}
+      self._add_taxonomy_tag(taxonomy_tag_vocabulary,inspected_dict['name'])
 
-      # Avoid duplicates
-      tag_exists = False
-      for existing_tag in taxonomy_tag_vocabulary['tags']:
-        if ( existing_tag['name'] == tag_name):
-          tag_exists = True
+  def _add_taxonomy_tag(self,taxonomy_tag_vocabulary,tag_name):
 
-      if (tag_exists == False):
-        taxonomy_tag_vocabulary['tags'].append(dict(tag))
+    tag_name = self._prepare_string_for_ckan_tag_name(tag_name)
+
+    tag = {'name': tag_name}
+
+    # Avoid duplicates
+    tag_exists = False
+    for existing_tag in taxonomy_tag_vocabulary['tags']:
+      if ( existing_tag['name'] == tag_name):
+        tag_exists = True
+        break;
+
+    if (tag_exists == False):
+      taxonomy_tag_vocabulary['tags'].append(dict(tag))
+
 
   # Utilty function that goes through the tree structure of a inspected_dict recursively
   # collecting the "name" attributes of all the nodes on the term_list object specified by
