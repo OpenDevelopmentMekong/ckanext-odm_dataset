@@ -87,6 +87,9 @@ class ICkanApi:
   def delete_packages_list(self,params):
     raise NotImplementedError
 
+  def create_default_issue(self,params):
+    raise NotImplementedError
+
 # Mock implementation
 class TestCkanApi (ICkanApi):
 
@@ -204,6 +207,10 @@ class TestCkanApi (ICkanApi):
   def delete_packages_list(self,params):
 
     return self.api.call_action('bulk_update_delete',params)
+
+  def create_default_issue(self,params):
+
+    return self.api.call_action('issue_create',params)
 
 # Real implementation
 class RealCkanApi (ICkanApi):
@@ -324,3 +331,21 @@ class RealCkanApi (ICkanApi):
   def delete_packages_list(self,params):
 
     return self.api.call_action('bulk_update_delete',params)
+
+  def create_default_issue(self,params):
+
+    return self.api.call_action('issue_create',params)
+
+# Real implementation
+class LocalCkanApi (ICkanApi):
+
+  def __init__(self):
+
+    # Init here
+    self.api = ckanapi.LocalCKAN()
+
+    return
+
+  def create_default_issue(self,params):
+
+    return self.api.call_action('issue_create',params)

@@ -9,6 +9,8 @@ import ckan.plugins.toolkit as toolkit
 from beaker.middleware import SessionMiddleware
 import sys
 import os
+sys.path.append(os.path.join(os.path.dirname(__file__), 'utils'))
+import ckanapi_utils
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 import odm_theme_helper
 import datetime
@@ -18,6 +20,13 @@ import json
 import collections
 
 log = logging.getLogger(__name__)
+
+def create_default_issue(pkg_info):
+  ''' Uses CKAN API to add a default Issue as part of the vetting workflow'''
+
+  params = {'title':'Vetting process','description':'This Issue has been added by default. Once all Issues are closed this dataset will be published automatically.','dataset_id':pkg_info['id']}
+  ckanapiutils = ckanapi_utils.LocalCkanApi()
+  ckanapiutils.create_default_issue(params)
 
 def last_dataset():
   ''' Returns the last dataset info stored in session'''
@@ -358,6 +367,9 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     odm_theme_helper.session['last_dataset'] = pkg_dict
     odm_theme_helper.session.save()
+
+    # Create default Issue
+    create_default_issue(pkg_dict)
 
   def after_update(self, context, pkg_dict):
     log.debug('after_update: %s', pkg_dict['name'])
