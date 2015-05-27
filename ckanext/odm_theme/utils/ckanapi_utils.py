@@ -210,7 +210,15 @@ class TestCkanApi (ICkanApi):
 
   def create_default_issue(self,params):
 
-    return self.api.call_action('issue_create',params)
+    try:
+
+      return_value = self.api.call_action('issue_create',params)
+
+    except KeyError:
+
+      return None
+
+    return return_value
 
 # Real implementation
 class RealCkanApi (ICkanApi):
@@ -334,7 +342,15 @@ class RealCkanApi (ICkanApi):
 
   def create_default_issue(self,params):
 
-    return self.api.call_action('issue_create',params)
+    try:
+
+      return_value = self.api.call_action('issue_create',params)
+
+    except KeyError:
+
+      return None
+
+    return return_value
 
 # Real implementation
 class LocalCkanApi (ICkanApi):
@@ -348,4 +364,12 @@ class LocalCkanApi (ICkanApi):
 
   def create_default_issue(self,params):
 
-    return self.api.call_action('issue_create',params)
+    try:
+
+      return_value = self.api.call_action('issue_create',params)
+
+    except KeyError:
+
+      return None
+
+    return return_value
