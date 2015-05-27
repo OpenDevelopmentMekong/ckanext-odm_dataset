@@ -6,6 +6,7 @@ import pylons
 import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from beaker.middleware import SessionMiddleware
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
@@ -17,6 +18,10 @@ import json
 import collections
 
 log = logging.getLogger(__name__)
+
+def last_dataset():
+  ''' Returns the last dataset info stored in session'''
+  return odm_theme_helper.session['last_dataset']
 
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
@@ -195,34 +200,6 @@ def get_orga_or_group(orga_id,group_id):
 
   return None
 
-def is_user_admin_of_organisation(organization_name):
-  '''Returns wether the current user has the Admin role in the specified organisation'''
-
-  user_id = toolkit.c.userobj.id
-
-  log.debug('is_user_admin_of_organisation: %s %s', user_id, organization_name)
-
-  if organization_name is 'None':
-    return False
-
-  try:
-    members = toolkit.get_action('member_list')(
-    data_dict={'id': organization_name, 'object_type': 'user', 'capacity': 'admin'})
-
-  except toolkit.ObjectNotFound:
-    return False
-
-  member_ids = [member_tuple[0] for member_tuple in members]
-
-  try:
-    if user_id in member_ids:
-      return True
-
-  except toolkit.Invalid:
-    return False
-
-  return False
-
 class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   '''OD Mekong theme plugin.'''
 
@@ -232,6 +209,12 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.IRoutes, inherit=True)
   plugins.implements(plugins.IFacets)
   plugins.implements(plugins.IPackageController, inherit=True)
+
+  def __init__(self, *args, **kwargs):
+
+    log.debug('OdmThemePlugin init')
+    wsgi_app = SessionMiddleware(None, None)
+    odm_theme_helper.session = wsgi_app.session
 
   def dataset_facets(self, facets_dict, package_type):
 
@@ -287,6 +270,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as a template helper function.'''
 
     return {
+      'odm_theme_last_dataset': last_dataset,
       'odm_theme_localize_resource_url': localize_resource_url,
       'odm_theme_get_localized_tag_string': get_localized_tag_string,
       'odm_theme_get_localized_tag': get_localized_tag,
@@ -298,7 +282,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_odc_fields': odc_fields,
       'odm_theme_metadata_fields': metadata_fields,
       'odm_theme_get_orga_or_group': get_orga_or_group,
-      'odm_theme_is_user_admin_of_organisation': is_user_admin_of_organisation,
       'odm_theme_tag_dictionaries': get_tag_dictionaries,
       'odm_theme_jsonify_list': jsonify_list,
       'odm_theme_jsonify_countries': jsonify_countries,
@@ -364,11 +347,20 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   def package_types(self):
     return []
 
-  def before_view(self,pkg_dict):
-    log.debug('before_view: %s', pkg_dict['name'])
+  def before_create(self, context, resource):
+    log.info('before_create')
+
+    odm_theme_helper.session['last_dataset'] = None
+    odm_theme_helper.session.save()
 
   def after_create(self, context, pkg_dict):
     log.debug('after_create: %s', pkg_dict['name'])
 
+    odm_theme_helper.session['last_dataset'] = pkg_dict
+    odm_theme_helper.session.save()
+
   def after_update(self, context, pkg_dict):
     log.debug('after_update: %s', pkg_dict['name'])
+
+    odm_theme_helper.session['last_dataset'] = pkg_dict
+    odm_theme_helper.session.save()
