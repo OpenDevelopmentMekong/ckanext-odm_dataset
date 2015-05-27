@@ -77,3 +77,5 @@ library_fields = [
 tag_dictionaries = [
   ('taxonomy','subject-list')
 ]
+
+session = {}
