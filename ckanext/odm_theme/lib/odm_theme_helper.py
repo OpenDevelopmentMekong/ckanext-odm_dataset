@@ -46,7 +46,6 @@ metadata_fields = [
   ('odm_process','Process(es)',True),
   ('odm_source','Source(s)',True),
   ('odm_contact','Contact',True),
-  ('odm_contact_email','Contact Email',True),
   ('odm_access_and_use_constraints','Access and Use Constraints',False),
   ('odm_metadata_reference_information','Metadata Reference Information',False),
   ('odm_attributes','Attributes',False)
