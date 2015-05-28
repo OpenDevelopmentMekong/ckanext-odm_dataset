@@ -5,7 +5,6 @@ python:
 env:
   global:
     - ODM_THEME_HOME=/usr/lib/ckan/default/src/ckanext-odm_theme
-    - ISSUES_HOME=/usr/lib/ckan/default/src/ckanext-issues
     - TESTS_FOLDER=/usr/lib/ckan/default/src/ckanext-odm_theme/ckanext/odm_theme/tests
 install:
   - "sudo mkdir -p /usr/lib/ckan/default"
