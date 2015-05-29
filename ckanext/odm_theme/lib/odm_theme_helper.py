@@ -15,12 +15,22 @@ countries = [
 ]
 
 languages = [
+  ('my','Burmese'),
   ('en','English'),
   ('kh','Khmer'),
-  ('vi','Vietnamese'),
   ('lo','Lao'),
   ('th','Thai'),
-  ('my','Burmese')
+  ('vi','Vietnamese'),
+  ('zh','Chinese'),
+  ('fr','French'),
+  ('de','German'),
+  ('jp','Japanese'),
+  ('ko','Korean'),
+  ('other','Other'),
+]
+
+ckan_fields= [
+  ('version','Version',True)
 ]
 
 odc_fields = [
@@ -39,22 +49,28 @@ metadata_fields = [
   ('odm_date_uploaded','Date Uploaded',True),
   ('odm_date_modified','Date Modified',False),
   ('odm_temporal_range','Temporal Range',False),
-  ('odm_spatial_range','Spatial Range',True),
+  ('odm_spatial_range','Geographic area (Spatial Range)',True),
   ('odm_accuracy','Accuracy',False),
   ('odm_logical_consistency','Logical Consistency',False),
   ('odm_completeness','Completeness',False),
   ('odm_process','Process(es)',True),
   ('odm_source','Source(s)',True),
-  ('odm_contact','Contact',True),
+  ('odm_contact','Contact',False),
   ('odm_access_and_use_constraints','Access and Use Constraints',False),
   ('odm_metadata_reference_information','Metadata Reference Information',False),
   ('odm_attributes','Attributes',False)
 ]
 
+metadata_fields_compact = [
+  ('odm_contact','Contact',False),
+  ('odm_language','Language',True),
+  ('odm_date_uploaded','Date Uploaded',True),
+  ('odm_spatial_range','Geographic area (Spatial Range)',True)
+]
+
 library_fields = [
   ('marc21_020','ISBN',False),
   ('marc21_022','ISSN',False),
-  ('marc21_084','Classification',False),
   ('marc21_100','Author',False),
   ('marc21_110','Corporate Author',False),
   ('marc21_245','Title',False),
@@ -65,12 +81,8 @@ library_fields = [
   ('marc21_260c','Publication Date',False),
   ('marc21_300','Pagination',False),
   ('marc21_500','General Note',False),
-  ('marc21_650','Subject',False),
-  ('marc21_651','Subject (Geographic Name)',False),
   ('marc21_700','Co-Author',False),
-  ('marc21_710','Co-Author (Corporate)',False),
-  ('marc21_850','Institution',False),
-  ('marc21_852','Location',False)
+  ('marc21_710','Co-Author (Corporate)',False)
 ]
 
 tag_dictionaries = [

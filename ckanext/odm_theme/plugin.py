@@ -159,6 +159,13 @@ def odc_fields():
 
   return odm_theme_helper.odc_fields
 
+def ckan_fields():
+  '''Return a list of ckan fields'''
+
+  log.debug('ckan_fields')
+
+  return odm_theme_helper.ckan_fields
+
 def metadata_fields():
   '''Return a list of metadata fields'''
 
@@ -289,6 +296,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_languages': languages,
       'odm_theme_countries': countries,
       'odm_theme_odc_fields': odc_fields,
+      'odm_theme_ckan_fields': ckan_fields,
       'odm_theme_metadata_fields': metadata_fields,
       'odm_theme_get_orga_or_group': get_orga_or_group,
       'odm_theme_tag_dictionaries': get_tag_dictionaries,
@@ -311,6 +319,12 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({odc_field[0]: validators_and_converters})
 
+    for ckan_field in odm_theme_helper.ckan_fields:
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
+      if ckan_field[2]:
+        validators_and_converters.insert(1,validate_not_empty)
+      schema.update({ckan_field[0]: validators_and_converters})
+
     for tag_dictionary in odm_theme_helper.tag_dictionaries:
       schema.update({tag_dictionary[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(tag_dictionary[0])]})
 
@@ -329,6 +343,12 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       if odc_field[2]:
         validators_and_converters.append(validate_not_empty)
       schema.update({odc_field[0]: validators_and_converters})
+
+    for ckan_field in odm_theme_helper.ckan_fields:
+      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
+      if ckan_field[2]:
+        validators_and_converters.append(validate_not_empty)
+      schema.update({ckan_field[0]: validators_and_converters})
 
     for tag_dictionary in odm_theme_helper.tag_dictionaries:
       schema.update({tag_dictionary[0]: [toolkit.get_converter('convert_from_tags')(tag_dictionary[0]),toolkit.get_validator('ignore_missing')]})

@@ -27,7 +27,7 @@
 {% set taxonomy_tags = h.odm_theme_tag_dictionaries('taxonomy') %}
 {% if taxonomy_tags|length > 0 %}
 <div class="control-group">
-  <label class="control-label" for="field-taxonomy">{{ _("Tags") }}</label>
+  <label class="control-label" for="field-taxonomy">{{ _("Topics") }}</label>
   <div class="controls control-full">
     <select multiple id="field-taxonomy" name="taxonomy" data-module="autocomplete" placeholder="{{ _("eg. economy, mental health, government") }}">
       {% for tag in taxonomy_tags %}
@@ -119,7 +119,7 @@
           <span id="field-private-disclaimer" class="info-block info-inline">
             <i class="icon-info-sign"></i>
             {% trans %}
-            Editors can only create Private datasets. Contact the site admin for review and publication of this dataset.</a>
+            Editors can only create Private datasets. Contact the site admin for review and publication of this dataset.
             {% endtrans %}
           </span>
         </div>
@@ -128,7 +128,7 @@
   {% endif %}
 
   {% block package_metadata_fields_version %}
-    {{ form.input('version', label=_('Version'), id='field-version', placeholder=_('1.0'), value=data.version, error=errors.version, classes=['control-full']) }}
+    {{ form.input('version', is_required=true, label=_('Version'), id='field-version', placeholder=_('1.0'), value=data.version, error=errors.version, classes=['control-full']) }}
   {% endblock %}
 
   {% block package_metadata_fields_maintainer %}
