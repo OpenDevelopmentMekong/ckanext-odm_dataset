@@ -226,13 +226,15 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
   plugins.implements(plugins.IFacets)
-  plugins.implements(plugins.IPackageController, inherit=True)
+  plugins.implements(plugins.IPackageController, inherit=True)  
 
   def __init__(self, *args, **kwargs):
 
     log.debug('OdmThemePlugin init')
     wsgi_app = SessionMiddleware(None, None)
     odm_theme_helper.session = wsgi_app.session
+
+  # IFacets
 
   def dataset_facets(self, facets_dict, package_type):
 
@@ -274,8 +276,12 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
       return organization_facets
 
+  # IRoutes
+
   def before_map(self, m):
     return m
+
+  # IConfigurer
 
   def update_config(self, config):
     '''Update plugin config'''
@@ -283,6 +289,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     toolkit.add_template_directory(config, 'templates')
     toolkit.add_resource('fanstatic', 'odm_theme')
     toolkit.add_public_directory(config, 'public')
+
+  # IConfigurer
 
   def get_helpers(self):
     '''Register the plugin's functions above as a template helper function.'''
@@ -306,6 +314,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_jsonify_countries': jsonify_countries,
       'odm_theme_jsonify_languages': jsonify_languages
     }
+
+  # IDatasetForm
 
   def _modify_package_schema_write(self, schema):
 
