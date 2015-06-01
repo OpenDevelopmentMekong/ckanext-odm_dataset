@@ -21,9 +21,14 @@ log = logging.getLogger(__name__)
 
 def create_default_issue(pkg_info):
   ''' Uses CKAN API to add a default Issue as part of the vetting workflow'''
+  try:
 
-  params = {'title':'Vetting process','description':'This Issue has been added by default. Once all Issues are closed this dataset will be published automatically.','dataset_id':pkg_info['id']}
-  toolkit.get_action('issue_create')(data_dict=params)
+    params = {'title':'Vetting process','description':'This Issue has been added by default. Once all Issues are closed this dataset will be published automatically.','dataset_id':pkg_info['id']}
+    toolkit.get_action('issue_create')(data_dict=params)
+
+  except KeyError:
+
+    log.error("Action 'issue_create' not found. Please make sure that ckanext-issues plugin is installed.")
 
 def last_dataset():
   ''' Returns the last dataset info stored in session'''
