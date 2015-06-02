@@ -91,7 +91,7 @@
     <tbody>
       {% block package_odm_fields %}
 
-        {% for field in h.odm_theme_metadata_fields() %}
+        {% for field in h.odm_theme_metadata_fields_combined() %}
           {% set field_name = field[0] %}
           {% set field_label = field[1] %}
 

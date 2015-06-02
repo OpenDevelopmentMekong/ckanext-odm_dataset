@@ -21,9 +21,14 @@ log = logging.getLogger(__name__)
 
 def create_default_issue(pkg_info):
   ''' Uses CKAN API to add a default Issue as part of the vetting workflow'''
+  try:
 
-  params = {'title':'Vetting process','description':'This Issue has been added by default. Once all Issues are closed this dataset will be published automatically.','dataset_id':pkg_info['id']}
-  toolkit.get_action('issue_create')(data_dict=params)
+    params = {'title':'Vetting process','description':'This Issue has been added by default. Once all Issues are closed this dataset will be published automatically.','dataset_id':pkg_info['id']}
+    toolkit.get_action('issue_create')(data_dict=params)
+
+  except KeyError:
+
+    log.error("Action 'issue_create' not found. Please make sure that ckanext-issues plugin is installed.")
 
 def last_dataset():
   ''' Returns the last dataset info stored in session'''
@@ -170,6 +175,13 @@ def metadata_fields():
 
   return odm_theme_helper.metadata_fields
 
+def metadata_fields_combined():
+  '''Return a list of metadata fields, combined with metadata_fields_combined'''
+
+  log.debug('metadata_fields_combined')
+
+  return list(set(odm_theme_helper.metadata_fields + odm_theme_helper.metadata_fields_compact))
+
 def popular_groups():
   '''Return a sorted list of the groups with the most datasets.'''
 
@@ -229,6 +241,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     wsgi_app = SessionMiddleware(None, None)
     odm_theme_helper.session = wsgi_app.session
 
+  # IFacets
+
   def dataset_facets(self, facets_dict, package_type):
 
       facets_dict = {
@@ -269,8 +283,12 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
       return organization_facets
 
+  # IRoutes
+
   def before_map(self, m):
     return m
+
+  # IConfigurer
 
   def update_config(self, config):
     '''Update plugin config'''
@@ -278,6 +296,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     toolkit.add_template_directory(config, 'templates')
     toolkit.add_resource('fanstatic', 'odm_theme')
     toolkit.add_public_directory(config, 'public')
+
+  # IConfigurer
 
   def get_helpers(self):
     '''Register the plugin's functions above as a template helper function.'''
@@ -295,12 +315,15 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_odc_fields': odc_fields,
       'odm_theme_ckan_fields': ckan_fields,
       'odm_theme_metadata_fields': metadata_fields,
+      'odm_theme_metadata_fields_combined': metadata_fields_combined,
       'odm_theme_get_orga_or_group': get_orga_or_group,
       'odm_theme_tag_dictionaries': get_tag_dictionaries,
       'odm_theme_jsonify_list': jsonify_list,
       'odm_theme_jsonify_countries': jsonify_countries,
       'odm_theme_jsonify_languages': jsonify_languages
     }
+
+  # IDatasetForm
 
   def _modify_package_schema_write(self, schema):
 
