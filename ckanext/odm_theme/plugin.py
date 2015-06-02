@@ -175,6 +175,13 @@ def metadata_fields():
 
   return odm_theme_helper.metadata_fields
 
+def metadata_fields_combined():
+  '''Return a list of metadata fields, combined with metadata_fields_combined'''
+
+  log.debug('metadata_fields_combined')
+
+  return list(set(odm_theme_helper.metadata_fields + odm_theme_helper.metadata_fields_compact))
+
 def popular_groups():
   '''Return a sorted list of the groups with the most datasets.'''
 
@@ -226,7 +233,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
   plugins.implements(plugins.IFacets)
-  plugins.implements(plugins.IPackageController, inherit=True)  
+  plugins.implements(plugins.IPackageController, inherit=True)
 
   def __init__(self, *args, **kwargs):
 
@@ -308,6 +315,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_odc_fields': odc_fields,
       'odm_theme_ckan_fields': ckan_fields,
       'odm_theme_metadata_fields': metadata_fields,
+      'odm_theme_metadata_fields_combined': metadata_fields_combined,
       'odm_theme_get_orga_or_group': get_orga_or_group,
       'odm_theme_tag_dictionaries': get_tag_dictionaries,
       'odm_theme_jsonify_list': jsonify_list,
