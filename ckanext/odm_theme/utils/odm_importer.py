@@ -289,12 +289,14 @@ class ODMImporter():
         continue
 
       dataset_metadata = self._map_record_to_ckan_dataset_dict(record,config)
-      dataset_metadata = self._set_extras_from_record_to_ckan_dataset_dict(dataset_metadata,record,config)
-      dataset_metadata = self._set_mandatory_metadata_fields(dataset_metadata)
 
       if (dataset_metadata is None) or (dataset_metadata["name"] == ''):
         print("Dataset does not have any title or ISBN, unique name cannot be generated")
         continue
+
+      dataset_metadata = self._set_extras_from_record_to_ckan_dataset_dict(dataset_metadata,record,config)
+      dataset_metadata = self._set_mandatory_metadata_fields(dataset_metadata)
+        
       dataset_metadata['owner_org'] = orga['id']
       dataset_metadata['groups'] = config.NGL_MAP['groups']
 
@@ -798,9 +800,11 @@ class ODMImporter():
     params_dict['maintainer'] = 'OD Mekong Importer'
     params_dict['maintainer_email'] = 'info@opendevmekong.net'
     params_dict['odm_date_created'] = datetime.date.today().strftime("%m/%d/%y")
-    params_dict['odm_date_uploaded '] = datetime.date.today().strftime("%m/%d/%y")
+    params_dict['odm_date_uploaded'] = datetime.date.today().strftime("%m/%d/%y")
     params_dict['odm_process'] = 'Imported via scripts'
-    params_dict['odm_source '] = 'Imported via scripts'
+    params_dict['odm_source'] = 'Imported via scripts'
+
+    return params_dict
 
   def _set_extras_from_xml_item_to_ckan_dataset_dict(self,params_dict,config_item,root,elem,config):
 

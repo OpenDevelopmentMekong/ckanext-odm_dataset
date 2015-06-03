@@ -48,15 +48,15 @@ Example:
       {% if banner %}
         <span class="banner">{{ _('Popular') }}</span>
       {% endif %}
-   {% set resource = image_resources|last %}
-   {% if resource %}
-      <img class="dataset_thumb_s" src="{{ h.odm_theme_localize_resource_url(resource.url) }}"></img>
-     {% endif %}
-      {% if notes %}
-       <div>
-        {{ notes|urlize }}
-       </div>
-      {% endif %}
+	    {% set resource = image_resources|last %}
+	    {% if resource %}
+	      <img class="dataset_thumb_s" src="{{ h.odm_theme_localize_resource_url(resource.url) }}"></img>
+	    {% endif %}
+	    {% if notes %}
+	    <div>
+	      {{ notes|urlize }}
+	    </div>
+	  {% endif %}
     </div>
   <div class="dataset-extras clear">
    {% if package.resources and not hide_resources %}
