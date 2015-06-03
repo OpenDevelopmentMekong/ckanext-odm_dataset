@@ -1,0 +1,3 @@
+recursive-include ckanext/odm_theme/fanstatic *
+recursive-include ckanext/odm_theme/lib *
+recursive-include ckanext/odm_theme/templates *
