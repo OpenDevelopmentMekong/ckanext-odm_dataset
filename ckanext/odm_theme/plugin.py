@@ -6,6 +6,8 @@ import pylons
 import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import ckan.lib.helpers as h
+from pylons import config
 from beaker.middleware import SessionMiddleware
 import sys
 import os
@@ -409,7 +411,9 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     odm_theme_helper.session.save()
 
     # Create default Issue
-    create_default_issue(pkg_dict)
+    review_system = h.asbool(config.get("ckanext.issues.review_system", False))
+    if review_system:
+      create_default_issue(pkg_dict)
 
   def after_update(self, context, pkg_dict):
     log.debug('after_update: %s', pkg_dict['name'])

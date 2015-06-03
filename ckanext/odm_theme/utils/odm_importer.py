@@ -15,6 +15,7 @@ import io
 import uuid
 import lxml
 import urlparse
+import datetime
 from pymarc import MARCReader,marcxml
 from lxml import etree
 sys.path.append(os.path.join(os.path.dirname(__file__), "../lib"))
@@ -215,6 +216,7 @@ class ODMImporter():
 
                   dataset_metadata = self._map_xml_item_to_ckan_dataset_dict(orga,root,elem,config_item,taxonomy_tags,config)
                   dataset_metadata = self._set_extras_from_xml_item_to_ckan_dataset_dict(dataset_metadata,config_item,root,elem,config)
+                  dataset_metadata = self._set_mandatory_metadata_fields(dataset_metadata)
 
                   if (config.DEBUG):
                     print(dataset_metadata)
@@ -287,11 +289,14 @@ class ODMImporter():
         continue
 
       dataset_metadata = self._map_record_to_ckan_dataset_dict(record,config)
-      dataset_metadata = self._set_extras_from_record_to_ckan_dataset_dict(dataset_metadata,record,config)
 
       if (dataset_metadata is None) or (dataset_metadata["name"] == ''):
         print("Dataset does not have any title or ISBN, unique name cannot be generated")
         continue
+
+      dataset_metadata = self._set_extras_from_record_to_ckan_dataset_dict(dataset_metadata,record,config)
+      dataset_metadata = self._set_mandatory_metadata_fields(dataset_metadata)
+        
       dataset_metadata['owner_org'] = orga['id']
       dataset_metadata['groups'] = config.NGL_MAP['groups']
 
@@ -442,6 +447,7 @@ class ODMImporter():
           # Create dictionary with data to create/update datasets on CKAN
           dataset_metadata = self._map_geoserver_feature_to_ckan_dataset(feature_namespace,feature_name,feature_title,taxonomy_tags,config)
           dataset_metadata = self._set_extras_from_layer_to_ckan_dataset_dict(dataset_metadata,config)
+          dataset_metadata = self._set_mandatory_metadata_fields(dataset_metadata)
 
           # Get id of organization from its name and add it to dataset_metadata
           dataset_metadata['id'] = ''
@@ -783,6 +789,20 @@ class ODMImporter():
 
     if len(tags):
       params_dict['tags'] = list(tags)
+
+    return params_dict
+
+  def _set_mandatory_metadata_fields(self,params_dict):
+
+    params_dict['license_title'] = 'Creative Commons Attribution 4.0 (CC-BY-4.0)'
+    params_dict['version'] = '1.0'
+    params_dict['odm_contact'] = 'Open Development Cambodia http://www.opendevelopmentcambodia.net'
+    params_dict['maintainer'] = 'OD Mekong Importer'
+    params_dict['maintainer_email'] = 'info@opendevmekong.net'
+    params_dict['odm_date_created'] = datetime.date.today().strftime("%m/%d/%y")
+    params_dict['odm_date_uploaded'] = datetime.date.today().strftime("%m/%d/%y")
+    params_dict['odm_process'] = 'Imported via scripts'
+    params_dict['odm_source'] = 'Imported via scripts'
 
     return params_dict
 
