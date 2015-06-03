@@ -1,3 +1,8 @@
+recursive-include ckanext/odm_theme/config *
 recursive-include ckanext/odm_theme/fanstatic *
 recursive-include ckanext/odm_theme/lib *
+recursive-include ckanext/odm_theme/public *
+recursive-include ckanext/odm_theme/scripts *
 recursive-include ckanext/odm_theme/templates *
+recursive-include ckanext/odm_theme/tests *
+recursive-include ckanext/odm_theme/utils *
