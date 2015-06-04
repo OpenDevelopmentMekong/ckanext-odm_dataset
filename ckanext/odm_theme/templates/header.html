@@ -124,8 +124,6 @@
   </div>
  </header>
 
- {% set tags = h.get_facet_items_dict('tags') %}
-
  <header class="sec_header">
     <div class="container">
       <hgroup>
@@ -140,21 +138,21 @@
          <div class="span3 col2 header-selection">
           <h4>{{ _('Browse by country') }}</h4>
           <ul>
-           <li><a href="dataset?odm_spatial_range=Cambodia"><img src="/flags/cambodia.png"/></a></li>
-           <li><a href="dataset?odm_spatial_range=Laos"><img src="/flags/laos.png"/></a></li>
-           <li><a href="dataset?odm_spatial_range=Myanmar"><img src="/flags/myanmar.png"/></a></li>
-           <li><a href="dataset?odm_spatial_range=Thailand"><img src="/flags/thailand.png"/></a></li>
-           <li><a href="dataset?odm_spatial_range=Vietnam"><img src="/flags/vietnam.png"/></a></li>
+           <li><a href="/dataset?odm_spatial_range=Cambodia"><img src="/flags/cambodia.png"/></a></li>
+           <li><a href="/dataset?odm_spatial_range=Laos"><img src="/flags/laos.png"/></a></li>
+           <li><a href="/dataset?odm_spatial_range=Myanmar"><img src="/flags/myanmar.png"/></a></li>
+           <li><a href="/dataset?odm_spatial_range=Thailand"><img src="/flags/thailand.png"/></a></li>
+           <li><a href="/dataset?odm_spatial_range=Vietnam"><img src="/flags/vietnam.png"/></a></li>
           </ul>
          </div>
          <div class="span3 col2 header-selection">
           <h4>{{ _('Browse by language') }}</h4>
           <ul>
-           <li><a href="dataset?odm_language=kh"><img src="/langs/cambodia.png"/></a></li>
-           <li><a href="dataset?odm_language=lo"><img src="/langs/laos.png"/></a></li>
-           <li><a href="dataset?odm_language=my"><img src="/langs/myanmar.png"/></a></li>
-           <li><a href="dataset?odm_language=th"><img src="/langs/thailand.png"/></a></li>
-           <li><a href="dataset?odm_language=vi"><img src="/langs/vietnam.png"/></a></li>
+           <li><a href="/dataset?odm_language=kh"><img src="/langs/cambodia.png"/></a></li>
+           <li><a href="/dataset?odm_language=lo"><img src="/langs/laos.png"/></a></li>
+           <li><a href="/dataset?odm_language=my"><img src="/langs/myanmar.png"/></a></li>
+           <li><a href="/dataset?odm_language=th"><img src="/langs/thailand.png"/></a></li>
+           <li><a href="/dataset?odm_language=vi"><img src="/langs/vietnam.png"/></a></li>
           </ul>
          </div>
       </hgroup>
