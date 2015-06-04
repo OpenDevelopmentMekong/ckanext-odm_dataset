@@ -959,18 +959,21 @@ body {
 .sec_header h4{
  margin: 2px 0px;
 }
-.country-selection ul{
+.header-selection{
+ margin-bottom: 14px;
+}
+.header-selection ul{
  margin: 0px;
 }
-.country-selection li{
+.header-selection li{
  float: left;
  list-style: none;
  margin: 4px;
 }
-.country-selection a{
+.header-selection a{
  border: 2px solid #fff;
 }
-.country-selection a:hover{
+.header-selection a:hover{
  border: 2px solid #ededed;
 }
 .header_tag {

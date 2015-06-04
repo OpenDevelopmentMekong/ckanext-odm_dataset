@@ -1,6 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+top_topics = [
+  ('Agriculture & fishing'),
+  ('Aid and development'),
+  ('Economy and commerce'),
+  ('Energy'),
+  ('Environment and natural resources'),
+  ('Extractive industries'),
+  ('Government'),
+  ('Industry'),
+  ('Infrastructure'),
+  ('Labor'),
+  ('Land'),
+  ('Law & judiciary'),
+  ('Population and censuses'),
+  ('Science and technology'),
+  ('Urban administration and development'),
+  ('Social development')
+]
+
 countries = [
   ('Global','Global'),
   ('ASEAN','ASEAN'),

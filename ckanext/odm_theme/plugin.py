@@ -142,6 +142,21 @@ def get_localized_tag_string(tags_string):
 
   return ','.join(translated_array)
 
+def tag_for_topic(topic):
+  '''Return the name of the tag corresponding to a top topic'''
+
+  log.debug('tag_for_topic')
+
+  tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
+  return tag_name if len(tag_name)<=100 else tag_name[0:99]
+
+def top_topics():
+  '''Return a list of top_topics'''
+
+  log.debug('top_topics')
+
+  return odm_theme_helper.top_topics
+
 def countries():
   '''Return a list of countries'''
 
@@ -312,6 +327,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_popular_groups': popular_groups,
       'odm_theme_recent_datasets': recent_datasets,
       'odm_theme_popular_datasets': popular_datasets,
+      'odm_theme_tag_for_topic': tag_for_topic,
+      'odm_theme_top_topics': top_topics,
       'odm_theme_languages': languages,
       'odm_theme_countries': countries,
       'odm_theme_odc_fields': odc_fields,
