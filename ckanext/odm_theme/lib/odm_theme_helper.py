@@ -4,6 +4,7 @@
 top_topics = [
   ('Agriculture & fishing'),
   ('Aid and development'),
+  ('Disasters and emergency'),
   ('Economy and commerce'),
   ('Energy'),
   ('Environment and natural resources'),
