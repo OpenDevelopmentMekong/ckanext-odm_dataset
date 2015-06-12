@@ -25,7 +25,12 @@ a {
 .controls.lef{
   float:left;
 }
-
+.controls input[type="radio"], input[type="checkbox"] {
+  top: 0px !important;
+}
+.form-radios{
+  float:left;
+}
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus,
 .dropdown-submenu:hover > a,
