@@ -20,7 +20,7 @@
   {% endfor %}
  {% endblock %}
 
- {% block package_metadata_odm_contact %}
+ {% block package_metadata_fields_odm_contact %}
    {{ form.markdown('odm_contact', is_required=false, label=_('Contact'), id='field-odm_contact', placeholder=_('Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset. This could be the author of a report, the contact information for the relevant department of an organization that produced a report, or the data analyst, mapper or researcher that produced a dataset or report.'), value=data.odm_contact, error=errors.odm_contact, classes=['control-full']) }}
  {% endblock %}
 
@@ -66,10 +66,6 @@
 
  {% block package_metadata_fields_odm_sources %}
    {{ form.markdown('odm_source', is_required=true, label=_('Source(s)'), id='field-odm_source', placeholder=_('Ordered citations for all information sources that went into producing the dataset.'), value=data.odm_source, error=errors.odm_source, classes=['control-full']) }}
- {% endblock %}
-
- {% block package_metadata_fields_odm_access_and_use_constraints %}
-   {{ form.markdown('odm_access_and_use_constraints', label=_('Access and Use Constraints'), id='field-odm_access_and_use_constraints', placeholder=_('A few sentences describing legal considerations for people who access the website and/or use its contents.'), value=data.odm_access_and_use_constraints, error=errors.odm_access_and_use_constraints, classes=['control-full']) }}
  {% endblock %}
 
  {% block package_metadata_fields_odm_metadata_reference_information %}

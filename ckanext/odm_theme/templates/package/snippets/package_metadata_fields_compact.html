@@ -8,7 +8,7 @@
   {% resource 'odm_theme/daterangepicker-module.js' %}
  {% resource 'odm_theme/multiselect-module.js' %}
 
- {% block package_metadata_odm_contact %}
+ {% block package_metadata_fields_odm_contact %}
    {{ form.markdown('odm_contact', is_required=false, label=_('Contact'), id='field-odm_contact', placeholder=_('Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset. This could be the author of a report, the contact information for the relevant department of an organization that produced a report, or the data analyst, mapper or researcher that produced a dataset or report.'), value=data.odm_contact, error=errors.odm_contact, classes=['control-full']) }}
  {% endblock %}
 

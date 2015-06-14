@@ -64,6 +64,8 @@ odc_fields = [
 ]
 
 metadata_fields = [
+  ('odm_copyright','Copyright',False),
+  ('odm_access_and_use_constraints','Access and Use Constraints',False),
   ('odm_language','Language',True),
   ('odm_date_created','Date Created',True),
   ('odm_date_uploaded','Date Uploaded',True),
@@ -76,12 +78,13 @@ metadata_fields = [
   ('odm_process','Process(es)',True),
   ('odm_source','Source(s)',True),
   ('odm_contact','Contact',False),
-  ('odm_access_and_use_constraints','Access and Use Constraints',False),
   ('odm_metadata_reference_information','Metadata Reference Information',False),
   ('odm_attributes','Attributes',False)
 ]
 
 metadata_fields_compact = [
+  ('odm_copyright','Copyright',False),
+  ('odm_access_and_use_constraints','Access and Use Constraints',False),
   ('odm_contact','Contact',False),
   ('odm_language','Language',True),
   ('odm_date_uploaded','Date Uploaded',True),
