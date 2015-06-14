@@ -795,6 +795,7 @@ class ODMImporter():
   def _set_mandatory_metadata_fields(self,params_dict):
 
     params_dict['license_title'] = 'License unspecified'
+    params_dict['license_id'] = 'unspecified'
     params_dict['version'] = '1.0'
     params_dict['odm_contact'] = 'Open Development Cambodia http://www.opendevelopmentcambodia.net'
     params_dict['maintainer'] = 'OD Mekong Importer'
