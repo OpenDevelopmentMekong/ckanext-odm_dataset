@@ -296,7 +296,7 @@ class ODMImporter():
 
       dataset_metadata = self._set_extras_from_record_to_ckan_dataset_dict(dataset_metadata,record,config)
       dataset_metadata = self._set_mandatory_metadata_fields(dataset_metadata)
-        
+
       dataset_metadata['owner_org'] = orga['id']
       dataset_metadata['groups'] = config.NGL_MAP['groups']
 
@@ -794,7 +794,7 @@ class ODMImporter():
 
   def _set_mandatory_metadata_fields(self,params_dict):
 
-    params_dict['license_title'] = 'Creative Commons Attribution 4.0 (CC-BY-4.0)'
+    params_dict['license_title'] = 'License unspecified'
     params_dict['version'] = '1.0'
     params_dict['odm_contact'] = 'Open Development Cambodia http://www.opendevelopmentcambodia.net'
     params_dict['maintainer'] = 'OD Mekong Importer'
