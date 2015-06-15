@@ -34,7 +34,10 @@ def create_default_issue(pkg_info):
 
 def last_dataset():
   ''' Returns the last dataset info stored in session'''
-  return odm_theme_helper.session['last_dataset']
+  if 'last_dataset' in odm_theme_helper.session:
+    return odm_theme_helper.session['last_dataset']
+
+  return None
 
 def localize_resource_url(url):
   '''Converts a absolute URL in a relative, chopping out the domain'''
