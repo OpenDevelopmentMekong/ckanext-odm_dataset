@@ -222,6 +222,9 @@ class RealCkanApi (ICkanApi):
     self.ckan_auth = config.CKAN_APIKEY
     self.api = ckanapi.RemoteCKAN(self.ckan_url,apikey=self.ckan_auth)
 
+    #if config.DEBUG:
+      #requests.packages.urllib3.disable_warnings()
+
     return
 
   def search_packages(self,params):

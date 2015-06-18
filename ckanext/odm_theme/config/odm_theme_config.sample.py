@@ -24,7 +24,7 @@ NGL_URL='URL'
 NGL_MAP={'ontology':'*','organization':'odm-library','groups':[],'package_type':'library_record'}
 
 # ODC
-ODC_MAP=[{'ontology':'ODC/laws','organization':'cambodia-organization','groups':[{'name':'laws-group'}],'field_prefixes':[{'field':'file_name_kh','prefix':'http://cambodia.opendevelopmentmekong.net/wp-content/blogs.dir/2/download/law/'},{'field':'file_name_en','prefix':'http://cambodia.opendevelopmentmekong.net/wp-content/blogs.dir/2/download/law/'}],'package_type':'dataset'}]
+ODC_MAP=[{'ontology':'ODC/laws','organization':'cambodia-organization','groups':[{'name':'laws-group'}],'field_prefixes':[{'field':'file_name_kh','prefix':'https://cambodia.opendevelopmentmekong.net/wp-content/blogs.dir/2/download/law/'},{'field':'file_name_en','prefix':'https://cambodia.opendevelopmentmekong.net/wp-content/blogs.dir/2/download/law/'}],'package_type':'dataset'}]
 
 # Insert initial data
 ODM_ADMINS_PASS='odmadmin'
