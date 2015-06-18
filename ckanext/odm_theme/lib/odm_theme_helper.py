@@ -2,23 +2,23 @@
 # -*- coding: utf-8 -*-
 
 top_topics = [
-  ('Agriculture & fishing'),
+  ('Agriculture and fishing'),
   ('Aid and development'),
-  ('Disasters and emergency'),
+  ('Disasters and emergency response'),
   ('Economy and commerce'),
   ('Energy'),
   ('Environment and natural resources'),
   ('Extractive industries'),
   ('Government'),
-  ('Industry'),
+  ('Industries'),
   ('Infrastructure'),
   ('Labor'),
   ('Land'),
-  ('Law & judiciary'),
+  ('Law and judiciary'),
   ('Population and censuses'),
-  ('Science and technology'),
+  ('Social development'),
   ('Urban administration and development'),
-  ('Social development')
+  ('Science and technology')
 ]
 
 countries = [
