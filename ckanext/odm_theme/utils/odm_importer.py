@@ -314,9 +314,13 @@ class ODMImporter():
 
       except (ckanapi.SearchError,ckanapi.NotFound) as e:
 
-        created_dataset = ckanapi_utils.create_package(dataset_metadata)
-        dataset_metadata['id'] = created_dataset['id']
-        print("Dataset created ",created_dataset['id'],created_dataset['title'])
+        try:
+          created_dataset = ckanapi_utils.create_package(dataset_metadata)
+          dataset_metadata['id'] = created_dataset['id']
+          print("Dataset created ",created_dataset['id'],created_dataset['title'])
+
+        except (ckan.lib.search.common.SearchIndexError) as e:
+          continue
 
       try:
 
