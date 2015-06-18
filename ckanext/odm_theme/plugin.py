@@ -251,7 +251,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.IDatasetForm)
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
-  plugins.implements(plugins.IRoutes, inherit=True)
+  plugins.implements(plugins.IRoutes)
   plugins.implements(plugins.IFacets)
   plugins.implements(plugins.IPackageController, inherit=True)
 
@@ -306,6 +306,15 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   # IRoutes
 
   def before_map(self, m):
+
+    m.connect('dataset_read', '/dataset/{id}',controller='package', action='read', ckan_icon='table')
+
+    return m
+
+  def after_map(self, m):
+
+    m.connect('dataset_read', '/dataset/{id}',controller='package', action='read', ckan_icon='table')
+
     return m
 
   # IConfigurer
