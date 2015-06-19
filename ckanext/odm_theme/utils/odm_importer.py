@@ -580,11 +580,18 @@ class ODMImporter():
       # init list
       term_lists[locale] = []
 
-      # Obtain the translation_dict from github
-      translation_dict = self.github_utils.get_taxonomy_for_locale(locale)
+      try:
 
-      # Call utility function
-      self._inspect_json_dict_fill_list(translation_dict,term_lists[locale])
+        # Obtain the translation_dict from github
+        translation_dict = self.github_utils.get_taxonomy_for_locale(locale)
+
+        # Call utility function
+        self._inspect_json_dict_fill_list(translation_dict,term_lists[locale])
+
+      except (urllib2.HTTPError) as e:
+
+        if config.DEBUG:
+          print("File for locale " + locale +" not found. Check your config and make sure that the file is available on the odm-localization repository.")
 
     # Now loop through the term_lists
     for locale_origin in locales:
@@ -600,22 +607,28 @@ class ODMImporter():
         # For each term, we add a term translation of each of the other languages
         for locale_destination in other_locales:
 
-          orig_term = term_lists[locale_origin][term_position]
-          dest_term = term_lists[locale_destination][term_position]
+          try:
 
-          if orig_term != dest_term:
+            orig_term = term_lists[locale_origin][term_position]
+            dest_term = term_lists[locale_destination][term_position]
 
-            # Add term translation locale_origin -> locale_destination
-            params1 = {'term':self._prepare_string_for_ckan_tag_name(orig_term),'term_translation':dest_term,'lang_code':locale_destination}
-            terms_to_import.append(dict(params1))
+            if orig_term != dest_term:
 
-            print('Translating ' + params1['term'].encode("utf-8") + ' ('+ locale_origin + ') as ' + params1['term_translation'].encode("utf-8") + ' (' +  locale_destination + ')')
+              # Add term translation locale_origin -> locale_destination
+              params1 = {'term':self._prepare_string_for_ckan_tag_name(orig_term),'term_translation':dest_term,'lang_code':locale_destination}
+              terms_to_import.append(dict(params1))
 
-            # Add term translation locale_origin -> locale_destination
-            params2 = {'term':self._prepare_string_for_ckan_tag_name(dest_term),'term_translation':orig_term,'lang_code':locale_origin}
-            terms_to_import.append(dict(params2))
+              print('Translating ' + params1['term'].encode("utf-8") + ' ('+ locale_origin + ') as ' + params1['term_translation'].encode("utf-8") + ' (' +  locale_destination + ')')
 
-            print('Translating ' + params2['term'].encode("utf-8") + ' ('+ locale_destination + ') as ' + params2['term_translation'].encode("utf-8") + ' (' +  locale_origin + ')')
+              # Add term translation locale_origin -> locale_destination
+              params2 = {'term':self._prepare_string_for_ckan_tag_name(dest_term),'term_translation':orig_term,'lang_code':locale_origin}
+              terms_to_import.append(dict(params2))
+
+              print('Translating ' + params2['term'].encode("utf-8") + ' ('+ locale_destination + ') as ' + params2['term_translation'].encode("utf-8") + ' (' +  locale_origin + ')')
+
+          except IndexError:
+
+            break
 
         term_position = term_position + 1
 
