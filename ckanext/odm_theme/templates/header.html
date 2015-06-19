@@ -99,9 +99,9 @@
      {% block header_site_navigation_tabs %}
       {% if c.userobj %}
        {{ h.build_nav_main(
-        ('search', _('Datasets')),
+        ('search', _('All records')),
         ('organizations_index', _('Organizations')),
-        ('group_index', _('Groups'))
+        ('group_index', _('Record types'))
         ) }}
       {% else %}
        {{ h.build_nav_main(
@@ -153,10 +153,11 @@
          <div class="span3 col2 header-selection">
           <h4>{{ _('Browse by language') }}</h4>
           <ul>
+           <li><a href="/dataset?odm_language=en"><img src="/langs/en.png"/></a></li>
            <li><a href="/dataset?odm_language=kh"><img src="/langs/cambodia.png"/></a></li>
-           <li><a href="/dataset?odm_language=lo"><img src="/langs/laos.png"/></a></li>
+           <!-- <li><a href="/dataset?odm_language=lo"><img src="/langs/laos.png"/></a></li>
            <li><a href="/dataset?odm_language=my"><img src="/langs/myanmar.png"/></a></li>
-           <li><a href="/dataset?odm_language=th"><img src="/langs/thailand.png"/></a></li>
+           <li><a href="/dataset?odm_language=th"><img src="/langs/thailand.png"/></a></li> -->
            <li><a href="/dataset?odm_language=vi"><img src="/langs/vietnam.png"/></a></li>
           </ul>
          </div>
