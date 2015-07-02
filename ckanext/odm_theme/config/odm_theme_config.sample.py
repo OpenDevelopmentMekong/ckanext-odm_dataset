@@ -37,7 +37,7 @@ CHANGE_TYPE_MAP={'type':'library_record','organization':'odm-library','state':'a
 
 # Tag vocabularies
 TAXONOMY_TAG_VOCAB='taxonomy'
-SUBJECT_LIST_TAG_VOCAB='subject-list'
+LANGUAGES_TAG_VOCAB='odm_language'
 SUPPORTED_LANGS=['en','vi','th', 'km']
 
 # Importer infos
