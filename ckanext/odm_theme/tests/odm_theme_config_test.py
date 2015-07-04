@@ -24,6 +24,7 @@ DELETE_MAP={'organization':'odm-library','group':'laws-group','state':'active','
 
 # Tag vocabularies
 TAXONOMY_TAG_VOCAB='taxonomy'
+SUBJECT_LIST_TAG_VOCAB='subject-list'
 SUPPORTED_LANGS=['en','vi','th', 'km']
 
 # Importer infos

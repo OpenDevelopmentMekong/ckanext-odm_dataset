@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Import language term translations
-# This script imports multi-lingual taxonomy from https://github.com/OpenDevelopmentMekong/odm-localization
-# and stores term translations.
+# Import Subject tag dictionaries
+# Pulls the subject list from https://github.com/OpenDevelopmentMekong/odm-localization and stores
+# as tag dictionaries.
 
 # NOTE: This script has to be run within a virtual environment!!!
 # Do not forget to set the correct API Key while initialising RealCkanApi
@@ -12,6 +12,7 @@
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "../utils"))
+import geoserver_utils
 import ckanapi_utils
 import github_utils
 from odm_importer import ODMImporter
@@ -26,4 +27,4 @@ githubutils = github_utils.RealGithubApi()
 ckanapiutils = ckanapi_utils.RealCkanApi(config)
 
 importer = ODMImporter()
-importer.import_languages_term_translations(githubutils,ckanapiutils,config)
+importer.import_subject_list_tag_dictionaries(githubutils,ckanapiutils,config)
