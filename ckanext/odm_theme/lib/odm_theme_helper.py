@@ -66,7 +66,6 @@ odc_fields = [
 metadata_fields = [
   ('odm_copyright','Copyright',False),
   ('odm_access_and_use_constraints','Access and Use Constraints',False),
-  ('odm_language','Language',True),
   ('odm_date_created','Date Created',True),
   ('odm_date_uploaded','Date Uploaded',True),
   ('odm_date_modified','Date Modified',False),
@@ -86,7 +85,6 @@ metadata_fields_compact = [
   ('odm_copyright','Copyright',False),
   ('odm_access_and_use_constraints','Access and Use Constraints',False),
   ('odm_contact','Contact',False),
-  ('odm_language','Language',True),
   ('odm_date_uploaded','Date Uploaded',True),
   ('odm_spatial_range','Geographic area (Spatial Range)',True)
 ]
@@ -109,7 +107,7 @@ library_fields = [
 ]
 
 tag_dictionaries = [
-  ('taxonomy','subject-list')
+  ('taxonomy','odm_language')
 ]
 
 session = {}

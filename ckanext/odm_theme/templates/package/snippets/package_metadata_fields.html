@@ -24,9 +24,25 @@
    {{ form.markdown('odm_contact', is_required=false, label=_('Contact'), id='field-odm_contact', placeholder=_('Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset. This could be the author of a report, the contact information for the relevant department of an organization that produced a report, or the data analyst, mapper or researcher that produced a dataset or report.'), value=data.odm_contact, error=errors.odm_contact, classes=['control-full']) }}
  {% endblock %}
 
- {% block package_metadata_fields_odm_language %}
-  {{ form.input('odm_language', is_required=true, label=_('Language'), id='field-odm_language', placeholder=_('Language(s) of the dataset, including resources within dataset'), value=data.odm_language, error=errors.odm_language, classes=['control-full'], attrs={'data-module': 'multiselect-module-languages', 'data-module-suggestions': h.odm_theme_jsonify_languages()}) }}
- {% endblock %}
+	{% block package_basic_fields_odm_language %}
+	{% set languages = h.odm_theme_tag_dictionaries('odm_language') %}
+	{% if languages|length > 0 %}
+	<div class="control-group">
+	  <label class="control-label" for="field-odm_language">{{ _("Language") }}</label>
+	  <div class="controls control-full">
+	    <select multiple id="field-odm_language" name="odm_language" data-module="autocomplete" placeholder="{{ _('Language(s) of the dataset, including resources within dataset') }}">
+	      {% for lang in languages %}
+        {% if lang not in data.tag_string %}
+          <option value="{{ lang }}">{{ h.odm_theme_get_localized_tag(lang) }}</option>
+	      {% else %}
+          <option selected="selected" value="{{ lang }}">{{ h.odm_theme_get_localized_tag(lang) }}</option>
+	      {% endif %}
+	      {% endfor %}
+	    </select>
+	  </div>
+	</div>
+	{% endif %}
+	{% endblock%}
 
  {% block package_metadata_fields_odm_date_created %}
   {{ form.input_readonly('odm_date_created', is_required=true, label=_('Date created'), id='field-odm_date_created', placeholder=_('Date the dataset was first published by its creator.'), value=data.odm_date_created, error=errors.odm_date_created, classes=['control-full'], attrs={'data-module': 'datepicker-module'}) }}

@@ -78,14 +78,7 @@
   <hgroup class="{{ g.header_class }}">
 
    {% block header_logo %}
-   {% if g.site_logo %}
-   <a class="logo" href="{{ h.url('home') }}"><img width="300px" src="/odm_logo.png" alt="{{ g.site_title }} Logo" title="{{ g.site_title }} Logo" /></a>
-   {% else %}
-   <h1
-    <a href="{{ h.url('home') }}">{{ g.site_title }}</a>
-   </h1>
-   {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
-   {% endif %}
+   <a class="logo" href="{{ h.url('home') }}"><img width="380px" src="/odm_logo_header.png" alt="{{ g.site_title }} Logo" title="{{ g.site_title }} Logo" /></a>
    {% endblock %}
 
   </hgroup>
