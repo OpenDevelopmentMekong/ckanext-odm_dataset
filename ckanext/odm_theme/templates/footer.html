@@ -12,6 +12,11 @@
        {% block footer_nav %}
        <div class="span3 col1 footer-nav">
         <a href="http://opendevelopmentmekong.net/about-us/">{{ _('About us') }}</a>
+        <br/>
+        <br/>
+        {% block header_logo %}
+          <a class="logo" href="http://ewmi.org/"><img width="100%" src="/odm_logo_footer.png" alt="{{ g.site_title }} Logo" title="{{ g.site_title }} Logo" /></a>      
+        {% endblock %}
        </div>
        <div class="span3 col2 footer-nav">
         <a href="http://opendevelopmentmekong.net/contact/">{{ _('Contact') }}</a>
