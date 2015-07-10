@@ -259,33 +259,3 @@ class TestOdmThemePlugin(object):
 
     importer = ODMImporter()
     assert importer.import_taxonomy_term_translations(githubutils,ckanapiutils,config)
-
-  def test_import_subject_list_tag_dictionaries(self):
-    '''test_import_subject_list_tag_dictionaries
-
-    '''
-
-    self.log.debug('Running test: test_import_subject_list_tag_dictionaries')
-
-    self._initContext()
-    githubutils = github_utils.TestGithubApi()
-    ckanapiutils = ckanapi_utils.TestCkanApi(self.app,self.context)
-    self._createOrganizationsAndGroups(ckanapiutils)
-
-    importer = ODMImporter()
-    assert importer.import_subject_list_tag_dictionaries(githubutils,ckanapiutils,config)
-
-  def test_import_subject_list_term_translations(self):
-    '''test_import_subject_list_term_translations
-
-    '''
-
-    self.log.debug('Running test: test_import_subject_list_term_translations')
-
-    self._initContext()
-    githubutils = github_utils.TestGithubApi()
-    ckanapiutils = ckanapi_utils.TestCkanApi(self.app,self.context)
-    self._createOrganizationsAndGroups(ckanapiutils)
-
-    importer = ODMImporter()
-    assert importer.import_subject_list_term_translations(githubutils,ckanapiutils,config)

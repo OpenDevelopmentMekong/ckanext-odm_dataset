@@ -641,75 +641,6 @@ class ODMImporter():
 
     return True
 
-  # Import subject list translations as term_translations
-  # This function pulls the translation of the taxonomy hosted on Github and
-  # creates term_translation using the term_translation_update method of CKAN's Action api
-  def import_subject_list_term_translations(self,github_utils,ckanapi_utils,config):
-
-    self.ckanapi_utils = ckanapi_utils
-    self.github_utils = github_utils
-
-    added_term_translations = []
-
-    # Obtain JSON File from Github containing the different translations
-    locales = config.SUPPORTED_LANGS
-    term_lists = {}
-    terms_to_import = []
-
-    # Generate term lists for each one of the supported locales
-    for locale in locales:
-
-      # init list
-      term_lists[locale] = []
-
-      # Obtain the translation_dict from github
-      translation_dict = self.github_utils.get_subject_list_for_locale(locale)
-
-      # Call utility function
-      self._inspect_json_dict_fill_list(translation_dict,term_lists[locale])
-
-    # Now loop through the term_lists
-    for locale_origin in locales:
-
-      # Set counter
-      term_position = 0
-      other_locales = list(locales)
-      other_locales.remove(locale_origin)
-
-      # Now loop through the terms of the particular locale
-      for term in term_lists[locale_origin]:
-
-        # For each term, we add a term translation of each of the other languages
-        for locale_destination in other_locales:
-
-          orig_term = term_lists[locale_origin][term_position]
-          dest_term = term_lists[locale_destination][term_position]
-
-          if orig_term != dest_term:
-
-            # Add term translation locale_origin -> locale_destination
-            params1 = {'term':self._prepare_string_for_ckan_tag_name(orig_term),'term_translation':dest_term,'lang_code':locale_destination}
-            terms_to_import.append(dict(params1))
-
-            print('Translating ' + params1['term'].encode("utf-8") + ' ('+ locale_origin + ') as ' + params1['term_translation'].encode("utf-8") + ' (' +  locale_destination + ')')
-
-            # Add term translation locale_origin -> locale_destination
-            params2 = {'term':self._prepare_string_for_ckan_tag_name(dest_term),'term_translation':orig_term,'lang_code':locale_origin}
-            terms_to_import.append(dict(params2))
-
-            print('Translating ' + params2['term'].encode("utf-8") + ' ('+ locale_destination + ') as ' + params2['term_translation'].encode("utf-8") + ' (' +  locale_origin + ')')
-
-        term_position = term_position + 1
-
-    count = 0
-    if len(terms_to_import) > 0:
-      result = self.ckanapi_utils.add_term_translation_many(dict({'data':terms_to_import}))
-      count = result["success"]
-
-    print("COMPLETED import_subject_list_term_translations " + str(count) + " terms imported successfully.")
-
-    return True
-
   # Import taxonomy into tag dictionaries
   # This function pulls the json file hosted on github which represents ODM's taxonomy
   # and creates tag dictionaries in the CKAN instance
@@ -740,39 +671,6 @@ class ODMImporter():
 
     self.ckanapi_utils.update_tag_vocabulary(taxonomy_tag_vocabulary)
     print("COMPLETED import_taxonomy_tag_dictionaries " + str(len(taxonomy_tag_vocabulary['tags'])) + ' taxonomy tags imported in taxonomy vocabulary')
-
-    return True
-
-  # Import subjects into tag dictionaries
-  # This function pulls the json file hosted on github which represents ODM's taxonomy
-  # and creates tag dictionaries in the CKAN instance
-  def import_subject_list_tag_dictionaries(self,github_utils,ckanapi_utils,config):
-
-    self.ckanapi_utils = ckanapi_utils
-    self.github_utils = github_utils
-
-    # Obtain dictionary with taxonomy
-    subject_list_dict = self.github_utils.get_subject_list_for_locale('en')
-
-    try:
-
-      # Create tag_vocabulary for taxonomy , it can happen that it has already been created
-      subject_list_tag_vocabulary = self.ckanapi_utils.show_tag_vocabulary({'id': config.SUBJECT_LIST_TAG_VOCAB})
-
-      # if found, reset tags in vocabulary
-      subject_list_tag_vocabulary['tags'] = list()
-
-    except ckanapi.NotFound:
-
-      # Create tag_vocabulary for taxonomy , it can happen that it has already been created
-      params_create = dict({'name':config.SUBJECT_LIST_TAG_VOCAB,'tags': list()})
-      subject_list_tag_vocabulary = self.ckanapi_utils.create_tag_vocabulary(params_create)
-
-    # Loop through the json structure recursively and add tags to the vocabulary
-    self._inspect_json_create_tags(subject_list_dict,subject_list_tag_vocabulary)
-
-    self.ckanapi_utils.update_tag_vocabulary(subject_list_tag_vocabulary)
-    print("COMPLETED import_taxonomy_tag_dictionaries " + str(len(subject_list_tag_vocabulary['tags'])) + ' taxonomy tags imported in taxonomy vocabulary')
 
     return True
 
