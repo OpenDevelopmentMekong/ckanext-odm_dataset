@@ -7,6 +7,10 @@
 # Do not forget to set the correct API Key while initialising RealCkanApi
 # . /usr/lib/ckan/default/bin/activate
 
+# NOTE!!!! Changing the dataset type programatically is currently avoided,
+# tweaking the code indicated on https://github.com/ckan/ckan/commit/7224d4c76e2f74af52ae9af6798cf3ed1c6034c9
+# allows to run this function.
+
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../utils'))
