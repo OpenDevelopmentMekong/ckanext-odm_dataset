@@ -13,14 +13,10 @@ import sys
 import os
 import traceback
 
-
 # Interface definition
 class IGithubApi:
 
   def get_taxonomy_for_locale(self,locale):
-    raise NotImplementedError
-
-  def get_subject_list_for_locale(self,locale):
     raise NotImplementedError
 
   def get_library_records(self):
@@ -42,12 +38,6 @@ class TestGithubApi (IGithubApi):
   def get_taxonomy_for_locale(self,locale):
 
     pathToFile = os.path.join(os.path.dirname(__file__), "test/taxonomy.json")
-    with open(pathToFile, 'rb') as f:
-      return json.loads(f.read())
-
-  def get_subject_list_for_locale(self,locale):
-
-    pathToFile = os.path.join(os.path.dirname(__file__), "test/subject_list.json")
     with open(pathToFile, 'rb') as f:
       return json.loads(f.read())
 
@@ -102,35 +92,6 @@ class RealGithubApi (IGithubApi):
     elif locale is 'th':
 
       request = urllib2.Request('https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-localization/master/taxonomy/taxonomy_th.json')
-
-    response = urllib2.urlopen(request)
-    return json.loads(response.read())
-
-  def get_subject_list_for_locale(self,locale):
-
-    if locale is 'en':
-
-      request = urllib2.Request('https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-localization/master/subject-list/subject-list_en.json')
-
-    elif locale is 'km':
-
-      request = urllib2.Request('https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-localization/master/subject-list/subject-list_km.json')
-
-    elif locale is 'la':
-
-      request = urllib2.Request('https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-localization/master/subject-list/subject-list_la.json')
-
-    elif locale is 'vi':
-
-      request = urllib2.Request('https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-localization/master/subject-list/subject-list_vi.json')
-
-    elif locale is 'my':
-
-      request = urllib2.Request('https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-localization/master/subject-list/subject-list_my.json')
-
-    elif locale is 'th':
-
-      request = urllib2.Request('https://raw.githubusercontent.com/OpenDevelopmentMekong/odm-localization/master/subject-list/subject-list_th.json')
 
     response = urllib2.urlopen(request)
     return json.loads(response.read())
