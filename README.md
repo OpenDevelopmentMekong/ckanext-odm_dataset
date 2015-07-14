@@ -24,14 +24,7 @@ In order to install this CKAN Extension:
 
 # Testing
 
-  In order to test it:
-
-  * Make sure that test.ini is properly configured, specially noting the values of:
-    * **solr_url**
-    * **who.config_file**
-
-  * Run tests:
-    <code>nosetests --ckan --with-pylons=test.ini ckanext/odm_theme/tests/</code>
+  TBD
 
 # Copyright and License
 
