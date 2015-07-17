@@ -23,8 +23,8 @@ from ckan.lib.base import render
 
 log = logging.getLogger(__name__)
 
-def create_default_issue(pkg_info):
-  ''' Uses CKAN API to add a default Issue as part of the vetting workflow'''
+def create_default_issue_library_record(pkg_info):
+  ''' Uses CKAN API to add a default Issue as part of the vetting workflow for library records'''
   try:
 
     extra_vars = {
@@ -58,9 +58,55 @@ def create_default_issue(pkg_info):
         't27': toolkit._("Open Development Team")
     }
 
-    issue_message = render('messages/default_issue.txt',extra_vars=extra_vars,loader_class=NewTextTemplate)
+    issue_message = render('messages/default_issue_library_record.txt',extra_vars=extra_vars,loader_class=NewTextTemplate)
 
-    params = {'title':'Vetting process: Please read this','description':issue_message,'dataset_id':pkg_info['id']}
+    params = {'title':'User Library record Upload Checklist','description':issue_message,'dataset_id':pkg_info['id']}
+    toolkit.get_action('issue_create')(data_dict=params)
+
+  except KeyError:
+
+    log.error("Action 'issue_create' not found. Please make sure that ckanext-issues plugin is installed.")
+
+def create_default_issue_dataset(pkg_info):
+  ''' Uses CKAN API to add a default Issue as part of the vetting workflow for datasets'''
+  try:
+
+    extra_vars = {
+        't0': toolkit._("Thank you for uploading the dataset. You should have received a confirmation email from OD Mekong Datahub. This dataset is still unpublished. Your item can only be published after you review this form and after our administrators approve your entry."),
+        't1': toolkit._("It is important that you have entered the correct information in your dataset form. We also ask that all contributors complete as many fields as possible."),
+        't2': toolkit._("Please take this opportunity to review your dataset record. If you would like to make any changes please select your dataset record and then click on the Manage button on the top right corner."),
+        't3': toolkit._("Please CHECK YOUR SPELLING against the original item to ensure the item is recorded correctly."),
+        't4': toolkit._("Please review your dataset record form again for the mandatory fields:"),
+        't5': toolkit._("Title (Please use Associated Press style title where the first letter is capitalized and the rest of the title is not, i.e. 'Study of Cambodian forests and lakes from 1992 to 1994')"),
+        't6': toolkit._("Language"),
+        't7': toolkit._("Version"),
+        't8': toolkit._("Geographical area"),
+        't9': toolkit._("Source"),
+        't10': toolkit._("Processes"),
+        't11': toolkit._("Date uploaded"),
+        't12': toolkit._("Date created"),
+        't13': toolkit._("Please review again the following information, vital to other users who may search for your record:"),
+        't14': toolkit._("Description(Make sure this is a concise description of the record in your own words, please do not just 'copy' and 'paste' an abstract by the original author)"),
+        't15': toolkit._("Topics"),
+        't16': toolkit._("License (Make sure you indicated the correct license. Additional information on creative commons is found here http://opendefinition.org/licenses/. If there is no license, please indicate 'license unspecified')"),
+        't17': toolkit._("Copyright"),
+        't18': toolkit._("Access and Use Constraints"),
+        't19': toolkit._("Contact"),
+        't20': toolkit._("Date modified"),
+        't21': toolkit._("Temporal Range"),
+        't22': toolkit._("Accuracy"),
+        't23': toolkit._("Logical Consistency"),
+        't24': toolkit._("Completeness"),
+        't25': toolkit._("Metadata Reference Information"),
+        't26': toolkit._("Attributes"),
+        't27': toolkit._("Our administrators need to review the dataset record as well. They will close fixed issues or open new issues if there are any other inconsistencies. Once all issues have been resolved, the item will be published."),
+        't28': toolkit._("Thank you for sharing,"),
+        't29': toolkit._("Open Development Team")
+    }
+
+    issue_message = render('messages/default_issue_dataset.txt',extra_vars=extra_vars,loader_class=NewTextTemplate)
+
+    params = {'title':'User Dataset Upload Checklist','description':issue_message,'dataset_id':pkg_info['id']}
     toolkit.get_action('issue_create')(data_dict=params)
 
   except KeyError:
@@ -473,7 +519,10 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     # Create default Issue
     review_system = h.asbool(config.get("ckanext.issues.review_system", False))
     if review_system:
-      create_default_issue(pkg_dict)
+      if pkg_dict['type'] == 'library_record':
+        create_default_issue_library_record(pkg_dict)
+      else:
+        create_default_issue_dataset(pkg_dict)
 
   def after_update(self, context, pkg_dict):
     log.debug('after_update: %s', pkg_dict['name'])
