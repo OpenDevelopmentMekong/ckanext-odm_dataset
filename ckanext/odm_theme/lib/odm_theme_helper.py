@@ -108,8 +108,6 @@ library_fields = [
   ('marc21_710','Co-Author (Corporate)',False)
 ]
 
-tag_dictionaries = [
-  ('taxonomy')
-]
+taxonomy_dictionary = 'taxonomy'
 
 session = {}
