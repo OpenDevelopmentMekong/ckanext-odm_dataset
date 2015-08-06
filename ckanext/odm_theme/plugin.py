@@ -143,25 +143,10 @@ def get_tag_dictionaries(vocab_id):
 
     return []
 
-def get_tag_dictionaries_json(vocab_id):
-  '''Returns the tag dictionary for the specified vocab_id, in json format and adding indexes'''
+def get_taxonomy_dictionary():
+  '''Returns the tag dictionary for the taxonomy'''
 
-  return jsonify_list(get_tag_dictionaries(vocab_id))
-
-def jsonify_list(input_list):
-  '''Returns the tag dictionary for the specified vocab_id, in json format and adding indexes'''
-
-  log.debug('jsonify_list: %s', input_list)
-
-  items = []
-
-  if not isinstance(input_list, list):
-    return items
-
-  for item in input_list:
-    items.append({'id':item,'text':get_localized_tag(item)})
-
-  return json.dumps(items)
+  return get_tag_dictionaries(odm_theme_helper.taxonomy_dictionary)
 
 def jsonify_countries():
   '''Returns the tag dictionary for the countries'''
@@ -348,7 +333,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
       facets_dict = {
                 'license_id': toolkit._('License'),
-                'vocab_taxonomy': toolkit._('Tags'),
+                'vocab_taxonomy': toolkit._('Topics'),
                 'organization': toolkit._('Organizations'),
                 'groups': toolkit._('Groups'),
                 'res_format': toolkit._('Formats'),
@@ -362,7 +347,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
       group_facets = {
                 'license_id': toolkit._('License'),
-                'vocab_taxonomy': toolkit._('Tags'),
+                'vocab_taxonomy': toolkit._('Topics'),
                 'organization': toolkit._('Organizations'),
                 'res_format': toolkit._('Formats'),
                 'odm_language': toolkit._('Language'),
@@ -375,7 +360,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
       organization_facets = {
                 'license_id': toolkit._('License'),
-                'vocab_taxonomy': toolkit._('Tags'),
+                'vocab_taxonomy': toolkit._('Topics'),
                 'groups': toolkit._('Groups'),
                 'res_format': toolkit._('Formats'),
                 'odm_language': toolkit._('Language'),
@@ -424,7 +409,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_metadata_fields_combined': metadata_fields_combined,
       'odm_theme_get_orga_or_group': get_orga_or_group,
       'odm_theme_tag_dictionaries': get_tag_dictionaries,
-      'odm_theme_jsonify_list': jsonify_list,
+      'odm_theme_taxonomy_dictionary': get_taxonomy_dictionary,
       'odm_theme_jsonify_countries': jsonify_countries,
       'odm_theme_jsonify_languages': jsonify_languages
     }
@@ -451,8 +436,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({ckan_field[0]: validators_and_converters})
 
-    for tag_dictionary in odm_theme_helper.tag_dictionaries:
-      schema.update({tag_dictionary[0]: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(tag_dictionary[0])]})
+    schema.update({odm_theme_helper.taxonomy_dictionary: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(odm_theme_helper.taxonomy_dictionary)]})
 
     return schema
 
@@ -476,8 +460,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         validators_and_converters.append(validate_not_empty)
       schema.update({ckan_field[0]: validators_and_converters})
 
-    for tag_dictionary in odm_theme_helper.tag_dictionaries:
-      schema.update({tag_dictionary[0]: [toolkit.get_converter('convert_from_tags')(tag_dictionary[0]),toolkit.get_validator('ignore_missing')]})
+    schema.update({odm_theme_helper.taxonomy_dictionary: [toolkit.get_converter('convert_from_tags')(odm_theme_helper.taxonomy_dictionary),toolkit.get_validator('ignore_missing')]})
 
     return schema
 
