@@ -333,7 +333,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
       facets_dict = {
                 'license_id': toolkit._('License'),
-                'vocab_taxonomy': toolkit._('Topics'),
+                'tags': toolkit._('Topics'),
                 'organization': toolkit._('Organizations'),
                 'groups': toolkit._('Groups'),
                 'res_format': toolkit._('Formats'),
@@ -347,7 +347,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
       group_facets = {
                 'license_id': toolkit._('License'),
-                'vocab_taxonomy': toolkit._('Topics'),
+                'tags': toolkit._('Topics'),
                 'organization': toolkit._('Organizations'),
                 'res_format': toolkit._('Formats'),
                 'odm_language': toolkit._('Language'),
@@ -360,7 +360,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
       organization_facets = {
                 'license_id': toolkit._('License'),
-                'vocab_taxonomy': toolkit._('Topics'),
+                'tags': toolkit._('Topics'),
                 'groups': toolkit._('Groups'),
                 'res_format': toolkit._('Formats'),
                 'odm_language': toolkit._('Language'),
