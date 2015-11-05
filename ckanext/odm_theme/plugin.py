@@ -25,6 +25,7 @@ log = logging.getLogger(__name__)
 
 def create_default_issue_library_record(pkg_info):
   ''' Uses CKAN API to add a default Issue as part of the vetting workflow for library records'''
+  ''' !!!!!!!!!!!!!!!!CAUTION: DUMMY - CONTENT - THIS INFO NEEDS TO BE UPDATET BEFORE DEPLOYMENT!!!!!!!!!!!!!!!! '''
   try:
 
     extra_vars = {
