@@ -22,7 +22,13 @@
 			"field_name": "tag_string",
 			"label": "Topics",
 			"preset": "tag_string_autocomplete",
-			"form_placeholder": "eg. economy, mental health, government"
+			"form_placeholder": "eg. economy, mental health, government",
+			"choices": [{
+
+
+
+			}]
+
 		}, {
 			"field_name": "license_id",
 			"label": "License",
@@ -59,7 +65,7 @@
 			"validators": "ignore_missing unicode package_version_validator",
 			"form_placeholder": "1.0",
 			"required": "true"
-		},{
+		}, {
 			"field_name": "odm_contact",
 			"label": "Contact",
 			"form_snippet": "markdown.html",
@@ -70,7 +76,44 @@
 			"form_placeholder": "Language(s) of the dataset, including resources within dataset.",
 			"required": "true",
 			"preset": "multiple_select",
-			"preset": "tag_string_autocomplete"
+			"preset": "tag_string_autocomplete",
+			"choices": [{
+				"value": "Burmese",
+				"label": "Burmese"
+			}, {
+				"value": "English",
+				"label": "English"
+			}, {
+				"value": "Khmer",
+				"label": "Khmer"
+			}, {
+				"value": "Lao",
+				"label": "Lao"
+			}, {
+				"value": "Thai",
+				"label": "Thai"
+			}, {
+				"value": "Vietnamese",
+				"label": "Vietnamese"
+			}, {
+				"value": "Chinese",
+				"label": "Chinese"
+			}, {
+				"value": "French",
+				"label": "French"
+			}, {
+				"value": "German",
+				"label": "German"
+			}, {
+				"value": "Japanese",
+				"label": "Japanese"
+			}, {
+				"value": "Korean",
+				"label": "Korean"
+			}, {
+				"value": "Other",
+				"label": "Other"
+			}]
 		}, {
 			"field_name": "odm_date_created",
 			"label": "Date created",
@@ -99,10 +142,41 @@
 			"form_snippet": "date.html"
 		}, {
 			"field_name": "odm_spatial_range",
-			"label": "Geographic area (Spatioal Range)",
+			"label": "Geographic area (Spatial Range)",
 			"form_placeholder": "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).",
 			"required": "true",
-			"preset": "tag_string_autocomplete"
+			"preset": "tag_string_autocomplete",
+			"choices": [{
+				"value": "Global",
+				"label": "Global"
+			}, {
+				"value": "ASEAN",
+				"label": "ASEAN"
+			}, {
+				"value": "Greater Mekong Subregion (GMS)",
+				"label": "Greater Mekong Subregion (GMS)"
+			}, {
+				"value": "Lower Mekong Basin",
+				"label": "Lower Mekong Basin"
+			}, {
+				"value": "Lower Mekong countries",
+				"label": "Lower Mekong countries"
+			}, {
+				"value": "Cambodia",
+				"label": "Cambodia"
+			}, {
+				"value": "Vietnam",
+				"label": "Vietnam"
+			}, {
+				"value": "Laos",
+				"label": "Laos"
+			}, {
+				"value": "Thailand",
+				"label": "Thailand"
+			}, {
+				"value": "Myanmar",
+				"label": "Myanmar"
+			}]
 		}, {
 			"field_name": "odm_accuracy",
 			"label": "Accuracy",
