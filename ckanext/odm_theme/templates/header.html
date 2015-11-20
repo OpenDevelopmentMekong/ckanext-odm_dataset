@@ -94,12 +94,17 @@
        {{ h.build_nav_main(
         ('search', _('All records')),
         ('organizations_index', _('Organizations')),
-        ('group_index', _('Records by type'))
+        ('group_index', _('Records by type')),
+        ('odm_library_index',_('Library')),
+        ('odm_laws_index',_('Laws'))
+
         ) }}
       {% else %}
        {{ h.build_nav_main(
         ('search', _('Datasets')),
-        ('group_index', _('Groups'))
+        ('group_index', _('Groups')),
+        ('odm_library_index',_('Library')),
+        ('odm_laws_index',_('Laws'))
         ) }}
       {% endif %}
      {% endblock %}
