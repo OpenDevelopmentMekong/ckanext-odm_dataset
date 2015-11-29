@@ -24,7 +24,7 @@ from ckan.lib.base import render
 log = logging.getLogger(__name__)
 
 def create_default_issue_library_record(pkg_info):
-  ''' Uses CKAN API to add a default Issue as part of the vetting workflow for library records'''
+  ''' Uses test CKAN API to add a default Issue as part of the vetting workflow for library records'''
   try:
 
     extra_vars = {
