@@ -27,7 +27,7 @@ setup(
     namespace_packages=['ckanext', 'ckanext.odm_theme'],
     include_package_data=True,
     zip_safe=False,
-    data_files = gen_data_files("docs", "lib"),
+    data_files = gen_data_files("odm-taxonomy"),
     install_requires=[
         # -*- Extra requirements: -*-
     ],
