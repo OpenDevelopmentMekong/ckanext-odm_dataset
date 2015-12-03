@@ -3,6 +3,14 @@ import sys, os
 
 version = '1.2.0'
 
+def gen_data_files(*dirs):
+    results = []
+
+    for src_dir in dirs:
+        for root,dirs,files in os.walk(src_dir):
+            results.append((root, map(lambda f:root + "/" + f, files)))
+    return results
+
 setup(
     name='ckanext-odm_theme',
     version=version,
@@ -19,6 +27,7 @@ setup(
     namespace_packages=['ckanext', 'ckanext.odm_theme'],
     include_package_data=True,
     zip_safe=False,
+    data_files = gen_data_files("docs", "lib"),
     install_requires=[
         # -*- Extra requirements: -*-
     ],
