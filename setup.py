@@ -19,6 +19,7 @@ setup(
     package_data = {
         '': ['odm-taxonomy'],
     },
+    data_files=[('odm-taxonomy', ['taxonomy_*'])],
     namespace_packages=['ckanext', 'ckanext.odm_theme'],
     include_package_data=True,
     zip_safe=False,
