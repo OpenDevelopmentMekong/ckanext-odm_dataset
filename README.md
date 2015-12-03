@@ -9,10 +9,10 @@ A CKAN extension which provides with template files replacing CKAN's default UI 
 
 In order to install this CKAN Extension:
 
-  * clone the ckanext-odm_theme folder to the src/ folder in the target CKAN instance.
+  * clone the ckanext-odm_theme folder to the src/ folder in the target CKAN instance. NOTE: This repository contains some submodules, hence do not forget to include the --recursive flag for the git clone.
 
  ```
- git clone https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git
+ git clone --recursive https://github.com/OpenDevelopmentMekong/ckanext-odm_theme.git
  cd ckanext-odm_theme
  ```
 
