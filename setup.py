@@ -16,9 +16,8 @@ setup(
     url='http://www.lifeformapps.com',
     license='AGPL3',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-    package_dir = {'':'ckanext'},
     package_data = {
-        '': ['odm-taxonomy/*'],
+        '': ['odm-taxonomy'],
     },
     namespace_packages=['ckanext', 'ckanext.odm_theme'],
     include_package_data=True,
