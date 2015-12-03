@@ -19,7 +19,6 @@ setup(
     namespace_packages=['ckanext', 'ckanext.odm_theme'],
     include_package_data=True,
     zip_safe=False,
-    packages=['odm_theme'],
     package_dir={'odm_theme': 'ckanext/odm_theme'},
     package_data={'odm_theme': ['odm-taxonomy/*.json']},
     install_requires=[
