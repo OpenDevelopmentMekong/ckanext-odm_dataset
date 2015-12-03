@@ -15,7 +15,7 @@ setup(
     author_email='mail@lifeformapps.com',
     url='http://www.lifeformapps.com',
     license='AGPL3',
-    packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+    packages=find_packages(exclude=['ez_setup', 'examples', 'tests'],include=['odm-taxonomy']),
     namespace_packages=['ckanext', 'ckanext.odm_theme'],
     include_package_data=True,
     zip_safe=False,
