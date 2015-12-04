@@ -24,7 +24,7 @@ In order to install this CKAN Extension:
 
 # Testing
 
-  TBD
+  Run ```nosetest```
 
 # Copyright and License
 
