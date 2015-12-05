@@ -75,7 +75,6 @@
 			"label": "Language",
 			"form_placeholder": "Language(s) of the dataset, including resources within dataset.",
 			"required": "true",
-			"preset": "multiple_select",
 			"preset": "tag_string_autocomplete",
 			"choices": [{
 				"value": "Burmese",
