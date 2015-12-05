@@ -436,6 +436,12 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         validators_and_converters.insert(1,validate_not_empty)
       schema.update({ckan_field[0]: validators_and_converters})
 
+    for internal_field in odm_theme_helper.internal_fields:
+      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
+      if internal_field[2]:
+        validators_and_converters.insert(1,validate_not_empty)
+      schema.update({internal_field[0]: validators_and_converters})
+
     schema.update({odm_theme_helper.taxonomy_dictionary: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(odm_theme_helper.taxonomy_dictionary)]})
 
     return schema
@@ -459,6 +465,12 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       if ckan_field[2]:
         validators_and_converters.append(validate_not_empty)
       schema.update({ckan_field[0]: validators_and_converters})
+
+    for internal_field in odm_theme_helper.internal_fields:
+      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
+      if internal_field[2]:
+        validators_and_converters.append(validate_not_empty)
+      schema.update({internal_field[0]: validators_and_converters})
 
     schema.update({odm_theme_helper.taxonomy_dictionary: [toolkit.get_converter('convert_from_tags')(odm_theme_helper.taxonomy_dictionary),toolkit.get_validator('ignore_missing')]})
 

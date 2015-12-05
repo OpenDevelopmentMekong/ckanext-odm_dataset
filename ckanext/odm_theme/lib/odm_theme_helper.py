@@ -108,6 +108,10 @@ library_fields = [
   ('marc21_710','Co-Author (Corporate)',False)
 ]
 
+internal_fields = [
+  ('import_trace','Import trace',False)
+]
+
 taxonomy_dictionary = 'taxonomy'
 
 session = {}
