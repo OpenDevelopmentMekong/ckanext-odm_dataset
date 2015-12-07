@@ -23,7 +23,7 @@
     {
       "preset_name": "tag_string_autocomplete",
       "values": {
-        "validators": "scheming_required tag_string_convert",
+        "validators": "scheming_required convert_to_tags(taxonomy)",
         "form_attrs": {
           "data-module": "autocomplete",
           "data-module-tags": "",
@@ -126,8 +126,7 @@
       "preset_name": "odm_language",
       "values": {
         "validators": "scheming_required",
-        "form_snippet": "odm_language.html",
-        "validators": "convert_to_list_if_string"
+        "form_snippet": "odm_language.html"
       }
     },
     {
@@ -169,8 +168,7 @@
       "preset_name": "odm_spatial_range",
       "values": {
         "validators": "scheming_required",
-        "form_snippet": "odm_spatial_range.html",
-        "validators": "convert_to_list_if_string"
+        "form_snippet": "odm_spatial_range.html"
       }
     },
     {

@@ -170,15 +170,6 @@ def jsonify_languages():
 
   return json.dumps(items)
 
-def validate_not_empty(value,context):
-  '''Returns if a string is empty or not'''
-
-  log.debug('validate_not_empty: %s', value)
-
-  if not value or len(value) is None:
-    raise toolkit.Invalid('Missing value')
-  return value
-
 def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
@@ -311,7 +302,7 @@ def get_orga_or_group(orga_id,group_id):
 class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   '''OD Mekong theme plugin.'''
 
-  #plugins.implements(plugins.IDatasetForm)
+  plugins.implements(plugins.IDatasetForm)
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
@@ -324,33 +315,34 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     wsgi_app = SessionMiddleware(None, None)
     odm_theme_helper.session = wsgi_app.session
 
-  # IDatasetForm
-  # def _modify_package_schema_write(self, schema):
-  #
-  #   schema.update({'taxonomy': [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')('taxonomy')]})
-  #
-  #   return schema
-  #
-  # def _modify_package_schema_read(self, schema):
-  #
-  #   schema.update({'taxonomy': [toolkit.get_converter('convert_from_tags')('taxonomy'),toolkit.get_validator('ignore_missing')]})
-  #
-  #   return schema
-  #
-  # def create_package_schema(self):
-  #   schema = super(OdmThemePlugin, self).create_package_schema()
-  #   schema = self._modify_package_schema_write(schema)
-  #   return schema
-  #
-  # def update_package_schema(self):
-  #   schema = super(OdmThemePlugin, self).update_package_schema()
-  #   schema = self._modify_package_schema_write(schema)
-  #   return schema
-  #
-  # def show_package_schema(self):
-  #   schema = super(OdmThemePlugin, self).show_package_schema()
-  #   schema = self._modify_package_schema_read(schema)
-  #   return schema
+  #  IDatasetForm
+  
+  def _modify_package_schema_write(self, schema):
+
+    schema.update({'taxonomy': [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')('taxonomy')]})
+
+    return schema
+
+  def _modify_package_schema_read(self, schema):
+
+    schema.update({'taxonomy': [toolkit.get_converter('convert_from_tags')('taxonomy'),toolkit.get_validator('ignore_missing')]})
+
+    return schema
+
+  def create_package_schema(self):
+    schema = super(OdmThemePlugin, self).create_package_schema()
+    schema = self._modify_package_schema_write(schema)
+    return schema
+
+  def update_package_schema(self):
+    schema = super(OdmThemePlugin, self).update_package_schema()
+    schema = self._modify_package_schema_write(schema)
+    return schema
+
+  def show_package_schema(self):
+    schema = super(OdmThemePlugin, self).show_package_schema()
+    schema = self._modify_package_schema_read(schema)
+    return schema
 
   # IFacets
 

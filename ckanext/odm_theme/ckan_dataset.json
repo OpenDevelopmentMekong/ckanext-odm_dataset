@@ -55,20 +55,18 @@
 		}, {
 			"field_name": "odm_language",
 			"label": "Language",
+      "required": "true",
 			"form_placeholder": "Language(s) of the dataset, including resources within dataset.",
-			"required": "true",
 			"preset": "odm_language"
 		}, {
 			"field_name": "odm_date_created",
 			"label": "Date created",
 			"form_placeholder": "Date the dataset was first Published by its creator.",
-			"required": "true",
 			"preset": "odm_date_created"
 		}, {
 			"field_name": "odm_date_uploaded",
 			"label": "Date uploaded",
 			"form_placeholder": "Date a new version or update of the dataset was uploaded.",
-			"required": "true",
 			"preset": "odm_date_uploaded"
 		}, {
 			"field_name": "odm_date_modified",
@@ -84,7 +82,6 @@
 			"field_name": "odm_spatial_range",
 			"label": "Geographic area (Spatial Range)",
 			"form_placeholder": "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).",
-			"required": "true",
 			"preset": "odm_spatial_range"
 		}, {
 			"field_name": "odm_accuracy",
