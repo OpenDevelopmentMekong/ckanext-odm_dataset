@@ -1,0 +1,25 @@
+{% import 'macros/form.html' as form %}
+
+{% block package_basic_fields_tags %}
+{{ form.input('tag_string', value=data.tag_string) }}
+{% endblock %}
+
+{% block package_basic_fields_taxonomy %}
+{% set taxonomy_tags = h.odm_theme_taxonomy_dictionary() %}
+{% if taxonomy_tags|length > 0 %}
+<div class="control-group">
+  <label class="control-label" for="field-taxonomy">{{ h.scheming_language_text(field.label) }}</label>
+  <div class="controls control-full">
+    <select multiple id="field-taxonomy" name="taxonomy" data-module="autocomplete" placeholder="{{ _("eg. economy, mental health, government") }}">
+      {% for tag in taxonomy_tags %}
+      {% if tag not in data.tag_string %}
+        <option value="{{ tag }}">{{ h.odm_theme_get_localized_tag(tag) }}</option>
+      {% else %}
+        <option selected="selected" value="{{ tag }}">{{ h.odm_theme_get_localized_tag(tag) }}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </div>
+</div>
+{% endif %}
+{% endblock%}

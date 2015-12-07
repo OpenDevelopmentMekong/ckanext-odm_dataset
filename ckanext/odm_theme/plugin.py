@@ -273,8 +273,7 @@ def popular_groups():
 
   # Get a list of all the site's groups from CKAN, sorted by number of
   # datasets.
-  groups = toolkit.get_action('group_list')(
-      data_dict={'sort': 'packages desc', 'all_fields': True})
+  groups = toolkit.get_action('group_list')(data_dict={'sort': 'packages desc', 'all_fields': True})
 
   # Truncate the list to the 10 most popular groups only.
   groups = groups[:10]
@@ -286,8 +285,7 @@ def recent_datasets():
 
   # Get a list of all the site's groups from CKAN, sorted by number of
   # datasets.
-  dataset = toolkit.get_action('current_package_list_with_resources')(
-      data_dict={'limit': 10})
+  dataset = toolkit.get_action('current_package_list_with_resources')(data_dict={'limit': 10})
 
   return dataset
 
@@ -296,8 +294,7 @@ def popular_datasets(limit):
 
   # Get a list of all the site's groups from CKAN, sorted by number of
   # datasets.
-  result_dict = toolkit.get_action('package_search')(
-      data_dict={'sort': 'views_recent desc', 'rows': limit})
+  result_dict = toolkit.get_action('package_search')(data_dict={'sort': 'views_recent desc', 'rows': limit})
 
   return result_dict['results']
 
@@ -314,7 +311,7 @@ def get_orga_or_group(orga_id,group_id):
 class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   '''OD Mekong theme plugin.'''
 
-  plugins.implements(plugins.IDatasetForm)
+  #plugins.implements(plugins.IDatasetForm)
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
@@ -326,6 +323,34 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     log.debug('OdmThemePlugin init')
     wsgi_app = SessionMiddleware(None, None)
     odm_theme_helper.session = wsgi_app.session
+
+  # IDatasetForm
+  # def _modify_package_schema_write(self, schema):
+  #
+  #   schema.update({'taxonomy': [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')('taxonomy')]})
+  #
+  #   return schema
+  #
+  # def _modify_package_schema_read(self, schema):
+  #
+  #   schema.update({'taxonomy': [toolkit.get_converter('convert_from_tags')('taxonomy'),toolkit.get_validator('ignore_missing')]})
+  #
+  #   return schema
+  #
+  # def create_package_schema(self):
+  #   schema = super(OdmThemePlugin, self).create_package_schema()
+  #   schema = self._modify_package_schema_write(schema)
+  #   return schema
+  #
+  # def update_package_schema(self):
+  #   schema = super(OdmThemePlugin, self).update_package_schema()
+  #   schema = self._modify_package_schema_write(schema)
+  #   return schema
+  #
+  # def show_package_schema(self):
+  #   schema = super(OdmThemePlugin, self).show_package_schema()
+  #   schema = self._modify_package_schema_read(schema)
+  #   return schema
 
   # IFacets
 
@@ -413,83 +438,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_jsonify_countries': jsonify_countries,
       'odm_theme_jsonify_languages': jsonify_languages
     }
-
-  # IDatasetForm
-
-  def _modify_package_schema_write(self, schema):
-
-    for metadata_field in odm_theme_helper.metadata_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
-      if metadata_field[2]:
-        validators_and_converters.insert(1,validate_not_empty)
-      schema.update({metadata_field[0]: validators_and_converters})
-
-    for odc_field in odm_theme_helper.odc_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
-      if odc_field[2]:
-        validators_and_converters.insert(1,validate_not_empty)
-      schema.update({odc_field[0]: validators_and_converters})
-
-    for ckan_field in odm_theme_helper.ckan_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
-      if ckan_field[2]:
-        validators_and_converters.insert(1,validate_not_empty)
-      schema.update({ckan_field[0]: validators_and_converters})
-
-    for internal_field in odm_theme_helper.internal_fields:
-      validators_and_converters = [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_extras'), ]
-      if internal_field[2]:
-        validators_and_converters.insert(1,validate_not_empty)
-      schema.update({internal_field[0]: validators_and_converters})
-
-    schema.update({odm_theme_helper.taxonomy_dictionary: [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')(odm_theme_helper.taxonomy_dictionary)]})
-
-    return schema
-
-  def _modify_package_schema_read(self, schema):
-
-    for metadata_field in odm_theme_helper.metadata_fields:
-      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      if metadata_field[2]:
-        validators_and_converters.append(validate_not_empty)
-      schema.update({metadata_field[0]: validators_and_converters})
-
-    for odc_field in odm_theme_helper.odc_fields:
-      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      if odc_field[2]:
-        validators_and_converters.append(validate_not_empty)
-      schema.update({odc_field[0]: validators_and_converters})
-
-    for ckan_field in odm_theme_helper.ckan_fields:
-      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      if ckan_field[2]:
-        validators_and_converters.append(validate_not_empty)
-      schema.update({ckan_field[0]: validators_and_converters})
-
-    for internal_field in odm_theme_helper.internal_fields:
-      validators_and_converters = [toolkit.get_converter('convert_from_extras'),toolkit.get_validator('ignore_missing')]
-      if internal_field[2]:
-        validators_and_converters.append(validate_not_empty)
-      schema.update({internal_field[0]: validators_and_converters})
-
-    schema.update({odm_theme_helper.taxonomy_dictionary: [toolkit.get_converter('convert_from_tags')(odm_theme_helper.taxonomy_dictionary),toolkit.get_validator('ignore_missing')]})
-
-    return schema
-
-  def create_package_schema(self):
-    schema = super(OdmThemePlugin, self).create_package_schema()
-    schema = self._modify_package_schema_write(schema)
-    return schema
-
-  def update_package_schema(self):
-    schema = super(OdmThemePlugin, self).update_package_schema()
-    schema = self._modify_package_schema_write(schema)
-    return schema
-
-  def show_package_schema(self):
-    schema = super(OdmThemePlugin, self).show_package_schema()
-    schema = self._modify_package_schema_read(schema)
-    return schema
 
   def is_fallback(self):
     return True

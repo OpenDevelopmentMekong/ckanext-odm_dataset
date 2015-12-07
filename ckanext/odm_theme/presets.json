@@ -1,6 +1,6 @@
 {
   "scheming_presets_version": 1,
-  "about": "these are the default scheming field presets",
+  "about": "ODM scheming field presets",
   "about_url": "http://github.com/open-data/ckanext-scheming#preset",
   "presets": [
     {
@@ -23,11 +23,11 @@
     {
       "preset_name": "tag_string_autocomplete",
       "values": {
-        "validators": "ignore_missing tag_string_convert",
+        "validators": "scheming_required tag_string_convert",
         "form_attrs": {
-          "data-module": "multiselect-module-languages",
+          "data-module": "autocomplete",
           "data-module-tags": "",
-          "data-module-suggestions": "h.odm_theme_jsonify_languages()"
+          "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
         }
       }
     },
@@ -100,6 +100,89 @@
         "form_snippet": "datetime.html",
         "display_snippet": "datetime.html",
         "validators": "scheming_isodatetime convert_to_json_if_datetime"
+      }
+    },
+    {
+      "preset_name": "odm_organization",
+      "values": {
+        "validators": "owner_org_validator unicode",
+        "form_snippet": "odm_organization.html"
+      }
+    },
+    {
+      "preset_name": "odm_taxonomy",
+      "values": {
+        "form_snippet": "odm_taxonomy.html"
+      }
+    },
+    {
+      "preset_name": "odm_license",
+      "values": {
+        "validators": "scheming_required",
+        "form_snippet": "odm_license.html"
+      }
+    },
+    {
+      "preset_name": "odm_language",
+      "values": {
+        "validators": "scheming_required",
+        "form_snippet": "odm_language.html",
+        "validators": "convert_to_list_if_string"
+      }
+    },
+    {
+      "preset_name": "odm_copyright",
+      "values": {
+        "validators": "scheming_required",
+        "form_snippet": "odm_copyright.html"
+      }
+    },
+    {
+      "preset_name": "odm_date_created",
+      "values": {
+        "validators": "scheming_required",
+        "form_snippet": "odm_date_created.html"
+      }
+    },
+    {
+      "preset_name": "odm_date_uploaded",
+      "values": {
+        "validators": "scheming_required",
+        "form_snippet": "odm_date_uploaded.html"
+      }
+    },
+    {
+      "preset_name": "odm_date_modified",
+      "values": {
+        "validators": "scheming_required",
+        "form_snippet": "odm_date_modified.html"
+      }
+    },
+    {
+      "preset_name": "odm_temporal_range",
+      "values": {
+        "validators": "scheming_required",
+        "form_snippet": "odm_temporal_range.html"
+      }
+    },
+    {
+      "preset_name": "odm_spatial_range",
+      "values": {
+        "validators": "scheming_required",
+        "form_snippet": "odm_spatial_range.html",
+        "validators": "convert_to_list_if_string"
+      }
+    },
+    {
+      "preset_name": "odm_resource_name",
+      "values": {
+        "form_snippet": "odm_resource_name.html"
+      }
+    },
+    {
+      "preset_name": "odm_resource_description",
+      "values": {
+        "form_snippet": "odm_resource_description.html"
       }
     }
   ]

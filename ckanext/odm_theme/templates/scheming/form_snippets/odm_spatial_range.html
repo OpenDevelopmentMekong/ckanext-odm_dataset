@@ -1,0 +1,8 @@
+{% import 'macros/form.html' as form %}
+
+{% resource 'odm_theme/multiselect-module.js' %}
+
+{% block package_metadata_fields_odm_spatial_range %}
+{% set countries = h.odm_theme_jsonify_countries() %}
+ {{ form.input(h.scheming_language_text(field.name), is_required=h.scheming_language_text(field.required), label=h.scheming_language_text(field.label), id='field-odm_spatial_range', placeholder=h.scheming_language_text(field.form_placeholder), value=data.odm_spatial_range, error=errors.odm_spatial_range, classes=['control-full'], attrs={'data-module': 'multiselect-module-countries', 'data-module-suggestions': countries}) }}
+{% endblock %}

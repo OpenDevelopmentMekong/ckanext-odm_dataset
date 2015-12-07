@@ -1,7 +1,7 @@
 {
 	"scheming_version": 1,
 	"dataset_type": "dataset",
-	"about": "A reimplementation of the default CKAN dataset schema",
+	"about": "ODM dataset schema",
 	"about_url": "http://github.com/open-data/ckanext-scheming",
 	"dataset_fields": [{
 			"field_name": "title",
@@ -19,37 +19,19 @@
 			"form_snippet": "markdown.html",
 			"form_placeholder": "eg. Some useful notes about the data"
 		}, {
-			"field_name": "tag_string",
+			"field_name": "taxonomy",
 			"label": "Topics",
-			"preset": "tag_string_autocomplete",
-			"form_placeholder": "eg. economy, mental health, government",
-			"choices": [{
-
-
-
-			}]
-
+			"preset": "odm_taxonomy"
 		}, {
 			"field_name": "license_id",
 			"label": "License",
-			"form_snippet": "license.html",
+      "preset": "odm_license",
 			"help_text": "License definitions and additional information can be found at http://opendefinition.org/"
 		}, {
 			"field_name": "odm_copyright",
 			"label": "Copyright",
-			"preset": "select",
-			"choices": [{
-				"value": "Yes",
-				"label": "Yes"
-			}, {
-				"value": "No",
-				"label": "No"
-			}, {
-				"value": "Unclear copyright",
-				"label": "Unclear copyright"
-			}],
-			"help_text": "Select 'yes', 'no' or 'unclear copyright' about the copyright of the dataset. If copyright of any type is present, describe further in Access and User Constraints."
-
+			"preset": "odm_copyright",
+      "help_text": "Select 'yes', 'no' or 'unclear copyright' about the copyright of the dataset. If copyright of any type is present, describe further in Access and User Constraints."
 		}, {
 			"field_name": "odm_access_and_use_constraint",
 			"label": "Access and Use Constraints",
@@ -58,7 +40,7 @@
 		}, {
 			"field_name": "owner_org",
 			"label": "Organization",
-			"preset": "dataset_organization"
+			"preset": "odm_organization"
 		}, {
 			"field_name": "version",
 			"label": "Version",
@@ -75,107 +57,35 @@
 			"label": "Language",
 			"form_placeholder": "Language(s) of the dataset, including resources within dataset.",
 			"required": "true",
-			"preset": "tag_string_autocomplete",
-			"choices": [{
-				"value": "Burmese",
-				"label": "Burmese"
-			}, {
-				"value": "English",
-				"label": "English"
-			}, {
-				"value": "Khmer",
-				"label": "Khmer"
-			}, {
-				"value": "Lao",
-				"label": "Lao"
-			}, {
-				"value": "Thai",
-				"label": "Thai"
-			}, {
-				"value": "Vietnamese",
-				"label": "Vietnamese"
-			}, {
-				"value": "Chinese",
-				"label": "Chinese"
-			}, {
-				"value": "French",
-				"label": "French"
-			}, {
-				"value": "German",
-				"label": "German"
-			}, {
-				"value": "Japanese",
-				"label": "Japanese"
-			}, {
-				"value": "Korean",
-				"label": "Korean"
-			}, {
-				"value": "Other",
-				"label": "Other"
-			}]
+			"preset": "odm_language"
 		}, {
 			"field_name": "odm_date_created",
 			"label": "Date created",
 			"form_placeholder": "Date the dataset was first Published by its creator.",
 			"required": "true",
-			"preset": "date",
-			"form_snippet": "date.html"
+			"preset": "odm_date_created"
 		}, {
 			"field_name": "odm_date_uploaded",
 			"label": "Date uploaded",
 			"form_placeholder": "Date a new version or update of the dataset was uploaded.",
 			"required": "true",
-			"preset": "date",
-			"form_snippet": "date.html"
+			"preset": "odm_date_uploaded"
 		}, {
 			"field_name": "odm_date_modified",
 			"label": "Date modified",
 			"form_placeholder": "Date a new version or update of the dataset was uploaded.",
-			"preset": "date",
-			"form_snippet": "date.html"
+			"preset": "odm_date_modified"
 		}, {
 			"field_name": "odm_temporal_range",
 			"label": "Temporal Range.",
 			"form_placeholder": "The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).",
-			"preset": "date",
-			"form_snippet": "date.html"
+			"preset": "odm_temporal_range"
 		}, {
 			"field_name": "odm_spatial_range",
 			"label": "Geographic area (Spatial Range)",
 			"form_placeholder": "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).",
 			"required": "true",
-			"preset": "tag_string_autocomplete",
-			"choices": [{
-				"value": "Global",
-				"label": "Global"
-			}, {
-				"value": "ASEAN",
-				"label": "ASEAN"
-			}, {
-				"value": "Greater Mekong Subregion (GMS)",
-				"label": "Greater Mekong Subregion (GMS)"
-			}, {
-				"value": "Lower Mekong Basin",
-				"label": "Lower Mekong Basin"
-			}, {
-				"value": "Lower Mekong countries",
-				"label": "Lower Mekong countries"
-			}, {
-				"value": "Cambodia",
-				"label": "Cambodia"
-			}, {
-				"value": "Vietnam",
-				"label": "Vietnam"
-			}, {
-				"value": "Laos",
-				"label": "Laos"
-			}, {
-				"value": "Thailand",
-				"label": "Thailand"
-			}, {
-				"value": "Myanmar",
-				"label": "Myanmar"
-			}]
+			"preset": "odm_spatial_range"
 		}, {
 			"field_name": "odm_accuracy",
 			"label": "Accuracy",
@@ -197,30 +107,24 @@
 			"required": "true",
 			"form_placeholder": "The steps taken to acquire, aggregate, or transform any of the resources in the dataset.",
 			"form_snippet": "markdown.html"
-
 		},
-
 		{
 			"field_name": "odm_source",
 			"label": "Source(s)",
 			"required": "true",
 			"form_placeholder": "Ordered citations for all information sources that went into producing the dataset.",
 			"form_snippet": "markdown.html"
-
 		}, {
 			"field_name": "odm_metadata_reference_information",
 			"label": "Metadata Reference Information",
 			"form_placeholder": "Information about how up-to-date the metadata is and who is responsible for maintaining it.",
 			"form_snippet": "markdown.html"
-
 		}, {
 			"field_name": "odm_attributes",
 			"label": "Attributes",
 			"form_placeholder": "Details about the information content of the dataset.",
 			"form_snippet": "markdown.html"
-
 		}
-
 	],
 	"resource_fields": [{
 		"field_name": "url",
@@ -229,12 +133,13 @@
 	}, {
 		"field_name": "name",
 		"label": "Name",
-		"form_placeholder": "eg. January 2011 Gold Prices"
+		"form_placeholder": "eg. January 2011 Gold Prices",
+    "preset": "odm_resource_name"
 	}, {
 		"field_name": "description",
 		"label": "Description",
-		"form_snippet": "markdown.html",
-		"form_placeholder": "Some useful notes about the data"
+		"form_placeholder": "Some useful notes about the data",
+    "preset": "odm_resource_description"
 	}, {
 		"field_name": "format",
 		"label": "Format",
