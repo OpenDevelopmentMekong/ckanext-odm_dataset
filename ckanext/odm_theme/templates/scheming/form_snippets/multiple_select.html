@@ -3,7 +3,7 @@
 {%- call form.input_block(
     "field-{{ field.field_name }}",
     label=h.scheming_language_text(field.label),
-    classes=['control-medium'],
+    classes=['control-full'],
     error=errors[field.field_name],
     is_required=h.scheming_field_required(field)) -%}
     <select multiple size="{{ field.get("select_size", 10) }}"
@@ -20,4 +20,3 @@
     </select>
     {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {%- endcall -%}
-

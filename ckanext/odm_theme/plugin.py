@@ -316,17 +316,13 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     odm_theme_helper.session = wsgi_app.session
 
   #  IDatasetForm
-  
+
   def _modify_package_schema_write(self, schema):
-
     schema.update({'taxonomy': [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')('taxonomy')]})
-
     return schema
 
   def _modify_package_schema_read(self, schema):
-
     schema.update({'taxonomy': [toolkit.get_converter('convert_from_tags')('taxonomy'),toolkit.get_validator('ignore_missing')]})
-
     return schema
 
   def create_package_schema(self):

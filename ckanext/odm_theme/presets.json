@@ -23,7 +23,7 @@
     {
       "preset_name": "tag_string_autocomplete",
       "values": {
-        "validators": "scheming_required convert_to_tags(taxonomy)",
+        "validators": "ignore_missing convert_to_tags(taxonomy)",
         "form_attrs": {
           "data-module": "autocomplete",
           "data-module-tags": "",
@@ -103,6 +103,12 @@
       }
     },
     {
+      "preset_name": "odm_taxonomy",
+      "values": {
+        "form_snippet": "odm_taxonomy.html"
+      }
+    },
+    {
       "preset_name": "odm_organization",
       "values": {
         "validators": "owner_org_validator unicode",
@@ -125,8 +131,10 @@
     {
       "preset_name": "odm_language",
       "values": {
-        "validators": "scheming_required",
-        "form_snippet": "odm_language.html"
+        "validators": "scheming_multiple_choice",
+        "output_validators": "scheming_multiple_choice_output",
+        "form_snippet": "odm_language.html",
+        "display_snippet": "odm_language.html"
       }
     },
     {

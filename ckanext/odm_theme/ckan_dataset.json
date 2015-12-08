@@ -21,7 +21,8 @@
 		}, {
 			"field_name": "taxonomy",
 			"label": "Topics",
-			"preset": "odm_taxonomy"
+			"preset": "odm_taxonomy",
+      "form_placeholder": "eg. economy, mental health, government"
 		}, {
 			"field_name": "license_id",
 			"label": "License",
@@ -57,32 +58,128 @@
 			"label": "Language",
       "required": "true",
 			"form_placeholder": "Language(s) of the dataset, including resources within dataset.",
-			"preset": "odm_language"
+			"preset": "multiple_select",
+      "select_size": 4,
+      "choices": [
+        {
+          "value": "my",
+          "label": "Burmese"
+        },{
+          "value": "en",
+          "label": "English"
+        },
+        {
+          "value": "kh",
+          "label": "Khmer"
+        },
+        {
+          "value": "lo",
+          "label": "Lao"
+        },
+        {
+          "value": "th",
+          "label": "Thai"
+        },
+        {
+          "value": "vi",
+          "label": "Vietnamese"
+        },
+        {
+          "value": "zh",
+          "label": "Chinese"
+        },
+        {
+          "value": "fr",
+          "label": "French"
+        },
+        {
+          "value": "de",
+          "label": "German"
+        },
+        {
+          "value": "jp",
+          "label": "Japanese"
+        },
+        {
+          "value": "ko",
+          "label": "Korean"
+        },
+        {
+          "value": "other",
+          "label": "Other"
+        }
+      ]
 		}, {
 			"field_name": "odm_date_created",
 			"label": "Date created",
 			"form_placeholder": "Date the dataset was first Published by its creator.",
-			"preset": "odm_date_created"
+      "required": "true",
+			"preset": "date"
 		}, {
 			"field_name": "odm_date_uploaded",
 			"label": "Date uploaded",
 			"form_placeholder": "Date a new version or update of the dataset was uploaded.",
-			"preset": "odm_date_uploaded"
+      "required": "true",
+			"preset": "date"
 		}, {
 			"field_name": "odm_date_modified",
 			"label": "Date modified",
 			"form_placeholder": "Date a new version or update of the dataset was uploaded.",
-			"preset": "odm_date_modified"
+			"preset": "date"
 		}, {
 			"field_name": "odm_temporal_range",
 			"label": "Temporal Range.",
 			"form_placeholder": "The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).",
 			"preset": "odm_temporal_range"
-		}, {
-			"field_name": "odm_spatial_range",
+		},
+    {
+      "field_name": "odm_spatial_range",
 			"label": "Geographic area (Spatial Range)",
 			"form_placeholder": "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).",
-			"preset": "odm_spatial_range"
+			"preset": "multiple_select",
+      "required": "true",
+      "select_size": 4,
+      "choices": [
+        {
+          "value": "global",
+          "label": "Global"
+        },{
+          "value": "asean",
+          "label": "ASEAN"
+        },
+        {
+          "value": "gms",
+          "label": "Greater Mekong Subregion (GMS)"
+        },
+        {
+          "value": "lmb",
+          "label": "Lower Mekong Basin"
+        },
+        {
+          "value": "lmc",
+          "label": "Lower Mekong countries"
+        },
+        {
+          "value": "km",
+          "label": "Cambodia"
+        },
+        {
+          "value": "vn",
+          "label": "Vietnam"
+        },
+        {
+          "value": "la",
+          "label": "Laos"
+        },
+        {
+          "value": "th",
+          "label": "Thailand"
+        },
+        {
+          "value": "mm",
+          "label": "Myanmar"
+        }
+      ]
 		}, {
 			"field_name": "odm_accuracy",
 			"label": "Accuracy",

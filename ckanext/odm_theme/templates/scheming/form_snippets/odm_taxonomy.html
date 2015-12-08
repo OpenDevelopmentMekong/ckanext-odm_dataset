@@ -1,9 +1,5 @@
 {% import 'macros/form.html' as form %}
 
-{% block package_basic_fields_tags %}
-{{ form.hidden('tag_string', value=data.tag_string) }}
-{% endblock %}
-
 {% block package_basic_fields_taxonomy %}
 {% set taxonomy_tags = h.odm_theme_taxonomy_dictionary() %}
 {% if taxonomy_tags|length > 0 %}
