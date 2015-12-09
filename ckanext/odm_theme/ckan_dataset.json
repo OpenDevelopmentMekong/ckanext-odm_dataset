@@ -19,9 +19,13 @@
 			"form_snippet": "markdown.html",
 			"form_placeholder": "eg. Some useful notes about the data"
 		}, {
+			"field_name": "tag_string",
+			"label": "tag_string",
+			"preset": "tag_string"
+		},{
 			"field_name": "taxonomy",
 			"label": "Topics",
-			"preset": "tag_string_autocomplete",
+			"preset": "odm_taxonomy",
       "form_placeholder": "eg. economy, mental health, government"
 		}, {
 			"field_name": "license_id",

@@ -8,7 +8,7 @@
   <div class="controls control-full">
     <select multiple id="field-taxonomy" name="taxonomy" data-module="autocomplete" placeholder="{{ _("eg. economy, mental health, government") }}">
       {% for tag in taxonomy_tags %}
-      {% if tag not in data.tag_string %}
+      {% if tag not in data.taxonomy %}
         <option value="{{ tag }}">{{ h.odm_theme_get_localized_tag(tag) }}</option>
       {% else %}
         <option selected="selected" value="{{ tag }}">{{ h.odm_theme_get_localized_tag(tag) }}</option>

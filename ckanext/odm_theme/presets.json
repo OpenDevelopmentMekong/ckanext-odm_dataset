@@ -103,8 +103,16 @@
       }
     },
     {
+      "preset_name": "tag_string",
+      "values": {
+        "validators": "scheming_required",
+        "form_snippet": "tag_string.html"
+      }
+    },
+    {
       "preset_name": "odm_taxonomy",
       "values": {
+        "validators": "scheming_required odm_theme_clean_taxonomy_tags",
         "form_snippet": "odm_taxonomy.html"
       }
     },
@@ -113,12 +121,6 @@
       "values": {
         "validators": "owner_org_validator unicode",
         "form_snippet": "odm_organization.html"
-      }
-    },
-    {
-      "preset_name": "odm_taxonomy",
-      "values": {
-        "form_snippet": "odm_taxonomy.html"
       }
     },
     {

@@ -23,6 +23,8 @@ from ckan.lib.base import render
 
 log = logging.getLogger(__name__)
 
+DEBUG = False
+
 def create_default_issue_library_record(pkg_info):
   ''' Uses CKAN API to add a default Issue as part of the vetting workflow for library records'''
   try:
@@ -148,10 +150,18 @@ def get_taxonomy_dictionary():
 
   return get_tag_dictionaries(odm_theme_helper.taxonomy_dictionary)
 
+def clean_taxonomy_tags(value):
+  '''Cleans taxonomy field before storing it'''
+
+  tags = list(value);
+
+  return map(lambda x: x.encode('ascii'), tags)
+
 def jsonify_countries():
   '''Returns the tag dictionary for the countries'''
 
-  log.debug('jsonify_countries')
+  if DEBUG:
+    log.debug('jsonify_countries')
 
   items = []
   for country in countries():
@@ -162,7 +172,8 @@ def jsonify_countries():
 def jsonify_languages():
   '''Returns the tag dictionary for the languages'''
 
-  log.debug('jsonify_languages')
+  if DEBUG:
+    log.debug('jsonify_languages')
 
   items = []
   for language in languages():
@@ -173,7 +184,8 @@ def jsonify_languages():
 def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
-  log.debug('odm_theme_get_localized_tag: %s', tag)
+  if DEBUG:
+    log.debug('odm_theme_get_localized_tag: %s', tag)
 
   desired_lang_code = pylons.request.environ['CKAN_LANG']
 
@@ -186,12 +198,13 @@ def get_localized_tag(tag):
     if translation['lang_code'] == desired_lang_code:
       return translation['term_translation']
 
-  return tag
+  return str(tag)
 
-def get_localized_tag_string(tags_string):
+def get_localized_tags_string(tags_string):
   '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
 
-  log.debug('get_localized_tag_string: %s', tags_string)
+  if DEBUG:
+    log.debug('get_localized_tags_string: %s', tags_string)
 
   translated_array = []
   for tag in tags_string.split(', '):
@@ -205,7 +218,8 @@ def get_localized_tag_string(tags_string):
 def tag_for_topic(topic):
   '''Return the name of the tag corresponding to a top topic'''
 
-  log.debug('tag_for_topic')
+  if DEBUG:
+    log.debug('tag_for_topic')
 
   tag_name = ''.join(ch for ch in topic if (ch.isalnum() or ch == '_' or ch == '-' or ch == ' ' ))
   return tag_name if len(tag_name)<=100 else tag_name[0:99]
@@ -213,49 +227,56 @@ def tag_for_topic(topic):
 def top_topics():
   '''Return a list of top_topics'''
 
-  log.debug('top_topics')
+  if DEBUG:
+    log.debug('top_topics')
 
   return odm_theme_helper.top_topics
 
 def countries():
   '''Return a list of countries'''
 
-  log.debug('countries')
+  if DEBUG:
+    log.debug('countries')
 
   return odm_theme_helper.countries
 
 def languages():
   '''Return a list of languages'''
 
-  log.debug('languages')
+  if DEBUG:
+    log.debug('languages')
 
   return odm_theme_helper.languages
 
 def odc_fields():
   '''Return a list of odc fields'''
 
-  log.debug('odc_fields')
+  if DEBUG:
+    log.debug('odc_fields')
 
   return odm_theme_helper.odc_fields
 
 def ckan_fields():
   '''Return a list of ckan fields'''
 
-  log.debug('ckan_fields')
+  if DEBUG:
+    log.debug('ckan_fields')
 
   return odm_theme_helper.ckan_fields
 
 def metadata_fields():
   '''Return a list of metadata fields'''
 
-  log.debug('metadata_fields')
+  if DEBUG:
+    log.debug('metadata_fields')
 
   return odm_theme_helper.metadata_fields
 
 def metadata_fields_combined():
   '''Return a list of metadata fields, combined with metadata_fields_combined'''
 
-  log.debug('metadata_fields_combined')
+  if DEBUG:
+    log.debug('metadata_fields_combined')
 
   return list(set(odm_theme_helper.metadata_fields + odm_theme_helper.metadata_fields_compact))
 
@@ -302,7 +323,7 @@ def get_orga_or_group(orga_id,group_id):
 class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   '''OD Mekong theme plugin.'''
 
-  plugins.implements(plugins.IDatasetForm)
+  plugins.implements(plugins.IValidators, inherit=True)
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
@@ -315,83 +336,53 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     wsgi_app = SessionMiddleware(None, None)
     odm_theme_helper.session = wsgi_app.session
 
-  #  IDatasetForm
-
-  def _modify_package_schema_write(self, schema):
-    schema.update({'taxonomy': [toolkit.get_validator('ignore_missing'),toolkit.get_converter('convert_to_tags')('taxonomy')]})
-    return schema
-
-  def _modify_package_schema_read(self, schema):
-    schema.update({'taxonomy': [toolkit.get_converter('convert_from_tags')('taxonomy'),toolkit.get_validator('ignore_missing')]})
-    return schema
-
-  def create_package_schema(self):
-    schema = super(OdmThemePlugin, self).create_package_schema()
-    schema = self._modify_package_schema_write(schema)
-    return schema
-
-  def update_package_schema(self):
-    schema = super(OdmThemePlugin, self).update_package_schema()
-    schema = self._modify_package_schema_write(schema)
-    return schema
-
-  def show_package_schema(self):
-    schema = super(OdmThemePlugin, self).show_package_schema()
-    schema = self._modify_package_schema_read(schema)
-    return schema
-
   # IFacets
-
   def dataset_facets(self, facets_dict, package_type):
 
-      facets_dict = {
-                'license_id': toolkit._('License'),
-                'tags': toolkit._('Topics'),
-                'organization': toolkit._('Organizations'),
-                'groups': toolkit._('Groups'),
-                'res_format': toolkit._('Formats'),
-                'odm_language': toolkit._('Language'),
-                'odm_spatial_range': toolkit._('Country')
-                }
+    facets_dict = {
+              'license_id': toolkit._('License'),
+              'tags': toolkit._('Topics'),
+              'organization': toolkit._('Organizations'),
+              'groups': toolkit._('Groups'),
+              'res_format': toolkit._('Formats'),
+              'odm_language': toolkit._('Language'),
+              'odm_spatial_range': toolkit._('Country')
+              }
 
-      return facets_dict
+    return facets_dict
 
   def group_facets(self, facets_dict, group_type, package_type):
 
-      group_facets = {
-                'license_id': toolkit._('License'),
-                'tags': toolkit._('Topics'),
-                'organization': toolkit._('Organizations'),
-                'res_format': toolkit._('Formats'),
-                'odm_language': toolkit._('Language'),
-                'odm_spatial_range': toolkit._('Country')
-                }
+    group_facets = {
+              'license_id': toolkit._('License'),
+              'tags': toolkit._('Topics'),
+              'organization': toolkit._('Organizations'),
+              'res_format': toolkit._('Formats'),
+              'odm_language': toolkit._('Language'),
+              'odm_spatial_range': toolkit._('Country')
+              }
 
-      return group_facets
+    return group_facets
 
   def organization_facets(self, facets_dict, organization_type, package_type):
 
-      organization_facets = {
-                'license_id': toolkit._('License'),
-                'tags': toolkit._('Topics'),
-                'groups': toolkit._('Groups'),
-                'res_format': toolkit._('Formats'),
-                'odm_language': toolkit._('Language'),
-                'odm_spatial_range': toolkit._('Country')
-                }
+    organization_facets = {
+              'license_id': toolkit._('License'),
+              'tags': toolkit._('Topics'),
+              'groups': toolkit._('Groups'),
+              'res_format': toolkit._('Formats'),
+              'odm_language': toolkit._('Language'),
+              'odm_spatial_range': toolkit._('Country')
+              }
 
-      return organization_facets
+    return organization_facets
 
   # IRoutes
-
   def before_map(self, m):
-
     #m.connect('dataset_read', '/dataset/{id}',controller='package', action='read', ckan_icon='table')
-
     return m
 
   # IConfigurer
-
   def update_config(self, config):
     '''Update plugin config'''
 
@@ -399,15 +390,22 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     toolkit.add_resource('fanstatic', 'odm_theme')
     toolkit.add_public_directory(config, 'public')
 
-  # IConfigurer
+  # IValidators
+  def get_validators(self):
+    '''Register the plugin's functions above as validators.'''
 
+    return {
+      'odm_theme_clean_taxonomy_tags': clean_taxonomy_tags
+      }
+
+  # ITemplateHelpers
   def get_helpers(self):
-    '''Register the plugin's functions above as a template helper function.'''
+    '''Register the plugin's functions below as template helper functions.'''
 
     return {
       'odm_theme_last_dataset': last_dataset,
       'odm_theme_localize_resource_url': localize_resource_url,
-      'odm_theme_get_localized_tag_string': get_localized_tag_string,
+      'odm_theme_get_localized_tags_string': get_localized_tags_string,
       'odm_theme_get_localized_tag': get_localized_tag,
       'odm_theme_popular_groups': popular_groups,
       'odm_theme_recent_datasets': recent_datasets,
@@ -434,7 +432,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     return []
 
   # IPackageController
-
   def before_create(self, context, resource):
     log.info('before_create')
 
@@ -442,7 +439,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     odm_theme_helper.session.save()
 
   def after_create(self, context, pkg_dict):
-    log.debug('after_create: %s', pkg_dict['name'])
+    log.info('after_create: %s', pkg_dict['name'])
 
     odm_theme_helper.session['last_dataset'] = pkg_dict
     odm_theme_helper.session.save()
@@ -456,7 +453,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         create_default_issue_dataset(pkg_dict)
 
   def after_update(self, context, pkg_dict):
-    log.debug('after_update: %s', pkg_dict['name'])
+    log.info('after_update: %s', pkg_dict['name'])
 
     odm_theme_helper.session['last_dataset'] = pkg_dict
     odm_theme_helper.session.save()

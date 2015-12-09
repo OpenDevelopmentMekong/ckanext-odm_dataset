@@ -1,0 +1,5 @@
+{% import 'macros/form.html' as form %}
+
+{% block package_basic_fields_tags %}
+	{{ form.input('tag_string', value=data.tag_string) }}
+{% endblock %}
