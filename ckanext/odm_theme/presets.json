@@ -91,7 +91,7 @@
       "values": {
         "form_snippet": "date.html",
         "display_snippet": "date.html",
-        "validators": "scheming_required isodate convert_to_json_if_date"
+        "validators": "scheming_required convert_to_json_if_date"
       }
     },
     {
@@ -126,47 +126,10 @@
       }
     },
     {
-      "preset_name": "odm_language",
-      "values": {
-        "validators": "scheming_multiple_choice",
-        "output_validators": "scheming_multiple_choice_output",
-        "form_snippet": "odm_language.html",
-        "display_snippet": "odm_language.html"
-      }
-    },
-    {
       "preset_name": "odm_copyright",
       "values": {
         "validators": "scheming_required",
         "form_snippet": "odm_copyright.html"
-      }
-    },
-    {
-      "preset_name": "odm_date_created",
-      "values": {
-        "validators": "scheming_required",
-        "form_snippet": "odm_date_created.html"
-      }
-    },
-    {
-      "preset_name": "odm_date_uploaded",
-      "values": {
-        "validators": "scheming_required",
-        "form_snippet": "odm_date_uploaded.html"
-      }
-    },
-    {
-      "preset_name": "odm_date_modified",
-      "values": {
-        "validators": "scheming_required",
-        "form_snippet": "odm_date_modified.html"
-      }
-    },
-    {
-      "preset_name": "odm_temporal_range",
-      "values": {
-        "validators": "scheming_required",
-        "form_snippet": "odm_temporal_range.html"
       }
     },
     {

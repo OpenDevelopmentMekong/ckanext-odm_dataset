@@ -1,8 +1,0 @@
-{% import 'macros/form.html' as form %}
-
-{% resource 'odm_theme/multiselect-module.js' %}
-
-{% block package_metadata_fields_odm_language %}
-{% set languages = h.odm_theme_jsonify_languages() %}
- {{ form.input(h.scheming_language_text(field.name), is_required=h.scheming_language_text(field.required), label=h.scheming_language_text(field.label), id='field-odm_language', placeholder=h.scheming_language_text(field.form_placeholder), value=data.odm_language, error=errors.odm_language, classes=['control-full'], attrs={'data-module': 'multiselect-module-languages', 'data-module-suggestions': languages}) }}
-{% endblock %}

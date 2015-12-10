@@ -130,7 +130,7 @@
 			"field_name": "odm_temporal_range",
 			"label": "Temporal Range.",
 			"form_placeholder": "The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).",
-			"preset": "odm_temporal_range"
+			"preset": "date"
 		},
     {
       "field_name": "odm_spatial_range",

@@ -6,7 +6,7 @@
     classes=['control-full'],
     error=errors[field.field_name],
     is_required=h.scheming_field_required(field)) -%}
-    <select multiple size="{{ field.get("select_size", 10) }}"
+    <select multiple size="{{ field.get("select_size", 4) }}"
         style="display: block"
         id="field-{{ field.field_name }}"
         name="{{ field.field_name }}" >
