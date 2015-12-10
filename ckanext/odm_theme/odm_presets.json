@@ -85,6 +85,15 @@
         "validators": "scheming_multiple_choice",
         "output_validators": "scheming_multiple_choice_output"
       }
+    },{
+      "preset_name": "fluent_core_translated_markdown",
+      "values": {
+        "form_snippet": "fluent_markdown.html",
+        "display_snippet": "fluent_markdown.html",
+        "error_snippet": "fluent_markdown.html",
+        "validators": "fluent_text",
+        "output_validators": "fluent_core_translated_output"
+      }
     },
     {
       "preset_name": "date",

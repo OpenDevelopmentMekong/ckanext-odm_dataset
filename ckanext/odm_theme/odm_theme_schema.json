@@ -29,7 +29,7 @@
 		"form_placeholder": "eg. Some useful notes about the data"
 	}, {
 		"field_name": "notes_translated",
-		"preset": "fluent_core_translated",
+		"preset": "fluent_core_translated_markdown",
 		"label": {
 			"en": "Description",
 			"th": "รายละเอียด",
