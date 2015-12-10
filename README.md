@@ -22,6 +22,23 @@ In order to install this CKAN Extension:
  * Setup plugin
  <code>python setup.py develop</code>
 
+# This theme uses ckanext-scheming and ckanext-fluent
+
+In order for this theme to function properly, following CKAN extensions need to be installed:
+
+ckanext-scheming: https://github.com/ckan/ckanext-scheming
+ckanext-fluent: https://github.com/ckan/ckanext-fluent
+
+and following variables added to the ckan config file (development.ini/production.ini):
+
+```
+scheming.dataset_schemas = ckanext.odm_theme:odm_theme_schema.json
+scheming.presets = ckanext.odm_theme:odm_presets.json
+                   ckanext.fluent:presets.json
+scheming.dataset_fallback = false
+
+```
+
 # Testing
 
   Run ```nosetest```
