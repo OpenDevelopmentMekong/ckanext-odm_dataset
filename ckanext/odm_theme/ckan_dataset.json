@@ -19,10 +19,6 @@
 			"form_snippet": "markdown.html",
 			"form_placeholder": "eg. Some useful notes about the data"
 		}, {
-			"field_name": "tag_string",
-			"label": "tag_string",
-			"preset": "tag_string"
-		},{
 			"field_name": "taxonomy",
 			"label": "Topics",
 			"preset": "odm_taxonomy",

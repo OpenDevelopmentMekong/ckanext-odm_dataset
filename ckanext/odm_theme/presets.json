@@ -103,19 +103,12 @@
       }
     },
     {
-      "preset_name": "tag_string",
-      "values": {
-        "validators": "scheming_required",
-        "form_snippet": "tag_string.html"
-      }
-    },
-    {
       "preset_name": "odm_taxonomy",
       "values": {
         "form_snippet": "odm_taxonomy.html",
         "display_snippet": "odm_taxonomy.html",
-        "validators": "scheming_required odm_theme_clean_taxonomy_tags",
-        "output_validators": "scheming_multiple_choice_output"        
+        "validators": "scheming_required convert_to_tags(taxonomy) odm_theme_clean_taxonomy_tags",
+        "output_validators": "scheming_multiple_choice_output"
       }
     },
     {

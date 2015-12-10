@@ -153,8 +153,10 @@ def get_taxonomy_dictionary():
 def clean_taxonomy_tags(value):
   '''Cleans taxonomy field before storing it'''
 
-  tags = list(value);
+  if isinstance(value, basestring):
+    return json.dumps([value])
 
+  tags = list(value)
   return json.dumps([tag for tag in tags])
 
 def jsonify_countries():
