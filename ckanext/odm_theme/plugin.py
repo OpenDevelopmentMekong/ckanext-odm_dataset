@@ -155,7 +155,7 @@ def clean_taxonomy_tags(value):
 
   tags = list(value);
 
-  return map(lambda x: x.encode('ascii'), tags)
+  return json.dumps([tag for tag in tags])
 
 def jsonify_countries():
   '''Returns the tag dictionary for the countries'''

@@ -112,8 +112,10 @@
     {
       "preset_name": "odm_taxonomy",
       "values": {
+        "form_snippet": "odm_taxonomy.html",
+        "display_snippet": "odm_taxonomy.html",
         "validators": "scheming_required odm_theme_clean_taxonomy_tags",
-        "form_snippet": "odm_taxonomy.html"
+        "output_validators": "scheming_multiple_choice_output"        
       }
     },
     {
