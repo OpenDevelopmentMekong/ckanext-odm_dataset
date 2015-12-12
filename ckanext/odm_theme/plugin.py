@@ -115,7 +115,9 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_theme_popular_datasets': odm_theme_helper.popular_datasets,
       'odm_theme_tag_for_topic': odm_theme_helper.tag_for_topic,
       'odm_theme_top_topics': odm_theme_helper.top_topics,
-      'odm_theme_taxonomy_dictionary': odm_theme_helper.get_taxonomy_dictionary
+      'odm_theme_taxonomy_dictionary': odm_theme_helper.get_taxonomy_dictionary,
+      'odm_theme_get_current_language': odm_theme_helper.get_current_language,
+      'odm_theme_get_value_for_current_language': odm_theme_helper.get_value_for_current_language
     }
 
   def is_fallback(self):

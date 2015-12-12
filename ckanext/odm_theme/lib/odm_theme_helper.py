@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-DEBUG = False
+DEBUG = True
 
 import pylons
 import json
@@ -158,6 +158,25 @@ def get_localized_tag(tag):
       return translation['term_translation']
 
   return str(tag)
+
+def get_current_language():
+  '''Returns the current language code'''
+
+  if DEBUG:
+    log.debug('get_current_language')
+
+  return pylons.request.environ['CKAN_LANG']
+
+def get_value_for_current_language(value):
+  '''Returns the corresponding value on the current language'''
+
+  if DEBUG:
+    log.debug('get_value_for_current_language')
+
+    if isinstance(value, basestring):
+      return value
+
+  return value[get_current_language()] or ""
 
 def get_localized_tags_string(tags_string):
   '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''

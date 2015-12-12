@@ -86,11 +86,68 @@
         "output_validators": "scheming_multiple_choice_output"
       }
     },{
+      "preset_name": "text",
+      "values": {
+        "form_snippet": "text.html",
+        "validators": "scheming_required"
+      }
+    },{
+      "preset_name": "fluent_text_single",
+      "values": {
+        "form_snippet": "fluent_text_single.html",
+        "display_snippet": "fluent_text.html",
+        "error_snippet": "fluent_text_single.html",
+        "validators": "fluent_text",
+        "output_validators": "fluent_text_output"
+      }
+    },{
+      "preset_name": "fluent_core_translated",
+      "values": {
+        "form_snippet": "fluent_text.html",
+        "display_snippet": "fluent_text.html",
+        "error_snippet": "fluent_text.html",
+        "validators": "fluent_text",
+        "output_validators": "fluent_core_translated_output"
+      }
+    },{
+      "preset_name": "fluent_core_translated_single",
+      "values": {
+        "form_snippet": "fluent_text_single.html",
+        "display_snippet": "fluent_text.html",
+        "error_snippet": "fluent_text_single.html",
+        "validators": "fluent_text",
+        "output_validators": "fluent_core_translated_output"
+      }
+    },{
+      "preset_name": "markdown",
+      "values": {
+        "form_snippet": "markdown.html",
+        "validators": "scheming_required"
+      }
+    },{
+      "preset_name": "fluent_markdown_single",
+      "values": {
+        "form_snippet": "fluent_markdown_single.html",
+        "display_snippet": "fluent_markdown.html",
+        "error_snippet": "fluent_markdown_single.html",
+        "validators": "fluent_text",
+        "output_validators": "fluent_text_output"
+      }
+    },{
       "preset_name": "fluent_core_translated_markdown",
       "values": {
         "form_snippet": "fluent_markdown.html",
         "display_snippet": "fluent_markdown.html",
         "error_snippet": "fluent_markdown.html",
+        "validators": "fluent_text",
+        "output_validators": "fluent_core_translated_output"
+      }
+    },{
+      "preset_name": "fluent_core_translated_markdown_single",
+      "values": {
+        "form_snippet": "fluent_markdown_single.html",
+        "display_snippet": "fluent_markdown.html",
+        "error_snippet": "fluent_markdown_single.html",
         "validators": "fluent_text",
         "output_validators": "fluent_core_translated_output"
       }
@@ -139,13 +196,6 @@
       "values": {
         "validators": "scheming_required",
         "form_snippet": "odm_copyright.html"
-      }
-    },
-    {
-      "preset_name": "odm_spatial_range",
-      "values": {
-        "validators": "scheming_required",
-        "form_snippet": "odm_spatial_range.html"
       }
     },
     {
