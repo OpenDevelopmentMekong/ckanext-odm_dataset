@@ -5,16 +5,11 @@ from nose.tools import assert_equal, assert_in
 class TestValidation:
 
   dirs = [
-    os.path.abspath(os.path.join(__file__, '../../','odm-taxonomy'))
   ];
 
   json_files = [
-    os.path.abspath(os.path.join(__file__, '../../odm-taxonomy','taxonomy_en.json')),
-    os.path.abspath(os.path.join(__file__, '../../odm-taxonomy','taxonomy_km.json')),
-    os.path.abspath(os.path.join(__file__, '../../odm-taxonomy','taxonomy_th.json')),
-    os.path.abspath(os.path.join(__file__, '../../odm-taxonomy','taxonomy_vi.json')),
     os.path.abspath(os.path.join(__file__, '../../','odm_presets.json')),
-    os.path.abspath(os.path.join(__file__, '../../','odm_theme_schema.json'))
+    os.path.abspath(os.path.join(__file__, '../../','odm_dataset_schema.json'))
   ];
 
   def test_01_data_available(self):
