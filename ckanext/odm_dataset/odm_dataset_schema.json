@@ -62,7 +62,7 @@
 	}, {
 		"field_name": "owner_org",
 		"label": "Organization",
-		"preset": "odm_organization"
+		"preset": "dataset_organization"
 	}, {
 		"field_name": "version",
 		"label": "Version",

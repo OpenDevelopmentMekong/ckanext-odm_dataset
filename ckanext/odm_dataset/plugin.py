@@ -7,10 +7,10 @@ import logging
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.helpers as h
-from pylons import config
 from beaker.middleware import SessionMiddleware
 import sys
 import os
+from pylons import config
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 import odm_dataset_helper
 import datetime
@@ -18,8 +18,6 @@ import time
 from urlparse import urlparse
 import json
 import collections
-from genshi.template.text import NewTextTemplate
-from ckan.lib.base import render
 
 log = logging.getLogger(__name__)
 
@@ -108,23 +106,10 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     return {
       'odm_dataset_last_dataset': odm_dataset_helper.last_dataset,
       'odm_dataset_localize_resource_url': odm_dataset_helper.localize_resource_url,
-      'odm_dataset_get_localized_tags_string': odm_dataset_helper.get_localized_tags_string,
-      'odm_dataset_get_localized_tag': odm_dataset_helper.get_localized_tag,
-      'odm_dataset_popular_groups': odm_dataset_helper.popular_groups,
-      'odm_dataset_recent_datasets': odm_dataset_helper.recent_datasets,
-      'odm_dataset_popular_datasets': odm_dataset_helper.popular_datasets,
-      'odm_dataset_tag_for_topic': odm_dataset_helper.tag_for_topic,
-      'odm_dataset_top_topics': odm_dataset_helper.top_topics,
       'odm_dataset_taxonomy_dictionary': odm_dataset_helper.get_taxonomy_dictionary,
       'odm_dataset_get_current_language': odm_dataset_helper.get_current_language,
       'odm_dataset_get_value_for_current_language': odm_dataset_helper.get_value_for_current_language
     }
-
-  def is_fallback(self):
-    return True
-
-  def package_types(self):
-    return []
 
   # IPackageController
   def before_create(self, context, resource):
@@ -142,10 +127,8 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     # Create default Issue
     review_system = h.asbool(config.get("ckanext.issues.review_system", False))
     if review_system:
-      if pkg_dict['type'] == 'library_record':
-        create_default_issue_library_record(pkg_dict)
-      else:
-        create_default_issue_dataset(pkg_dict)
+      if pkg_dict['type'] == 'package':
+        odm_dataset_helper.create_default_issue_dataset(pkg_dict)
 
   def after_update(self, context, pkg_dict):
     log.info('after_update: %s', pkg_dict['name'])
