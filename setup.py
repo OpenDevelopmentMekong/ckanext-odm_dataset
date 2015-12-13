@@ -4,9 +4,9 @@ import sys, os
 version = '1.2.0'
 
 setup(
-    name='ckanext-odm_theme',
+    name='ckanext-odm_dataset',
     version=version,
-    description="OD Mekong CKAN's theme extension",
+    description="OD Mekong CKAN's extension for datasets",
     long_description='''
     ''',
     classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -16,16 +16,16 @@ setup(
     url='http://www.lifeformapps.com',
     license='AGPL3',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-    namespace_packages=['ckanext', 'ckanext.odm_theme'],
+    namespace_packages=['ckanext', 'ckanext.odm_dataset'],
     include_package_data=True,
     zip_safe=False,
-    package_dir={'odm_theme': 'ckanext/odm_theme'},
-    package_data={'odm_theme': ['odm-taxonomy/*.json']},
+    package_dir={'odm_dataset': 'ckanext/odm_dataset'},
+    package_data={'odm_dataset': ['odm-taxonomy/*.json']},
     install_requires=[
         # -*- Extra requirements: -*-
     ],
     entry_points='''
         [ckan.plugins]
-        odm_theme=ckanext.odm_theme.plugin:OdmThemePlugin
+        odm_dataset=ckanext.odm_dataset.plugin:OdmThemePlugin
     ''',
 )

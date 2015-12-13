@@ -173,7 +173,7 @@
       "values": {
         "form_snippet": "odm_taxonomy.html",
         "display_snippet": "odm_taxonomy.html",
-        "validators": "scheming_required convert_to_tags(taxonomy) odm_theme_clean_taxonomy_tags",
+        "validators": "scheming_required convert_to_tags(taxonomy) odm_dataset_clean_taxonomy_tags",
         "output_validators": "scheming_multiple_choice_output"
       }
     },

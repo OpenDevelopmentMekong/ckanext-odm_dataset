@@ -144,7 +144,7 @@ def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
   if DEBUG:
-    log.debug('odm_theme_get_localized_tag: %s', tag)
+    log.debug('odm_dataset_get_localized_tag: %s', tag)
 
   desired_lang_code = pylons.request.environ['CKAN_LANG']
 

@@ -1,3 +1,0 @@
-[submodule "ckanext/odm_theme/odm-taxonomy"]
-	path = ckanext/odm_theme/odm-taxonomy
-	url = https://github.com/OpenDevelopmentMekong/odm-taxonomy.git

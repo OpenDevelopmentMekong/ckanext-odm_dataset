@@ -1,6 +1,6 @@
 {% import 'macros/form.html' as form %}
 
-{% set last_dataset = h.odm_theme_last_dataset() %}
+{% set last_dataset = h.odm_dataset_last_dataset() %}
 {% set title = data.name or last_dataset['title']%}
 
 {% block basic_fields_name %}

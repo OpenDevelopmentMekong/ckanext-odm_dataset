@@ -12,7 +12,7 @@ from beaker.middleware import SessionMiddleware
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
-import odm_theme_helper
+import odm_dataset_helper
 import datetime
 import time
 from urlparse import urlparse
@@ -37,7 +37,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     log.debug('OdmThemePlugin init')
     wsgi_app = SessionMiddleware(None, None)
-    odm_theme_helper.session = wsgi_app.session
+    odm_dataset_helper.session = wsgi_app.session
 
   # IFacets
   def dataset_facets(self, facets_dict, package_type):
@@ -90,7 +90,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Update plugin config'''
 
     toolkit.add_template_directory(config, 'templates')
-    toolkit.add_resource('fanstatic', 'odm_theme')
+    toolkit.add_resource('fanstatic', 'odm_dataset')
     toolkit.add_public_directory(config, 'public')
 
   # IValidators
@@ -98,7 +98,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as validators.'''
 
     return {
-      'odm_theme_clean_taxonomy_tags': odm_theme_helper.clean_taxonomy_tags
+      'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags
       }
 
   # ITemplateHelpers
@@ -106,18 +106,18 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions below as template helper functions.'''
 
     return {
-      'odm_theme_last_dataset': odm_theme_helper.last_dataset,
-      'odm_theme_localize_resource_url': odm_theme_helper.localize_resource_url,
-      'odm_theme_get_localized_tags_string': odm_theme_helper.get_localized_tags_string,
-      'odm_theme_get_localized_tag': odm_theme_helper.get_localized_tag,
-      'odm_theme_popular_groups': odm_theme_helper.popular_groups,
-      'odm_theme_recent_datasets': odm_theme_helper.recent_datasets,
-      'odm_theme_popular_datasets': odm_theme_helper.popular_datasets,
-      'odm_theme_tag_for_topic': odm_theme_helper.tag_for_topic,
-      'odm_theme_top_topics': odm_theme_helper.top_topics,
-      'odm_theme_taxonomy_dictionary': odm_theme_helper.get_taxonomy_dictionary,
-      'odm_theme_get_current_language': odm_theme_helper.get_current_language,
-      'odm_theme_get_value_for_current_language': odm_theme_helper.get_value_for_current_language
+      'odm_dataset_last_dataset': odm_dataset_helper.last_dataset,
+      'odm_dataset_localize_resource_url': odm_dataset_helper.localize_resource_url,
+      'odm_dataset_get_localized_tags_string': odm_dataset_helper.get_localized_tags_string,
+      'odm_dataset_get_localized_tag': odm_dataset_helper.get_localized_tag,
+      'odm_dataset_popular_groups': odm_dataset_helper.popular_groups,
+      'odm_dataset_recent_datasets': odm_dataset_helper.recent_datasets,
+      'odm_dataset_popular_datasets': odm_dataset_helper.popular_datasets,
+      'odm_dataset_tag_for_topic': odm_dataset_helper.tag_for_topic,
+      'odm_dataset_top_topics': odm_dataset_helper.top_topics,
+      'odm_dataset_taxonomy_dictionary': odm_dataset_helper.get_taxonomy_dictionary,
+      'odm_dataset_get_current_language': odm_dataset_helper.get_current_language,
+      'odm_dataset_get_value_for_current_language': odm_dataset_helper.get_value_for_current_language
     }
 
   def is_fallback(self):
@@ -130,14 +130,14 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   def before_create(self, context, resource):
     log.info('before_create')
 
-    odm_theme_helper.session['last_dataset'] = None
-    odm_theme_helper.session.save()
+    odm_dataset_helper.session['last_dataset'] = None
+    odm_dataset_helper.session.save()
 
   def after_create(self, context, pkg_dict):
     log.info('after_create: %s', pkg_dict['name'])
 
-    odm_theme_helper.session['last_dataset'] = pkg_dict
-    odm_theme_helper.session.save()
+    odm_dataset_helper.session['last_dataset'] = pkg_dict
+    odm_dataset_helper.session.save()
 
     # Create default Issue
     review_system = h.asbool(config.get("ckanext.issues.review_system", False))
@@ -150,5 +150,5 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   def after_update(self, context, pkg_dict):
     log.info('after_update: %s', pkg_dict['name'])
 
-    odm_theme_helper.session['last_dataset'] = pkg_dict
-    odm_theme_helper.session.save()
+    odm_dataset_helper.session['last_dataset'] = pkg_dict
+    odm_dataset_helper.session.save()
