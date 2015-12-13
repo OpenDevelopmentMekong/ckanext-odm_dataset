@@ -106,7 +106,6 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     return {
       'odm_dataset_last_dataset': odm_dataset_helper.last_dataset,
       'odm_dataset_localize_resource_url': odm_dataset_helper.localize_resource_url,
-      'odm_dataset_taxonomy_dictionary': odm_dataset_helper.get_taxonomy_dictionary,
       'odm_dataset_get_current_language': odm_dataset_helper.get_current_language,
       'odm_dataset_get_value_for_current_language': odm_dataset_helper.get_value_for_current_language
     }

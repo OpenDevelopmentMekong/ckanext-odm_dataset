@@ -80,15 +80,6 @@ def localize_resource_url(url):
   except:
     return url
 
-def get_taxonomy_dictionary():
-  '''Returns the tag dictionary for the taxonomy'''
-
-  try:
-    tag_dictionaries = toolkit.get_action('tag_list')(data_dict={'vocabulary_id': 'taxonomy'})
-    return tag_dictionaries
-  except toolkit.ObjectNotFound:
-    return []
-
 def clean_taxonomy_tags(value):
   '''Cleans taxonomy field before storing it'''
 
