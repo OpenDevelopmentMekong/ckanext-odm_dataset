@@ -126,7 +126,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     # Create default Issue
     review_system = h.asbool(config.get("ckanext.issues.review_system", False))
     if review_system:
-      if pkg_dict['type'] == 'package':
+      if pkg_dict['type'] == 'dataset':
         odm_dataset_helper.create_default_issue_dataset(pkg_dict)
 
   def after_update(self, context, pkg_dict):
