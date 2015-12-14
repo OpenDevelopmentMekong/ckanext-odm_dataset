@@ -67,19 +67,6 @@ def last_dataset():
 
   return None
 
-def localize_resource_url(url):
-  '''Converts a absolute URL in a relative, chopping out the domain'''
-
-  try:
-    parsed = urlparse(url)
-    str_index = url.index(parsed.netloc)
-    str_length = len(parsed.netloc)
-    localized = url[str_index+str_length:]
-    return localized
-
-  except:
-    return url
-
 def clean_taxonomy_tags(value):
   '''Cleans taxonomy field before storing it'''
 
