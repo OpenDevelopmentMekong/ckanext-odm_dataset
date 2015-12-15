@@ -18,7 +18,7 @@
     type='date',
     value=date,
     error=errors[field.field_name + '_date'],
-    classes=['control-medium'],
+    classes=['control-full'],
     attrs=field.form_attrs if 'form_attrs' in field else {},
     is_required=h.scheming_field_required(field)
     )
@@ -33,7 +33,7 @@
     type='time',
     value=time,
     error=errors[field.field_name + '_time'],
-    classes=['control-medium'],
+    classes=['control-full'],
     attrs=field.form_attrs if 'form_attrs' in field else {},
     is_required=h.scheming_field_required(field)
     )

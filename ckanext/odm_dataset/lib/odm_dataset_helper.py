@@ -109,6 +109,8 @@ def get_value_for_current_language(value):
   if DEBUG:
     log.debug('get_value_for_current_language')
 
+    value = json.loads(value);
+
     if isinstance(value, basestring):
       return value
 

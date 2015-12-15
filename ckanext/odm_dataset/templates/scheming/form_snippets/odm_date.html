@@ -1,0 +1,20 @@
+{% resource 'odm_dataset/moment.js' %}
+{% resource 'odm_dataset/daterangepicker.js' %}
+{% resource 'odm_dataset/daterangepicker-bs3.css' %}
+{% resource 'odm_dataset/datepicker-module.js' %}
+
+{% import 'macros/form.html' as form %}
+
+{%- call form.input(
+	field.field_name,
+	is_required=h.scheming_field_required(field),
+	label=h.scheming_language_text(field.label),
+	id='field-'+field.field_name,
+	placeholder=h.scheming_language_text(field.form_placeholder),
+	value=data.get(field.field_name, ''),
+	error=errors[field.field_name],
+	classes=['control-full','datepicker'],
+	attrs=field.form_attrs if 'form_attrs' in field else {})
+%}
+	{%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+{% endcall %}

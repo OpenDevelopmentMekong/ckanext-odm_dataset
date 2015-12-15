@@ -7,10 +7,21 @@
     type='date',
     value=data.get(field.field_name, '').split()[0],
     error=errors[field.field_name],
-    classes=['control-medium'],
+    classes=['control-full','datepicker'],
     attrs=field.form_attrs if 'form_attrs' in field else {},
     is_required=h.scheming_field_required(field)
     )
 %}
     {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {% endcall %}
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+$(function() {
+	$( ".datepicker" ).datepicker();
+});
+</script>

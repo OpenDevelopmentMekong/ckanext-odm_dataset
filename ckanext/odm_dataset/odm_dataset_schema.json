@@ -276,5 +276,9 @@
 		"field_name": "format",
 		"label": "Format",
 		"preset": "resource_format_autocomplete"
+	}, {
+		"field_name": "odm_spatial_range",
+    "label": "Spatial range",
+		"preset": "odm_resource_spatial_range"
 	}]
 }
