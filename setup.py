@@ -19,7 +19,6 @@ setup(
     namespace_packages=['ckanext', 'ckanext.odm_dataset'],
     include_package_data=True,
     zip_safe=False,
-    package_dir={'odm_dataset': 'ckanext/odm_dataset'},
     install_requires=[
         # -*- Extra requirements: -*-
     ],
