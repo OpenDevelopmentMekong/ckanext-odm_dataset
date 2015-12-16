@@ -20,12 +20,11 @@ setup(
     include_package_data=True,
     zip_safe=False,
     package_dir={'odm_dataset': 'ckanext/odm_dataset'},
-    package_data={'odm_dataset': ['odm-taxonomy/*.json']},
     install_requires=[
         # -*- Extra requirements: -*-
     ],
     entry_points='''
         [ckan.plugins]
-        odm_dataset=ckanext.odm_dataset.plugin:OdmThemePlugin
+        odm_dataset=ckanext.odm_dataset.plugin:OdmDatasetPlugin
     ''',
 )

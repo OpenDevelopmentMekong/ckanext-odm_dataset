@@ -21,8 +21,8 @@ import collections
 
 log = logging.getLogger(__name__)
 
-class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
-  '''OD Mekong theme plugin.'''
+class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
+  '''OD Mekong dataset plugin.'''
 
   plugins.implements(plugins.IValidators, inherit=True)
   plugins.implements(plugins.IConfigurer)
@@ -33,7 +33,7 @@ class OdmThemePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   def __init__(self, *args, **kwargs):
 
-    log.debug('OdmThemePlugin init')
+    log.debug('OdmDatasetPlugin init')
     wsgi_app = SessionMiddleware(None, None)
     odm_dataset_helper.session = wsgi_app.session
 
