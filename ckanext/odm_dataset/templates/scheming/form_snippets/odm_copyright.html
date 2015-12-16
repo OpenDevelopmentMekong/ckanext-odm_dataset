@@ -1,0 +1,18 @@
+{% import 'macros/form.html' as form %}
+
+{% block package_basic_fields_odm_copyright %}
+	<div class="control-group">
+	  <label for="field-odm_copyright" class="control-label">{{ h.scheming_language_text(field.label) }}</label>
+	  <div class="controls">
+	    <div class="form-radios">
+	      <input id="field-odm_copyright" name="odm_copyright" type="radio" value="Yes" {% if data.odm_copyright == "Yes"%}checked{% endif %}> {% trans %}Yes{% endtrans %}</br>
+	      <input id="field-odm_copyright" name="odm_copyright" type="radio" value="No" {% if data.odm_copyright == "No"%}checked{% endif %}> {% trans %}No{% endtrans %}</br>
+	      <input id="field-odm_copyright" name="odm_copyright" type="radio" value="Unclear copyright" {% if data.odm_copyright == "Unclear copyright"%}checked{% endif %}> {% trans %}Unclear copyright{% endtrans %}
+	    </div>
+	    <span id="field-odm_copyright-disclaimer" class="info-block info-inline">
+	      <i class="icon-info-sign"></i>
+        {{h.scheming_language_text(field.help_text)}}
+	    </span>
+	  </div>
+	</div>
+{% endblock %}

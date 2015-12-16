@@ -1,0 +1,20 @@
+{% resource 'odm_dataset/moment.js' %}
+{% resource 'odm_dataset/daterangepicker.js' %}
+{% resource 'odm_dataset/daterangepicker-bs3.css' %}
+{% resource 'odm_dataset/daterangepicker-module.js' %}
+
+{% import 'macros/form.html' as form %}
+
+{% block package_metadata_fields_odm_date_range %}
+{{ form.input_readonly(
+	field.field_name,
+	is_required=h.scheming_field_required(field),
+	label=h.scheming_language_text(field.label),
+	id='field-'+field.field_name,
+	placeholder=h.scheming_language_text(field.form_placeholder),
+	value=data.get(field.field_name, ''),
+	error=errors.odm_date_created,
+	classes=['control-full'],
+	attrs={'data-module': 'daterangepicker-module','data-module-field_id':'field-'+field.field_name})
+}}
+{% endblock %}

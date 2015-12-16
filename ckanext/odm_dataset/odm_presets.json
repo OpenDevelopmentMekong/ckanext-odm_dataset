@@ -1,0 +1,214 @@
+{
+	"scheming_presets_version": 1,
+	"about": "ODM scheming field presets",
+	"about_url": "http://github.com/open-data/ckanext-scheming#preset",
+	"presets": [{
+		"preset_name": "title",
+		"values": {
+			"validators": "if_empty_same_as(name) unicode",
+			"form_snippet": "large_text.html",
+			"form_attrs": {
+				"data-module": "slug-preview-target"
+			}
+		}
+	}, {
+		"preset_name": "dataset_slug",
+		"values": {
+			"validators": "not_empty unicode name_validator package_name_validator",
+			"form_snippet": "slug.html"
+		}
+	}, {
+		"preset_name": "tag_string_autocomplete",
+		"values": {
+			"validators": "ignore_missing tag_string_convert",
+			"form_attrs": {
+				"data-module": "autocomplete",
+				"data-module-tags": "",
+				"data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
+			}
+		}
+	}, {
+		"preset_name": "dataset_organization",
+		"values": {
+			"validators": "owner_org_validator unicode",
+			"form_snippet": "organization.html"
+		}
+	}, {
+		"preset_name": "resource_url_upload",
+		"values": {
+			"validators": "not_empty unicode remove_whitespace",
+			"form_snippet": "upload.html",
+			"form_placeholder": "http://example.com/my-data.csv",
+			"upload_field": "upload",
+			"upload_clear": "clear_upload",
+			"upload_label": "File"
+		}
+	}, {
+		"preset_name": "resource_format_autocomplete",
+		"values": {
+			"validators": "if_empty_guess_format ignore_missing clean_format unicode",
+			"form_placeholder": "eg. CSV, XML or JSON",
+			"form_attrs": {
+				"data-module": "autocomplete",
+				"data-module-source": "/api/2/util/resource/format_autocomplete?incomplete=?"
+			}
+		}
+	}, {
+		"preset_name": "select",
+		"values": {
+			"form_snippet": "select.html",
+			"display_snippet": "select.html",
+			"validators": "scheming_required scheming_choices"
+		}
+	}, {
+		"preset_name": "multiple_checkbox",
+		"values": {
+			"form_snippet": "multiple_checkbox.html",
+			"display_snippet": "multiple_choice.html",
+			"validators": "scheming_multiple_choice",
+			"output_validators": "scheming_multiple_choice_output"
+		}
+	}, {
+		"preset_name": "multiple_select",
+		"values": {
+			"form_snippet": "multiple_select.html",
+			"display_snippet": "multiple_choice.html",
+			"validators": "scheming_multiple_choice",
+			"output_validators": "scheming_multiple_choice_output"
+		}
+	}, {
+		"preset_name": "text",
+		"values": {
+			"form_snippet": "text.html",
+			"validators": "scheming_required"
+		}
+	}, {
+		"preset_name": "fluent_text_single",
+		"values": {
+			"form_snippet": "fluent_text_single.html",
+			"display_snippet": "fluent_text.html",
+			"error_snippet": "fluent_text_single.html",
+			"validators": "fluent_text",
+			"output_validators": "fluent_text_output"
+		}
+	}, {
+		"preset_name": "fluent_core_translated",
+		"values": {
+			"form_snippet": "fluent_text.html",
+			"display_snippet": "fluent_text.html",
+			"error_snippet": "fluent_text.html",
+			"validators": "fluent_text",
+			"output_validators": "fluent_core_translated_output"
+		}
+	}, {
+		"preset_name": "fluent_core_translated_single",
+		"values": {
+			"form_snippet": "fluent_text_single.html",
+			"display_snippet": "fluent_text.html",
+			"error_snippet": "fluent_text_single.html",
+			"validators": "fluent_text",
+			"output_validators": "fluent_core_translated_output"
+		}
+	}, {
+		"preset_name": "markdown",
+		"values": {
+			"form_snippet": "markdown.html",
+			"validators": "scheming_required"
+		}
+	}, {
+		"preset_name": "fluent_markdown_single",
+		"values": {
+			"form_snippet": "fluent_markdown_single.html",
+			"display_snippet": "fluent_markdown.html",
+			"error_snippet": "fluent_markdown_single.html",
+			"validators": "fluent_text",
+			"output_validators": "fluent_text_output"
+		}
+	}, {
+		"preset_name": "fluent_core_translated_markdown",
+		"values": {
+			"form_snippet": "fluent_markdown.html",
+			"display_snippet": "fluent_markdown.html",
+			"error_snippet": "fluent_markdown.html",
+			"validators": "fluent_text",
+			"output_validators": "fluent_core_translated_output"
+		}
+	}, {
+		"preset_name": "fluent_core_translated_markdown_single",
+		"values": {
+			"form_snippet": "fluent_markdown_single.html",
+			"display_snippet": "fluent_markdown.html",
+			"error_snippet": "fluent_markdown_single.html",
+			"validators": "fluent_text",
+			"output_validators": "fluent_core_translated_output"
+		}
+	}, {
+		"preset_name": "date",
+		"values": {
+			"form_snippet": "date.html",
+			"display_snippet": "date.html",
+			"validators": "scheming_required convert_to_json_if_date"
+		}
+	}, {
+		"preset_name": "odm_date",
+		"values": {
+			"form_snippet": "odm_date.html",
+			"validators": "scheming_required",
+			"form_attrs": {
+				"data-module": "datepicker-module"
+			}
+		}
+	},{
+		"preset_name": "odm_date_range",
+		"values": {
+			"form_snippet": "odm_date_range.html",
+			"validators": "scheming_required",
+			"form_attrs": {
+				"data-module": "daterangepicker-module"
+			}
+		}
+	},{
+		"preset_name": "datetime",
+		"values": {
+			"form_snippet": "datetime.html",
+			"display_snippet": "datetime.html",
+			"validators": "scheming_isodatetime convert_to_json_if_datetime"
+		}
+	}, {
+		"preset_name": "odm_taxonomy",
+		"values": {
+			"form_snippet": "odm_taxonomy.html",
+			"display_snippet": "odm_taxonomy.html",
+			"validators": "scheming_required convert_to_tags(taxonomy) odm_dataset_clean_taxonomy_tags",
+			"output_validators": "scheming_multiple_choice_output"
+		}
+	}, {
+		"preset_name": "odm_organization",
+		"values": {
+			"validators": "owner_org_validator unicode",
+			"form_snippet": "odm_organization.html"
+		}
+	}, {
+		"preset_name": "odm_license",
+		"values": {
+			"validators": "scheming_required",
+			"form_snippet": "odm_license.html"
+		}
+	}, {
+		"preset_name": "odm_copyright",
+		"values": {
+			"validators": "scheming_required",
+			"form_snippet": "odm_copyright.html"
+		}
+	}, {
+		"preset_name": "odm_resource_name",
+		"values": {
+			"form_snippet": "odm_resource_name.html"
+		}
+	}, {
+		"preset_name": "odm_resource_description",
+		"values": {
+			"form_snippet": "odm_resource_description.html"
+		}
+	}]
+}
