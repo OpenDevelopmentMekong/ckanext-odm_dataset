@@ -4,5 +4,5 @@
 {% set spatial_range = data.odm_spatial_range or last_dataset['odm_spatial_range']%}
 
 {% block basic_fields_name %}
-  {{ form.input(h.scheming_language_text(field.name), label=h.scheming_language_text(field.label) ,id='field-name', value=odm_spatial_range) }}
+  {{ form.input(h.scheming_language_text(field.field_name), label=h.scheming_language_text(field.label) ,id='field-name', value=odm_spatial_range) }}
 {% endblock %}
