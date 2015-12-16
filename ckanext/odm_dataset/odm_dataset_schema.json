@@ -130,23 +130,23 @@
 		"label": "Date created",
 		"form_placeholder": "Date the dataset was first Published by its creator.",
 		"required": "true",
-		"preset": "date"
+		"preset": "odm_date"
 	}, {
 		"field_name": "odm_date_uploaded",
 		"label": "Date uploaded",
 		"form_placeholder": "Date a new version or update of the dataset was uploaded.",
 		"required": "true",
-		"preset": "date"
+		"preset": "odm_date"
 	}, {
 		"field_name": "odm_date_modified",
 		"label": "Date modified",
 		"form_placeholder": "Date a new version or update of the dataset was uploaded.",
-		"preset": "date"
+		"preset": "odm_date"
 	}, {
 		"field_name": "odm_temporal_range",
 		"label": "Temporal Range.",
 		"form_placeholder": "The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).",
-		"preset": "date"
+		"preset": "odm_date_range"
 	}, {
 		"field_name": "odm_spatial_range",
 		"label": "Geographic area (Spatial Range)",

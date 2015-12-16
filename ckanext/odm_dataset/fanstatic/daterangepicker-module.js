@@ -1,13 +1,13 @@
 this.ckan.module('daterangepicker-module', function($, _) {
 	return {
+    options: {
+      id: ''
+    },
 		initialize: function() {
-			console.log("init daterangepicker-module");
-			$('.daterangepicker').daterangepicker();
-
-      $('.daterangepicker').on('apply.daterangepicker', function(ev, picker) {
-    		console.log(picker);
-    	});
-		}
-	};
-
+      $('[id^='+this.options.field_id+']').each(function(){
+      	console.log('daterangepicker-module init for '+ $(this));
+        $(this).daterangepicker();
+      });
+    }
+  };
 });
