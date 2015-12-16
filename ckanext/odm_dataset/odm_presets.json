@@ -210,11 +210,5 @@
 		"values": {
 			"form_snippet": "odm_resource_description.html"
 		}
-	}, {
-		"preset_name": "odm_resource_spatial_range",
-		"values": {
-			"form_snippet": "odm_resource_spatial_range.html",
-			"output_validators": "convert_to_json_if_string"
-		}
 	}]
 }

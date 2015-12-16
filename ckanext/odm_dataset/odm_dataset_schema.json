@@ -277,40 +277,46 @@
 		"label": "Format",
 		"preset": "resource_format_autocomplete"
 	}, {
-		"field_name": "odm_spatial_range",
-    "label": "Resource's Spatial range",
+		"field_name": "odm_language",
+    "label": "Resource's languages",
     "preset": "multiple_select",
 		"select_size": 4,
 		"choices": [{
-			"value": "global",
-			"label": "Global"
+			"value": "my",
+			"label": "Burmese"
 		}, {
-			"value": "asean",
-			"label": "ASEAN"
+			"value": "en",
+			"label": "English"
 		}, {
-			"value": "gms",
-			"label": "Greater Mekong Subregion (GMS)"
+			"value": "kh",
+			"label": "Khmer"
 		}, {
-			"value": "lmb",
-			"label": "Lower Mekong Basin"
-		}, {
-			"value": "lmc",
-			"label": "Lower Mekong countries"
-		}, {
-			"value": "km",
-			"label": "Cambodia"
-		}, {
-			"value": "vn",
-			"label": "Vietnam"
-		}, {
-			"value": "la",
-			"label": "Laos"
+			"value": "lo",
+			"label": "Lao"
 		}, {
 			"value": "th",
-			"label": "Thailand"
+			"label": "Thai"
 		}, {
-			"value": "mm",
-			"label": "Myanmar"
+			"value": "vi",
+			"label": "Vietnamese"
+		}, {
+			"value": "zh",
+			"label": "Chinese"
+		}, {
+			"value": "fr",
+			"label": "French"
+		}, {
+			"value": "de",
+			"label": "German"
+		}, {
+			"value": "jp",
+			"label": "Japanese"
+		}, {
+			"value": "ko",
+			"label": "Korean"
+		}, {
+			"value": "other",
+			"label": "Other"
 		}]
 	}]
 }
