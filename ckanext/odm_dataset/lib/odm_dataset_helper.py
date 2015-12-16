@@ -109,12 +109,16 @@ def get_value_for_current_language(value):
   if DEBUG:
     log.debug('get_value_for_current_language')
 
+  try:
     value = json.loads(value);
 
     if isinstance(value, basestring):
       return value
 
-  return value[get_current_language()] or ""
+    return value[get_current_language()] or ""
+  except:
+
+    return ""
 
 def get_localized_tags_string(tags_string):
   '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''

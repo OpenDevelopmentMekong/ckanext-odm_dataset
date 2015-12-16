@@ -4,5 +4,5 @@
 {% set description = data.notes_translated or last_dataset['notes_translated'] %}
 
 {% block basic_fields_description %}
-  {{ form.markdown(h.scheming_language_text(field.field_name), id='field-description', label=h.scheming_language_text(field.label), placeholder=h.scheming_language_text(field.form_placeholder), value=h.odm_dataset_get_value_for_current_language(description), error=errors.description) }}
+  {{ form.markdown(h.scheming_language_text(field.field_name), id=field.field_name, label=h.scheming_language_text(field.label), placeholder=h.scheming_language_text(field.form_placeholder), value=h.odm_dataset_get_value_for_current_language(description), error=errors.description) }}
 {% endblock %}
