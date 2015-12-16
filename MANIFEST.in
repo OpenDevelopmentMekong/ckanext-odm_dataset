@@ -1,3 +1,4 @@
 recursive-include ckanext/odm_dataset/fanstatic *
 recursive-include ckanext/odm_dataset/lib *
 recursive-include ckanext/odm_dataset/templates *
+recursive-include ckanext *.html *.json
