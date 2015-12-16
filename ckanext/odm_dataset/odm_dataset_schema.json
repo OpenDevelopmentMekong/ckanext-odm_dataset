@@ -278,7 +278,39 @@
 		"preset": "resource_format_autocomplete"
 	}, {
 		"field_name": "odm_spatial_range",
-    "label": "Spatial range",
-		"preset": "odm_resource_spatial_range"
+    "label": "Resource's Spatial range",
+    "preset": "multiple_select",
+		"select_size": 4,
+		"choices": [{
+			"value": "global",
+			"label": "Global"
+		}, {
+			"value": "asean",
+			"label": "ASEAN"
+		}, {
+			"value": "gms",
+			"label": "Greater Mekong Subregion (GMS)"
+		}, {
+			"value": "lmb",
+			"label": "Lower Mekong Basin"
+		}, {
+			"value": "lmc",
+			"label": "Lower Mekong countries"
+		}, {
+			"value": "km",
+			"label": "Cambodia"
+		}, {
+			"value": "vn",
+			"label": "Vietnam"
+		}, {
+			"value": "la",
+			"label": "Laos"
+		}, {
+			"value": "th",
+			"label": "Thailand"
+		}, {
+			"value": "mm",
+			"label": "Myanmar"
+		}]
 	}]
 }
