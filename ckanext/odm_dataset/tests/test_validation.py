@@ -8,7 +8,7 @@ class TestValidation:
   ];
 
   json_files = [
-    os.path.abspath(os.path.join(__file__, '../../','odm_presets.json')),
+    os.path.abspath(os.path.join(__file__, '../../','odm_dataset_presets.json')),
     os.path.abspath(os.path.join(__file__, '../../','odm_dataset_schema.json'))
   ];
 
