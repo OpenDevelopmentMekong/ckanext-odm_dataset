@@ -143,6 +143,13 @@
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {
+		"preset_name": "number",
+		"values": {
+			"form_snippet": "text_number.html",
+			"display_snippet": "text.html",
+			"validators": "scheming_required"
+		}
+	},{
 		"preset_name": "date",
 		"values": {
 			"form_snippet": "date.html",
