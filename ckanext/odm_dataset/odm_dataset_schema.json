@@ -12,10 +12,10 @@
 		"field_name": "title_translated",
 		"preset": "fluent_core_translated_single",
 		"label": {
-			"en": "Title (en)",
-			"th": "หัวข้อ (th)",
-			"km": "ចំណងជើង (km)",
-			"vi": "Tiêu đề (vi)"
+			"en": "Title",
+			"th": "หัวข้อ",
+			"km": "ចំណងជើង",
+			"vi": "Tiêu đề "
 		},
 		"form_languages": ["en", "th", "km", "vi"]
 	}, {
