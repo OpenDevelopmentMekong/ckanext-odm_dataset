@@ -28,7 +28,6 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
-  plugins.implements(plugins.IFacets)
   plugins.implements(plugins.IPackageController, inherit=True)
 
   def __init__(self, *args, **kwargs):
@@ -36,47 +35,6 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     log.debug('OdmDatasetPlugin init')
     wsgi_app = SessionMiddleware(None, None)
     odm_dataset_helper.session = wsgi_app.session
-
-  # IFacets
-  def dataset_facets(self, facets_dict, package_type):
-
-    facets_dict = {
-              'license_id': toolkit._('License'),
-              'tags': toolkit._('Topics'),
-              'organization': toolkit._('Organizations'),
-              'groups': toolkit._('Groups'),
-              'res_format': toolkit._('Formats'),
-              'odm_language': toolkit._('Language'),
-              'odm_spatial_range': toolkit._('Country')
-              }
-
-    return facets_dict
-
-  def group_facets(self, facets_dict, group_type, package_type):
-
-    group_facets = {
-              'license_id': toolkit._('License'),
-              'tags': toolkit._('Topics'),
-              'organization': toolkit._('Organizations'),
-              'res_format': toolkit._('Formats'),
-              'odm_language': toolkit._('Language'),
-              'odm_spatial_range': toolkit._('Country')
-              }
-
-    return group_facets
-
-  def organization_facets(self, facets_dict, organization_type, package_type):
-
-    organization_facets = {
-              'license_id': toolkit._('License'),
-              'tags': toolkit._('Topics'),
-              'groups': toolkit._('Groups'),
-              'res_format': toolkit._('Formats'),
-              'odm_language': toolkit._('Language'),
-              'odm_spatial_range': toolkit._('Country')
-              }
-
-    return organization_facets
 
   # IRoutes
   def before_map(self, m):
