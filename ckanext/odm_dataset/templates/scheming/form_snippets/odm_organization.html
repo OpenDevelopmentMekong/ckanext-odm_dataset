@@ -15,7 +15,7 @@
 {% if show_organizations_selector %}
 	{% set existing_org = data.owner_org or data.group_id %}
 	<div class="control-group">
-		<label for="field-organizations" class="control-label">{{ _('Organization') }}</label>
+		<label for="field-organizations" class="control-label">{% if h.scheming_language_text(field.required) %}<span title="{{ _("This field is required") }}" class="control-required">*</span> {% endif %} {{ _('Organization') }}</label>
 		<div class="controls">
 		 <select id="field-organizations" name="owner_org" data-module="autocomplete">
 			{% if h.check_config_permission('create_unowned_dataset') %}
