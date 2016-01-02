@@ -97,8 +97,12 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     lang = odm_dataset_helper.get_current_language()
     if 'title' in pkg_dict and ( 'title_translated' not in pkg_dict or lang not in pkg_dict['title_translated']):
-      pkg_dict['title_translated'][lang] = pkg_dict['title']
+      pkg_dict['title_translated'] = {
+        lang: pkg_dict['title']
+      }
     if 'notes' in pkg_dict and ( 'notes_translated' not in pkg_dict or lang not in pkg_dict['notes_translated']):
-      pkg_dict['notes_translated'][lang] = pkg_dict['notes']
+      pkg_dict['notes_translated'] = {
+        lang: pkg_dict['notes']
+      }
 
     return pkg_dict
