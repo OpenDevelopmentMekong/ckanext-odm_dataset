@@ -110,6 +110,24 @@
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {
+		"preset_name": "fluent_title",
+		"values": {
+			"form_snippet": "fluent_text_single.html",
+			"display_snippet": "fluent_text.html",
+			"error_snippet": "fluent_text_single.html",
+			"validators": "fluent_text",
+			"output_validators": "if_empty_same_as(title) fluent_core_translated_output"
+		}
+	},{
+		"preset_name": "fluent_notes",
+		"values": {
+			"form_snippet": "fluent_markdown_single.html",
+			"display_snippet": "fluent_markdown.html",
+			"error_snippet": "fluent_markdown_single.html",
+			"validators": "fluent_text",
+			"output_validators": "if_empty_same_as(notes) fluent_core_translated_output"
+		}
+	},{
 		"preset_name": "markdown",
 		"values": {
 			"form_snippet": "markdown.html",
