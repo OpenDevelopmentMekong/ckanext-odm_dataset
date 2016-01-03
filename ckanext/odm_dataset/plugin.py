@@ -70,15 +70,17 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   # IPackageController
   def before_create(self, context, resource):
 
-    if context['package'].type == 'dataset':
+    dataset_type = context['package'].type if 'package' in context else ''
+    if dataset_type == 'dataset':
       log.info('before_create')
-      
+
       odm_dataset_helper.session['last_dataset'] = None
       odm_dataset_helper.session.save()
 
   def after_create(self, context, pkg_dict):
 
-    if context['package'].type == 'dataset':
+    dataset_type = context['package'].type if 'package' in context else pkg_dict['type']
+    if dataset_type == 'dataset':
       log.info('after_create: %s', pkg_dict['name'])
 
       odm_dataset_helper.session['last_dataset'] = pkg_dict
@@ -92,7 +94,8 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   def after_update(self, context, pkg_dict):
 
-    if context['package'].type == 'dataset':
+    dataset_type = context['package'].type if 'package' in context else pkg_dict['type']
+    if dataset_type == 'dataset':
       log.info('after_update: %s', pkg_dict['name'])
 
       odm_dataset_helper.session['last_dataset'] = pkg_dict
