@@ -69,25 +69,31 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   # IPackageController
   def before_create(self, context, resource):
-    log.info('before_create')
 
-    odm_dataset_helper.session['last_dataset'] = None
-    odm_dataset_helper.session.save()
+    if context['package'].type == 'dataset':
+      log.info('before_create')
+      
+      odm_dataset_helper.session['last_dataset'] = None
+      odm_dataset_helper.session.save()
 
   def after_create(self, context, pkg_dict):
-    log.info('after_create: %s', pkg_dict['name'])
 
-    odm_dataset_helper.session['last_dataset'] = pkg_dict
-    odm_dataset_helper.session.save()
+    if context['package'].type == 'dataset':
+      log.info('after_create: %s', pkg_dict['name'])
 
-    # Create default Issue
-    review_system = h.asbool(config.get("ckanext.issues.review_system", False))
-    if review_system:
-      if pkg_dict['type'] == 'dataset':
-        odm_dataset_helper.create_default_issue_dataset(pkg_dict)
+      odm_dataset_helper.session['last_dataset'] = pkg_dict
+      odm_dataset_helper.session.save()
+
+      # Create default Issue
+      review_system = h.asbool(config.get("ckanext.issues.review_system", False))
+      if review_system:
+        if pkg_dict['type'] == 'dataset':
+          odm_dataset_helper.create_default_issue_dataset(pkg_dict)
 
   def after_update(self, context, pkg_dict):
-    log.info('after_update: %s', pkg_dict['name'])
 
-    odm_dataset_helper.session['last_dataset'] = pkg_dict
-    odm_dataset_helper.session.save()
+    if context['package'].type == 'dataset':
+      log.info('after_update: %s', pkg_dict['name'])
+
+      odm_dataset_helper.session['last_dataset'] = pkg_dict
+      odm_dataset_helper.session.save()
