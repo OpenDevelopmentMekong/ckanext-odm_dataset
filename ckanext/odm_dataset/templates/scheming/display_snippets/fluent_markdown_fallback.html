@@ -1,0 +1,6 @@
+{% set localized_value = h.scheming_language_text(data[field.field_name]) %}
+{% if localized_value %}
+	{{ h.render_markdown(localized_value) }}
+{% else %}
+	{{ _('Multilingual Field: No Data for the current selected language has been entered yet') }}
+{% endif %}

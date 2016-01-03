@@ -86,7 +86,7 @@
 		"preset_name": "fluent_text_single",
 		"values": {
 			"form_snippet": "fluent_text_single.html",
-			"display_snippet": "fluent_text.html",
+			"display_snippet": "fluent_text_fallback.html",
 			"error_snippet": "fluent_text_single.html",
 			"validators": "fluent_text",
 			"output_validators": "fluent_text_output"
@@ -119,7 +119,7 @@
 		"preset_name": "fluent_markdown_single",
 		"values": {
 			"form_snippet": "fluent_markdown_single.html",
-			"display_snippet": "fluent_markdown.html",
+			"display_snippet": "fluent_markdown_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
 			"validators": "fluent_text",
 			"output_validators": "fluent_text_output"
