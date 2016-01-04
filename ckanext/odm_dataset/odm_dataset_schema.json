@@ -15,7 +15,8 @@
 		"form_languages": ["en", "th", "km", "vi"],
     "form_attrs": {
       "data-module": "slug-preview-target"
-    }
+    },
+    "form_placeholder": "Name given to the dataset."
 	}, {
 		"field_name": "name",
 		"label": "URL",
@@ -30,7 +31,8 @@
 			"km": "ការពិពណ៌នា",
 			"vi": "Mô tả"
 		},
-		"form_languages": ["en", "th", "km", "vi"]
+		"form_languages": ["en", "th", "km", "vi"],
+    "form_placeholder": "Short description explaining the content and its origins."
 	}, {
 		"field_name": "taxonomy",
 		"label": "Topics",
@@ -66,7 +68,7 @@
 		"field_name": "version",
 		"label": "Version",
 		"validators": "scheming_required unicode package_version_validator",
-		"form_placeholder": "1.0",
+		"form_placeholder": "Dataset's version (eg. 1.0)",
 		"required": "true"
 	}, {
 		"field_name": "odm_contact",
