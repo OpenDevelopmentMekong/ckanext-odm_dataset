@@ -50,10 +50,10 @@
 		"preset": "odm_copyright",
 		"help_text": "Select 'yes', 'no' or 'unclear copyright' about the copyright of the dataset. If copyright of any type is present, describe further in Access and User Constraints."
 	}, {
-		"field_name": "odm_access_and_use_constraint",
+		"field_name": "odm_access_and_use_constraints",
 		"preset": "fluent_markdown_single",
 		"label": {
-			"en": "Access and Use Constraints",
+			"en": "Access and use constraints",
 			"th": "การเข้าถึงและข้อจำกัด",
 			"km": "កំហិតនៃការចូល និងប្រើប្រាស់",
 			"vi": "Hạn chế truy cập và sử dụng"
