@@ -72,8 +72,14 @@
 		"required": "true"
 	}, {
 		"field_name": "odm_contact",
-		"label": "Contact",
-		"form_snippet": "markdown.html",
+    "preset": "fluent_markdown_single",
+		"label": {
+			"en": "Contact",
+			"th": "ข้อมูลติดต่อ",
+			"km": "ទំនាក់ទំនង",
+			"vi": "Liên hệ"
+		},
+		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset. This could be the author of a report, the contact information for the relevant department of an organization that produced a report, or the data analyst, mapper or researcher that produced a dataset or report."
 	}, {
 		"field_name": "odm_language",
