@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block secondary_content %}
+	{% if pkg.odm_multilingual is not defined or pkg.odm_multilingual != '1' %}
+		{% block inconsistency_disclaimer %}
+			<h2 class="module-heading"><i class="icon-alert"></i> {{ _('Record not migrated!!') }}</h2>
+			<div class="disclaimer">
+				<p>{{ _('This record has not been migrated yet. In case you want to save it, make sure the data is filled properly before pressing the UPDATE button.') }}</p>
+			</div>
+		{% endblock %}
+	{% endif %}
+
+	{{super()}}
+
+{% endblock %}
