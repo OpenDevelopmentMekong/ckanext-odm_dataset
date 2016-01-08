@@ -53,7 +53,7 @@
 		"field_name": "odm_access_and_use_constraints",
 		"preset": "fluent_markdown_single",
 		"label": {
-			"en": "Access and Use Constraints",
+			"en": "Access and use constraints",
 			"th": "การเข้าถึงและข้อจำกัด",
 			"km": "កំហិតនៃការចូល និងប្រើប្រាស់",
 			"vi": "Hạn chế truy cập và sử dụng"
@@ -144,12 +144,12 @@
 		"preset": "odm_date"
 	}, {
 		"field_name": "odm_temporal_range",
-		"label": "Temporal Range.",
+		"label": "Temporal range",
 		"form_placeholder": "The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).",
 		"preset": "odm_date_range"
 	}, {
 		"field_name": "odm_spatial_range",
-		"label": "Geographic area (Spatial Range)",
+		"label": "Geographic area (spatial range)",
 		"form_placeholder": "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).",
 		"preset": "multiple_select",
 		"required": "true",
@@ -235,7 +235,7 @@
 		"form_placeholder": "Ordered citations for all information sources that went into producing the dataset."
 	}, {
 		"field_name": "odm_metadata_reference_information",
-		"label": "Metadata Reference Information",
+		"label": "Metadata reference information",
 		"preset": "fluent_markdown_single",
 		"label": {
 			"en": "Metadata Reference Information",
