@@ -38,7 +38,7 @@
 		"label": "Topics",
 		"preset": "odm_taxonomy",
     "required": "true",
-		"form_placeholder": "Describe general purpose and scope."
+		"form_placeholder": "e.g. economy, mental health, government"
 	}, {
 		"field_name": "license_id",
 		"label": "License",
