@@ -6,7 +6,7 @@
 {% import 'macros/form.html' as form %}
 
 {% block package_metadata_fields_odm_date_range %}
-{{ form.input_readonly(
+{{ form.input(
 	field.field_name,
 	is_required=h.scheming_field_required(field),
 	label=h.scheming_language_text(field.label),
