@@ -13,9 +13,6 @@
 			"vi": "Tiêu đề "
 		},
 		"form_languages": ["en", "th", "km", "vi"],
-    "form_attrs": {
-      "data-module": "slug-preview-target"
-    },
     "form_placeholder": "Name given to the dataset."
 	}, {
 		"field_name": "name",

@@ -14,7 +14,7 @@
 	}, {
 		"preset_name": "dataset_slug",
 		"values": {
-			"validators": "not_empty unicode name_validator package_name_validator",
+			"validators": "odm_dataset_generate_uuid not_empty unicode name_validator package_name_validator",
 			"form_snippet": "slug.html"
 		}
 	}, {

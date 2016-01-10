@@ -54,8 +54,9 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as validators.'''
 
     return {
+      'odm_dataset_generate_uuid': odm_dataset_helper.generate_uuid,
       'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags
-      }
+    }
 
   # ITemplateHelpers
   def get_helpers(self):

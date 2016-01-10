@@ -7,6 +7,7 @@ import pylons
 import json
 import ckan
 import logging
+import uuid
 import urlparse
 import ckan.plugins.toolkit as toolkit
 from genshi.template.text import NewTextTemplate
@@ -75,6 +76,11 @@ def clean_taxonomy_tags(value):
 
   tags = list(value)
   return json.dumps([tag for tag in tags])
+
+def generate_uuid(value):
+  '''Generate uuid'''
+
+  return uuid.uuid4()
 
 def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
