@@ -48,7 +48,7 @@
 		"field_name": "odm_copyright",
 		"label": "Copyright",
 		"preset": "odm_copyright",
-		"help_text": "Select 'yes', 'no' or 'unclear copyright' about the copyright of the dataset. If copyright of any type is present, describe further in Access and User Constraints."
+		"help_text": "Select 'Yes', 'No', 'Unclear copyright' or 'To be determined' about the copyright of the dataset. If copyright of any type is present, describe further in Access and User Constraints."
 	}, {
 		"field_name": "odm_access_and_use_constraints",
 		"preset": "fluent_markdown_single",

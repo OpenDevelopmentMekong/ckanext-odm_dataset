@@ -7,7 +7,8 @@
 	    <div class="form-radios">
 	      <input id="field-odm_copyright" name="odm_copyright" type="radio" value="Yes" {% if data.odm_copyright == "Yes"%}checked{% endif %}> {% trans %}Yes{% endtrans %}</br>
 	      <input id="field-odm_copyright" name="odm_copyright" type="radio" value="No" {% if data.odm_copyright == "No"%}checked{% endif %}> {% trans %}No{% endtrans %}</br>
-	      <input id="field-odm_copyright" name="odm_copyright" type="radio" value="Unclear copyright" {% if data.odm_copyright == "Unclear copyright"%}checked{% endif %}> {% trans %}Unclear copyright{% endtrans %}
+	      <input id="field-odm_copyright" name="odm_copyright" type="radio" value="Unclear copyright" {% if data.odm_copyright == "Unclear copyright"%}checked{% endif %}> {% trans %}Unclear copyright{% endtrans %}</br>
+				<input id="field-odm_copyright" name="odm_copyright" type="radio" value="To be determined" {% if data.odm_copyright != "Yes" and data.odm_copyright != "No" and data.odm_copyright != "Unclear copyright" %}checked{% endif %}> {% trans %}To be determined{% endtrans %}
 	    </div>
 	    <span id="field-odm_copyright-disclaimer" class="info-block info-inline">
 	      <i class="icon-info-sign"></i>
