@@ -37,6 +37,7 @@
 		"field_name": "taxonomy",
 		"label": "Topics",
 		"preset": "odm_taxonomy",
+    "required": "false",
 		"form_placeholder": "e.g. economy, mental health, government"
 	}, {
 		"field_name": "license_id",
@@ -67,7 +68,8 @@
 		"field_name": "version",
 		"label": "Version",
 		"validators": "scheming_required unicode package_version_validator",
-		"form_placeholder": "Dataset's version (eg. 1.0)"
+		"form_placeholder": "Dataset's version (eg. 1.0)",
+		"required": "false"
 	}, {
 		"field_name": "odm_contact",
     "preset": "fluent_markdown_single",
@@ -82,6 +84,7 @@
 	}, {
 		"field_name": "odm_language",
 		"label": "Language",
+		"required": "false",
 		"form_placeholder": "Language(s) of the dataset, including resources within dataset.",
 		"preset": "multiple_select",
 		"select_size": 4,
@@ -126,11 +129,13 @@
 		"field_name": "odm_date_created",
 		"label": "Date created",
 		"form_placeholder": "Date the dataset was first Published by its creator.",
+		"required": "false",
 		"preset": "odm_date"
 	}, {
 		"field_name": "odm_date_uploaded",
 		"label": "Date uploaded",
 		"form_placeholder": "Date a new version or update of the dataset was uploaded.",
+		"required": "false",
 		"preset": "odm_date"
 	}, {
 		"field_name": "odm_date_modified",
@@ -147,6 +152,7 @@
 		"label": "Geographic area (spatial range)",
 		"form_placeholder": "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).",
 		"preset": "multiple_select",
+		"required": "false",
 		"select_size": 4,
 		"choices": [{
 			"value": "global",
@@ -218,11 +224,13 @@
 	}, {
 		"field_name": "odm_process",
 		"label": "Process(es)",
+		"required": "false",
 		"preset": "markdown",
 		"form_placeholder": "The steps taken to acquire, aggregate, or transform any of the resources in the dataset."
 	}, {
 		"field_name": "odm_source",
 		"label": "Source(s)",
+		"required": "false",
 		"preset": "markdown",
 		"form_placeholder": "Ordered citations for all information sources that went into producing the dataset."
 	}, {
