@@ -257,6 +257,10 @@
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Details about the information content of the dataset."
+	}, {
+		"field_name": "odm_reference_document",
+		"label": "Legacy reference document",
+		"form_placeholder": "e.g Tong_Min_Group_Engineering__21.06.2011.pdf"
 	}],
 	"resource_fields": [{
 		"field_name": "url",
