@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block secondary_content %}
-	{% if pkg.type != 'laws_record' and (pkg.odm_multilingual is not defined or pkg.odm_multilingual != '1') %}
+	{% if pkg.title_translated is not defined %}
 		{% block inconsistency_disclaimer %}
 			<h2 class="module-heading"><i class="icon-alert"></i> {{ _('Record not migrated!!') }}</h2>
 			<div class="disclaimer">
