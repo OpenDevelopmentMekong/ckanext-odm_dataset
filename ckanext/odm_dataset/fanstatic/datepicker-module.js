@@ -9,7 +9,7 @@ this.ckan.module('datepicker-module', function($, _) {
         $(this).daterangepicker({
            singleDatePicker: true,
            showDropdowns: true,
-           format: 'DD/MM/YYYY'
+           format: 'MM/DD/YYYY'
          });
       });
     }
