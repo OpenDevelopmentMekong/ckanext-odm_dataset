@@ -8,7 +8,8 @@ this.ckan.module('datepicker-module', function($, _) {
       	console.log('datepicker-module init for '+ $(this));
         $(this).daterangepicker({
            singleDatePicker: true,
-           showDropdowns: true
+           showDropdowns: true,
+           format: 'DD/MM/YYYY'
          });
       });
     }
