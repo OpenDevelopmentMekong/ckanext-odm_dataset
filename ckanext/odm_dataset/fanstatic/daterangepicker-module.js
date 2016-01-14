@@ -1,7 +1,6 @@
 this.ckan.module('daterangepicker-module', function($, _) {
 	return {
     options: {
-      format: 'dd/mm/yyyy',
       id: ''
     },
 		initialize: function() {
