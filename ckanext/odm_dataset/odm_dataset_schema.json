@@ -5,7 +5,7 @@
 	"about_url": "http://github.com/open-data/ckanext-scheming",
 	"dataset_fields": [{
 		"field_name": "title_translated",
-		"preset": "fluent_core_translated_single",
+		"preset": "fluent_core_title_translated_single",
 		"label": {
 			"en": "Title",
 			"th": "หัวข้อ",
@@ -24,7 +24,7 @@
 		"form_placeholder": "eg. my-dataset"
 	}, {
 		"field_name": "notes_translated",
-		"preset": "fluent_core_translated_markdown_single",
+		"preset": "fluent_core_notes_translated_markdown_single",
 		"label": {
 			"en": "Description",
 			"th": "รายละเอียด",

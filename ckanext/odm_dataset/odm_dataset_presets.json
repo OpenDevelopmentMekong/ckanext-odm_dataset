@@ -101,10 +101,10 @@
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {
-		"preset_name": "fluent_core_translated_single",
+		"preset_name": "fluent_core_title_translated_single",
 		"values": {
 			"form_snippet": "fluent_text_single.html",
-			"display_snippet": "fluent_text.html",
+			"display_snippet": "fluent_title_fallback.html",
 			"error_snippet": "fluent_text_single.html",
 			"validators": "fluent_text",
 			"output_validators": "fluent_core_translated_output"
@@ -134,10 +134,10 @@
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {
-		"preset_name": "fluent_core_translated_markdown_single",
+		"preset_name": "fluent_core_notes_translated_markdown_single",
 		"values": {
 			"form_snippet": "fluent_markdown_single.html",
-			"display_snippet": "fluent_markdown.html",
+			"display_snippet": "fluent_notes_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
 			"validators": "fluent_text",
 			"output_validators": "fluent_core_translated_output"

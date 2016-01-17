@@ -1,0 +1,5 @@
+{%- if data["title_translated"] is not defined -%}
+	{{ data["title"] }}
+{%- else -%}
+	{{ h.scheming_language_text(data[field.field_name]) }}
+{%- endif -%}
