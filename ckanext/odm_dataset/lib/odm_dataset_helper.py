@@ -78,7 +78,7 @@ def convert_to_multilingual(value):
   except ValueError:
     multilingual_value[get_current_language()] = value;
 
-  return json.dumps(multilingual_value)
+  return multilingual_value
 
 def clean_taxonomy_tags(value):
   '''Cleans taxonomy field before storing it'''
