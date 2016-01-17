@@ -1,5 +1,0 @@
-{%- if data["notes_translated"] is not defined -%}
-	{{	h.render_markdown(data["notes"]) }}
-{%- else -%}
-	{{ h.render_markdown(h.scheming_language_text(data[field.field_name])) }}
-{%- endif -%}
