@@ -88,7 +88,7 @@
 			"form_snippet": "fluent_text_single.html",
 			"display_snippet": "fluent_text_fallback.html",
 			"error_snippet": "fluent_text_single.html",
-			"validators": "fluent_text",
+			"validators": "odm_dataset_convert_to_multilingual fluent_text",
 			"output_validators": "fluent_text_output"
 		}
 	}, {
@@ -121,7 +121,7 @@
 			"form_snippet": "fluent_markdown_single.html",
 			"display_snippet": "fluent_markdown_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
-			"validators": "fluent_text",
+			"validators": "odm_dataset_convert_to_multilingual fluent_text",
 			"output_validators": "fluent_text_output"
 		}
 	}, {
