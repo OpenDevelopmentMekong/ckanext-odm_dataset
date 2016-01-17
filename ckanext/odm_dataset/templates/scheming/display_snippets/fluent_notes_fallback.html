@@ -1,3 +1,5 @@
+{{ data }}
+ ## DEBUG ##
 {%- if data["notes_translated"] is not defined -%}
 	{{	h.render_markdown(data["notes"]) }}
 {%- else -%}

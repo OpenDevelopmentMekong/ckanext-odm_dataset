@@ -104,7 +104,7 @@ def get_current_language():
   return pylons.request.environ['CKAN_LANG']
 
 def get_value_for_current_language(value):
-  '''Returns the corresponding value on the current language'''
+  '''Returns the corresponding value on the current language or the string if non-multilingual'''
 
   if DEBUG:
     log.debug('get_value_for_current_language')
