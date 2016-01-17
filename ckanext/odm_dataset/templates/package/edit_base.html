@@ -3,9 +3,9 @@
 {% block secondary_content %}
 	{% if pkg.title_translated is not defined %}
 		{% block inconsistency_disclaimer %}
-			<h2 class="module-heading"><i class="icon-alert"></i> {{ _('Record not migrated!!') }}</h2>
+			<h2 class="module-heading"><i class="icon-alert"></i> {{ _('Record not multilingual compliant!!') }}</h2>
 			<div class="disclaimer">
-				<p>{{ _('This record has not been migrated yet. In case you want to save it, make sure the data is filled properly before pressing the UPDATE button.') }}</p>
+				<p>{{ _('This record has not been migrated yet. In case you want to save it, make sure that data is fille properly before pressing the UPDATE button. Follow the instructions on https://wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually:') }}</p>
 			</div>
 		{% endblock %}
 	{% endif %}
