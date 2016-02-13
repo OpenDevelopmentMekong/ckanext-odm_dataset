@@ -8,9 +8,7 @@ import json
 import ckan
 import logging
 import urlparse
-import ckan.plugins.toolkit as toolkit
-from genshi.template.text import NewTextTemplate
-from ckan.lib.base import render
+import genshi
 
 log = logging.getLogger(__name__)
 
@@ -19,42 +17,42 @@ def create_default_issue_dataset(pkg_info):
   try:
 
     extra_vars = {
-        't0': toolkit._("Thank you for uploading the dataset. You should have received a confirmation email from OD Mekong Datahub. This dataset is still unpublished. Your item can only be published after you review this form and after our administrators approve your entry."),
-        't1': toolkit._("It is important that you have entered the correct information in your dataset form. We also ask that all contributors complete as many fields as possible."),
-        't2': toolkit._("Please take this opportunity to review your dataset record. If you would like to make any changes please select your dataset record and then click on the Manage button on the top right corner."),
-        't3': toolkit._("Please CHECK YOUR SPELLING against the original item to ensure the item is recorded correctly."),
-        't4': toolkit._("Please review your dataset record form again for the mandatory fields:"),
-        't5': toolkit._("Title (Please use Associated Press style title where the first letter is capitalized and the rest of the title is not, i.e. 'Study of Cambodian forests and lakes from 1992 to 1994')"),
-        't6': toolkit._("Language"),
-        't7': toolkit._("Version"),
-        't8': toolkit._("Geographical area"),
-        't9': toolkit._("Source"),
-        't10': toolkit._("Processes"),
-        't11': toolkit._("Date uploaded"),
-        't12': toolkit._("Date created"),
-        't13': toolkit._("Please review again the following information, vital to other users who may search for your record:"),
-        't14': toolkit._("Description(Make sure this is a concise description of the record in your own words, please do not just 'copy' and 'paste' an abstract by the original author)"),
-        't15': toolkit._("Topics"),
-        't16': toolkit._("License (Make sure you indicated the correct license. Additional information on creative commons is found here http://opendefinition.org/licenses/. If there is no license, please indicate 'license unspecified')"),
-        't17': toolkit._("Copyright"),
-        't18': toolkit._("Access and Use Constraints"),
-        't19': toolkit._("Contact"),
-        't20': toolkit._("Date modified"),
-        't21': toolkit._("Temporal Range"),
-        't22': toolkit._("Accuracy"),
-        't23': toolkit._("Logical Consistency"),
-        't24': toolkit._("Completeness"),
-        't25': toolkit._("Metadata Reference Information"),
-        't26': toolkit._("Attributes"),
-        't27': toolkit._("Our administrators need to review the dataset record as well. They will close fixed issues or open new issues if there are any other inconsistencies. Once all issues have been resolved, the item will be published."),
-        't28': toolkit._("Thank you for sharing,"),
-        't29': toolkit._("Open Development Team")
+        't0': ckan.plugins.toolkit._("Thank you for uploading the dataset. You should have received a confirmation email from OD Mekong Datahub. This dataset is still unpublished. Your item can only be published after you review this form and after our administrators approve your entry."),
+        't1': ckan.plugins.toolkit._("It is important that you have entered the correct information in your dataset form. We also ask that all contributors complete as many fields as possible."),
+        't2': ckan.plugins.toolkit._("Please take this opportunity to review your dataset record. If you would like to make any changes please select your dataset record and then click on the Manage button on the top right corner."),
+        't3': ckan.plugins.toolkit._("Please CHECK YOUR SPELLING against the original item to ensure the item is recorded correctly."),
+        't4': ckan.plugins.toolkit._("Please review your dataset record form again for the mandatory fields:"),
+        't5': ckan.plugins.toolkit._("Title (Please use Associated Press style title where the first letter is capitalized and the rest of the title is not, i.e. 'Study of Cambodian forests and lakes from 1992 to 1994')"),
+        't6': ckan.plugins.toolkit._("Language"),
+        't7': ckan.plugins.toolkit._("Version"),
+        't8': ckan.plugins.toolkit._("Geographical area"),
+        't9': ckan.plugins.toolkit._("Source"),
+        't10': ckan.plugins.toolkit._("Processes"),
+        't11': ckan.plugins.toolkit._("Date uploaded"),
+        't12': ckan.plugins.toolkit._("Date created"),
+        't13': ckan.plugins.toolkit._("Please review again the following information, vital to other users who may search for your record:"),
+        't14': ckan.plugins.toolkit._("Description(Make sure this is a concise description of the record in your own words, please do not just 'copy' and 'paste' an abstract by the original author)"),
+        't15': ckan.plugins.toolkit._("Topics"),
+        't16': ckan.plugins.toolkit._("License (Make sure you indicated the correct license. Additional information on creative commons is found here http://opendefinition.org/licenses/. If there is no license, please indicate 'license unspecified')"),
+        't17': ckan.plugins.toolkit._("Copyright"),
+        't18': ckan.plugins.toolkit._("Access and Use Constraints"),
+        't19': ckan.plugins.toolkit._("Contact"),
+        't20': ckan.plugins.toolkit._("Date modified"),
+        't21': ckan.plugins.toolkit._("Temporal Range"),
+        't22': ckan.plugins.toolkit._("Accuracy"),
+        't23': ckan.plugins.toolkit._("Logical Consistency"),
+        't24': ckan.plugins.toolkit._("Completeness"),
+        't25': ckan.plugins.toolkit._("Metadata Reference Information"),
+        't26': ckan.plugins.toolkit._("Attributes"),
+        't27': ckan.plugins.toolkit._("Our administrators need to review the dataset record as well. They will close fixed issues or open new issues if there are any other inconsistencies. Once all issues have been resolved, the item will be published."),
+        't28': ckan.plugins.toolkit._("Thank you for sharing,"),
+        't29': ckan.plugins.toolkit._("Open Development Team")
     }
 
-    issue_message = render('messages/default_issue_dataset.txt',extra_vars=extra_vars,loader_class=NewTextTemplate)
+    issue_message = ckan.lib.base.render('messages/default_issue_dataset.txt',extra_vars=extra_vars,loader_class=genshi.template.text.NewTextTemplate)
 
     params = {'title':'User Dataset Upload Checklist','description':issue_message,'dataset_id':pkg_info['id']}
-    toolkit.get_action('issue_create')(data_dict=params)
+    ckan.plugins.toolkit.get_action('issue_create')(data_dict=params)
 
   except KeyError:
 
