@@ -74,7 +74,6 @@ def convert_to_multilingual(value):
     json_value = json.loads(value);
     multilingual_value = json_value
   except ValueError:
-    print(value)
     multilingual_value[get_current_language()] = value;
 
   return multilingual_value
