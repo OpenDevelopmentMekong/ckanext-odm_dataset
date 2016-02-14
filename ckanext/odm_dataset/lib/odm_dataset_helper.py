@@ -74,6 +74,7 @@ def convert_to_multilingual(value):
     json_value = json.loads(value);
     multilingual_value = json_value
   except ValueError:
+    print(value)
     multilingual_value[get_current_language()] = value;
 
   return multilingual_value
@@ -84,8 +85,7 @@ def clean_taxonomy_tags(value):
   if isinstance(value, basestring):
     return json.dumps([value])
 
-  tags = list(value)
-  return json.dumps([tag for tag in tags])
+  return json.dumps(list(value))
 
 def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
@@ -105,6 +105,21 @@ def get_localized_tag(tag):
       return translation['term_translation']
 
   return str(tag)
+
+def get_localized_tags_string(tags_string):
+  '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
+
+  if DEBUG:
+    log.debug('get_localized_tags_string: %s', tags_string)
+
+  translated_array = []
+  for tag in tags_string.split(', '):
+    translated_array.append(get_localized_tag(tag))
+
+  if len(translated_array)==0:
+    return ''
+
+  return ','.join(translated_array)
 
 def get_current_language():
   '''Returns the current language code'''
@@ -130,20 +145,5 @@ def get_value_for_current_language(value):
   except:
 
     return ""
-
-def get_localized_tags_string(tags_string):
-  '''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
-
-  if DEBUG:
-    log.debug('get_localized_tags_string: %s', tags_string)
-
-  translated_array = []
-  for tag in tags_string.split(', '):
-    translated_array.append(get_localized_tag(tag))
-
-  if len(translated_array)==0:
-    return ''
-
-  return ','.join(translated_array)
 
 session = {}
