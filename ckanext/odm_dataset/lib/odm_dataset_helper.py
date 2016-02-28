@@ -80,7 +80,10 @@ def convert_to_multilingual(value):
 
 def map_odm_spatial_range(value):
 
-  if type(value) is list:
+  if type(value) is list and len(value) == 1:
+    value = value[0]
+
+  if type(value) is list and len(value) > 1:
     return value
 
   odm_spatial_range = []
@@ -110,7 +113,10 @@ def map_odm_spatial_range(value):
 
 def map_odm_language(value):
 
-  if type(value) is list:
+  if type(value) is list and len(value) == 1:
+    value = value[0]
+
+  if type(value) is list and len(value) > 1:
     return value
 
   odm_language = []
