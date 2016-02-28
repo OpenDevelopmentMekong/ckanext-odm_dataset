@@ -87,6 +87,12 @@ class TestHelpers(unittest.TestCase):
     value = odm_dataset_helper.convert_to_multilingual('value for field')
     assert json.dumps(value) == json.dumps({"en": "value for field"})
 
+    "should return a multilingual compliant dict out of a non-multilingual compliant one, using non default language"
+    sys.modules['pylons'].request.environ = {'CKAN_LANG':'km'}
+
+    value = odm_dataset_helper.convert_to_multilingual('value for field')
+    assert json.dumps(value) == json.dumps({"km": "value for field"})
+
     "should return a multilingual compliant dict out of multilingual compliant one"
     sys.modules['pylons'].request.environ = {'CKAN_LANG':'en'}
 
