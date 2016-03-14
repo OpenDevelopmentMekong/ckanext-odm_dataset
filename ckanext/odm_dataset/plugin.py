@@ -58,6 +58,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         'odm_dataset_map_odm_spatial_range': odm_dataset_helper.map_odm_spatial_range,
         'odm_dataset_map_odm_language': odm_dataset_helper.map_odm_language,
         'odm_dataset_convert_to_multilingual': odm_dataset_helper.convert_to_multilingual,
+        'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags,
         'odm_dataset_retrieve_taxonomy_from_tags': odm_dataset_helper.retrieve_taxonomy_from_tags,
         'odm_dataset_map_title_translated': odm_dataset_helper.map_title_translated,
         'odm_dataset_map_notes_translated': odm_dataset_helper.map_notes_translated,

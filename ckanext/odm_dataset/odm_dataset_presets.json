@@ -186,7 +186,7 @@
 		"values": {
 			"form_snippet": "odm_taxonomy.html",
 			"display_snippet": "odm_taxonomy.html",
-			"validators": "scheming_required convert_to_tags(taxonomy) odm_dataset_clean_taxonomy_tags",
+			"validators": "odm_dataset_clean_taxonomy_tags",
 			"output_validators": "odm_dataset_retrieve_taxonomy_from_tags scheming_multiple_choice_output"
 		}
 	}, {
