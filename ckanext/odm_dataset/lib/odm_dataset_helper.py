@@ -148,6 +148,21 @@ def map_odm_language(value):
 
   return odm_language
 
+def retrieve_taxonomy_from_tags(key, flattened_data, errors, context):
+  '''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
+  print flattened_data
+  pass
+
+def map_title_translated(key, flattened_data, errors, context):
+  '''Set the title_translated field, if not set yet, out of the available title field'''
+  print flattened_data
+  pass
+
+def map_notes_translated(key, flattened_data, errors, context):
+  '''Set the notes_translated field, if not set yet, out of the available notes field'''
+  print flattened_data
+  pass
+
 def clean_taxonomy_tags(value):
   '''Cleans taxonomy field before storing it'''
 

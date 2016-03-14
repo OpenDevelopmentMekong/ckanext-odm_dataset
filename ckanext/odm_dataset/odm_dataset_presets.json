@@ -107,7 +107,7 @@
 			"display_snippet": "fluent_text.html",
 			"error_snippet": "fluent_text_single.html",
 			"validators": "fluent_text",
-			"output_validators": "fluent_core_translated_output"
+			"output_validators": "odm_dataset_map_title_translated fluent_core_translated_output"
 		}
 	}, {
 		"preset_name": "markdown",
@@ -140,7 +140,7 @@
 			"display_snippet": "fluent_markdown.html",
 			"error_snippet": "fluent_markdown_single.html",
 			"validators": "fluent_text",
-			"output_validators": "fluent_core_translated_output"
+			"output_validators": "odm_dataset_map_notes_translated fluent_core_translated_output"
 		}
 	}, {
 		"preset_name": "number",
@@ -187,7 +187,7 @@
 			"form_snippet": "odm_taxonomy.html",
 			"display_snippet": "odm_taxonomy.html",
 			"validators": "scheming_required convert_to_tags(taxonomy) odm_dataset_clean_taxonomy_tags",
-			"output_validators": "scheming_multiple_choice_output"
+			"output_validators": "odm_dataset_retrieve_taxonomy_from_tags scheming_multiple_choice_output"
 		}
 	}, {
 		"preset_name": "odm_organization",
