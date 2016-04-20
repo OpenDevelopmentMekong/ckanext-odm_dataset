@@ -13,8 +13,6 @@ sys.modules['ckan'] = mock.MagicMock()
 sys.modules['plugins.toolkit'] = mock.MagicMock()
 sys.modules['genshi'] = mock.MagicMock()
 import odm_dataset_helper
-
-
 log = logging.getLogger(__name__)
 
 class TestHelpers(unittest.TestCase):
@@ -132,3 +130,20 @@ class TestHelpers(unittest.TestCase):
     "should ignore separation characters"
     value = odm_dataset_helper.map_odm_spatial_range(['Cambodia; greater mekong subregion (gms); lower mekong countries'])
     assert value == ['kh','gms','lmc']
+
+  def test_retrieve_taxonomy_from_tags(self):
+    "should set taxonomy field out of the dataset's tags"
+
+    "should not set taxonomic terms which are not available on the taxonomy tag vocabulary"
+
+    "should set be able to handle single taxonomic terms"
+
+  def test_map_title_translated(self):
+    "should do nothing if title_translated is already set"
+
+    "should set title_translated out of title in the currently selected language"
+
+  def test_map_notes_translated(self):
+    "should do nothing if notes_translated is already set"
+
+    "should set notes_translated out of title in the currently selected language"
