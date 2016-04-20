@@ -41,7 +41,7 @@ scheming.dataset_fallback = false
 
 # Testing
 
-  Run ```nosetest```
+  Tests are found on ckanext/odm_dataset/tests and can be run with ```nosetest```
 
 # Copyright and License
 
