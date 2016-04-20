@@ -89,7 +89,7 @@
 			"display_snippet": "fluent_text_fallback.html",
 			"error_snippet": "fluent_text_single.html",
 			"validators": "fluent_text",
-			"output_validators": "fluent_text_output"
+			"output_validators": "odm_dataset_convert_to_multilingual fluent_text_output"
 		}
 	}, {
 		"preset_name": "fluent_core_translated",
@@ -104,10 +104,10 @@
 		"preset_name": "fluent_core_title_translated_single",
 		"values": {
 			"form_snippet": "fluent_text_single.html",
-			"display_snippet": "fluent_title_fallback.html",
+			"display_snippet": "fluent_text.html",
 			"error_snippet": "fluent_text_single.html",
 			"validators": "fluent_text",
-			"output_validators": "fluent_core_translated_output"
+			"output_validators": "odm_dataset_map_title_translated fluent_core_translated_output"
 		}
 	}, {
 		"preset_name": "markdown",
@@ -122,7 +122,7 @@
 			"display_snippet": "fluent_markdown_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
 			"validators": "fluent_text",
-			"output_validators": "fluent_text_output"
+			"output_validators": "odm_dataset_convert_to_multilingual fluent_text_output"
 		}
 	}, {
 		"preset_name": "fluent_core_translated_markdown",
@@ -137,10 +137,10 @@
 		"preset_name": "fluent_core_notes_translated_markdown_single",
 		"values": {
 			"form_snippet": "fluent_markdown_single.html",
-			"display_snippet": "fluent_notes_fallback.html",
+			"display_snippet": "fluent_markdown.html",
 			"error_snippet": "fluent_markdown_single.html",
 			"validators": "fluent_text",
-			"output_validators": "fluent_core_translated_output"
+			"output_validators": "odm_dataset_map_notes_translated fluent_core_translated_output"
 		}
 	}, {
 		"preset_name": "number",
@@ -186,8 +186,8 @@
 		"values": {
 			"form_snippet": "odm_taxonomy.html",
 			"display_snippet": "odm_taxonomy.html",
-			"validators": "scheming_required convert_to_tags(taxonomy) odm_dataset_clean_taxonomy_tags",
-			"output_validators": "scheming_multiple_choice_output"
+			"validators": "odm_dataset_clean_taxonomy_tags",
+			"output_validators": "odm_dataset_retrieve_taxonomy_from_tags scheming_multiple_choice_output"
 		}
 	}, {
 		"preset_name": "odm_organization",
@@ -216,6 +216,22 @@
 		"preset_name": "odm_resource_description",
 		"values": {
 			"form_snippet": "odm_resource_description.html"
+		}
+	},{
+		"preset_name": "odm_language",
+		"values": {
+			"form_snippet": "multiple_select.html",
+			"display_snippet": "multiple_choice.html",
+			"validators": "scheming_multiple_choice",
+			"output_validators": "odm_dataset_map_odm_language scheming_multiple_choice_output"
+		}
+	},{
+		"preset_name": "odm_spatial_range",
+		"values": {
+			"form_snippet": "multiple_select.html",
+			"display_snippet": "multiple_choice.html",
+			"validators": "scheming_multiple_choice",
+			"output_validators": "odm_dataset_map_odm_spatial_range scheming_multiple_choice_output"
 		}
 	}]
 }

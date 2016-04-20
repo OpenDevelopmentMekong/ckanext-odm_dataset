@@ -151,7 +151,7 @@
 		"field_name": "odm_spatial_range",
 		"label": "Geographic area (spatial range)",
 		"form_placeholder": "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).",
-		"preset": "multiple_select",
+		"preset": "odm_spatial_range",
 		"required": "true",
 		"select_size": 4,
 		"choices": [{
@@ -283,7 +283,7 @@
 	}, {
 		"field_name": "odm_language",
     "label": "Resource's languages",
-    "preset": "multiple_select",
+    "preset": "odm_language",
 		"select_size": 4,
 		"choices": [{
 			"value": "my",

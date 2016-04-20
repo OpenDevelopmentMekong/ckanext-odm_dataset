@@ -21,6 +21,7 @@ import collections
 
 log = logging.getLogger(__name__)
 
+
 class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   '''OD Mekong dataset plugin.'''
 
@@ -54,17 +55,23 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions above as validators.'''
 
     return {
-      'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags
-      }
+        'odm_dataset_map_odm_spatial_range': odm_dataset_helper.map_odm_spatial_range,
+        'odm_dataset_map_odm_language': odm_dataset_helper.map_odm_language,
+        'odm_dataset_convert_to_multilingual': odm_dataset_helper.convert_to_multilingual,
+        'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags,
+        'odm_dataset_retrieve_taxonomy_from_tags': odm_dataset_helper.retrieve_taxonomy_from_tags,
+        'odm_dataset_map_title_translated': odm_dataset_helper.map_title_translated,
+        'odm_dataset_map_notes_translated': odm_dataset_helper.map_notes_translated,
+    }
 
   # ITemplateHelpers
   def get_helpers(self):
     '''Register the plugin's functions below as template helper functions.'''
 
     return {
-      'odm_dataset_last_dataset': odm_dataset_helper.last_dataset,
-      'odm_dataset_get_current_language': odm_dataset_helper.get_current_language,
-      'odm_dataset_get_value_for_current_language': odm_dataset_helper.get_value_for_current_language
+        'odm_dataset_last_dataset': odm_dataset_helper.last_dataset,
+        'odm_dataset_get_current_language': odm_dataset_helper.get_current_language,
+        'odm_dataset_get_value_for_current_language': odm_dataset_helper.get_value_for_current_language
     }
 
   # IPackageController
@@ -79,7 +86,8 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   def after_create(self, context, pkg_dict):
 
-    dataset_type = context['package'].type if 'package' in context else pkg_dict['type']
+    dataset_type = context[
+        'package'].type if 'package' in context else pkg_dict['type']
     if dataset_type == 'dataset':
       log.info('after_create: %s', pkg_dict['name'])
 
@@ -87,14 +95,16 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       odm_dataset_helper.session.save()
 
       # Create default Issue
-      review_system = h.asbool(config.get("ckanext.issues.review_system", False))
+      review_system = h.asbool(config.get(
+          "ckanext.issues.review_system", False))
       if review_system:
         if pkg_dict['type'] == 'dataset':
           odm_dataset_helper.create_default_issue_dataset(pkg_dict)
 
   def after_update(self, context, pkg_dict):
 
-    dataset_type = context['package'].type if 'package' in context else pkg_dict['type']
+    dataset_type = context[
+        'package'].type if 'package' in context else pkg_dict['type']
     if dataset_type == 'dataset':
       log.info('after_update: %s', pkg_dict['name'])
 
