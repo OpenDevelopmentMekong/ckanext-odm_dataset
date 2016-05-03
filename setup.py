@@ -27,6 +27,6 @@ setup(
         odm_dataset=ckanext.odm_dataset.plugin:OdmDatasetPlugin
 
         [ckan.rdf.profiles]
-        odm_dcat_dataset=ckanext.odm_dataset.odm_dataset_profiles:ODMDCATBasicProfile
+        odm_dcat_dataset=ckanext.odm_dataset.odm_dataset_profiles:ODMDCATBasicProfileDataset
     ''',
 )

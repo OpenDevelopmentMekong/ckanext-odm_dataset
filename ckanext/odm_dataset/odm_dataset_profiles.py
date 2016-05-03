@@ -57,7 +57,7 @@ namespaces = {
 }
 
 
-class ODMDCATBasicProfile(RDFProfile):
+class ODMDCATBasicProfileDataset(RDFProfile):
   '''
   An RDF profile exposing metadata using standard vocabularies
 
