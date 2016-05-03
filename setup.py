@@ -25,5 +25,8 @@ setup(
     entry_points='''
         [ckan.plugins]
         odm_dataset=ckanext.odm_dataset.plugin:OdmDatasetPlugin
+
+        [ckan.rdf.profiles]
+        odm_dcat_dataset=ckanext.odm_dataset.odm_dataset_profiles:ODMDCATBasicProfileDataset
     ''',
 )
