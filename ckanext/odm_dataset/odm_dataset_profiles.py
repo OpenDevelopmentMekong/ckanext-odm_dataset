@@ -14,14 +14,8 @@ log = logging.getLogger(__name__)
 
 DCT = Namespace("http://purl.org/dc/terms/")
 DCAT = Namespace("http://www.w3.org/ns/dcat#")
-ADMS = Namespace("http://www.w3.org/ns/adms#")
-VCARD = Namespace("http://www.w3.org/2006/vcard/ns#")
 FOAF = Namespace("http://xmlns.com/foaf/0.1/")
 SCHEMA = Namespace('http://schema.org/')
-TIME = Namespace('http://www.w3.org/2006/time')
-LOCN = Namespace('http://www.w3.org/ns/locn#')
-GSP = Namespace('http://www.opengis.net/ont/geosparql#')
-OWL = Namespace('http://www.w3.org/2002/07/owl#')
 SPDX = Namespace('http://spdx.org/rdf/terms#')
 CRO = Namespace('http://rhizomik.net/ontologies/copyrightonto.owl#')
 DOAP = Namespace('http://usefulinc.com/ns/doap#')
@@ -37,15 +31,8 @@ GEOJSON_IMT = 'https://www.iana.org/assignments/media-types/application/vnd.geo+
 namespaces = {
     'dct': DCT,
     'dcat': DCAT,
-    'adms': ADMS,
-    'vcard': VCARD,
     'foaf': FOAF,
     'schema': SCHEMA,
-    'time': TIME,
-    'skos': SKOS,
-    'locn': LOCN,
-    'gsp': GSP,
-    'owl': OWL,
     'cro': CRO,
     'doap': DOAP,
     'ebucore': EBUCORE,
