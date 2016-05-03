@@ -29,6 +29,8 @@ EBUCORE = Namespace('https://www.ebu.ch/metadata/ontologies/ebucore/index.html#'
 DQM = Namespace('http://semwebquality.org/dqm-vocabulary/v1/dqm#')
 DQ = Namespace('http://def.seegrid.csiro.au/isotc211/iso19115/2003/dataquality#')
 OMN = Namespace('https://raw.githubusercontent.com/open-multinet/playground-rspecs-ontology/master/omnlib/ontologies/omn.ttl#')
+MD = Namespace('http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#')
+GN = Namespace('http://www.geonames.org/ontology#')
 
 GEOJSON_IMT = 'https://www.iana.org/assignments/media-types/application/vnd.geo+json'
 
@@ -49,7 +51,9 @@ namespaces = {
     'ebucore': EBUCORE,
     'dqm': DQM,
     'dq' : DQ,
-    'omn' : OMN
+    'omn' : OMN,
+    'md' : MD,
+    'gn' : GN
 }
 
 
@@ -77,31 +81,42 @@ class ODMDCATBasicProfile(RDFProfile):
     for prefix, namespace in namespaces.iteritems():
       g.bind(prefix, namespace)
 
-    g.add((dataset_ref, RDF.type, DCAT.Dataset))
+    g.add((dataset_ref, DCT.identifier, Literal(dataset_dict.get('id', None))))
+    g.add((dataset_ref, DCT.type, Literal(dataset_dict.get('type', 'dataset'))))
+    g.add((dataset_ref, DCAT.landingPage, Literal(dataset_dict.get('url', None))))
 
     # Basic fields
     items = [
+
         ('title', DCT.title, None),
         ('notes', DCT.description, None),
         ('license', DCT.license, None),
-        ('url', DCAT.landingPage, None),
-        ('identifier', DCT.identifier, ['guid', 'id']),
+        ('copyright', CRO.copyright, None),
+        ('owner_org', FOAF.organization, None),
         ('version', DOAP.version, ['dcat_version']),
         ('contact', EBUCORE.contact, None),
-        #('odm_temporal_range',  , None),
-        #('odm_spatial_range',  , None),
         ('odm_accuracy', DQM.accuracy, None),
         ('odm_logical_consistency', DQ.logicalConsistency, None),
         ('odm_completeness', DQ.completeness, None),
-        ('odm_source', DCT.source, None),
-        #('odm_metadata_reference', DCT.source, None),
-        ('odm_attributes', OMN.attribute, None)
+        ('odm_access_and_use_constraints', MD.useconstraints, None),        
+        ('odm_attributes', OMN.attribute, None),
+        ('odm_source', DCT.source, None)
+
     ]
     self._add_triples_from_dict(dataset_dict, dataset_ref, items)
 
+
+    #  Lists
+    items = [
+        ('odm_language', DCT.language, None),
+        ('odm_spatial_range', GN.countrycode, None),
+        ('taxonomy', FOAF.topic, None)
+    ]
+    self._add_list_triples_from_dict(dataset_dict, dataset_ref, items)
+
     # Tags
-    for tag in dataset_dict.get('tags', []):
-      g.add((dataset_ref, DCAT.keyword, Literal(tag['name'])))
+    #for tag in dataset_dict.get('tags', []):
+    #  g.add((dataset_ref, FOAF.topic, Literal(tag['name'])))
 
     # Dates
     items = [
@@ -111,119 +126,112 @@ class ODMDCATBasicProfile(RDFProfile):
     ]
     self._add_date_triples_from_dict(dataset_dict, dataset_ref, items)
 
-    #  Lists
-    items = [
-        ('odm_language', DCT.language, None),
-        #('odm_spatial_range', DCT.language, None)
-    ]
-    self._add_list_triples_from_dict(dataset_dict, dataset_ref, items)
-
     # Contact details
-    if any([
-        self._get_dataset_value(dataset_dict, 'contact_uri'),
-        self._get_dataset_value(dataset_dict, 'contact_name'),
-        self._get_dataset_value(dataset_dict, 'contact_email'),
-        self._get_dataset_value(dataset_dict, 'maintainer'),
-        self._get_dataset_value(dataset_dict, 'maintainer_email'),
-        self._get_dataset_value(dataset_dict, 'author'),
-        self._get_dataset_value(dataset_dict, 'author_email'),
-    ]):
-
-      contact_uri = self._get_dataset_value(dataset_dict, 'contact_uri')
-      if contact_uri:
-        contact_details = URIRef(contact_uri)
-      else:
-        contact_details = BNode()
-
-      g.add((contact_details, RDF.type, VCARD.Organization))
-      g.add((dataset_ref, DCAT.contactPoint, contact_details))
-
-      items = [
-          ('contact_name', VCARD.fn, ['maintainer', 'author']),
-          ('contact_email', VCARD.hasEmail, ['maintainer_email',
-                                             'author_email']),
-      ]
-
-      self._add_triples_from_dict(dataset_dict, contact_details, items)
-
-    # Publisher
-    if any([
-        self._get_dataset_value(dataset_dict, 'publisher_uri'),
-        self._get_dataset_value(dataset_dict, 'publisher_name'),
-        dataset_dict.get('organization'),
-    ]):
-
-      publisher_uri = publisher_uri_from_dataset_dict(dataset_dict)
-      if publisher_uri:
-        publisher_details = URIRef(publisher_uri)
-      else:
-        # No organization nor publisher_uri
-        publisher_details = BNode()
-
-      g.add((publisher_details, RDF.type, FOAF.Organization))
-      g.add((dataset_ref, DCT.publisher, publisher_details))
-
-      publisher_name = self._get_dataset_value(dataset_dict, 'publisher_name')
-      if not publisher_name and dataset_dict.get('organization'):
-        publisher_name = dataset_dict['organization']['title']
-
-      g.add((publisher_details, FOAF.name, Literal(publisher_name)))
-      # TODO: It would make sense to fallback these to organization
-      # fields but they are not in the default schema and the
-      # `organization` object in the dataset_dict does not include
-      # custom fields
-      items = [
-          ('publisher_email', FOAF.mbox, None),
-          ('publisher_url', FOAF.homepage, None),
-          ('publisher_type', DCT.type, None),
-      ]
-
-      self._add_triples_from_dict(dataset_dict, publisher_details, items)
-
-    # Temporal
-    start = self._get_dataset_value(dataset_dict, 'temporal_start')
-    end = self._get_dataset_value(dataset_dict, 'temporal_end')
-    if start or end:
-      temporal_extent = BNode()
-
-      g.add((temporal_extent, RDF.type, DCT.PeriodOfTime))
-      if start:
-        self._add_date_triple(temporal_extent, SCHEMA.startDate, start)
-      if end:
-        self._add_date_triple(temporal_extent, SCHEMA.endDate, end)
-      g.add((dataset_ref, DCT.temporal, temporal_extent))
-
-    # Spatial
-    spatial_uri = self._get_dataset_value(dataset_dict, 'spatial_uri')
-    spatial_text = self._get_dataset_value(dataset_dict, 'spatial_text')
-    spatial_geom = self._get_dataset_value(dataset_dict, 'spatial')
-
-    if spatial_uri or spatial_text or spatial_geom:
-      if spatial_uri:
-        spatial_ref = URIRef(spatial_uri)
-      else:
-        spatial_ref = BNode()
-
-      g.add((spatial_ref, RDF.type, DCT.Location))
-      g.add((dataset_ref, DCT.spatial, spatial_ref))
-
-      if spatial_text:
-        g.add((spatial_ref, SKOS.prefLabel, Literal(spatial_text)))
-
-      if spatial_geom:
-        # GeoJSON
-        g.add((spatial_ref,
-               LOCN.geometry,
-               Literal(spatial_geom, datatype=GEOJSON_IMT)))
-        # WKT, because GeoDCAT-AP says so
-        try:
-          g.add((spatial_ref,
-                 LOCN.geometry,
-                 Literal(wkt.dumps(json.loads(spatial_geom),
-                                   decimals=4),
-                         datatype=GSP.wktLiteral)))
-        except (TypeError, ValueError, InvalidGeoJSONException):
-          pass
+    # if any([
+    #     self._get_dataset_value(dataset_dict, 'contact_uri'),
+    #     self._get_dataset_value(dataset_dict, 'contact_name'),
+    #     self._get_dataset_value(dataset_dict, 'contact_email'),
+    #     self._get_dataset_value(dataset_dict, 'maintainer'),
+    #     self._get_dataset_value(dataset_dict, 'maintainer_email'),
+    #     self._get_dataset_value(dataset_dict, 'author'),
+    #     self._get_dataset_value(dataset_dict, 'author_email'),
+    # ]):
+    #
+    #   contact_uri = self._get_dataset_value(dataset_dict, 'contact_uri')
+    #   if contact_uri:
+    #     contact_details = URIRef(contact_uri)
+    #   else:
+    #     contact_details = BNode()
+    #
+    #   g.add((contact_details, RDF.type, VCARD.Organization))
+    #   g.add((dataset_ref, DCAT.contactPoint, contact_details))
+    #
+    #   items = [
+    #       ('contact_name', VCARD.fn, ['maintainer', 'author']),
+    #       ('contact_email', VCARD.hasEmail, ['maintainer_email',
+    #                                          'author_email']),
+    #   ]
+    #
+    #   self._add_triples_from_dict(dataset_dict, contact_details, items)
+    #
+    # # Publisher
+    # if any([
+    #     self._get_dataset_value(dataset_dict, 'publisher_uri'),
+    #     self._get_dataset_value(dataset_dict, 'publisher_name'),
+    #     dataset_dict.get('organization'),
+    # ]):
+    #
+    #   publisher_uri = publisher_uri_from_dataset_dict(dataset_dict)
+    #   if publisher_uri:
+    #     publisher_details = URIRef(publisher_uri)
+    #   else:
+    #     # No organization nor publisher_uri
+    #     publisher_details = BNode()
+    #
+    #   g.add((publisher_details, RDF.type, FOAF.Organization))
+    #   g.add((dataset_ref, DCT.publisher, publisher_details))
+    #
+    #   publisher_name = self._get_dataset_value(dataset_dict, 'publisher_name')
+    #   if not publisher_name and dataset_dict.get('organization'):
+    #     publisher_name = dataset_dict['organization']['title']
+    #
+    #   g.add((publisher_details, FOAF.name, Literal(publisher_name)))
+    #   # TODO: It would make sense to fallback these to organization
+    #   # fields but they are not in the default schema and the
+    #   # `organization` object in the dataset_dict does not include
+    #   # custom fields
+    #   items = [
+    #       ('publisher_email', FOAF.mbox, None),
+    #       ('publisher_url', FOAF.homepage, None),
+    #       ('publisher_type', DCT.type, None),
+    #   ]
+    #
+    #   self._add_triples_from_dict(dataset_dict, publisher_details, items)
+    #
+    # # Temporal
+    # start = self._get_dataset_value(dataset_dict, 'temporal_start')
+    # end = self._get_dataset_value(dataset_dict, 'temporal_end')
+    # if start or end:
+    #   temporal_extent = BNode()
+    #
+    #   g.add((temporal_extent, RDF.type, DCT.PeriodOfTime))
+    #   if start:
+    #     self._add_date_triple(temporal_extent, SCHEMA.startDate, start)
+    #   if end:
+    #     self._add_date_triple(temporal_extent, SCHEMA.endDate, end)
+    #   g.add((dataset_ref, DCT.temporal, temporal_extent))
+    #
+    # # Spatial
+    # spatial_uri = self._get_dataset_value(dataset_dict, 'spatial_uri')
+    # spatial_text = self._get_dataset_value(dataset_dict, 'spatial_text')
+    # spatial_geom = self._get_dataset_value(dataset_dict, 'spatial')
+    #
+    # if spatial_uri or spatial_text or spatial_geom:
+    #   if spatial_uri:
+    #     spatial_ref = URIRef(spatial_uri)
+    #   else:
+    #     spatial_ref = BNode()
+    #
+    #   g.add((spatial_ref, RDF.type, DCT.Location))
+    #   g.add((dataset_ref, DCT.spatial, spatial_ref))
+    #
+    #   if spatial_text:
+    #     g.add((spatial_ref, SKOS.prefLabel, Literal(spatial_text)))
+    #
+    #   if spatial_geom:
+    #     # GeoJSON
+    #     g.add((spatial_ref,
+    #            LOCN.geometry,
+    #            Literal(spatial_geom, datatype=GEOJSON_IMT)))
+    #     # WKT, because GeoDCAT-AP says so
+    #     try:
+    #       g.add((spatial_ref,
+    #              LOCN.geometry,
+    #              Literal(wkt.dumps(json.loads(spatial_geom),
+    #                                decimals=4),
+    #                      datatype=GSP.wktLiteral)))
+    #     except (TypeError, ValueError, InvalidGeoJSONException):
+    #       pass
 
     # Resources
     for resource_dict in dataset_dict.get('resources', []):
