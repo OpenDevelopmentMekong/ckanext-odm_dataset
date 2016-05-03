@@ -26,8 +26,6 @@ OMN = Namespace('https://raw.githubusercontent.com/open-multinet/playground-rspe
 MD = Namespace('http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#')
 GN = Namespace('http://www.geonames.org/ontology#')
 
-GEOJSON_IMT = 'https://www.iana.org/assignments/media-types/application/vnd.geo+json'
-
 namespaces = {
     'dct': DCT,
     'dcat': DCAT,
@@ -103,7 +101,7 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     # Dates
     items = [
         ('odm_date_created',DCT.created, None),
-        ('odm_date_uploaded',DCT.issued, None),
+        ('odm_date_uploaded',SCHEMA.uploadDate, None),
         ('odm_date_modified',DCT.modified, None)
     ]
     self._add_date_triples_from_dict(dataset_dict, dataset_ref, items)
