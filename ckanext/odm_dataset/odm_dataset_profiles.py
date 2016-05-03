@@ -75,8 +75,8 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     # Basic fields
     items = [
 
-        ('title', DCT.title, None),
-        ('notes', DCT.description, None),
+        ('title_translated', DCT.title, None),
+        ('notes_translated', DCT.description, None),
         ('license', DCT.license, None),
         ('copyright', CRO.copyright, None),
         ('owner_org', FOAF.organization, None),
