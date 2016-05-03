@@ -61,7 +61,7 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
   def graph_from_dataset(self, dataset_dict, dataset_ref):
 
-    log.debug("ODMDCATBasicProfile graph_from_dataset")
+    log.debug("ODMDCATBasicProfileDataset graph_from_dataset")
 
     g = self.g
 
@@ -149,6 +149,8 @@ class ODMDCATBasicProfileDataset(RDFProfile):
         g.add((distribution, DCAT.accessURL, Literal(url)))
 
   def graph_from_catalog(self, catalog_dict, catalog_ref):
+
+    log.debug("ODMDCATBasicProfileDataset graph_from_catalog")
 
     g = self.g
 
