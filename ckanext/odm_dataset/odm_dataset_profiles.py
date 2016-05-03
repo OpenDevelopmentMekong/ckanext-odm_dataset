@@ -12,9 +12,9 @@ import logging
 
 log = logging.getLogger(__name__)
 
-DCT = Namespace("http://purl.org/dc/terms/")
-DCAT = Namespace("http://www.w3.org/ns/dcat#")
-FOAF = Namespace("http://xmlns.com/foaf/0.1/")
+DCT = Namespace('http://purl.org/dc/terms/')
+DCAT = Namespace('http://www.w3.org/ns/dcat#')
+FOAF = Namespace('http://xmlns.com/foaf/0.1/')
 SCHEMA = Namespace('http://schema.org/')
 SPDX = Namespace('http://spdx.org/rdf/terms#')
 CRO = Namespace('http://rhizomik.net/ontologies/copyrightonto.owl#')
