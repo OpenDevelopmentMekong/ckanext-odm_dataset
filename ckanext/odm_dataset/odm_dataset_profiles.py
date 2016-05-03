@@ -57,7 +57,7 @@ class ODMDCATBasicProfileDataset(RDFProfile):
   def parse_dataset(self, dataset_dict, dataset_ref):
 
     # This method does not need to be implemented until Harvesters are needed
-    return super(ODMDCATBasicProfile, self).parse_dataset(dataset_dict, dataset_ref)
+    return super(ODMDCATBasicProfileDataset, self).parse_dataset(dataset_dict, dataset_ref)
 
   def graph_from_dataset(self, dataset_dict, dataset_ref):
 
