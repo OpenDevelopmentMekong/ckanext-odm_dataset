@@ -1,7 +1,7 @@
 {%- set values = data[field.field_name] -%}
 
 {%- if values|length == 1 -%}
-  {{ values[0] }}
+  {{ h.odm_dataset_get_localized_tag(values[0]) }}
 {%- else -%}
   <ul>
     {%- for value in values -%}
