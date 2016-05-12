@@ -261,6 +261,14 @@
 		"field_name": "odm_reference_document",
 		"label": "Legacy reference document",
 		"form_placeholder": "e.g Tong_Min_Group_Engineering__21.06.2011.pdf"
+	}, {
+		"field_name": "maintainer",
+		"label": "Maintainer",
+    "preset": "auto_maintainer"
+	}, {
+		"field_name": "maintainer_email",
+		"label": "Maintainer email",
+    "preset": "auto_maintainer_email"
 	}],
 	"resource_fields": [{
 		"field_name": "url",
