@@ -72,7 +72,6 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
     # Basic fields
     items = [
-
         ('title_translated', DCT.title, None),
         ('notes_translated', DCT.description, None),
         ('license', DCT.license, None),
@@ -88,7 +87,6 @@ class ODMDCATBasicProfileDataset(RDFProfile):
         ('odm_source', DCT.source, None)
     ]
     self._add_triples_from_dict(dataset_dict, dataset_ref, items)
-
 
     #  Lists
     items = [
