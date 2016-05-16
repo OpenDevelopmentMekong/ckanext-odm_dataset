@@ -217,5 +217,15 @@
 		"values": {
 			"form_snippet": "odm_resource_description.html"
 		}
+	}, {
+		"preset_name": "auto_maintainer",
+		"values": {
+			"form_snippet": "maintainer.html"
+		}
+	}, {
+		"preset_name": "auto_maintainer_email",
+		"values": {
+			"form_snippet": "maintainer_email.html"
+		}
 	}]
 }
