@@ -8,6 +8,10 @@ from geomet import wkt, InvalidGeoJSONException
 from ckan.plugins import toolkit
 from ckanext.dcat.utils import resource_uri, publisher_uri_from_dataset_dict
 from ckanext.dcat.profiles import RDFProfile
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
+import odm_rdf_helper
 import logging
 
 log = logging.getLogger(__name__)
@@ -41,7 +45,6 @@ namespaces = {
     'gn' : GN
 }
 
-
 class ODMDCATBasicProfileDataset(RDFProfile):
   '''
   An RDF profile exposing metadata using standard vocabularies
@@ -70,39 +73,58 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     g.add((dataset_ref, DCT.type, Literal(dataset_dict.get('type', 'dataset'))))
     g.add((dataset_ref, DCAT.landingPage, Literal(dataset_dict.get('url', None))))
 
-    # Basic fields
-    items = [
-
-        ('title_translated', DCT.title, None),
-        ('notes_translated', DCT.description, None),
-        ('license', DCT.license, None),
-        ('copyright', CRO.copyright, None),
-        ('owner_org', FOAF.organization, None),
-        ('version', DOAP.version, ['dcat_version']),
-        ('contact', EBUCORE.contact, None),
-        ('odm_accuracy', DQM.accuracy, None),
-        ('odm_logical_consistency', DQ.logicalConsistency, None),
-        ('odm_completeness', DQ.completeness, None),
-        ('odm_access_and_use_constraints', MD.useconstraints, None),
-        ('odm_attributes', OMN.attribute, None),
-        ('odm_source', DCT.source, None)
+    raw_triples = [
+      (dataset_ref, DCT.title, datset_dict.get('title_translated')),
+      (dataset_ref, DCT.description, datset_dict.get('notes_translated')),
+      (dataset_ref, DCT.license, datset_dict.get('license')),
+      (dataset_ref, CRO.copyright, datset_dict.get('copyright')),
+      (dataset_ref, FOAF.organization, datset_dict.get('owner_org')),
+      (dataset_ref, DOAP.version, datset_dict.get('version')),
+      (dataset_ref, EBUCORE.contact, datset_dict.get('contact')),
+      (dataset_ref, DQM.accuracy, datset_dict.get('odm_accuracy')),
+      (dataset_ref, DQ.logicalConsistency, datset_dict.get('odm_logical_consistency')),
+      (dataset_ref, DQ.completeness, datset_dict.get('odm_completeness')),
+      (dataset_ref, MD.useconstraints, datset_dict.get('odm_access_and_use_constraints')),
+      (dataset_ref, OMN.attribute, datset_dict.get('odm_attributes')),
+      (dataset_ref, DCT.source, datset_dict.get('odm_source'))
     ]
-    self._add_triples_from_dict(dataset_dict, dataset_ref, items)
 
+    for raw_triple in raw_triples:
+      triples = odm_rdf_helper.split_multilingual_object_into_triples(triple)
+      for triple in triples:
+        g.add(triple)
+
+    # Basic fields
+    # items = [
+    #   ('title_translated', DCT.title, None),
+    #   ('notes_translated', DCT.description, None),
+    #   ('license', DCT.license, None),
+    #   ('copyright', CRO.copyright, None),
+    #   ('owner_org', FOAF.organization, None),
+    #   ('version', DOAP.version, ['dcat_version']),
+    #   ('contact', EBUCORE.contact, None),
+    #   ('odm_accuracy', DQM.accuracy, None),
+    #   ('odm_logical_consistency', DQ.logicalConsistency, None),
+    #   ('odm_completeness', DQ.completeness, None),
+    #   ('odm_access_and_use_constraints', MD.useconstraints, None),
+    #   ('odm_attributes', OMN.attribute, None),
+    #   ('odm_source', DCT.source, None)
+    # ]
+    # self._add_triples_from_dict(dataset_dict, dataset_ref, items)
 
     #  Lists
     items = [
-        ('odm_language', DCT.language, None),
-        ('odm_spatial_range', GN.countrycode, None),
-        ('taxonomy', FOAF.topic, None)
+      ('odm_language', DCT.language, None),
+      ('odm_spatial_range', GN.countrycode, None),
+      ('taxonomy', FOAF.topic, None)
     ]
     self._add_list_triples_from_dict(dataset_dict, dataset_ref, items)
 
     # Dates
     items = [
-        ('odm_date_created',DCT.created, None),
-        ('odm_date_uploaded',SCHEMA.uploadDate, None),
-        ('odm_date_modified',DCT.modified, None)
+      ('odm_date_created',DCT.created, None),
+      ('odm_date_uploaded',SCHEMA.uploadDate, None),
+      ('odm_date_modified',DCT.modified, None)
     ]
     self._add_date_triples_from_dict(dataset_dict, dataset_ref, items)
 
@@ -114,14 +136,14 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       g.add((distribution, RDF.type, DCAT.Distribution))
 
       items = [
-          ('name', DCT.title, None),
-          ('description', DCT.description, None)
+        ('name', DCT.title, None),
+        ('description', DCT.description, None)
       ]
       self._add_triples_from_dict(resource_dict, distribution, items)
 
       #  Lists
       items = [
-          ('odm_language', DCT.language, None)
+        ('odm_language', DCT.language, None)
       ]
       self._add_list_triples_from_dict(resource_dict, distribution, items)
 
@@ -159,10 +181,10 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
     # Basic fields
     items = [
-        ('title', DCT.title, config.get('ckan.site_title')),
-        ('description', DCT.description, config.get('ckan.site_description')),
-        ('homepage', FOAF.homepage, config.get('ckan.site_url')),
-        ('language', DCT.language, config.get('ckan.locale_default', 'en')),
+      ('title', DCT.title, config.get('ckan.site_title')),
+      ('description', DCT.description, config.get('ckan.site_description')),
+      ('homepage', FOAF.homepage, config.get('ckan.site_url')),
+      ('language', DCT.language, config.get('ckan.locale_default', 'en')),
     ]
     for item in items:
       key, predicate, fallback = item
