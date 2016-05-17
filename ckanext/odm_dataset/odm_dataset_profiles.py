@@ -31,18 +31,18 @@ MD = Namespace('http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#')
 GN = Namespace('http://www.geonames.org/ontology#')
 
 namespaces = {
-    'dct': DCT,
-    'dcat': DCAT,
-    'foaf': FOAF,
-    'schema': SCHEMA,
-    'cro': CRO,
-    'doap': DOAP,
-    'ebucore': EBUCORE,
-    'dqm': DQM,
-    'dq' : DQ,
-    'omn' : OMN,
-    'md' : MD,
-    'gn' : GN
+  'dct': DCT,
+  'dcat': DCAT,
+  'foaf': FOAF,
+  'schema': SCHEMA,
+  'cro': CRO,
+  'doap': DOAP,
+  'ebucore': EBUCORE,
+  'dqm': DQM,
+  'dq' : DQ,
+  'omn' : OMN,
+  'md' : MD,
+  'gn' : GN
 }
 
 class ODMDCATBasicProfileDataset(RDFProfile):
@@ -74,43 +74,25 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     g.add((dataset_ref, DCAT.landingPage, Literal(dataset_dict.get('url', None))))
 
     raw_triples = [
-      (dataset_ref, DCT.title, datset_dict.get('title_translated')),
-      (dataset_ref, DCT.description, datset_dict.get('notes_translated')),
-      (dataset_ref, DCT.license, datset_dict.get('license')),
-      (dataset_ref, CRO.copyright, datset_dict.get('copyright')),
-      (dataset_ref, FOAF.organization, datset_dict.get('owner_org')),
-      (dataset_ref, DOAP.version, datset_dict.get('version')),
-      (dataset_ref, EBUCORE.contact, datset_dict.get('contact')),
-      (dataset_ref, DQM.accuracy, datset_dict.get('odm_accuracy')),
-      (dataset_ref, DQ.logicalConsistency, datset_dict.get('odm_logical_consistency')),
-      (dataset_ref, DQ.completeness, datset_dict.get('odm_completeness')),
-      (dataset_ref, MD.useconstraints, datset_dict.get('odm_access_and_use_constraints')),
-      (dataset_ref, OMN.attribute, datset_dict.get('odm_attributes')),
-      (dataset_ref, DCT.source, datset_dict.get('odm_source'))
+      (dataset_ref, DCT.title, dataset_dict.get('title_translated')),
+      (dataset_ref, DCT.description, dataset_dict.get('notes_translated')),
+      (dataset_ref, DCT.license, dataset_dict.get('license')),
+      (dataset_ref, CRO.copyright, dataset_dict.get('copyright')),
+      (dataset_ref, FOAF.organization, dataset_dict.get('owner_org')),
+      (dataset_ref, DOAP.version, dataset_dict.get('version')),
+      (dataset_ref, EBUCORE.contact, dataset_dict.get('contact')),
+      (dataset_ref, DQM.accuracy, dataset_dict.get('odm_accuracy')),
+      (dataset_ref, DQ.logicalConsistency, dataset_dict.get('odm_logical_consistency')),
+      (dataset_ref, DQ.completeness, dataset_dict.get('odm_completeness')),
+      (dataset_ref, MD.useconstraints, dataset_dict.get('odm_access_and_use_constraints')),
+      (dataset_ref, OMN.attribute, dataset_dict.get('odm_attributes')),
+      (dataset_ref, DCT.source, dataset_dict.get('odm_source'))
     ]
 
     for raw_triple in raw_triples:
-      triples = odm_rdf_helper.split_multilingual_object_into_triples(triple)
+      triples = odm_rdf_helper.split_multilingual_object_into_triples(raw_triple)
       for triple in triples:
         g.add(triple)
-
-    # Basic fields
-    # items = [
-    #   ('title_translated', DCT.title, None),
-    #   ('notes_translated', DCT.description, None),
-    #   ('license', DCT.license, None),
-    #   ('copyright', CRO.copyright, None),
-    #   ('owner_org', FOAF.organization, None),
-    #   ('version', DOAP.version, ['dcat_version']),
-    #   ('contact', EBUCORE.contact, None),
-    #   ('odm_accuracy', DQM.accuracy, None),
-    #   ('odm_logical_consistency', DQ.logicalConsistency, None),
-    #   ('odm_completeness', DQ.completeness, None),
-    #   ('odm_access_and_use_constraints', MD.useconstraints, None),
-    #   ('odm_attributes', OMN.attribute, None),
-    #   ('odm_source', DCT.source, None)
-    # ]
-    # self._add_triples_from_dict(dataset_dict, dataset_ref, items)
 
     #  Lists
     items = [
