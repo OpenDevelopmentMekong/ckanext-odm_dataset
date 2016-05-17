@@ -1,4 +1,4 @@
-#
+# 
 # Translators:
 # ChandaraKhun <chandara@opendevcam.net>, 2016
 # ODM Cambodia <cambodia@opendevmekong.net>, 2015
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
 "POT-Creation-Date: 2016-05-16 12:24+0200\n"
-"PO-Revision-Date: 2016-05-16 11:17+0000\n"
+"PO-Revision-Date: 2016-05-17 11:46+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/km/)\n"
 "MIME-Version: 1.0\n"

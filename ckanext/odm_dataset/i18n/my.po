@@ -1,11 +1,11 @@
-# 
+#
 # Translators:
 # Theint Naing Yoon <yoon@phandeeyar.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
 "POT-Creation-Date: 2016-05-16 12:24+0200\n"
-"PO-Revision-Date: 2016-05-16 11:17+0000\n"
+"PO-Revision-Date: 2016-05-17 11:45+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Burmese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/my/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgid ""
 " email from OD Mekong Datahub. This dataset is still unpublished. Your item "
 "can only be published after you review this form and after our "
 "administrators approve your entry."
-msgstr "Dataset တင်ပေးခြင်းအတွက် ကျေးဇူးတင်ပါသည်။ OD Mekong Datahub ထံမှ အတည်ပြုသည့် email လက်ခံရရှိပါမည်။ စာကြည့်တိုက်တွင်တင်ထားသည်မှာ ထုတ်ဝေခြင်းမပြုလုပ်ရသေးပါ။ သင်တင်ထားသည်ကို ထုတ်ဝေရန် ဤဖြည့်စွက်ရန်ပုံစံကို စစ်ဆေးကြည့်ရှုပါ၊ ထို ့နောက် ကျွနု်ပ်တို ့၏ ကြီးကြပ်သူများမှ သင်၏ ဖြည့်စွက်ချက်ကို အတည်ပြုပေးပါလိမ့်မည်။ "
+msgstr "Dataset တင်ပေးခြင်းအတွက် ကျေးဇူးတင်ပါသည်။ OD Mekong Datahub ထံမှ အတည်ပြုသည့် email လက်ခံရရှိပါမည်။ စာကြည့်တိုက်တွင်တင်ထားသည်မှာ ထုတ်ဝေခြင်းမပြုလုပ်ရသေးပါ။ သင်တင်ထားသည်ကို ထုတ်ဝေရန် ဤဖြည့်စွက်ရန်ပုံစံကို စစ်ဆေးကြည့်ရှုပါ၊ ထို့နောက် ကျွန်ုပ်တို့၏ ကြီးကြပ်သူများမှ သင်၏ ဖြည့်စွက်ချက်ကို အတည်ပြုပေးပါလိမ့်မည်။ "
 
 #: odm_dataset/lib/odm_dataset_helper.py:23
 msgid ""
@@ -38,7 +38,7 @@ msgid ""
 "Please take this opportunity to review your dataset record. If you would "
 "like to make any changes please select your dataset record and then click on"
 " the Manage button on the top right corner."
-msgstr "ဤအခွင့်အရေးကို သင့် Dataset မှတ်တမ်းများ ပြန်လည်စစ်ဆေးရန်အတွက်အသုံးပြုပါ။ ပြောင်းလဲမှုများပြုလုပ်လိုပါက ပြုလုပ်လိုသည့် သင့် Dataset မှတ်တမ်းကိုရွေးပါ ထို ့နောက် ညာဘက်အပေါ်ထောင့်ရှိ စီမံမည် ခလုတ်ကိုနှိပ်ပါ။ "
+msgstr "ဤအခွင့်အရေးကို သင့် Dataset မှတ်တမ်းများ ပြန်လည်စစ်ဆေးရန်အတွက်အသုံးပြုပါ။ ပြောင်းလဲမှုများပြုလုပ်လိုပါက ပြုလုပ်လိုသည့် သင့် Dataset မှတ်တမ်းကိုရွေးပါ ထို့နောက် ညာဘက်အပေါ်ထောင့်ရှိ စီမံမည် ခလုတ်ကိုနှိပ်ပါ။ "
 
 #: odm_dataset/lib/odm_dataset_helper.py:25
 msgid ""
@@ -55,7 +55,7 @@ msgid ""
 "Title (Please use Associated Press style title where the first letter is "
 "capitalized and the rest of the title is not, i.e. 'Study of Cambodian "
 "forests and lakes from 1992 to 1994')"
-msgstr "ခေါင်းစဉ် (သတင်းခေါင်းစဉ်များကဲ့သို ့အစကို စာလုံးအကြီးဖြင့်ရေးပါ) ဥပမာ၊ 'ကမ္ဘောဒီးယားနိုင်ငံရှိ သစ်တော နှင့် ရေကန် များကို ၁၉၉၂ မှ ၁၉၉၄ အထိလေ့လာချက်။'"
+msgstr "ခေါင်းစဉ် (သတင်းခေါင်းစဉ်များကဲ့သို့ အစကို စာလုံးအကြီးဖြင့်ရေးပါ) ဥပမာ၊ 'ကမ္ဘောဒီးယားနိုင်ငံရှိ သစ်တော နှင့် ရေကန် များကို ၁၉၉၂ မှ ၁၉၉၄ အထိလေ့လာချက်။'"
 
 #: odm_dataset/lib/odm_dataset_helper.py:28
 msgid "Language"
@@ -75,7 +75,7 @@ msgstr "အရင်းမြစ်"
 
 #: odm_dataset/lib/odm_dataset_helper.py:32
 msgid "Processes"
-msgstr "ဖြစ်စဉ် (များ)"
+msgstr "ဖြစ်စဉ်များ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:33
 msgid "Date uploaded"
@@ -83,7 +83,7 @@ msgstr "တင်သည့်ရက်စွဲ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:34
 msgid "Date created"
-msgstr "OD CKAN database အတွင်းသို ့ဗားရှင်းအသစ် သို ့မဟုတ် ပြုပြင်ပြောင်းလဲထားသော dataset တင်သည့် ရက်စွဲ"
+msgstr "ဖန်တီးသည့်ရက်စွဲ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:35
 msgid ""
@@ -123,7 +123,7 @@ msgstr "ဆက်သွယ်ရန်"
 
 #: odm_dataset/lib/odm_dataset_helper.py:42
 msgid "Date modified"
-msgstr "OD CKAN database အတွင်းသို ့ဗားရှင်းအသစ် သို ့မဟုတ် ပြုပြင်ပြောင်းလဲထားသော dataset တင်သည့် ရက်စွဲ"
+msgstr "ပြန်လည်ပြင်ဆင်သည့်ရက်စွဲ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:43
 msgid "Temporal Range"
@@ -131,7 +131,7 @@ msgstr "ယာယီ အပိုင်းအခြား"
 
 #: odm_dataset/lib/odm_dataset_helper.py:44
 msgid "Accuracy"
-msgstr "ကိန်းကဏန်း ၈ လုံးပါသည့် အမှတ်စဉ်လိုက်ထုတ်ဝေသော စာစောင်ကို ဖော်ပြပေးသည့် အထူးနံပါတ်"
+msgstr "တိကျမှန်ကန်မှု"
 
 #: odm_dataset/lib/odm_dataset_helper.py:45
 msgid "Logical Consistency"
@@ -155,7 +155,7 @@ msgid ""
 "close fixed issues or open new issues if there are any other "
 "inconsistencies. Once all issues have been resolved, the item will be "
 "published."
-msgstr "ကျွနု်ပ်တို ့၏ ကြီးကြပ်သူများသည် Dataset မှတ်တမ်းကိုလည်း ပြန်လည်စစ်ဆေးရန်လိုအပ်သည်။ သူတို ့သည် ပြုပြင်ပြီးသောအကြောင်းအရာကို ပိတ်လိုက်မည်ဖြစ်ပြီး အကယ်၍အခြား တစ်သမတ်တည်းမဖြစ်မှုများရှိပါက အကြောင်းအရာအသစ်များထပ်မံပြုလုပ်မည်ဖြစ်သည်။ အကြောင်းအရာအားလုံးအတွက်အဖြေရပြီဆိုပါက ထိုအကြောင်းအရာကိုထုတ်ဝေမည်ဖြစ်သည်။"
+msgstr "ကျွန်ုပ်တို့၏ ကြီးကြပ်သူများသည် Dataset မှတ်တမ်းကိုလည်း ပြန်လည်စစ်ဆေးရန်လိုအပ်သည်။ သူတို့သည် ပြုပြင်ပြီးသောအကြောင်းအရာကို ပိတ်လိုက်မည်ဖြစ်ပြီး အကယ်၍အခြား တစ်သမတ်တည်းမဖြစ်မှုများရှိပါက အကြောင်းအရာအသစ်များထပ်မံပြုလုပ်မည်ဖြစ်သည်။ အကြောင်းအရာအားလုံးအတွက်အဖြေရပြီဆိုပါက ထိုအကြောင်းအရာကိုထုတ်ဝေမည်ဖြစ်သည်။"
 
 #: odm_dataset/lib/odm_dataset_helper.py:50
 msgid "Thank you for sharing,"
@@ -167,7 +167,7 @@ msgstr "Open Development Team"
 
 #: odm_dataset/templates/macros/form.html:22
 msgid "Title"
-msgstr "Dataset အတွင်းရှိ အရင်းမြစ်များကို လေ့လာခြင်း၊ စုပေါင်းခြင်း သို ့မဟုတ် ပြောင်းလဲခြင်း တို ့အတွက် အဆင့်များ။"
+msgstr "ခေါင်းစဥ်"
 
 #: odm_dataset/templates/package/edit_base.html:6
 msgid "Record not multilingual compliant!!"
