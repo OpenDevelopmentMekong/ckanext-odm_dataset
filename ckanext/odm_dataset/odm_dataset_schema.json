@@ -10,7 +10,8 @@
 			"en": "Title",
 			"th": "หัวข้อ",
 			"km": "ចំណងជើង",
-			"vi": "Tiêu đề "
+			"vi": "Tiêu đề ",
+			"my": "ခေါင်းစဥ်"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
     "form_attrs": {
@@ -29,7 +30,8 @@
 			"en": "Description",
 			"th": "รายละเอียด",
 			"km": "ការពិពណ៌នា",
-			"vi": "Mô tả"
+			"vi": "Mô tả",
+			"my": "ဖော်ပြချက်"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
     "form_placeholder": "Short description explaining the content and its origins."
@@ -56,7 +58,8 @@
 			"en": "Access and use constraints",
 			"th": "การเข้าถึงและข้อจำกัด",
 			"km": "កំហិតនៃការចូល និងប្រើប្រាស់",
-			"vi": "Hạn chế truy cập và sử dụng"
+			"vi": "Hạn chế truy cập và sử dụng",
+			"my": "ရယူခြင်းနှင့် အကန့်အသတ်များအသုံးပြုခြင်း"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "A few sentences describing legal considerations for people who access the website and/or use its contents."
@@ -77,7 +80,8 @@
 			"en": "Contact",
 			"th": "ข้อมูลติดต่อ",
 			"km": "ទំនាក់ទំនង",
-			"vi": "Liên hệ"
+			"vi": "Liên hệ",
+			"my": "ဆက်သွယ်ရန်"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset. This could be the author of a report, the contact information for the relevant department of an organization that produced a report, or the data analyst, mapper or researcher that produced a dataset or report."
@@ -193,7 +197,8 @@
 			"en": "Accuracy",
 			"th": "ความถูกต้อง",
 			"km": "ភាពទៀងទាត់",
-			"vi": "Độ chính xác"
+			"vi": "Độ chính xác",
+			"my": "တိကျမှန်ကန်မှု"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Details on the level of accuracy of the dataset and any existing issues."
@@ -205,7 +210,8 @@
 			"en": "Logical Consistency",
 			"th": "ความสอดคล้องเชิงตรรกะ",
 			"km": "ភាពទៀងទាត់តាមហេតុផល",
-			"vi": "Tính nhất quán logic"
+			"vi": "Tính nhất quán logic",
+			"my": "ကျိုးကြောင်းဆီလျော်မှုရှိမရှိ"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Issues with logical consistency in the dataset and the steps, if any, being taken to validate its content."
@@ -217,7 +223,8 @@
 			"en": "Completeness",
 			"th": "ความสมบูรณ์",
 			"km": "ការចប់សព្វគ្រប់",
-			"vi": "Đầy đủ"
+			"vi": "Đầy đủ",
+			"my": "ပြည့်စုံမှု"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Brief description of the level of completeness of the dataset's contents and the steps, if any, being taken to make the dataset more complete."
@@ -241,7 +248,8 @@
 			"en": "Metadata Reference Information",
 			"th": "ข้อมูลอ้างอิงข้อมูลเมตา",
 			"km": "ពត័មានជាអំនះអំនាងនៃព័ត៌មាន​អំពីទិន្នន័យ",
-			"vi": "Thông tin tham khảo Metadata."
+			"vi": "Thông tin tham khảo Metadata.",
+			"my": "Metadata ကိုရည်ညွှန်းသော သတင်းအချက်အလက်"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Information about how up-to-date the metadata is and who is responsible for maintaining it."
@@ -253,7 +261,8 @@
 			"en": "Attributes",
 			"th": "คุณสมบัติ",
 			"km": "លក្ខណៈសម្បត្តិ",
-			"vi": "Thuộc tính"
+			"vi": "Thuộc tính",
+			"my": "၀ိသေသများ"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Details about the information content of the dataset."
