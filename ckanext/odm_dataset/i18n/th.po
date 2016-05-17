@@ -1,14 +1,13 @@
-#
+# 
 # Translators:
 # Misharim <misharim@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
-"POT-Creation-Date: 2016-05-16 12:24+0200\n"
-"PO-Revision-Date: 2016-05-16 12:31+0200\n"
+"POT-Creation-Date: 2016-05-17 14:44+0200\n"
+"PO-Revision-Date: 2016-05-17 12:46+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
-"Language-Team: Thai (http://www.transifex.com/open-development-mekong/odm-"
-"ckanext-odm_dataset/language/th/)\n"
+"Language-Team: Thai (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,154 +15,14 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.4\n"
 "X-Poedit-Basepath: ../../../ckanext\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: odm_dataset/lib/odm_dataset_helper.py:22
 msgid ""
-"Thank you for uploading the dataset. You should have received a "
-"confirmation email from OD Mekong Datahub. This dataset is still "
-"unpublished. Your item can only be published after you review this form and "
-"after our administrators approve your entry."
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:23
-msgid ""
-"It is important that you have entered the correct information in your "
-"dataset form. We also ask that all contributors complete as many fields as "
-"possible."
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:24
-msgid ""
-"Please take this opportunity to review your dataset record. If you would "
-"like to make any changes please select your dataset record and then click "
-"on the Manage button on the top right corner."
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:25
-msgid ""
-"Please CHECK YOUR SPELLING against the original item to ensure the item is "
-"recorded correctly."
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:26
-msgid "Please review your dataset record form again for the mandatory fields:"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:27
-msgid ""
-"Title (Please use Associated Press style title where the first letter is "
-"capitalized and the rest of the title is not, i.e. 'Study of Cambodian "
-"forests and lakes from 1992 to 1994')"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:28
-msgid "Language"
-msgstr "ภาษา"
-
-#: odm_dataset/lib/odm_dataset_helper.py:29
-msgid "Version"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:30
-msgid "Geographical area"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:31
-msgid "Source"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:32
-msgid "Processes"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:33
-msgid "Date uploaded"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:34
-msgid "Date created"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:35
-msgid ""
-"Please review again the following information, vital to other users who may "
-"search for your record:"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:36
-msgid ""
-"Description(Make sure this is a concise description of the record in your "
-"own words, please do not just 'copy' and 'paste' an abstract by the "
-"original author)"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:37
-msgid "Topics"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:38
-msgid ""
-"License (Make sure you indicated the correct license. Additional "
-"information on creative commons is found here http://opendefinition.org/"
-"licenses/. If there is no license, please indicate 'license unspecified')"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:39
-msgid "Copyright"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:40
-msgid "Access and Use Constraints"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:41
-msgid "Contact"
-msgstr "ข้อมูลติดต่อ"
-
-#: odm_dataset/lib/odm_dataset_helper.py:42
-msgid "Date modified"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:43
-msgid "Temporal Range"
-msgstr "ช่วงเวลา"
-
-#: odm_dataset/lib/odm_dataset_helper.py:44
-msgid "Accuracy"
-msgstr "ความถูกต้อง"
-
-#: odm_dataset/lib/odm_dataset_helper.py:45
-msgid "Logical Consistency"
-msgstr "ความสอดคล้องเชิงตรรกะ"
-
-#: odm_dataset/lib/odm_dataset_helper.py:46
-msgid "Completeness"
-msgstr "ความสมบูรณ์"
-
-#: odm_dataset/lib/odm_dataset_helper.py:47
-msgid "Metadata Reference Information"
-msgstr "ข้อมูลอ้างอิงข้อมูลเมตา"
-
-#: odm_dataset/lib/odm_dataset_helper.py:48
-msgid "Attributes"
-msgstr "คุณสมบัติ"
-
-#: odm_dataset/lib/odm_dataset_helper.py:49
-msgid ""
-"Our administrators need to review the dataset record as well. They will "
-"close fixed issues or open new issues if there are any other "
-"inconsistencies. Once all issues have been resolved, the item will be "
-"published."
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:50
-msgid "Thank you for sharing,"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:51
-msgid "Open Development Team"
+"Thank you for uploading this item. Instructions about vetting system "
+"available on "
+"https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
 msgstr ""
 
 #: odm_dataset/templates/macros/form.html:22
@@ -178,8 +37,8 @@ msgstr ""
 msgid ""
 "This record has not been migrated yet. In case you want to save it, make "
 "sure that data is fille properly before pressing the UPDATE button. Follow "
-"the instructions on https://wiki.opendevelopmentmekong.net/partners:"
-"enabling_multilingual_support_manually:"
+"the instructions on "
+"https://wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually:"
 msgstr ""
 
 #: odm_dataset/templates/scheming/display_snippets/fluent_markdown_fallback.html:5
