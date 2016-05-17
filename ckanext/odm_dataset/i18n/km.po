@@ -1,14 +1,16 @@
 #
 # Translators:
+# ChandaraKhun <chandara@opendevcam.net>, 2016
 # ODM Cambodia <cambodia@opendevmekong.net>, 2015
+# Pinkie, 2016
+# svutha <svutha.ewmi@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
 "POT-Creation-Date: 2016-05-16 12:24+0200\n"
-"PO-Revision-Date: 2016-05-16 12:31+0200\n"
+"PO-Revision-Date: 2016-05-16 11:17+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
-"Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-"
-"ckanext-odm_dataset/language/km/)\n"
+"Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/km/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,47 +18,47 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.4\n"
 "X-Poedit-Basepath: ../../../ckanext\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: odm_dataset/lib/odm_dataset_helper.py:22
 msgid ""
-"Thank you for uploading the dataset. You should have received a "
-"confirmation email from OD Mekong Datahub. This dataset is still "
-"unpublished. Your item can only be published after you review this form and "
-"after our administrators approve your entry."
-msgstr ""
+"Thank you for uploading the dataset. You should have received a confirmation"
+" email from OD Mekong Datahub. This dataset is still unpublished. Your item "
+"can only be published after you review this form and after our "
+"administrators approve your entry."
+msgstr "សូមអរគុណសម្រាប់ការដាក់បញ្ចូលទិន្នន័យទៅក្នុងមូលដ្ឋានទិន្នន័យ។ អ្នកគួរតែបានទទួលអ៊ីម៉ែលបញ្ជាក់ពីក្រុមការងារ មូលដ្ឋានទិន្នន័យ អូឌី មេគង្គ។ ទិន្នន័យនេះពំុទាន់បានផ្សព្វផ្សាយជាសាធារណរៈនៅឡើយ។ ទិន្នន័យរបស់អ្នកអាចនឹងត្រូវបានបានចេញផ្សាយបន្ទាប់ពីឆ្លងកាត់ការត្រួតពិនិត្យទម្រង់បែបបទនេះ និងបន្ទាប់ពីក្រុមការងារយើងខ្ញុំ បានអនុម័តលើកំណត់ត្រាទិន្នន័យរបស់អ្នក។"
 
 #: odm_dataset/lib/odm_dataset_helper.py:23
 msgid ""
 "It is important that you have entered the correct information in your "
 "dataset form. We also ask that all contributors complete as many fields as "
 "possible."
-msgstr ""
+msgstr "ការបញ្ចូលព័ត៌មាននៅក្នុងបែបបទកំណត់ត្រាទិន្នន័យឱ្យបានត្រឹមត្រូវពិតជាមានសារៈសំខាន់។ យើងខ្ញុំស្នើសុំឱ្យអ្នកចូលរួមចំណែកទាំងអស់គ្នាបំពេញចន្លោះផ្ទុកព័ត៌មានឱ្យបានពេញលេញ។"
 
 #: odm_dataset/lib/odm_dataset_helper.py:24
 msgid ""
 "Please take this opportunity to review your dataset record. If you would "
-"like to make any changes please select your dataset record and then click "
-"on the Manage button on the top right corner."
-msgstr ""
+"like to make any changes please select your dataset record and then click on"
+" the Manage button on the top right corner."
+msgstr "សូមយកឱកាសនេះដើម្បីពិនិត្យមើលកំណត់ត្រាទិន្នន័យរបស់អ្នកឡើងវិញ។ ប្រសិនបើអ្នកចង់ធ្វើកំណែណាមួយ សូមជ្រើសកំណត់ត្រាទិន្នន័យរបស់អ្នក ហើយបន្ទាប់មកចុចលើប៊ូតុង \"គ្រប់គ្រង\" នៅលើជ្រុងខាងស្ដាំផ្នែកខាងលើ។"
 
 #: odm_dataset/lib/odm_dataset_helper.py:25
 msgid ""
 "Please CHECK YOUR SPELLING against the original item to ensure the item is "
 "recorded correctly."
-msgstr ""
+msgstr "សូមពិនិត្យអក្ខរាវិរុទ្ធរបស់អ្នកជាមួយនឹងឯកសារដើមដើម ដើម្បីធានាថាអ្នកបានធ្វើកំណត់ត្រាយ៉ាងត្រឹមត្រូវ។"
 
 #: odm_dataset/lib/odm_dataset_helper.py:26
 msgid "Please review your dataset record form again for the mandatory fields:"
-msgstr ""
+msgstr "សូមពិនិត្យចន្លោះផ្ទុកព័ត៌មានសំខាន់ៗនៃទំរង់បែបបទសំណុំទិន្នន័យរបស់អ្នកម្តងទៀត៖"
 
 #: odm_dataset/lib/odm_dataset_helper.py:27
 msgid ""
 "Title (Please use Associated Press style title where the first letter is "
 "capitalized and the rest of the title is not, i.e. 'Study of Cambodian "
 "forests and lakes from 1992 to 1994')"
-msgstr ""
+msgstr "ចំណងជើង"
 
 #: odm_dataset/lib/odm_dataset_helper.py:28
 msgid "Language"
@@ -64,55 +66,55 @@ msgstr "ភាសា"
 
 #: odm_dataset/lib/odm_dataset_helper.py:29
 msgid "Version"
-msgstr ""
+msgstr "កំណែ​"
 
 #: odm_dataset/lib/odm_dataset_helper.py:30
 msgid "Geographical area"
-msgstr ""
+msgstr "តំបន់ភូមិសាស្រ្ត"
 
 #: odm_dataset/lib/odm_dataset_helper.py:31
 msgid "Source"
-msgstr ""
+msgstr "ប្រភព"
 
 #: odm_dataset/lib/odm_dataset_helper.py:32
 msgid "Processes"
-msgstr ""
+msgstr "ដំណើរការ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:33
 msgid "Date uploaded"
-msgstr ""
+msgstr "កាលបរិច្ឆេទនៃការដាក់បញ្ចូលទៅក្នុងមូលដ្ឋានទិន្នន័យ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:34
 msgid "Date created"
-msgstr ""
+msgstr "កាលបរិច្ឆេទនៃការបង្កើត"
 
 #: odm_dataset/lib/odm_dataset_helper.py:35
 msgid ""
 "Please review again the following information, vital to other users who may "
 "search for your record:"
-msgstr ""
+msgstr "សូមពិនិត្យព័ត៌មានខាងក្រោមម្តងទៀតដូច។ ព័ត៌មានទាំងនេះមានសារៈសំខាន់សម្រាប់អ្នកប្រើប្រាស់ផ្សេងទៀតក្នុងការស្វែងរកកំណត់ត្រារបស់អ្នក៖"
 
 #: odm_dataset/lib/odm_dataset_helper.py:36
 msgid ""
 "Description(Make sure this is a concise description of the record in your "
-"own words, please do not just 'copy' and 'paste' an abstract by the "
-"original author)"
+"own words, please do not just 'copy' and 'paste' an abstract by the original"
+" author)"
 msgstr ""
 
 #: odm_dataset/lib/odm_dataset_helper.py:37
 msgid "Topics"
-msgstr ""
+msgstr "ប្រធានបទ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:38
 msgid ""
-"License (Make sure you indicated the correct license. Additional "
-"information on creative commons is found here http://opendefinition.org/"
-"licenses/. If there is no license, please indicate 'license unspecified')"
+"License (Make sure you indicated the correct license. Additional information"
+" on creative commons is found here http://opendefinition.org/licenses/. If "
+"there is no license, please indicate 'license unspecified')"
 msgstr ""
 
 #: odm_dataset/lib/odm_dataset_helper.py:39
 msgid "Copyright"
-msgstr ""
+msgstr "សិទ្ធិ​អ្នក​និពន្ធ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:40
 msgid "Access and Use Constraints"
@@ -124,7 +126,7 @@ msgstr "ទំនាក់ទំនង"
 
 #: odm_dataset/lib/odm_dataset_helper.py:42
 msgid "Date modified"
-msgstr ""
+msgstr "កាលបរិច្ឆេទនៃការកែប្រែ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:43
 msgid "Temporal Range"
@@ -132,7 +134,7 @@ msgstr "ចន្លោះកាលវេលា"
 
 #: odm_dataset/lib/odm_dataset_helper.py:44
 msgid "Accuracy"
-msgstr "ភាពទៀងទាត់"
+msgstr "ភាព​ត្រឹម​ត្រូវ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:45
 msgid "Logical Consistency"
@@ -140,11 +142,11 @@ msgstr "ភាពទៀងទាត់តាមហេតុផល"
 
 #: odm_dataset/lib/odm_dataset_helper.py:46
 msgid "Completeness"
-msgstr "ការចប់សព្វគ្រប់"
+msgstr "ភាពពេញលេញ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:47
 msgid "Metadata Reference Information"
-msgstr "ពត័មានជាអំនះអំនាងនៃព័ត៌មាន​អំពីទិន្នន័យ"
+msgstr "ពត័មានជាអំនះអំនាងនៃទិន្នន័យមេ"
 
 #: odm_dataset/lib/odm_dataset_helper.py:48
 msgid "Attributes"
@@ -156,15 +158,15 @@ msgid ""
 "close fixed issues or open new issues if there are any other "
 "inconsistencies. Once all issues have been resolved, the item will be "
 "published."
-msgstr ""
+msgstr "ក្រុមការងារយើងខ្ញុំត្រូវពិនិត្យឡើងវិញនូវកំណត់ត្រាទិន្នន័យនេះ។ យើងខ្ញុំនឹងបិទបញ្ហាដែលបានដោះស្រាយហើយ ឬបើកបញ្ហាជាថ្មី ប្រសិនបើមានភាពមិនទៀងទាត់ណាមួយផ្សេងទៀត។ ពេលដែលបញ្ហាទាំងអស់ត្រូវបានដោះស្រាយ យើងខ្ញុំនឹងបោះពុម្ភផ្សាយកំណត់ត្រាទិន្នន័យនេះ។"
 
 #: odm_dataset/lib/odm_dataset_helper.py:50
 msgid "Thank you for sharing,"
-msgstr ""
+msgstr "សូមអរគុណសម្រាប់ការចែករំលែក"
 
 #: odm_dataset/lib/odm_dataset_helper.py:51
 msgid "Open Development Team"
-msgstr ""
+msgstr "ក្រុមការងារនៃ​​បណ្តាញ​ទិន្នន័យអំពីការអភិវឌ្ឍ"
 
 #: odm_dataset/templates/macros/form.html:22
 msgid "Title"
@@ -178,8 +180,8 @@ msgstr ""
 msgid ""
 "This record has not been migrated yet. In case you want to save it, make "
 "sure that data is fille properly before pressing the UPDATE button. Follow "
-"the instructions on https://wiki.opendevelopmentmekong.net/partners:"
-"enabling_multilingual_support_manually:"
+"the instructions on "
+"https://wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually:"
 msgstr ""
 
 #: odm_dataset/templates/scheming/display_snippets/fluent_markdown_fallback.html:5
@@ -187,7 +189,7 @@ msgstr ""
 msgid ""
 "Multilingual Field: No Data for the current selected language has been "
 "entered yet"
-msgstr ""
+msgstr "វិស័យពហុភាសា៖ មិនមានទិន្នន័យ ដោយសារភាសាជ្រើសរើសនេះមិនទាន់ត្រូវបាន​បញ្ចូល​នៅឡើយ។"
 
 #: odm_dataset/templates/scheming/form_snippets/odm_organization.html:18
 msgid "Organization"
