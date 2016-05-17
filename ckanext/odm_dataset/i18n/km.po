@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
 "POT-Creation-Date: 2016-05-17 15:07+0200\n"
-"PO-Revision-Date: 2016-05-17 13:07+0000\n"
+"PO-Revision-Date: 2016-05-17 14:18+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/km/)\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:24
 msgid "Other"
-msgstr ""
+msgstr "ផ្សេងៗទៀត"
 
 #: odm_dataset/i18n/metadata_fields.php:25
 msgid "Date created"

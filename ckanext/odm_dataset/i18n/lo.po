@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
-"POT-Creation-Date: 2016-05-17 14:44+0200\n"
-"PO-Revision-Date: 2016-05-17 12:46+0000\n"
+"POT-Creation-Date: 2016-05-17 15:07+0200\n"
+"PO-Revision-Date: 2016-05-17 13:07+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Lao (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/lo/)\n"
 "MIME-Version: 1.0\n"
@@ -17,15 +17,217 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
+#: odm_dataset/i18n/metadata_fields.php:2
+#: odm_dataset/templates/macros/form.html:22
+msgid "Title"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:3
+msgid "URL"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:4
+msgid "Description"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:5
+msgid "Topics"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:6
+msgid "License"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:7
+msgid "Copyright"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:8
+msgid "Access and use constraints"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:9
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:18
+msgid "Organization"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:10
+msgid "Version"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:11
+msgid "Contact"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:12
+msgid "Language"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:13
+msgid "Burmese"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:14
+msgid "English"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:15
+msgid "Khmer"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:16
+msgid "Lao"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:17
+msgid "Thai"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:18
+msgid "Vietnamese"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:19
+msgid "Chinese"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:20
+msgid "French"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:21
+msgid "German"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:22
+msgid "Japanese"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:23
+msgid "Korean"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:24
+msgid "Other"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:25
+msgid "Date created"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:26
+msgid "Date uploaded"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:27
+msgid "Date modified"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:28
+msgid "Temporal range"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:29
+msgid "Geographic area (spatial range)"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:30
+msgid "Global"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:31
+msgid "ASEAN"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:32
+msgid "Greater Mekong Subregion (GMS)"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:33
+msgid "Lower Mekong Basin"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:34
+msgid "Lower Mekong countries"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:35
+msgid "Cambodia"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:36
+msgid "Vietnam"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:37
+msgid "Laos"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:38
+msgid "Thailand"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:39
+msgid "Myanmar"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:40
+msgid "Accuracy"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:41
+msgid "Logical Consistency"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:42
+msgid "Completeness"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:43
+msgid "Process(es)"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:44
+msgid "Source(s)"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:45
+msgid "Metadata reference information"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:46
+msgid "Attributes"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:47
+msgid "Legacy reference document"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:48
+msgid "Maintainer"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:49
+msgid "Maintainer email"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:50
+msgid "Name"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:51
+msgid "Format"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:52
+msgid "Resource's languages"
+msgstr ""
+
 #: odm_dataset/lib/odm_dataset_helper.py:22
 msgid ""
 "Thank you for uploading this item. Instructions about vetting system "
 "available on "
 "https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
-msgstr ""
-
-#: odm_dataset/templates/macros/form.html:22
-msgid "Title"
 msgstr ""
 
 #: odm_dataset/templates/package/edit_base.html:6
@@ -45,10 +247,6 @@ msgstr ""
 msgid ""
 "Multilingual Field: No Data for the current selected language has been "
 "entered yet"
-msgstr ""
-
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:18
-msgid "Organization"
 msgstr ""
 
 #: odm_dataset/templates/scheming/form_snippets/odm_organization.html:22

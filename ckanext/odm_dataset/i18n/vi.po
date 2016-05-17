@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
 "POT-Creation-Date: 2016-05-17 15:07+0200\n"
-"PO-Revision-Date: 2016-05-17 13:07+0000\n"
+"PO-Revision-Date: 2016-05-17 14:19+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Tiêu đề"
 
 #: odm_dataset/i18n/metadata_fields.php:3
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: odm_dataset/i18n/metadata_fields.php:4
 msgid "Description"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:5
 msgid "Topics"
-msgstr ""
+msgstr "Chủ đề"
 
 #: odm_dataset/i18n/metadata_fields.php:6
 msgid "License"
@@ -73,11 +73,11 @@ msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:14
 msgid "English"
-msgstr ""
+msgstr "Tiếng Anh"
 
 #: odm_dataset/i18n/metadata_fields.php:15
 msgid "Khmer"
-msgstr ""
+msgstr "Tiếng Khơ -me"
 
 #: odm_dataset/i18n/metadata_fields.php:16
 msgid "Lao"
@@ -89,7 +89,7 @@ msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:18
 msgid "Vietnamese"
-msgstr ""
+msgstr "Tiếng Việt"
 
 #: odm_dataset/i18n/metadata_fields.php:19
 msgid "Chinese"
@@ -113,7 +113,7 @@ msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:24
 msgid "Other"
-msgstr ""
+msgstr "Khác"
 
 #: odm_dataset/i18n/metadata_fields.php:25
 msgid "Date created"
@@ -157,23 +157,23 @@ msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:35
 msgid "Cambodia"
-msgstr ""
+msgstr "Cam-pu-chia"
 
 #: odm_dataset/i18n/metadata_fields.php:36
 msgid "Vietnam"
-msgstr ""
+msgstr "Việt Nam"
 
 #: odm_dataset/i18n/metadata_fields.php:37
 msgid "Laos"
-msgstr ""
+msgstr "Lào"
 
 #: odm_dataset/i18n/metadata_fields.php:38
 msgid "Thailand"
-msgstr ""
+msgstr "Thái Lan"
 
 #: odm_dataset/i18n/metadata_fields.php:39
 msgid "Myanmar"
-msgstr ""
+msgstr "Mi-an-ma"
 
 #: odm_dataset/i18n/metadata_fields.php:40
 msgid "Accuracy"
