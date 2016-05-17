@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
-"POT-Creation-Date: 2016-05-16 12:24+0200\n"
-"PO-Revision-Date: 2016-05-16 11:17+0000\n"
+"POT-Creation-Date: 2016-05-17 14:44+0200\n"
+"PO-Revision-Date: 2016-05-17 12:46+0000\n"
 "Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -23,150 +23,10 @@ msgstr ""
 
 #: odm_dataset/lib/odm_dataset_helper.py:22
 msgid ""
-"Thank you for uploading the dataset. You should have received a confirmation"
-" email from OD Mekong Datahub. This dataset is still unpublished. Your item "
-"can only be published after you review this form and after our "
-"administrators approve your entry."
+"Thank you for uploading this item. Instructions about vetting system "
+"available on "
+"https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
 msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:23
-msgid ""
-"It is important that you have entered the correct information in your "
-"dataset form. We also ask that all contributors complete as many fields as "
-"possible."
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:24
-msgid ""
-"Please take this opportunity to review your dataset record. If you would "
-"like to make any changes please select your dataset record and then click on"
-" the Manage button on the top right corner."
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:25
-msgid ""
-"Please CHECK YOUR SPELLING against the original item to ensure the item is "
-"recorded correctly."
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:26
-msgid "Please review your dataset record form again for the mandatory fields:"
-msgstr "Vui lòng xem lại bản ghi dataset lần nữa và điền đầy đủ các trường bắt buộc:"
-
-#: odm_dataset/lib/odm_dataset_helper.py:27
-msgid ""
-"Title (Please use Associated Press style title where the first letter is "
-"capitalized and the rest of the title is not, i.e. 'Study of Cambodian "
-"forests and lakes from 1992 to 1994')"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:28
-msgid "Language"
-msgstr "Ngôn ngữ"
-
-#: odm_dataset/lib/odm_dataset_helper.py:29
-msgid "Version"
-msgstr "Phiên  bản"
-
-#: odm_dataset/lib/odm_dataset_helper.py:30
-msgid "Geographical area"
-msgstr "Vùng địa lý"
-
-#: odm_dataset/lib/odm_dataset_helper.py:31
-msgid "Source"
-msgstr "Nguồn"
-
-#: odm_dataset/lib/odm_dataset_helper.py:32
-msgid "Processes"
-msgstr "Các quy trình"
-
-#: odm_dataset/lib/odm_dataset_helper.py:33
-msgid "Date uploaded"
-msgstr "Ngày tải dữ liệu lên"
-
-#: odm_dataset/lib/odm_dataset_helper.py:34
-msgid "Date created"
-msgstr "Ngày tạo"
-
-#: odm_dataset/lib/odm_dataset_helper.py:35
-msgid ""
-"Please review again the following information, vital to other users who may "
-"search for your record:"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:36
-msgid ""
-"Description(Make sure this is a concise description of the record in your "
-"own words, please do not just 'copy' and 'paste' an abstract by the original"
-" author)"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:37
-msgid "Topics"
-msgstr "Chủ đề"
-
-#: odm_dataset/lib/odm_dataset_helper.py:38
-msgid ""
-"License (Make sure you indicated the correct license. Additional information"
-" on creative commons is found here http://opendefinition.org/licenses/. If "
-"there is no license, please indicate 'license unspecified')"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:39
-msgid "Copyright"
-msgstr "Bản quyền"
-
-#: odm_dataset/lib/odm_dataset_helper.py:40
-msgid "Access and Use Constraints"
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:41
-msgid "Contact"
-msgstr "Liên hệ"
-
-#: odm_dataset/lib/odm_dataset_helper.py:42
-msgid "Date modified"
-msgstr "Ngày sửa đổi"
-
-#: odm_dataset/lib/odm_dataset_helper.py:43
-msgid "Temporal Range"
-msgstr "Khoảng thời gian"
-
-#: odm_dataset/lib/odm_dataset_helper.py:44
-msgid "Accuracy"
-msgstr "Độ chính xác"
-
-#: odm_dataset/lib/odm_dataset_helper.py:45
-msgid "Logical Consistency"
-msgstr "Tính nhất quán logic"
-
-#: odm_dataset/lib/odm_dataset_helper.py:46
-msgid "Completeness"
-msgstr "Đầy đủ"
-
-#: odm_dataset/lib/odm_dataset_helper.py:47
-msgid "Metadata Reference Information"
-msgstr "Thông tin tham khảo Metadata."
-
-#: odm_dataset/lib/odm_dataset_helper.py:48
-msgid "Attributes"
-msgstr "Thuộc tính"
-
-#: odm_dataset/lib/odm_dataset_helper.py:49
-msgid ""
-"Our administrators need to review the dataset record as well. They will "
-"close fixed issues or open new issues if there are any other "
-"inconsistencies. Once all issues have been resolved, the item will be "
-"published."
-msgstr ""
-
-#: odm_dataset/lib/odm_dataset_helper.py:50
-msgid "Thank you for sharing,"
-msgstr "Cảm ơn bạn đã chia sẻ "
-
-#: odm_dataset/lib/odm_dataset_helper.py:51
-msgid "Open Development Team"
-msgstr "Nhóm Open Development"
 
 #: odm_dataset/templates/macros/form.html:22
 msgid "Title"

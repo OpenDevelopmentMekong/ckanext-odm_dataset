@@ -1,25 +1,27 @@
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: ckanext-odm_dataset\n"
+"Project-Id-Version: ODM ckanext-odm_dataset\n"
 "POT-Creation-Date: 2016-05-17 14:44+0200\n"
-"PO-Revision-Date: 2016-05-17 14:45+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"PO-Revision-Date: 2016-05-17 12:46+0000\n"
+"Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
+"Language-Team: Lao (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/lo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: lo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.4\n"
 "X-Poedit-Basepath: ../../../ckanext\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: odm_dataset/lib/odm_dataset_helper.py:22
 msgid ""
 "Thank you for uploading this item. Instructions about vetting system "
-"available on https://wiki.opendevelopmentmekong.net/partners:"
-"content_review#instructions_for_default_issue_on_datasets"
+"available on "
+"https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
 msgstr ""
 
 #: odm_dataset/templates/macros/form.html:22
@@ -34,8 +36,8 @@ msgstr ""
 msgid ""
 "This record has not been migrated yet. In case you want to save it, make "
 "sure that data is fille properly before pressing the UPDATE button. Follow "
-"the instructions on https://wiki.opendevelopmentmekong.net/partners:"
-"enabling_multilingual_support_manually:"
+"the instructions on "
+"https://wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually:"
 msgstr ""
 
 #: odm_dataset/templates/scheming/display_snippets/fluent_markdown_fallback.html:5
