@@ -8,6 +8,10 @@ from geomet import wkt, InvalidGeoJSONException
 from ckan.plugins import toolkit
 from ckanext.dcat.utils import resource_uri, publisher_uri_from_dataset_dict
 from ckanext.dcat.profiles import RDFProfile
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
+import odm_rdf_helper
 import logging
 
 log = logging.getLogger(__name__)
@@ -27,20 +31,19 @@ MD = Namespace('http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#')
 GN = Namespace('http://www.geonames.org/ontology#')
 
 namespaces = {
-    'dct': DCT,
-    'dcat': DCAT,
-    'foaf': FOAF,
-    'schema': SCHEMA,
-    'cro': CRO,
-    'doap': DOAP,
-    'ebucore': EBUCORE,
-    'dqm': DQM,
-    'dq' : DQ,
-    'omn' : OMN,
-    'md' : MD,
-    'gn' : GN
+  'dct': DCT,
+  'dcat': DCAT,
+  'foaf': FOAF,
+  'schema': SCHEMA,
+  'cro': CRO,
+  'doap': DOAP,
+  'ebucore': EBUCORE,
+  'dqm': DQM,
+  'dq' : DQ,
+  'omn' : OMN,
+  'md' : MD,
+  'gn' : GN
 }
-
 
 class ODMDCATBasicProfileDataset(RDFProfile):
   '''
@@ -59,6 +62,9 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
   def graph_from_dataset(self, dataset_dict, dataset_ref):
 
+    if dataset_dict['type'] != "dataset":
+      return
+
     log.debug("ODMDCATBasicProfileDataset graph_from_dataset")
 
     g = self.g
@@ -66,43 +72,44 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     for prefix, namespace in namespaces.iteritems():
       g.bind(prefix, namespace)
 
-    g.add((dataset_ref, DCT.identifier, Literal(dataset_dict.get('id', None))))
+    g.add((dataset_ref, DCT.identifier, Literal(dataset_dict.get('id'))))
     g.add((dataset_ref, DCT.type, Literal(dataset_dict.get('type', 'dataset'))))
-    g.add((dataset_ref, DCAT.landingPage, Literal(dataset_dict.get('url', None))))
+    g.add((dataset_ref, DCAT.landingPage, Literal(dataset_dict.get('url'))))
 
-    # Basic fields
-    items = [
-
-        ('title_translated', DCT.title, None),
-        ('notes_translated', DCT.description, None),
-        ('license', DCT.license, None),
-        ('copyright', CRO.copyright, None),
-        ('owner_org', FOAF.organization, None),
-        ('version', DOAP.version, ['dcat_version']),
-        ('contact', EBUCORE.contact, None),
-        ('odm_accuracy', DQM.accuracy, None),
-        ('odm_logical_consistency', DQ.logicalConsistency, None),
-        ('odm_completeness', DQ.completeness, None),
-        ('odm_access_and_use_constraints', MD.useconstraints, None),
-        ('odm_attributes', OMN.attribute, None),
-        ('odm_source', DCT.source, None)
+    raw_triples = [
+      (dataset_ref, DCT.title, dataset_dict.get('title_translated')),
+      (dataset_ref, DCT.description, dataset_dict.get('notes_translated')),
+      (dataset_ref, DCT.license, dataset_dict.get('license')),
+      (dataset_ref, CRO.copyright, dataset_dict.get('copyright')),
+      (dataset_ref, FOAF.organization, dataset_dict.get('owner_org')),
+      (dataset_ref, DOAP.version, dataset_dict.get('version')),
+      (dataset_ref, EBUCORE.contact, dataset_dict.get('contact')),
+      (dataset_ref, DQM.accuracy, dataset_dict.get('odm_accuracy')),
+      (dataset_ref, DQ.logicalConsistency, dataset_dict.get('odm_logical_consistency')),
+      (dataset_ref, DQ.completeness, dataset_dict.get('odm_completeness')),
+      (dataset_ref, MD.useconstraints, dataset_dict.get('odm_access_and_use_constraints')),
+      (dataset_ref, OMN.attribute, dataset_dict.get('odm_attributes')),
+      (dataset_ref, DCT.source, dataset_dict.get('odm_source'))
     ]
-    self._add_triples_from_dict(dataset_dict, dataset_ref, items)
 
+    for raw_triple in raw_triples:
+      triples = odm_rdf_helper.split_multilingual_object_into_triples(raw_triple)
+      for triple in triples:
+        g.add(triple)
 
     #  Lists
     items = [
-        ('odm_language', DCT.language, None),
-        ('odm_spatial_range', GN.countrycode, None),
-        ('taxonomy', FOAF.topic, None)
+      ('odm_language', DCT.language, None),
+      ('odm_spatial_range', GN.countrycode, None),
+      ('taxonomy', FOAF.topic, None)
     ]
     self._add_list_triples_from_dict(dataset_dict, dataset_ref, items)
 
     # Dates
     items = [
-        ('odm_date_created',DCT.created, None),
-        ('odm_date_uploaded',SCHEMA.uploadDate, None),
-        ('odm_date_modified',DCT.modified, None)
+      ('odm_date_created',DCT.created, None),
+      ('odm_date_uploaded',SCHEMA.uploadDate, None),
+      ('odm_date_modified',DCT.modified, None)
     ]
     self._add_date_triples_from_dict(dataset_dict, dataset_ref, items)
 
@@ -114,14 +121,14 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       g.add((distribution, RDF.type, DCAT.Distribution))
 
       items = [
-          ('name', DCT.title, None),
-          ('description', DCT.description, None)
+        ('name', DCT.title, None),
+        ('description', DCT.description, None)
       ]
       self._add_triples_from_dict(resource_dict, distribution, items)
 
       #  Lists
       items = [
-          ('odm_language', DCT.language, None)
+        ('odm_language', DCT.language, None)
       ]
       self._add_list_triples_from_dict(resource_dict, distribution, items)
 
@@ -159,10 +166,10 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
     # Basic fields
     items = [
-        ('title', DCT.title, config.get('ckan.site_title')),
-        ('description', DCT.description, config.get('ckan.site_description')),
-        ('homepage', FOAF.homepage, config.get('ckan.site_url')),
-        ('language', DCT.language, config.get('ckan.locale_default', 'en')),
+      ('title', DCT.title, config.get('ckan.site_title')),
+      ('description', DCT.description, config.get('ckan.site_description')),
+      ('homepage', FOAF.homepage, config.get('ckan.site_url')),
+      ('language', DCT.language, config.get('ckan.locale_default', 'en')),
     ]
     for item in items:
       key, predicate, fallback = item
