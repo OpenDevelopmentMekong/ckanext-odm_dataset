@@ -14,9 +14,7 @@ def split_multilingual_object_into_triples(triple):
   ''' Takes a triple and splits it into different localized if literal_object_value
       is multilingual (JSON object, ckanext-fluent format)
   '''
-  subject = triple[0]
-  predicate = triple[1]
-  object_value = triple[2]
+  subject, predicate, object_value = triple
 
   if object_value is None:
     return []

@@ -62,6 +62,9 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
   def graph_from_dataset(self, dataset_dict, dataset_ref):
 
+    if dataset_dict['type'] != "dataset":
+      return
+
     log.debug("ODMDCATBasicProfileDataset graph_from_dataset")
 
     g = self.g
@@ -69,9 +72,9 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     for prefix, namespace in namespaces.iteritems():
       g.bind(prefix, namespace)
 
-    g.add((dataset_ref, DCT.identifier, Literal(dataset_dict.get('id', None))))
+    g.add((dataset_ref, DCT.identifier, Literal(dataset_dict.get('id'))))
     g.add((dataset_ref, DCT.type, Literal(dataset_dict.get('type', 'dataset'))))
-    g.add((dataset_ref, DCAT.landingPage, Literal(dataset_dict.get('url', None))))
+    g.add((dataset_ref, DCAT.landingPage, Literal(dataset_dict.get('url'))))
 
     raw_triples = [
       (dataset_ref, DCT.title, dataset_dict.get('title_translated')),
