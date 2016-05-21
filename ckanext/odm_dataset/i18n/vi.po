@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
 "POT-Creation-Date: 2016-05-17 15:07+0200\n"
-"PO-Revision-Date: 2016-05-17 14:19+0000\n"
-"Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
+"PO-Revision-Date: 2016-05-19 04:50+0000\n"
+"Last-Translator: Linh Do <linh@nature.org.vn>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgstr "URL"
 
 #: odm_dataset/i18n/metadata_fields.php:4
 msgid "Description"
-msgstr ""
+msgstr "Mô tả"
 
 #: odm_dataset/i18n/metadata_fields.php:5
 msgid "Topics"
@@ -40,36 +40,36 @@ msgstr "Chủ đề"
 
 #: odm_dataset/i18n/metadata_fields.php:6
 msgid "License"
-msgstr ""
+msgstr "Giấy phép"
 
 #: odm_dataset/i18n/metadata_fields.php:7
 msgid "Copyright"
-msgstr ""
+msgstr "Bản quyền"
 
 #: odm_dataset/i18n/metadata_fields.php:8
 msgid "Access and use constraints"
-msgstr ""
+msgstr "Lưu ý khi tiếp cận và sử dụng dữ liệu"
 
 #: odm_dataset/i18n/metadata_fields.php:9
 #: odm_dataset/templates/scheming/form_snippets/odm_organization.html:18
 msgid "Organization"
-msgstr ""
+msgstr "Tổ chức"
 
 #: odm_dataset/i18n/metadata_fields.php:10
 msgid "Version"
-msgstr ""
+msgstr "Phiên bản"
 
 #: odm_dataset/i18n/metadata_fields.php:11
 msgid "Contact"
-msgstr ""
+msgstr "Liên hệ"
 
 #: odm_dataset/i18n/metadata_fields.php:12
 msgid "Language"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 #: odm_dataset/i18n/metadata_fields.php:13
 msgid "Burmese"
-msgstr ""
+msgstr "Tiếng Myanmar"
 
 #: odm_dataset/i18n/metadata_fields.php:14
 msgid "English"
@@ -77,15 +77,15 @@ msgstr "Tiếng Anh"
 
 #: odm_dataset/i18n/metadata_fields.php:15
 msgid "Khmer"
-msgstr "Tiếng Khơ -me"
+msgstr "Tiếng Khmer"
 
 #: odm_dataset/i18n/metadata_fields.php:16
 msgid "Lao"
-msgstr ""
+msgstr "Tiếng Lào"
 
 #: odm_dataset/i18n/metadata_fields.php:17
 msgid "Thai"
-msgstr ""
+msgstr "Tiếng Thái Lan"
 
 #: odm_dataset/i18n/metadata_fields.php:18
 msgid "Vietnamese"
@@ -93,67 +93,67 @@ msgstr "Tiếng Việt"
 
 #: odm_dataset/i18n/metadata_fields.php:19
 msgid "Chinese"
-msgstr ""
+msgstr "Tiếng Trung"
 
 #: odm_dataset/i18n/metadata_fields.php:20
 msgid "French"
-msgstr ""
+msgstr "Tiếng Pháp"
 
 #: odm_dataset/i18n/metadata_fields.php:21
 msgid "German"
-msgstr ""
+msgstr "Tiếng Đức"
 
 #: odm_dataset/i18n/metadata_fields.php:22
 msgid "Japanese"
-msgstr ""
+msgstr "Tiếng Nhật"
 
 #: odm_dataset/i18n/metadata_fields.php:23
 msgid "Korean"
-msgstr ""
+msgstr "Tiếng Hàn Quốc"
 
 #: odm_dataset/i18n/metadata_fields.php:24
 msgid "Other"
-msgstr "Khác"
+msgstr "Ngôn ngữ khác"
 
 #: odm_dataset/i18n/metadata_fields.php:25
 msgid "Date created"
-msgstr ""
+msgstr "Ngày khởi tạo dữ liệu"
 
 #: odm_dataset/i18n/metadata_fields.php:26
 msgid "Date uploaded"
-msgstr ""
+msgstr "Ngày tải dữ liệu lên web"
 
 #: odm_dataset/i18n/metadata_fields.php:27
 msgid "Date modified"
-msgstr ""
+msgstr "Ngày chỉnh sửa, cập nhật"
 
 #: odm_dataset/i18n/metadata_fields.php:28
 msgid "Temporal range"
-msgstr ""
+msgstr "Phạm vi thời gian liên quan đến bộ dữ liệu"
 
 #: odm_dataset/i18n/metadata_fields.php:29
 msgid "Geographic area (spatial range)"
-msgstr ""
+msgstr "Vùng địa lý (phạm vi không gian)"
 
 #: odm_dataset/i18n/metadata_fields.php:30
 msgid "Global"
-msgstr ""
+msgstr "Toàn cầu"
 
 #: odm_dataset/i18n/metadata_fields.php:31
 msgid "ASEAN"
-msgstr ""
+msgstr "ASEAN"
 
 #: odm_dataset/i18n/metadata_fields.php:32
 msgid "Greater Mekong Subregion (GMS)"
-msgstr ""
+msgstr "Tiểu vùng Mê Kông mở rộng (GMS)"
 
 #: odm_dataset/i18n/metadata_fields.php:33
 msgid "Lower Mekong Basin"
-msgstr ""
+msgstr "Hạ lưu vực Mê  Kông"
 
 #: odm_dataset/i18n/metadata_fields.php:34
 msgid "Lower Mekong countries"
-msgstr ""
+msgstr "Các nước hạ lưu Mê Kông"
 
 #: odm_dataset/i18n/metadata_fields.php:35
 msgid "Cambodia"
@@ -173,70 +173,70 @@ msgstr "Thái Lan"
 
 #: odm_dataset/i18n/metadata_fields.php:39
 msgid "Myanmar"
-msgstr "Mi-an-ma"
+msgstr "Myanmar"
 
 #: odm_dataset/i18n/metadata_fields.php:40
 msgid "Accuracy"
-msgstr ""
+msgstr "Mức độ chính xác"
 
 #: odm_dataset/i18n/metadata_fields.php:41
 msgid "Logical Consistency"
-msgstr ""
+msgstr "Tính logic"
 
 #: odm_dataset/i18n/metadata_fields.php:42
 msgid "Completeness"
-msgstr ""
+msgstr "Mức độ hoàn thiện"
 
 #: odm_dataset/i18n/metadata_fields.php:43
 msgid "Process(es)"
-msgstr ""
+msgstr "(Các ) quy trình thu thập và xử lý dữ liệu"
 
 #: odm_dataset/i18n/metadata_fields.php:44
 msgid "Source(s)"
-msgstr ""
+msgstr "(Các) nguồn"
 
 #: odm_dataset/i18n/metadata_fields.php:45
 msgid "Metadata reference information"
-msgstr ""
+msgstr "Thông tin bổ sung về Metadata"
 
 #: odm_dataset/i18n/metadata_fields.php:46
 msgid "Attributes"
-msgstr ""
+msgstr "Thuộc tính của dữ liệu"
 
 #: odm_dataset/i18n/metadata_fields.php:47
 msgid "Legacy reference document"
-msgstr ""
+msgstr "Tài liệu tham chiếu"
 
 #: odm_dataset/i18n/metadata_fields.php:48
 msgid "Maintainer"
-msgstr ""
+msgstr "Hệ thống bảo vệ"
 
 #: odm_dataset/i18n/metadata_fields.php:49
 msgid "Maintainer email"
-msgstr ""
+msgstr "Email từ hệ thống"
 
 #: odm_dataset/i18n/metadata_fields.php:50
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #: odm_dataset/i18n/metadata_fields.php:51
 msgid "Format"
-msgstr ""
+msgstr "Định dạng"
 
 #: odm_dataset/i18n/metadata_fields.php:52
 msgid "Resource's languages"
-msgstr ""
+msgstr "Ngôn ngữ của tài liệu"
 
 #: odm_dataset/lib/odm_dataset_helper.py:22
 msgid ""
 "Thank you for uploading this item. Instructions about vetting system "
 "available on "
 "https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
-msgstr ""
+msgstr "Cảm ơn bạn đã chia sẻ dữ liệu. Bạn có thể tham khảo hướng dẫn về quy trình kiểm duyệt thông tin của hệ thống tại https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
 
 #: odm_dataset/templates/package/edit_base.html:6
 msgid "Record not multilingual compliant!!"
-msgstr ""
+msgstr "Tài liệu không tương thích đa ngôn ngữ"
 
 #: odm_dataset/templates/package/edit_base.html:8
 msgid ""
@@ -244,31 +244,31 @@ msgid ""
 "sure that data is fille properly before pressing the UPDATE button. Follow "
 "the instructions on "
 "https://wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually:"
-msgstr ""
+msgstr "Tài liệu này chưa được chuyển đi.  Nếu bạn muốn lưu tài liệu, cần đảm bảo rằng đã điền đủ thông tin và nhấn nút CẬP NHẬT. Tham  khảo thêm hướng dẫn tại https://wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually:"
 
 #: odm_dataset/templates/scheming/display_snippets/fluent_markdown_fallback.html:5
 #: odm_dataset/templates/scheming/display_snippets/fluent_text_fallback.html:5
 msgid ""
 "Multilingual Field: No Data for the current selected language has been "
 "entered yet"
-msgstr ""
+msgstr "Mục Đa ngôn ngữ: Hiện không có dữ liệu theo ngôn ngữ yêu cầu"
 
 #: odm_dataset/templates/scheming/form_snippets/odm_organization.html:22
 #: odm_dataset/templates/scheming/form_snippets/organization.html:27
 msgid "No organization"
-msgstr ""
+msgstr "Không có tổ chức nào"
 
 #: odm_dataset/templates/scheming/form_snippets/odm_organization.html:36
 #: odm_dataset/templates/scheming/form_snippets/organization.html:49
 msgid "Visibility"
-msgstr ""
+msgstr "Chế độ hiển thị"
 
 #: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
 #: odm_dataset/templates/scheming/form_snippets/organization.html:52
 msgid "Private"
-msgstr ""
+msgstr "Cá nhân"
 
 #: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
 #: odm_dataset/templates/scheming/form_snippets/organization.html:52
 msgid "Public"
-msgstr ""
+msgstr "Công khai"
