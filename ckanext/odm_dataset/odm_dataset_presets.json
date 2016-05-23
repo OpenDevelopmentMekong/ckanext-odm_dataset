@@ -89,7 +89,7 @@
 			"display_snippet": "fluent_text_fallback.html",
 			"error_snippet": "fluent_text_single.html",
 			"validators": "fluent_text",
-			"output_validators": "fluent_text_output"
+			"output_validators": "odm_dataset_convert_to_multilingual fluent_text_output"
 		}
 	}, {
 		"preset_name": "fluent_core_translated",
@@ -122,7 +122,7 @@
 			"display_snippet": "fluent_markdown_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
 			"validators": "fluent_text",
-			"output_validators": "fluent_text_output"
+			"output_validators": "odm_dataset_convert_to_multilingual fluent_text_output"
 		}
 	}, {
 		"preset_name": "fluent_core_translated_markdown",

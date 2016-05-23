@@ -8,9 +8,6 @@ import json
 import ckan
 import logging
 import urlparse
-import ckan.plugins.toolkit as toolkit
-from genshi.template.text import NewTextTemplate
-from ckan.lib.base import render
 
 log = logging.getLogger(__name__)
 
@@ -19,13 +16,13 @@ def create_default_issue_dataset(pkg_info):
   try:
 
     extra_vars = {
-      't0': toolkit._("Thank you for uploading this item. Instructions about vetting system available on https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets")
+      't0': ckan.plugins.toolkit._("Thank you for uploading this item. Instructions about vetting system available on https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets")
     }
 
     issue_message = render('messages/default_issue_dataset.txt',extra_vars=extra_vars,loader_class=NewTextTemplate)
 
     params = {'title':'User Dataset Upload Checklist','description':issue_message,'dataset_id':pkg_info['id']}
-    toolkit.get_action('issue_create')(data_dict=params)
+    ckan.plugins.toolkit.get_action('issue_create')(data_dict=params)
 
   except KeyError:
 
@@ -105,5 +102,18 @@ def get_localized_tags_string(tags_string):
     return ''
 
   return ','.join(translated_array)
+
+def convert_to_multilingual(value):
+  '''Converts strings to multilingual with the current language set'''
+
+  multilingual_value = {}
+
+  try:
+    json_value = json.loads(value);
+    multilingual_value = json_value
+  except ValueError:
+    multilingual_value[get_current_language()] = value;
+
+  return multilingual_value
 
 session = {}
