@@ -231,14 +231,28 @@
 	}, {
 		"field_name": "odm_process",
 		"label": "Process(es)",
-		"required": "true",
-		"preset": "markdown",
+		"preset": "fluent_markdown_single",
+		"label": {
+			"en": "Process(s)",
+			"th": "Process(s)",
+			"km": "ដំណើរ​ការ",
+			"vi": "(Các ) quy trình thu thập và xử lý dữ liệu",
+			"my": "ဖြစ်စဉ် (များ)"
+		},
+		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "The steps taken to acquire, aggregate, or transform any of the resources in the dataset."
 	}, {
 		"field_name": "odm_source",
 		"label": "Source(s)",
-		"required": "true",
-		"preset": "markdown",
+		"preset": "fluent_markdown_single",
+		"label": {
+			"en": "Source(s)",
+			"th": "แหล่งที่มา",
+			"km": "ប្រភព",
+			"vi": "(Các) nguồn",
+			"my": "ရင်းမြစ်များ"
+		},
+		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Ordered citations for all information sources that went into producing the dataset."
 	}, {
 		"field_name": "odm_metadata_reference_information",
