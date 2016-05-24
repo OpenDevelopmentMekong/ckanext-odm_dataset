@@ -133,25 +133,25 @@ def map_odm_spatial_range(value):
 
   odm_spatial_range = []
 
-  if value.lower().find('laos') > -1:
+  if value.lower().find('laos') > -1 or value.lower().find('la') > -1:
     odm_spatial_range.append('la')
-  if value.lower().find('vietnam') > -1:
+  if value.lower().find('vietnam') > -1 or value.lower().find('vn') > -1:
     odm_spatial_range.append('vn')
-  if value.lower().find('thailand') > -1:
+  if value.lower().find('thailand') > -1 or value.lower().find('th') > -1:
     odm_spatial_range.append('th')
-  if value.lower().find('myanmar') > -1:
+  if value.lower().find('myanmar') > -1 or value.lower().find('mm') > -1:
     odm_spatial_range.append('mm')
-  if value.lower().find('cambodia') > -1:
+  if value.lower().find('cambodia') > -1 or value.lower().find('kh') > -1:
     odm_spatial_range.append('kh')
-  if value.lower().find('global') > -1:
+  if value.lower().find('global') > -1 or value.lower().find('global') > -1:
     odm_spatial_range.append('global')
-  if value.lower().find('asean') > -1:
+  if value.lower().find('asean') > -1 or value.lower().find('asean') > -1:
     odm_spatial_range.append('asean')
-  if value.lower().find('greater mekong subregion (gms)') > -1:
+  if value.lower().find('greater mekong subregion (gms)') > -1 or value.lower().find('gms') > -1:
     odm_spatial_range.append('gms')
-  if value.lower().find('lower mekong basin') > -1:
+  if value.lower().find('lower mekong basin') > -1 or value.lower().find('lmb') > -1:
     odm_spatial_range.append('lmb')
-  if value.lower().find('lower mekong countries') > -1:
+  if value.lower().find('lower mekong countries') > -1 or value.lower().find('lmc') > -1:
     odm_spatial_range.append('lmc')
 
   return odm_spatial_range
