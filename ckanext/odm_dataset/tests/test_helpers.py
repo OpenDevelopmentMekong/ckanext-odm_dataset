@@ -90,7 +90,7 @@ class TestHelpers(unittest.TestCase):
     "should return a multilingual compliant dict out of multilingual compliant one"
     sys.modules['pylons'].request.environ = {'CKAN_LANG':'en'}
 
-    value = odm_dataset_helper.convert_to_multilingual('{"en": "value for field"}')
+    value = odm_dataset_helper.convert_to_multilingual({"en": "value for field"})
     assert json.dumps(value) == json.dumps({"en": "value for field"})
 
     "should return an empty multilingual compliant dict out of an empty one"
