@@ -53,6 +53,8 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   def get_validators(self):
     '''Register the plugin's functions above as validators.'''
 
+    log.debug("get_validators")
+
     return {
       'odm_dataset_map_odm_spatial_range': odm_dataset_helper.map_odm_spatial_range,
       'odm_dataset_map_odm_language': odm_dataset_helper.map_odm_language,
@@ -68,7 +70,11 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_dataset_get_localized_tag': odm_dataset_helper.get_localized_tag,
       'odm_dataset_last_dataset': odm_dataset_helper.last_dataset,
       'odm_dataset_get_current_language': odm_dataset_helper.get_current_language,
-      'odm_dataset_get_value_for_current_language': odm_dataset_helper.get_value_for_current_language
+      'odm_dataset_get_value_for_current_language': odm_dataset_helper.get_value_for_current_language,
+      'odm_dataset_map_odm_spatial_range': odm_dataset_helper.map_odm_spatial_range,
+      'odm_dataset_map_odm_language': odm_dataset_helper.map_odm_language,
+      'odm_dataset_convert_to_multilingual': odm_dataset_helper.convert_to_multilingual,
+      'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags
     }
 
   # IPackageController

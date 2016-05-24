@@ -103,21 +103,19 @@ def get_localized_tags_string(tags_string):
 
   return ','.join(translated_array)
 
-def convert_to_multilingual(value):
+def convert_to_multilingual(data):
   '''Converts strings to multilingual with the current language set'''
 
   if DEBUG:
-    log.debug('convert_to_multilingual: %s', value)
+    log.debug('convert_to_multilingual: %s', data)
 
-  multilingual_value = {}
-
-  try:
-    json_value = json.loads(value);
-    multilingual_value = json_value
-  except ValueError:
-    multilingual_value[get_current_language()] = value;
-
-  return multilingual_value
+  if isinstance(data, basestring):
+    multilingual_data = {}
+    multilingual_data[get_current_language()] = data;
+  else:
+    multilingual_data = data
+    
+  return multilingual_data
 
 def map_odm_spatial_range(value):
 

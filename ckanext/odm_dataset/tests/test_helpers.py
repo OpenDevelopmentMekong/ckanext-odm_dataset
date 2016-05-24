@@ -93,6 +93,12 @@ class TestHelpers(unittest.TestCase):
     value = odm_dataset_helper.convert_to_multilingual('{"en": "value for field"}')
     assert json.dumps(value) == json.dumps({"en": "value for field"})
 
+    "should return an empty multilingual compliant dict out of an empty one"
+    sys.modules['pylons'].request.environ = {'CKAN_LANG':'en'}
+
+    value = odm_dataset_helper.convert_to_multilingual('')
+    assert json.dumps(value) == json.dumps({"en": ''})
+
   def test_map_odm_language(self):
     "should return an array with valid language values when old values are passed"
     value = odm_dataset_helper.map_odm_language(['Vietnamese'])

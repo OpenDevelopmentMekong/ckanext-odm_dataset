@@ -1,6 +1,7 @@
 {% import 'macros/form.html' as form %}
 
 {%- set current_lang = h.odm_dataset_get_current_language() -%}
+{%- set multilingual_value = h.odm_dataset_convert_to_multilingual(data.get(field.field_name)) -%}
 {%- for lang in h.fluent_form_languages(schema, field) -%}
 	{%- set field_classes = [] -%}
 	{%- if current_lang != lang -%}
@@ -11,8 +12,7 @@
     id='field-' + field.field_name + '-' + lang,
     label=field.label[lang],
     placeholder=h.scheming_language_text(field.form_placeholder, lang),
-    value=data[field.field_name + '-' + lang]
-        or data.get(field.field_name, {})[lang],
+    value=multilingual_value[lang],
     error=errors[field.field_name + '-' + lang],
     classes=field_classes,
     attrs=field.form_attrs or {},
