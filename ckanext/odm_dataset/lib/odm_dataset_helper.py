@@ -121,6 +121,9 @@ def convert_to_multilingual(value):
 
 def map_odm_spatial_range(value):
 
+  if DEBUG:
+    log.debug('map_odm_spatial_range: %s', value)
+
   if type(value) is list and len(value) == 1:
     value = value[0]
 
@@ -153,6 +156,9 @@ def map_odm_spatial_range(value):
   return odm_spatial_range
 
 def map_odm_language(value):
+
+  if DEBUG:
+    log.debug('map_odm_language: %s', value)
 
   if type(value) is list and len(value) == 1:
     value = value[0]
