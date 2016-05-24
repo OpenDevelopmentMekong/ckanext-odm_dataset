@@ -8,6 +8,7 @@ import json
 import ckan
 import logging
 import urlparse
+import genshi
 
 log = logging.getLogger(__name__)
 
@@ -19,7 +20,7 @@ def create_default_issue_dataset(pkg_info):
       't0': ckan.plugins.toolkit._("Thank you for uploading this item. Instructions about vetting system available on https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets")
     }
 
-    issue_message = render('messages/default_issue_dataset.txt',extra_vars=extra_vars,loader_class=NewTextTemplate)
+    issue_message = ckan.lib.base.render('messages/default_issue_dataset.txt',extra_vars=extra_vars,loader_class=genshi.template.text.NewTextTemplate)
 
     params = {'title':'User Dataset Upload Checklist','description':issue_message,'dataset_id':pkg_info['id']}
     ckan.plugins.toolkit.get_action('issue_create')(data_dict=params)
@@ -39,10 +40,9 @@ def clean_taxonomy_tags(value):
   '''Cleans taxonomy field before storing it'''
 
   if isinstance(value, basestring):
-    return json.dumps([value])
+     return json.dumps([value])
 
-  tags = list(value)
-  return json.dumps([tag for tag in tags])
+  return json.dumps(list(value))
 
 def get_localized_tag(tag):
   '''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
@@ -72,7 +72,7 @@ def get_current_language():
   return pylons.request.environ['CKAN_LANG']
 
 def get_value_for_current_language(value):
-  '''Returns the corresponding value on the current language'''
+  '''Returns the corresponding value on the current language or the string if non-multilingual'''
 
   if DEBUG:
     log.debug('get_value_for_current_language')
@@ -103,17 +103,100 @@ def get_localized_tags_string(tags_string):
 
   return ','.join(translated_array)
 
-def convert_to_multilingual(value):
+def convert_to_multilingual(data):
   '''Converts strings to multilingual with the current language set'''
 
-  multilingual_value = {}
+  if DEBUG:
+    log.debug('convert_to_multilingual: %s', data)
 
-  try:
-    json_value = json.loads(value);
-    multilingual_value = json_value
-  except ValueError:
-    multilingual_value[get_current_language()] = value;
+  if isinstance(data, basestring):
+    multilingual_data = {}
+    multilingual_data[get_current_language()] = data;
+  else:
+    multilingual_data = data
 
-  return multilingual_value
+  return multilingual_data
+
+def map_odm_spatial_range(value):
+
+  if DEBUG:
+    log.debug('map_odm_spatial_range: %s', value)
+
+  if not value:
+    return value
+
+  if type(value) is list and len(value) == 1:
+    value = value[0]
+
+  if type(value) is list and len(value) > 1:
+    return value
+
+  odm_spatial_range = []
+
+  if value.lower().find('laos') > -1:
+    odm_spatial_range.append('la')
+  if value.lower().find('vietnam') > -1:
+    odm_spatial_range.append('vn')
+  if value.lower().find('thailand') > -1:
+    odm_spatial_range.append('th')
+  if value.lower().find('myanmar') > -1:
+    odm_spatial_range.append('mm')
+  if value.lower().find('cambodia') > -1:
+    odm_spatial_range.append('kh')
+  if value.lower().find('global') > -1:
+    odm_spatial_range.append('global')
+  if value.lower().find('asean') > -1:
+    odm_spatial_range.append('asean')
+  if value.lower().find('greater mekong subregion (gms)') > -1:
+    odm_spatial_range.append('gms')
+  if value.lower().find('lower mekong basin') > -1:
+    odm_spatial_range.append('lmb')
+  if value.lower().find('lower mekong countries') > -1:
+    odm_spatial_range.append('lmc')
+
+  return odm_spatial_range
+
+def map_odm_language(value):
+
+  if DEBUG:
+    log.debug('map_odm_language: %s', value)
+
+  if not value:
+    return value
+
+  if type(value) is list and len(value) == 1:
+    value = value[0]
+
+  if type(value) is list and len(value) > 1:
+    return value
+
+  odm_language = []
+
+  if value.lower().find('km') > -1 or value.lower().find('khmer') > -1:
+    odm_language.append('km')
+  if value.lower().find('vi') > -1 or value.lower().find('vietnamese') > -1:
+    odm_language.append('vi')
+  if value.lower().find('en') > -1 or value.lower().find('english') > -1:
+    odm_language.append('en')
+  if value.lower().find('lo') > -1 or value.lower().find('lao') > -1:
+    odm_language.append('lo')
+  if value.lower().find('th') > -1 or value.lower().find('thai') > -1:
+    odm_language.append('th')
+  if value.lower().find('my') > -1 or value.lower().find('burmese') > -1:
+    odm_language.append('my')
+  if value.lower().find('zh') > -1 or value.lower().find('chinese') > -1:
+    odm_language.append('zh')
+  if value.lower().find('fr') > -1 or value.lower().find('french') > -1:
+    odm_language.append('fr')
+  if value.lower().find('de') > -1 or value.lower().find('german') > -1:
+    odm_language.append('de')
+  if value.lower().find('jp') > -1 or value.lower().find('japanese') > -1:
+    odm_language.append('jp')
+  if value.lower().find('ko') > -1 or value.lower().find('korean') > -1:
+    odm_language.append('ko')
+  if value.lower().find('other') > -1:
+    odm_language.append('other')
+
+  return odm_language
 
 session = {}

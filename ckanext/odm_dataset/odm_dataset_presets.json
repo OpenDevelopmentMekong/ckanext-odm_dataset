@@ -89,7 +89,7 @@
 			"display_snippet": "fluent_text_fallback.html",
 			"error_snippet": "fluent_text_single.html",
 			"validators": "fluent_text",
-			"output_validators": "odm_dataset_convert_to_multilingual fluent_text_output"
+			"output_validators": "fluent_text_output"
 		}
 	}, {
 		"preset_name": "fluent_core_translated",
@@ -122,7 +122,7 @@
 			"display_snippet": "fluent_markdown_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
 			"validators": "fluent_text",
-			"output_validators": "odm_dataset_convert_to_multilingual fluent_text_output"
+			"output_validators": "fluent_text_output"
 		}
 	}, {
 		"preset_name": "fluent_core_translated_markdown",
@@ -227,5 +227,21 @@
 		"values": {
 			"form_snippet": "maintainer_email.html"
 		}
-	}]
+	},{
+		"preset_name": "odm_language",
+		"values": {
+			"form_snippet": "multiple_select_mapped_language.html",
+			"display_snippet": "multiple_choice.html",
+			"validators": "scheming_multiple_choice",
+			"output_validators": "odm_dataset_map_odm_language scheming_multiple_choice_output"
+		}
+	},{
+		"preset_name": "odm_spatial_range",
+		"values": {
+			"form_snippet": "multiple_select_mapped_spatial_range.html",
+			"display_snippet": "multiple_choice.html",
+			"validators": "scheming_multiple_choice",
+			"output_validators": "odm_dataset_map_odm_spatial_range scheming_multiple_choice_output"
+		}
+ 	}]
 }
