@@ -132,3 +132,22 @@ class TestHelpers(unittest.TestCase):
     "should ignore separation characters"
     value = odm_dataset_helper.map_odm_spatial_range(['Cambodia; greater mekong subregion (gms); lower mekong countries'])
     assert value == ['kh','gms','lmc']
+
+  def test_retrieve_taxonomy_from_tags(self):
+    "should return an array of taxonomic terms from an array of CKAN tags"
+    value = odm_dataset_helper.retrieve_taxonomy_from_tags([{
+      "vocabulary_id": "f3ff3686-c121-4b2e-87ae-6b52e084ca0e",
+      "state": "active",
+      "display_name": "Forest cover",
+      "id": "e5c65074-ea5f-4af6-b91e-45c63b85264f",
+      "name": "Forest cover"
+    }])
+    assert value == ['Forest cover']
+
+    "should return an empty array if argument is not array"
+    value = odm_dataset_helper.retrieve_taxonomy_from_tags(None)
+    assert value == []
+
+    "should return an empty array if argument is not array"
+    value = odm_dataset_helper.retrieve_taxonomy_from_tags("test")
+    assert value == []

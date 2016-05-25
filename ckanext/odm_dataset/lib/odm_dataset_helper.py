@@ -199,4 +199,19 @@ def map_odm_language(value):
 
   return odm_language
 
+def retrieve_taxonomy_from_tags(tags_array):
+  '''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
+
+  if DEBUG:
+    log.debug('map_odm_language: %s', tags_array)
+
+  if type(tags_array) is not list:
+    return []
+
+  taxonomy = []
+  for tag in tags_array:
+    taxonomy.append(tag['display_name'])
+
+  return taxonomy
+
 session = {}
