@@ -24,6 +24,7 @@ log = logging.getLogger(__name__)
 class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   '''OD Mekong dataset plugin.'''
 
+  plugins.implements(plugins.IValidators, inherit=True)
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
@@ -47,6 +48,15 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     toolkit.add_template_directory(config, 'templates')
     toolkit.add_resource('fanstatic', 'odm_dataset')
     toolkit.add_public_directory(config, 'public')
+
+ def get_validators(self):
+    '''Register the plugin's functions above as validators.'''
+
+    log.debug("get_validators")
+
+    return {
+      'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags
+    }
 
   # ITemplateHelpers
   def get_helpers(self):
