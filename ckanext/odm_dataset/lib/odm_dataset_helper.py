@@ -9,6 +9,7 @@ import ckan
 import logging
 import urlparse
 import genshi
+import datetime
 
 log = logging.getLogger(__name__)
 
@@ -213,5 +214,9 @@ def retrieve_taxonomy_from_tags(tags_array):
     taxonomy.append(tag['display_name'])
 
   return taxonomy
+
+def get_current_time():
+
+  return datetime.datetime.utcnow().isoformat()
 
 session = {}

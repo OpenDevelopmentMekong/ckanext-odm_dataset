@@ -63,6 +63,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     '''Register the plugin's functions below as template helper functions.'''
 
     return {
+      'odm_dataset_get_current_time': odm_dataset_helper.get_current_time,
       'odm_dataset_get_localized_tag': odm_dataset_helper.get_localized_tag,
       'odm_dataset_last_dataset': odm_dataset_helper.last_dataset,
       'odm_dataset_get_current_language': odm_dataset_helper.get_current_language,

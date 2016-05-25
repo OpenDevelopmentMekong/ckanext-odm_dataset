@@ -244,6 +244,11 @@
 			"form_snippet": "author_email.html"
 		}
 	},{
+		"preset_name": "odm_date_uploaded",
+		"values": {
+			"form_snippet": "odm_date_uploaded.html"
+		}
+	},{
 		"preset_name": "odm_language",
 		"values": {
 			"form_snippet": "multiple_select_mapped_language.html",
