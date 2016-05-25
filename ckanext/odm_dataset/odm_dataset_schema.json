@@ -143,7 +143,6 @@
 		"field_name": "odm_date_uploaded",
 		"label": "Date uploaded",
 		"form_placeholder": "Date a new version or update of the dataset was uploaded.",
-		"required": "true",
 		"preset": "odm_date_uploaded"
 	}, {
 		"field_name": "odm_date_modified",
