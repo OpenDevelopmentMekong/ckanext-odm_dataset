@@ -49,7 +49,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     toolkit.add_resource('fanstatic', 'odm_dataset')
     toolkit.add_public_directory(config, 'public')
 
- def get_validators(self):
+  def get_validators(self):
     '''Register the plugin's functions above as validators.'''
 
     log.debug("get_validators")
