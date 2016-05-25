@@ -14,11 +14,15 @@
 			"my": "ခေါင်းစဥ်"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
-    "form_attrs": {
-      "data-module": "slug-preview-target"
-    },
     "form_placeholder": "Name given to the dataset."
 	}, {
+		"field_name": "title",
+		"label": "title",
+		"preset": "text_hidden",
+    "form_attrs": {
+      "data-module": "slug-preview-target"
+    }
+	},{
 		"field_name": "name",
 		"label": "URL",
 		"preset": "dataset_slug",
