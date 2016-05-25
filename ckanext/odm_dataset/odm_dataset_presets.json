@@ -249,6 +249,11 @@
 			"form_snippet": "odm_date_uploaded.html"
 		}
 	},{
+		"preset_name": "odm_date_modified",
+		"values": {
+			"form_snippet": "odm_date_modified.html"
+		}
+	},{
 		"preset_name": "odm_language",
 		"values": {
 			"form_snippet": "multiple_select_mapped_language.html",
