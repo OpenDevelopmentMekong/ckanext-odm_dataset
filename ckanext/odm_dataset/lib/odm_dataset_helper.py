@@ -143,9 +143,9 @@ def map_odm_spatial_range(value):
     odm_spatial_range.append('mm')
   if value.lower().find('cambodia') > -1 or value.lower().find('kh') > -1:
     odm_spatial_range.append('kh')
-  if value.lower().find('global') > -1 or value.lower().find('global') > -1:
+  if value.lower().find('global') > -1:
     odm_spatial_range.append('global')
-  if value.lower().find('asean') > -1 or value.lower().find('asean') > -1:
+  if value.lower().find('asean') > -1:
     odm_spatial_range.append('asean')
   if value.lower().find('greater mekong subregion (gms)') > -1 or value.lower().find('gms') > -1:
     odm_spatial_range.append('gms')

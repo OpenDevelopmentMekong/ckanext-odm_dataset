@@ -234,6 +234,16 @@
 			"form_snippet": "maintainer_email.html"
 		}
 	},{
+		"preset_name": "auto_author",
+		"values": {
+			"form_snippet": "author.html"
+		}
+	}, {
+		"preset_name": "auto_author_email",
+		"values": {
+			"form_snippet": "author_email.html"
+		}
+	},{
 		"preset_name": "odm_language",
 		"values": {
 			"form_snippet": "multiple_select_mapped_language.html",

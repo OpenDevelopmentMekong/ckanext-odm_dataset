@@ -289,6 +289,14 @@
 		"field_name": "maintainer_email",
 		"label": "Maintainer email",
     "preset": "auto_maintainer_email"
+	}, {
+		"field_name": "author",
+		"label": "Author",
+    "preset": "auto_author"
+	}, {
+		"field_name": "author_email",
+		"label": "Author email",
+    "preset": "auto_author_email"
 	}],
 	"resource_fields": [{
 		"field_name": "url",
