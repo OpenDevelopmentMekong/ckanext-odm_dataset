@@ -55,6 +55,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     log.debug("get_validators")
 
     return {
+      'odm_dataset_urlencode': odm_dataset_helper.urlencode,
       'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags
     }
 

@@ -10,6 +10,7 @@ import logging
 import urlparse
 import genshi
 import datetime
+import re
 
 log = logging.getLogger(__name__)
 
@@ -218,5 +219,11 @@ def retrieve_taxonomy_from_tags(tags_array):
 def get_current_time():
 
   return datetime.datetime.utcnow().isoformat()
+
+def urlencode(value):
+  value = re.sub(' ','_',value)
+  pattern = re.compile('[\W]+', re.UNICODE)
+  value = re.sub(pattern, '', value)
+  return value.lower()
 
 session = {}
