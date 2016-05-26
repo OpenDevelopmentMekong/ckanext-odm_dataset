@@ -97,10 +97,13 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       for triple in triples:
         g.add(triple)
 
+    # odm_spatial_range
+    for item in dataset_dict.get('odm_spatial_range'):
+      self.g.add((dataset_ref, GN.countrycode, Literal(item.upper())))
+
     #  Lists
     items = [
       ('odm_language', DCT.language, None),
-      ('odm_spatial_range', GN.countrycode, None),
       ('taxonomy', FOAF.topic, None)
     ]
     self._add_list_triples_from_dict(dataset_dict, dataset_ref, items)
