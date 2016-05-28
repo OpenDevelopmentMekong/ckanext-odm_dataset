@@ -74,12 +74,11 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
     g.add((dataset_ref, DCT.identifier, Literal(dataset_dict.get('id'))))
     g.add((dataset_ref, DCT.type, Literal(dataset_dict.get('type', 'dataset'))))
-    g.add((dataset_ref, DCAT.landingPage, Literal(dataset_dict.get('url'))))
+    g.add((dataset_ref, RDF.type, DCAT.Dataset))
 
     raw_triples = [
       (dataset_ref, DCT.title, dataset_dict.get('title_translated')),
       (dataset_ref, DCT.description, dataset_dict.get('notes_translated')),
-      (dataset_ref, DCT.license, dataset_dict.get('license')),
       (dataset_ref, CRO.copyright, dataset_dict.get('copyright')),
       (dataset_ref, FOAF.organization, dataset_dict.get('owner_org')),
       (dataset_ref, DOAP.version, dataset_dict.get('version')),
@@ -97,11 +96,25 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       for triple in triples:
         g.add(triple)
 
+    #license
+    license = URIRef(dataset_dict.get('license_url'))
+    g.add((license, DCT.title, Literal(dataset_dict.get('license_title'))))
+    g.add((dataset_ref, DCT.license, license))
+
+    # odm_spatial_range
+    for item in dataset_dict.get('odm_spatial_range'):
+      g.add((dataset_ref, GN.countrycode, Literal(item.upper())))
+
+    #taxonomy
+    for term in dataset_dict.get('taxonomy'):
+      node = odm_rdf_helper.map_internal_to_standard_taxonomic_term(term)
+      if  isinstance(node,URIRef):
+        g.add((node,DCT.title, Literal(term)))
+      g.add((dataset_ref, FOAF.topic, node))
+
     #  Lists
     items = [
-      ('odm_language', DCT.language, None),
-      ('odm_spatial_range', GN.countrycode, None),
-      ('taxonomy', FOAF.topic, None)
+      ('odm_language', DCT.language, None)
     ]
     self._add_list_triples_from_dict(dataset_dict, dataset_ref, items)
 
@@ -116,42 +129,42 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     # Resources
     for resource_dict in dataset_dict.get('resources', []):
 
-      distribution = URIRef(resource_uri(resource_dict))
-      g.add((dataset_ref, DCAT.distribution, distribution))
-      g.add((distribution, RDF.type, DCAT.Distribution))
+      resource = URIRef(resource_uri(resource_dict))
+      g.add((dataset_ref, DCAT.Resources, resource))
+      g.add((resource, RDF.type, DCAT.Resource))
 
       items = [
         ('name', DCT.title, None),
         ('description', DCT.description, None)
       ]
-      self._add_triples_from_dict(resource_dict, distribution, items)
+      self._add_triples_from_dict(resource_dict, resource, items)
 
       #  Lists
       items = [
         ('odm_language', DCT.language, None)
       ]
-      self._add_list_triples_from_dict(resource_dict, distribution, items)
+      self._add_list_triples_from_dict(resource_dict, resource, items)
 
       # Format
       if '/' in resource_dict.get('format', ''):
-        g.add((distribution, DCAT.mediaType,
+        g.add((resource, DCAT.mediaType,
                Literal(resource_dict['format'])))
       else:
         if resource_dict.get('format'):
-          g.add((distribution, DCT['format'],
+          g.add((resource, DCT['format'],
                  Literal(resource_dict['format'])))
 
         if resource_dict.get('mimetype'):
-          g.add((distribution, DCAT.mediaType,
+          g.add((resource, DCAT.mediaType,
                  Literal(resource_dict['mimetype'])))
 
       # URL
       url = resource_dict.get('url')
       download_url = resource_dict.get('download_url')
       if download_url:
-        g.add((distribution, DCAT.downloadURL, Literal(download_url)))
+        g.add((resource, DCAT.downloadURL, Literal(download_url)))
       if (url and not download_url) or (url and url != download_url):
-        g.add((distribution, DCAT.accessURL, Literal(url)))
+        g.add((resource, DCAT.accessURL, URIRef(url)))
 
   def graph_from_catalog(self, catalog_dict, catalog_ref):
 
