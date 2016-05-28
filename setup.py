@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.8.6'
+version = '1.8.8'
 
 setup(
     name='ckanext-odm_dataset',
