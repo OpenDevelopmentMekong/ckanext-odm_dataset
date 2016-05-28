@@ -103,12 +103,18 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
     # odm_spatial_range
     for item in dataset_dict.get('odm_spatial_range'):
-      self.g.add((dataset_ref, GN.countrycode, Literal(item.upper())))
+      g.add((dataset_ref, GN.countrycode, Literal(item.upper())))
+
+    #taxonomy
+    for term in dataset_dict.get('taxonomy'):
+      node = odm_rdf_helper.map_internal_to_standard_taxonomic_term(term)
+      if  isinstance(node,URIRef):
+        g.add((node,DCT.title, Literal(term)))
+      g.add((dataset_ref, FOAF.topic, node))
 
     #  Lists
     items = [
-      ('odm_language', DCT.language, None),
-      ('taxonomy', FOAF.topic, None)
+      ('odm_language', DCT.language, None)
     ]
     self._add_list_triples_from_dict(dataset_dict, dataset_ref, items)
 

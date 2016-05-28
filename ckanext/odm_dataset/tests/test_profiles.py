@@ -39,3 +39,13 @@ class TestProfiles:
 
     triples = odm_rdf_helper.split_multilingual_object_into_triples(('some_id',RDF.type,None))
     assert len(triples) == 0
+
+  def test_05_map_internal_to_standard_taxonomic_term(self):
+
+    term = odm_rdf_helper.map_internal_to_standard_taxonomic_term('unknown')
+    assert term == Literal('unknown')
+
+  def test_06_map_internal_to_standard_taxonomic_term(self):
+
+    term = odm_rdf_helper.map_internal_to_standard_taxonomic_term('Environment and natural resources')
+    assert term == URIRef('http://aims.fao.org/aos/agrovoc/c_2593')
