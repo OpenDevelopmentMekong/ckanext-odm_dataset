@@ -43,9 +43,14 @@ class TestProfiles:
   def test_05_map_internal_to_standard_taxonomic_term(self):
 
     term = odm_rdf_helper.map_internal_to_standard_taxonomic_term('unknown')
-    assert term == Literal('unknown')
+    assert term == 'unknown'
 
   def test_06_map_internal_to_standard_taxonomic_term(self):
 
     term = odm_rdf_helper.map_internal_to_standard_taxonomic_term('Environment and natural resources')
-    assert term == URIRef('http://aims.fao.org/aos/agrovoc/c_2593')
+    assert term == {'exact_match': 'http://aims.fao.org/aos/agrovoc/c_2593'}
+
+  def test_07_map_internal_to_standard_taxonomic_term(self):
+
+    term = odm_rdf_helper.map_internal_to_standard_taxonomic_term('Agricultural management systems and technologies')
+    assert term == {'broad_match': ['http://aims.fao.org/aos/agrovoc/c_2807']}

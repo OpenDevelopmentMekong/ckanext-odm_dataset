@@ -8,6 +8,30 @@ from rdflib import URIRef, BNode, Literal
 from rdflib.namespace import Namespace, RDF
 import traceback
 
+AGLS = Namespace('http://www.agls.gov.au/agls/terms/')
+BIBO = Namespace('http://bibliontology.com/bibo/bibo.php#')
+BIBFRAME = Namespace('http://id.loc.gov/ontologies/bibframe.html#')
+GC = Namespace('http://www.oegov.org/core/owl/gc#')
+DBPEDIA = Namespace('http://dbpedia.org/ontology/')
+DCT = Namespace('http://purl.org/dc/terms/')
+DCAT = Namespace('http://www.w3.org/ns/dcat#')
+FOAF = Namespace('http://xmlns.com/foaf/0.1/')
+MREL = Namespace('http://id.loc.gov/vocabulary/relators/')
+SCHEMA = Namespace('http://schema.org/')
+SPDX = Namespace('http://spdx.org/rdf/terms#')
+CRO = Namespace('http://rhizomik.net/ontologies/copyrightonto.owl#')
+DOAP = Namespace('http://usefulinc.com/ns/doap#')
+EBUCORE = Namespace('https://www.ebu.ch/metadata/ontologies/ebucore/index.html#')
+DQM = Namespace('http://semwebquality.org/dqm-vocabulary/v1/dqm#')
+DQ = Namespace('http://def.seegrid.csiro.au/isotc211/iso19115/2003/dataquality#')
+OMN = Namespace('https://raw.githubusercontent.com/open-multinet/playground-rspecs-ontology/master/omnlib/ontologies/omn.ttl#')
+OPUS = Namespace('http://lsdis.cs.uga.edu/projects/semdis/opus#')
+PPROC = Namespace('http://contsem.unizar.es/def/sector-publico/pproc.html#')
+MD = Namespace('http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#')
+GN = Namespace('http://www.geonames.org/ontology#')
+SKOS = Namespace('https://www.w3.org/2009/08/skos-reference/skos.html#')
+SORON = Namespace('http://www.bib.uc3m.es/~fcalzada/soron/soron_content/soron#')
+
 log = logging.getLogger(__name__)
 
 def split_multilingual_object_into_triples(triple):
@@ -36,482 +60,629 @@ def map_internal_to_standard_taxonomic_term(term):
 
   mapping = {
     "Deforestration drivers": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_15590"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_15590"
     },
     "Development and assistance for land tenure and land titling": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2224"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2224"
     },
     "Environment and natural resources": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2593"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2593"
     },
     "Agricultural management systems and technologies": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2807"
+      "broad_match" : ["http://aims.fao.org/aos/agrovoc/c_2807"]
     },
-    "Fishing, fisheries and aquaculture": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2934"
+    "Fishing fisheries and aquaculture": {
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2934"
     },
     "Forests and forestry": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3055"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3055"
     },
     "Forest policy and administration": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3060"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3060"
     },
     "Disasters": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_10391"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_10391"
     },
     "Poverty policy and regulation": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_6151"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6151"
     },
     "Land sales and trades": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_9a4f48b4"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_9a4f48b4"
     },
     "Urban policy and administration": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_37948"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_37948"
     },
     "Agriculture": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_203"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_203"
     },
     "Climate change": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1666"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1666"
     },
     "Expropriation": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1798"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1798"
     },
     "Extractive industries": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_5d3b8015"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_5d3b8015"
     },
     "Food Security  ": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_10967"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_10967"
     },
     "Ethnic minorities and indigenous people": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_331524"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_331524"
     },
     "Water rights": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_16062"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_16062"
     },
     "Contract farming": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1839"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1839"
     },
     "Organic farming": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_15911"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_15911"
     },
     "Pest management": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_13262"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_13262"
     },
     "Soil management": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7176"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7176"
     },
     "Animal products": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_438"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_438"
     },
     "Dairy": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_4830"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_4830"
     },
     "Meat": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_4669"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_4669"
     },
     "Leather": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_4241"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_4241"
     },
     "Cassava": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_9649"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_9649"
     },
     "Jatropha": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_16253"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_16253"
     },
     "Cashews": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_9647"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_9647"
     },
     "Maize (corn)": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_12332"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_12332"
     },
     "Palm oil": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_5514"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_5514"
     },
     "Rice": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_6599"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6599"
     },
     "Rubber": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_6678"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6678"
     },
     "Soybean": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_14477"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_14477"
     },
     "Sugarcane": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7501"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7501"
     },
     "Fisheries production": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2940"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2940"
     },
     "Fish farming and aquaculture": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_550"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_550"
     },
     "Asian Development Bank (ADB)": {
-      "direct_match" : "http://eurovoc.europa.eu/6336"
+      "exact_match" : "http://eurovoc.europa.eu/6336"
     },
     "Food and Agriculture Organization (FAO)": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2791"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2791"
     },
     "International Monetary Fund (IMF)": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_11710"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_11710"
     },
     "United Nations": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_8069"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_8069"
     },
     "World Bank": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3781"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3781"
     },
     "Red Cross": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_50295"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_50295"
     },
     "Drought": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2391"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2391"
     },
     "Fires": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2915"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2915"
     },
     "Floods": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2980"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2980"
     },
     "Storms": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7436"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7436"
     },
     "Earthquakes": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2440"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2440"
     },
     "Tsunamis": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_92355"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_92355"
     },
     "Micro-finance": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_331091"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_331091"
     },
     "Business associations": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_50167"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_50167"
     },
     "Investment": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3930"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3930"
     },
     "Small and medium enterprises (SME)": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_50307"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_50307"
     },
     "Trade": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7848"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7848"
     },
     "Imports": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3815"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3815"
     },
     "Exports": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2761"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2761"
     },
     "Securities exchange (stock market)": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_28645"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_28645"
     },
     "Stock market": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_28645"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_28645"
     },
     "Energy": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2565"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2565"
     },
     "Electricity production": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_24836"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_24836"
     },
     "Hydropower dams": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_25612"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_25612"
     },
     "Renewable energy production": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_25719"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_25719"
     },
     "Biodiversity": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_33949"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_33949"
     },
     "Plants": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_5993"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_5993"
     },
     "Ecosystems": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2482"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2482"
     },
     "Environmental impact assessments": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_33483"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_33483"
     },
     "Climate change": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1666"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1666"
     },
     "Adaptation": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1374567058134"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1374567058134"
     },
     "Mitigation": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1374571087594"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1374571087594"
     },
     "Air pollution": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_228"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_228"
     },
     "Water pollution": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_8321"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_8321"
     },
     "Solid waste": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7228"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7228"
     },
     "Forest cover": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_9000180"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_9000180"
     },
     "Secondary/mixed forest": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_28144"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_28144"
     },
     "Forest products": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3049"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3049"
     },
     "Forest industry": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_28084"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_28084"
     },
     "Logging and timber": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7775"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7775"
     },
     "Hardwoods": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3495"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3495"
     },
     "Acacia": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_32"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_32"
     },
     "Eucalyptus": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2683"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2683"
     },
     "Pine": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_5890"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_5890"
     },
     "Forest protection": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_28075"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_28075"
     },
     "Protected areas": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_37952"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_37952"
     },
     "Protected forests": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_28126"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_28126"
     },
     "Community forest": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_16532"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_16532"
     },
     "Water resources": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_8325"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_8325"
     },
     "Ground water": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3391"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3391"
     },
     "Mining": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_49983"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_49983"
     },
     "Coal": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1693"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1693"
     },
     "Copper": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1868"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1868"
     },
     "Gold": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_33067"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_33067"
     },
     "Uranium": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_8084"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_8084"
     },
     "Government": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_11230"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_11230"
     },
     "National government": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1437"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1437"
     },
     "Head of state": {
-      "direct_match" : "http://reference.data.gov.uk/def/central-government/headOfGovernment"
+      "exact_match" : "http://reference.data.gov.uk/def/central-government/headOfGovernment"
     },
     "Parliament": {
-      "direct_match" : "http://dbpedia.org/ontology/Parliament"
+      "exact_match" : "http://dbpedia.org/ontology/Parliament"
     },
     "Provincial and local governments": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_4412"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_4412"
     },
     "Elections": {
-      "direct_match" : "http://www.ontotext.com/proton/protonext#Election"
+      "exact_match" : "http://www.ontotext.com/proton/protonext#Election"
     },
     "Budget": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1134"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1134"
     },
     "Taxation": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7626"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7626"
     },
     "Government services": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_6353"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6353"
     },
     "International relations": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_26793"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_26793"
     },
     "Construction": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_35060"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_35060"
     },
     "Handicrafts": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3483"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3483"
     },
     "Manufacturing": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_92365"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_92365"
     },
     "Animal feed": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2843"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2843"
     },
     "Biofuels": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_27465"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_27465"
     },
     "Fertilizer": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2867"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2867"
     },
     "Food processing": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_37969"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_37969"
     },
     "Furniture": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3152"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3152"
     },
     "Rubber": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_6678"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6678"
     },
     "Beverages": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_896"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_896"
     },
     "Processed foods": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_28228"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_28228"
     },
     "Salt": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_33129"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_33129"
     },
     "Cement": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1426"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1426"
     },
     "Steel": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7384"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7384"
     },
     "Real estate": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_13767"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_13767"
     },
     "Tourism": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7822"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7822"
     },
     "Infrastructure": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_26790"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_26790"
     },
     "Internet": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_36661"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_36661"
     },
     "Radio": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_6424"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6424"
     },
     "Television": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7651"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7651"
     },
     "Markets": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_4626"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_4626"
     },
     "Rail": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_6434"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6434"
     },
     "Labor": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_4128"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_4128"
     },
     "Unions": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_50323"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_50323"
     },
     "Land": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_4172"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_4172"
     },
     "Land classifications": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_15991"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_15991"
     },
     "Land transfers": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_4181"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_4181"
     },
     "Concessions": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_357653f9"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_357653f9"
     },
     "Expropriation": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1798"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1798"
     },
     "Communal land": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1782"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1782"
     },
     "Legal framework": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_331456"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_331456"
     },
     "Police": {
-      "direct_match" : "http://linkedgeodata.org/ontology/Police"
+      "exact_match" : "http://linkedgeodata.org/ontology/Police"
     },
     "Prisons": {
-      "direct_match" : "http://dbpedia.org/ontology/Prison"
+      "exact_match" : "http://dbpedia.org/ontology/Prison"
     },
     "Population": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_330887"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_330887"
     },
     "Demographics": {
-      "direct_match" : "http://dbpedia.org/ontology/demographics"
+      "exact_match" : "http://dbpedia.org/ontology/demographics"
     },
     "Migration": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_4822"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_4822"
     },
     "Immigration": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_37976"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_37976"
     },
     "Emigration": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_37979"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_37979"
     },
     "Censuses": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_1430"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_1430"
     },
     "Foreign workers in country": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_10981"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_10981"
     },
     "Arts": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_49887"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_49887"
     },
     "Civil society": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_9000020"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_9000020"
     },
     "Non-governmental organizations": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_24068"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_24068"
     },
     "Education and training": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_2488"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2488"
     },
     "Pre school": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_6160"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6160"
     },
     "Ethnic minorities and indigenous people": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_331524"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_331524"
     },
     "Human rights": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_37883"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_37883"
     },
     "Vocational education": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_8285"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_8285"
     },
     "Higher education": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_3613"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3613"
     },
     "Universities": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_8070"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_8070"
     },
     "Access to information": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_37829"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_37829"
     },
     "Public health": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_6349"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6349"
     },
     "Health care policy and administration": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_28754"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_28754"
     },
     "HIV/AIDS": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_37855"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_37855"
     },
     "Malaria": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_34312"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_34312"
     },
     "Tuberculosis": {
-      "direct_match" : "http://aims.fao.org/aos/agrovoc/c_7997"
+      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7997"
     }
   }
 
-  if term in mapping:
-    return URIRef(mapping[term]["direct_match"])
+  if term not in mapping:
+    return term
 
-  return Literal(term)
+  return mapping[term]
+
+def get_triples_by_dataset_type(subject,dataset_dict,dataset_type):
+
+  # Basic fields
+  triples_by_dataset_type = {
+    "dataset": [
+      (subject, DCT.title, dataset_dict.get('title_translated')),
+      (subject, DCT.description, dataset_dict.get('notes_translated')),
+      (subject, CRO.copyright, dataset_dict.get('copyright')),
+      (subject, FOAF.organization, dataset_dict.get('owner_org')),
+      (subject, DOAP.version, dataset_dict.get('version')),
+      (subject, EBUCORE.contact, dataset_dict.get('contact')),
+      (subject, DQM.accuracy, dataset_dict.get('odm_accuracy')),
+      (subject, DQ.logicalConsistency, dataset_dict.get('odm_logical_consistency')),
+      (subject, DQ.completeness, dataset_dict.get('odm_completeness')),
+      (subject, MD.useconstraints, dataset_dict.get('odm_access_and_use_constraints')),
+      (subject, OMN.attribute, dataset_dict.get('odm_attributes')),
+      (subject, DCT.source, dataset_dict.get('odm_source'))
+    ],
+    "library_record": [
+      (subject, AGLS.documentType, dataset_dict.get('document_type')),
+      (subject, DCT.title, dataset_dict.get('title_translated')),
+      (subject, GC.shortTitle, dataset_dict.get('marc21_246')),
+      (subject, DCT.description, dataset_dict.get('notes_translated')),
+      (subject, CRO.copyright, dataset_dict.get('copyright')),
+      (subject, FOAF.organization, dataset_dict.get('owner_org')),
+      (subject, DOAP.version, dataset_dict.get('version')),
+      (subject, EBUCORE.contact, dataset_dict.get('contact')),
+      (subject, MD.useconstraints, dataset_dict.get('odm_access_and_use_constraints')),
+      (subject, OPUS.author, dataset_dict.get('marc21_100')),
+      (subject, OPUS.author, dataset_dict.get('marc21_110')),
+      (subject, OPUS.coauthor, dataset_dict.get('marc21_700')),
+      (subject, OPUS.coauthor, dataset_dict.get('marc21_710')),
+      (subject, OPUS.isbn, dataset_dict.get('marc21_020')),
+      (subject, DBPEDIA.issn, dataset_dict.get('marc21_022')),
+      (subject, MREL.pup, dataset_dict.get('marc21_260a')),
+      (subject, DCT.publisher, dataset_dict.get('marc21_260b')),
+      (subject, BIBO.numPages, dataset_dict.get('marc21_300')),
+      (subject, SKOS.note, dataset_dict.get('marc21_500')),
+      (subject, PPROC.documentReference, dataset_dict.get('odm_reference_document'))
+    ],
+    "laws_record": [
+      (subject, AGLS.documentType, dataset_dict.get('document_type')),
+      (subject, DBPEDIA.documentNumber, dataset_dict.get('odm_document_number')),
+      (subject, DCT.title, dataset_dict.get('title_translated')),
+      (subject, GC.shortTitle, dataset_dict.get('odm_short_title')),
+      (subject, DCT.description, dataset_dict.get('notes_translated')),
+      (subject, CRO.copyright, dataset_dict.get('copyright')),
+      (subject, FOAF.organization, dataset_dict.get('owner_org')),
+      (subject, EBUCORE.contact, dataset_dict.get('contact')),
+      (subject, SKOS.changeNote, dataset_dict.get('odm_laws_previous_changes_notes')),
+      (subject, SORON.citedBy, dataset_dict.get('odm_laws_official_publication_reference')),
+      (subject, SKOS.note, dataset_dict.get('odm_laws_notes')),
+      (subject, PPROC.documentReference, dataset_dict.get('odm_reference_document'))
+    ]
+  }
+
+  return triples_by_dataset_type[dataset_type]
+
+def get_namespaces_by_dataset_type(dataset_type):
+
+  # Basic fields
+  namespaces_by_dataset_type = {
+    "dataset": {
+      'dct': DCT,
+      'dcat': DCAT,
+      'foaf': FOAF,
+      'schema': SCHEMA,
+      'skos' : SKOS,
+      'cro': CRO,
+      'doap': DOAP,
+      'ebucore': EBUCORE,
+      'dqm': DQM,
+      'dq' : DQ,
+      'omn' : OMN,
+      'md' : MD,
+      'gn' : GN
+    },
+    "library_record": {
+      'agls': AGLS,
+      'bibo': BIBO,
+      'dbpedia': DBPEDIA,
+      'gc': GC,
+      'dct': DCT,
+      'dcat': DCAT,
+      'foaf': FOAF,
+      'mrel': MREL,
+      'schema': SCHEMA,
+      'cro': CRO,
+      'doap': DOAP,
+      'ebucore': EBUCORE,
+      'dqm': DQM,
+      'dq': DQ,
+      'omn': OMN,
+      'opus': OPUS,
+      'pproc': PPROC,
+      'md': MD,
+      'gn': GN,
+      'skos': SKOS
+    },
+    "laws_record": {
+      'agls': AGLS,
+      'bibo': BIBO,
+      'bibframe': BIBFRAME,
+      'dbpedia': DBPEDIA,
+      'gc': GC,
+      'dct': DCT,
+      'dcat': DCAT,
+      'foaf': FOAF,
+      'mrel': MREL,
+      'schema': SCHEMA,
+      'cro': CRO,
+      'doap': DOAP,
+      'ebucore': EBUCORE,
+      'dqm': DQM,
+      'dq': DQ,
+      'omn': OMN,
+      'opus': OPUS,
+      'pproc': PPROC,
+      'md': MD,
+      'gn': GN,
+      'skos': SKOS,
+      'soron': SORON
+    }
+  }
+
+  return namespaces_by_dataset_type[dataset_type]
+
+def get_date_fields_by_dataset_type(dataset_type):
+
+  # Basic fields
+  date_fields_by_dataset_type = {
+    "dataset": [
+      ('odm_date_created',DCT.created, None),
+      ('odm_date_uploaded',SCHEMA.uploadDate, None),
+      ('odm_date_modified',DCT.modified, None)
+    ],
+    "library_record": [
+        ('marc21_260c',DCT.issued, None),
+        ('odm_date_uploaded',SCHEMA.uploadDate, None)
+    ],
+    "laws_record": [
+        ('odm_promulgation_date',BIBFRAME.legalDate, None)
+    ]
+  }
+
+  return date_fields_by_dataset_type[dataset_type]
