@@ -70,12 +70,12 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     g.add((dataset_ref, DCT.license, license))
 
     # odm_spatial_range
-    for item in dataset_dict.get('odm_spatial_range'):
+    for item in dataset_dict.get('odm_spatial_range', []):
       iso3_code = odm_rdf_helper.map_country_code_iso2_iso3(item.upper())
       g.add((dataset_ref, GN.countrycode, URIRef("http://data.landportal.info/geo/" + iso3_code)))
 
     #taxonomy
-    for term in dataset_dict.get('taxonomy'):
+    for term in dataset_dict.get('taxonomy', []):
       matches = odm_rdf_helper.map_internal_to_standard_taxonomic_term(term)
 
       if isinstance(matches,basestring):
@@ -92,7 +92,7 @@ class ODMDCATBasicProfileDataset(RDFProfile):
         g.add((dataset_ref, FOAF.topic, node))
 
     #  Language
-    for item in dataset_dict.get('odm_language'):
+    for item in dataset_dict.get('odm_language', []):
       g.add((dataset_ref, DC.language, Literal(item.upper())))
 
     # Dates
@@ -113,7 +113,7 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       self._add_triples_from_dict(resource_dict, distribution, items)
 
       #  Language
-      for item in resource_dict.get('odm_language'):
+      for item in resource_dict.get('odm_language', []):
         g.add((distribution, DC.language, Literal(item.upper())))
 
       # Format
