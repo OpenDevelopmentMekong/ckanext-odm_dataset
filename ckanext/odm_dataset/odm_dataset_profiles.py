@@ -19,6 +19,7 @@ GN = Namespace('http://www.geonames.org/ontology#')
 DCAT = Namespace('http://www.w3.org/ns/dcat#')
 FOAF = Namespace('http://xmlns.com/foaf/0.1/')
 SKOS = Namespace('https://www.w3.org/2009/08/skos-reference/skos.html#')
+DC = Namespace('http://purl.org/dc/elements/1.1/')
 
 log = logging.getLogger(__name__)
 
@@ -59,6 +60,10 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       for triple in triples:
         g.add(triple)
 
+    #Organization
+    organization = dataset_dict.get('organization')
+    g.add((dataset_ref, FOAF.organization, URIRef(config.get('ckan.site_url') + "organization/" + organization['name'])))
+
     #license
     license = URIRef(dataset_dict.get('license_url'))
     g.add((license, DCT.title, Literal(dataset_dict.get('license_title'))))
@@ -66,7 +71,8 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
     # odm_spatial_range
     for item in dataset_dict.get('odm_spatial_range'):
-      g.add((dataset_ref, GN.countrycode, Literal(item.upper())))
+      iso3_code = odm_rdf_helper.map_country_code_iso2_iso3(item.upper())
+      g.add((dataset_ref, GN.countrycode, URIRef("http://data.landportal.info/geo/" + iso3_code)))
 
     #taxonomy
     for term in dataset_dict.get('taxonomy'):
@@ -81,15 +87,13 @@ class ODMDCATBasicProfileDataset(RDFProfile):
         if 'broad_matches' in matches:
           for broad_match in matches['broad_matches']:
             g.add((node,SKOS.broadMatch, URIRef(broad_match)))
+            g.add((node,DCT.title, Literal(term)))
 
-        g.add((node,DCT.title, Literal(term)))
         g.add((dataset_ref, FOAF.topic, node))
 
-    #  Lists
-    items = [
-      ('odm_language', DCT.language, None)
-    ]
-    self._add_list_triples_from_dict(dataset_dict, dataset_ref, items)
+    #  Language
+    for item in dataset_dict.get('odm_language'):
+      g.add((dataset_ref, DC.language, Literal(item.upper())))
 
     # Dates
     items = odm_rdf_helper.get_date_fields_by_dataset_type(dataset_dict['type'])
@@ -98,42 +102,40 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     # Resources
     for resource_dict in dataset_dict.get('resources', []):
 
-      resource = URIRef(resource_uri(resource_dict))
-      g.add((dataset_ref, DCAT.Resources, resource))
-      g.add((resource, RDF.type, DCAT.Resource))
+      distribution = URIRef(resource_uri(resource_dict))
+      g.add((dataset_ref, DCAT.Distribution, distribution))
+      g.add((distribution, RDF.type, DCAT.Distribution))
 
       items = [
         ('name', DCT.title, None),
         ('description', DCT.description, None)
       ]
-      self._add_triples_from_dict(resource_dict, resource, items)
+      self._add_triples_from_dict(resource_dict, distribution, items)
 
-      #  Lists
-      items = [
-        ('odm_language', DCT.language, None)
-      ]
-      self._add_list_triples_from_dict(resource_dict, resource, items)
+      #  Language
+      for item in resource_dict.get('odm_language'):
+        g.add((distribution, DC.language, Literal(item.upper())))
 
       # Format
       if '/' in resource_dict.get('format', ''):
-        g.add((resource, DCAT.mediaType,
+        g.add((distribution, DCAT.mediaType,
                Literal(resource_dict['format'])))
       else:
         if resource_dict.get('format'):
-          g.add((resource, DCT['format'],
+          g.add((distribution, DCT['format'],
                  Literal(resource_dict['format'])))
 
         if resource_dict.get('mimetype'):
-          g.add((resource, DCAT.mediaType,
+          g.add((distribution, DCAT.mediaType,
                  Literal(resource_dict['mimetype'])))
 
       # URL
       url = resource_dict.get('url')
       download_url = resource_dict.get('download_url')
       if download_url:
-        g.add((resource, DCAT.downloadURL, Literal(download_url)))
+        g.add((distribution, DCAT.downloadURL, Literal(download_url)))
       if (url and not download_url) or (url and url != download_url):
-        g.add((resource, DCAT.accessURL, URIRef(url)))
+        g.add((distribution, DCAT.downloadURL, URIRef(url)))
 
   def graph_from_catalog(self, catalog_dict, catalog_ref):
 
@@ -151,7 +153,7 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       ('title', DCT.title, config.get('ckan.site_title')),
       ('description', DCT.description, config.get('ckan.site_description')),
       ('homepage', FOAF.homepage, config.get('ckan.site_url')),
-      ('language', DCT.language, config.get('ckan.locale_default', 'en')),
+      ('language', DC.language, config.get('ckan.locale_default', 'en')),
     ]
     for item in items:
       key, predicate, fallback = item

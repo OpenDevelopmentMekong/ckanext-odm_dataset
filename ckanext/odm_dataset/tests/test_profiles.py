@@ -54,3 +54,13 @@ class TestProfiles:
 
     term = odm_rdf_helper.map_internal_to_standard_taxonomic_term('Agricultural management systems and technologies')
     assert term == {'broad_matches': ['http://aims.fao.org/aos/agrovoc/c_2807']}
+
+  def test_08_map_country_code_iso2_iso3(self):
+
+    term = odm_rdf_helper.map_country_code_iso2_iso3('ES')
+    assert term == 'ESP'
+
+  def test_09_map_country_code_iso2_iso3(self):
+
+    term = odm_rdf_helper.map_country_code_iso2_iso3('BLA')
+    assert term == 'BLA'
