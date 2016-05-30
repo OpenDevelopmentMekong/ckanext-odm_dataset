@@ -78,8 +78,8 @@ class ODMDCATBasicProfileDataset(RDFProfile):
         node = BNode()
         if 'exact_match' in matches:
           node = URIRef(matches['exact_match'])
-        if 'broad_match' in matches:
-          for broad_match in matches['broad_match']:
+        if 'broad_matches' in matches:
+          for broad_match in matches['broad_matches']:
             g.add((node,SKOS.broadMatch, URIRef(broad_match)))
 
         g.add((node,DCT.title, Literal(term)))
