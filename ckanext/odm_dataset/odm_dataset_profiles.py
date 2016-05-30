@@ -87,8 +87,8 @@ class ODMDCATBasicProfileDataset(RDFProfile):
         if 'broad_matches' in matches:
           for broad_match in matches['broad_matches']:
             g.add((node,SKOS.broadMatch, URIRef(broad_match)))
+            g.add((node,DCT.title, Literal(term)))
 
-        g.add((node,DCT.title, Literal(term)))
         g.add((dataset_ref, FOAF.topic, node))
 
     #  Language
