@@ -98,42 +98,42 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     # Resources
     for resource_dict in dataset_dict.get('resources', []):
 
-      resource = URIRef(resource_uri(resource_dict))
-      g.add((dataset_ref, DCAT.Resources, resource))
-      g.add((resource, RDF.type, DCAT.Resource))
+      distribution = URIRef(resource_uri(resource_dict))
+      g.add((dataset_ref, DCAT.Distribution, distribution))
+      g.add((distribution, RDF.type, DCAT.Distribution))
 
       items = [
         ('name', DCT.title, None),
         ('description', DCT.description, None)
       ]
-      self._add_triples_from_dict(resource_dict, resource, items)
+      self._add_triples_from_dict(resource_dict, distribution, items)
 
       #  Lists
       items = [
         ('odm_language', DCT.language, None)
       ]
-      self._add_list_triples_from_dict(resource_dict, resource, items)
+      self._add_list_triples_from_dict(resource_dict, distribution, items)
 
       # Format
       if '/' in resource_dict.get('format', ''):
-        g.add((resource, DCAT.mediaType,
+        g.add((distribution, DCAT.mediaType,
                Literal(resource_dict['format'])))
       else:
         if resource_dict.get('format'):
-          g.add((resource, DCT['format'],
+          g.add((distribution, DCT['format'],
                  Literal(resource_dict['format'])))
 
         if resource_dict.get('mimetype'):
-          g.add((resource, DCAT.mediaType,
+          g.add((distribution, DCAT.mediaType,
                  Literal(resource_dict['mimetype'])))
 
       # URL
       url = resource_dict.get('url')
       download_url = resource_dict.get('download_url')
       if download_url:
-        g.add((resource, DCAT.downloadURL, Literal(download_url)))
+        g.add((distribution, DCAT.downloadURL, Literal(download_url)))
       if (url and not download_url) or (url and url != download_url):
-        g.add((resource, DCAT.accessURL, URIRef(url)))
+        g.add((distribution, DCAT.accessURL, URIRef(url)))
 
   def graph_from_catalog(self, catalog_dict, catalog_ref):
 
