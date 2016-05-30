@@ -60,37 +60,37 @@ def map_internal_to_standard_taxonomic_term(term):
 
   mapping = {
     "Deforestration drivers": {
-      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_15590"
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_15590"]
     },
     "Development and assistance for land tenure and land titling": {
-      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2224"
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_2224"]
     },
     "Environment and natural resources": {
-      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2593"
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_2593"]
     },
     "Agricultural management systems and technologies": {
-      "broad_match" : ["http://aims.fao.org/aos/agrovoc/c_2807"]
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_2807"]
     },
     "Fishing fisheries and aquaculture": {
-      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_2934"
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_2934"]
     },
     "Forests and forestry": {
-      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3055"
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_3055"]
     },
     "Forest policy and administration": {
-      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_3060"
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_3060"]
     },
     "Disasters": {
       "exact_match" : "http://aims.fao.org/aos/agrovoc/c_10391"
     },
     "Poverty policy and regulation": {
-      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_6151"
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_6151"]
     },
     "Land sales and trades": {
-      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_9a4f48b4"
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_9a4f48b4"]
     },
     "Urban policy and administration": {
-      "exact_match" : "http://aims.fao.org/aos/agrovoc/c_37948"
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_37948"]
     },
     "Agriculture": {
       "exact_match" : "http://aims.fao.org/aos/agrovoc/c_203"
@@ -532,6 +532,24 @@ def map_internal_to_standard_taxonomic_term(term):
     },
     "Tuberculosis": {
       "exact_match" : "http://aims.fao.org/aos/agrovoc/c_7997"
+    },
+    "Irrigation and water management": {
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_8320"]
+    },
+    "Land policy and administration": {
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_195"]
+    },
+    "Family, children and youth": {
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_8491"]
+    },
+    "Land and housing rights and evictions": {
+      "broad_matches" : ["http://aims.fao.org/aos/agrovoc/c_37898"]
+    },
+    "": {
+      "broad_matches" : [""]
+    },
+    "": {
+      "broad_matches" : [""]
     }
   }
 

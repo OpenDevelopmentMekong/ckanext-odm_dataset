@@ -47,10 +47,10 @@ class TestProfiles:
 
   def test_06_map_internal_to_standard_taxonomic_term(self):
 
-    term = odm_rdf_helper.map_internal_to_standard_taxonomic_term('Environment and natural resources')
-    assert term == {'exact_match': 'http://aims.fao.org/aos/agrovoc/c_2593'}
+    term = odm_rdf_helper.map_internal_to_standard_taxonomic_term('Disasters')
+    assert term == {'exact_match': 'http://aims.fao.org/aos/agrovoc/c_10391'}
 
   def test_07_map_internal_to_standard_taxonomic_term(self):
 
     term = odm_rdf_helper.map_internal_to_standard_taxonomic_term('Agricultural management systems and technologies')
-    assert term == {'broad_match': ['http://aims.fao.org/aos/agrovoc/c_2807']}
+    assert term == {'broad_matches': ['http://aims.fao.org/aos/agrovoc/c_2807']}
