@@ -14,36 +14,13 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))
 import odm_rdf_helper
 import logging
 
-log = logging.getLogger(__name__)
-
 DCT = Namespace('http://purl.org/dc/terms/')
+GN = Namespace('http://www.geonames.org/ontology#')
 DCAT = Namespace('http://www.w3.org/ns/dcat#')
 FOAF = Namespace('http://xmlns.com/foaf/0.1/')
-SCHEMA = Namespace('http://schema.org/')
-SPDX = Namespace('http://spdx.org/rdf/terms#')
-CRO = Namespace('http://rhizomik.net/ontologies/copyrightonto.owl#')
-DOAP = Namespace('http://usefulinc.com/ns/doap#')
-EBUCORE = Namespace('https://www.ebu.ch/metadata/ontologies/ebucore/index.html#')
-DQM = Namespace('http://semwebquality.org/dqm-vocabulary/v1/dqm#')
-DQ = Namespace('http://def.seegrid.csiro.au/isotc211/iso19115/2003/dataquality#')
-OMN = Namespace('https://raw.githubusercontent.com/open-multinet/playground-rspecs-ontology/master/omnlib/ontologies/omn.ttl#')
-MD = Namespace('http://def.seegrid.csiro.au/isotc211/iso19115/2003/metadata#')
-GN = Namespace('http://www.geonames.org/ontology#')
+SKOS = Namespace('https://www.w3.org/2009/08/skos-reference/skos.html#')
 
-namespaces = {
-  'dct': DCT,
-  'dcat': DCAT,
-  'foaf': FOAF,
-  'schema': SCHEMA,
-  'cro': CRO,
-  'doap': DOAP,
-  'ebucore': EBUCORE,
-  'dqm': DQM,
-  'dq' : DQ,
-  'omn' : OMN,
-  'md' : MD,
-  'gn' : GN
-}
+log = logging.getLogger(__name__)
 
 class ODMDCATBasicProfileDataset(RDFProfile):
   '''
@@ -62,12 +39,11 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
   def graph_from_dataset(self, dataset_dict, dataset_ref):
 
-    if dataset_dict['type'] != "dataset":
-      return
-
     log.debug("ODMDCATBasicProfileDataset graph_from_dataset")
 
     g = self.g
+
+    namespaces = odm_rdf_helper.get_namespaces_by_dataset_type(dataset_dict['type'])
 
     for prefix, namespace in namespaces.iteritems():
       g.bind(prefix, namespace)
@@ -76,20 +52,7 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     g.add((dataset_ref, DCT.type, Literal(dataset_dict.get('type', 'dataset'))))
     g.add((dataset_ref, RDF.type, DCAT.Dataset))
 
-    raw_triples = [
-      (dataset_ref, DCT.title, dataset_dict.get('title_translated')),
-      (dataset_ref, DCT.description, dataset_dict.get('notes_translated')),
-      (dataset_ref, CRO.copyright, dataset_dict.get('copyright')),
-      (dataset_ref, FOAF.organization, dataset_dict.get('owner_org')),
-      (dataset_ref, DOAP.version, dataset_dict.get('version')),
-      (dataset_ref, EBUCORE.contact, dataset_dict.get('contact')),
-      (dataset_ref, DQM.accuracy, dataset_dict.get('odm_accuracy')),
-      (dataset_ref, DQ.logicalConsistency, dataset_dict.get('odm_logical_consistency')),
-      (dataset_ref, DQ.completeness, dataset_dict.get('odm_completeness')),
-      (dataset_ref, MD.useconstraints, dataset_dict.get('odm_access_and_use_constraints')),
-      (dataset_ref, OMN.attribute, dataset_dict.get('odm_attributes')),
-      (dataset_ref, DCT.source, dataset_dict.get('odm_source'))
-    ]
+    raw_triples = odm_rdf_helper.get_triples_by_dataset_type(dataset_ref,dataset_dict,dataset_dict['type'])
 
     for raw_triple in raw_triples:
       triples = odm_rdf_helper.split_multilingual_object_into_triples(raw_triple)
@@ -107,10 +70,20 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
     #taxonomy
     for term in dataset_dict.get('taxonomy'):
-      node = odm_rdf_helper.map_internal_to_standard_taxonomic_term(term)
-      if  isinstance(node,URIRef):
+      matches = odm_rdf_helper.map_internal_to_standard_taxonomic_term(term)
+
+      if isinstance(matches,basestring):
+        g.add((dataset_ref, FOAF.topic, Literal(matches)))
+      else:
+        node = BNode()
+        if 'exact_match' in matches:
+          node = URIRef(matches['exact_match'])
+        if 'broad_matches' in matches:
+          for broad_match in matches['broad_matches']:
+            g.add((node,SKOS.broadMatch, URIRef(broad_match)))
+
         g.add((node,DCT.title, Literal(term)))
-      g.add((dataset_ref, FOAF.topic, node))
+        g.add((dataset_ref, FOAF.topic, node))
 
     #  Lists
     items = [
@@ -119,11 +92,7 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     self._add_list_triples_from_dict(dataset_dict, dataset_ref, items)
 
     # Dates
-    items = [
-      ('odm_date_created',DCT.created, None),
-      ('odm_date_uploaded',SCHEMA.uploadDate, None),
-      ('odm_date_modified',DCT.modified, None)
-    ]
+    items = odm_rdf_helper.get_date_fields_by_dataset_type(dataset_dict['type'])
     self._add_date_triples_from_dict(dataset_dict, dataset_ref, items)
 
     # Resources
