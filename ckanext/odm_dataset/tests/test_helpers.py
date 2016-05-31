@@ -151,3 +151,8 @@ class TestHelpers(unittest.TestCase):
     "should return an empty array if argument is not array"
     value = odm_dataset_helper.retrieve_taxonomy_from_tags("test")
     assert value == []
+
+  def test_urlencode(self):
+    "should strim anything besides alphanum chars, hypens and underscores"
+    value = odm_dataset_helper.urlencode('sub-decree-no-157-on-establishment-of-neang-kok-koh-kong-sez')
+    assert value == 'sub-decree-no-157-on-establishment-of-neang-kok-koh-kong-sez'
