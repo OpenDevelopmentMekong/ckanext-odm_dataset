@@ -116,6 +116,15 @@
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {
+		"preset_name": "fluent_core_res_name_translated_single",
+		"values": {
+			"form_snippet": "fluent_text_single_res_name.html",
+			"display_snippet": "fluent_title_fallback.html",
+			"error_snippet": "fluent_text_single.html",
+			"validators": "fluent_text",
+			"output_validators": "fluent_core_translated_output"
+		}
+	},{
 		"preset_name": "markdown",
 		"values": {
 			"form_snippet": "markdown.html",
@@ -143,6 +152,15 @@
 		"preset_name": "fluent_core_notes_translated_markdown_single",
 		"values": {
 			"form_snippet": "fluent_markdown_single_notes.html",
+			"display_snippet": "fluent_notes_fallback.html",
+			"error_snippet": "fluent_markdown_single.html",
+			"validators": "fluent_text",
+			"output_validators": "fluent_core_translated_output"
+		}
+	}, {
+		"preset_name": "fluent_core_res_description_translated_markdown_single",
+		"values": {
+			"form_snippet": "fluent_markdown_single_res_description.html",
 			"display_snippet": "fluent_notes_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
 			"validators": "fluent_text",

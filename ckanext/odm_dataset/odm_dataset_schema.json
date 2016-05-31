@@ -303,15 +303,29 @@
 		"label": "URL",
 		"preset": "resource_url_upload"
 	}, {
-		"field_name": "name",
-		"label": "Name",
-		"form_placeholder": "eg. January 2011 Gold Prices",
-		"preset": "odm_resource_name"
+		"field_name": "name_translated",
+		"preset": "fluent_core_res_name_translated_single",
+		"label": {
+			"en": "Name",
+			"th": "Name",
+			"km": "Name",
+			"vi": "Name",
+			"my": "Name"
+		},
+		"form_languages": ["en", "th", "km", "vi"],
+		"form_placeholder": "eg. January 2011 Gold Prices"
 	}, {
-		"field_name": "description",
-		"label": "Description",
-		"form_placeholder": "Some useful notes about the data",
-		"preset": "odm_resource_description"
+		"field_name": "description_translated",
+		"preset": "fluent_core_res_description_translated_markdown_single",
+		"label": {
+			"en": "Description",
+			"th": "Description",
+			"km": "Description",
+			"vi": "Description",
+			"my": "Description"
+		},
+		"form_languages": ["en", "th", "km", "vi"],
+		"form_placeholder": "Some useful notes about the data"
 	}, {
 		"field_name": "format",
 		"label": "Format",
