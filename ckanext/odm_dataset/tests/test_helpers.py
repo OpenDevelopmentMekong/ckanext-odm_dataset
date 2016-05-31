@@ -156,3 +156,6 @@ class TestHelpers(unittest.TestCase):
     "should strim anything besides alphanum chars, hypens and underscores"
     value = odm_dataset_helper.urlencode('sub-decree-no-157-on-establishment-of-neang-kok-koh-kong-sez')
     assert value == 'sub-decree-no-157-on-establishment-of-neang-kok-koh-kong-sez'
+
+    value = odm_dataset_helper.urlencode('Hectare forest cover by province in Cambodia (1973 - 2014)')
+    assert value == 'hectare-forest-cover-by-province-in-cambodia-1973---2014'
