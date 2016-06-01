@@ -85,8 +85,8 @@
 	}, {
 		"preset_name": "spatial",
 		"values": {
-			"form_snippet": "text.html",
-			"validators": "scheming_required convert_to_extras"
+			"form_snippet": "markdown.html",
+			"validators": "scheming_required"
 		}
 	},{
 		"preset_name": "text_hidden",
