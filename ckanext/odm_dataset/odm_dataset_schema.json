@@ -309,8 +309,8 @@
 			"en": "Name",
 			"th": "Name",
 			"km": "Name",
-			"vi": "Name",
-			"my": "Name"
+			"vi": "Tên",
+			"my": "အမည်"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "eg. January 2011 Gold Prices"
@@ -321,8 +321,8 @@
 			"en": "Description",
 			"th": "Description",
 			"km": "Description",
-			"vi": "Description",
-			"my": "Description"
+			"vi": "Mô tả",
+			"my": "ဖော်ပြချက်"
 		},
 		"form_languages": ["en", "th", "km", "vi"],
 		"form_placeholder": "Some useful notes about the data"
