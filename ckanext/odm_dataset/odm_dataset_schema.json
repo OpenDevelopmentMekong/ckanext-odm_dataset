@@ -156,6 +156,11 @@
 		"form_placeholder": "The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).",
 		"preset": "odm_date_range"
 	}, {
+		"field_name": "spatial",
+		"label": "Spatial data",
+		"form_placeholder": "A valid GEOJSON string describing the dataset boundaries",
+		"preset": "spatial"
+	},{
 		"field_name": "odm_spatial_range",
 		"label": "Geographic area (spatial range)",
 		"form_placeholder": "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).",

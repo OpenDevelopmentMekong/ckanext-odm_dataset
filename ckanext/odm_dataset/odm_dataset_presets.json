@@ -83,6 +83,12 @@
 			"validators": "scheming_required"
 		}
 	}, {
+		"preset_name": "spatial",
+		"values": {
+			"form_snippet": "markdown.html",
+			"validators": "scheming_required"
+		}
+	},{
 		"preset_name": "text_hidden",
 		"values": {
 			"form_snippet": "text_hidden.html",
