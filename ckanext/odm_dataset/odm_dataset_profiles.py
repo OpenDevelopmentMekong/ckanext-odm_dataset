@@ -107,9 +107,14 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       g.add((distribution, RDF.type, DCAT.Distribution))
 
       items = [
-        ('name', DCT.title, None),
-        ('description', DCT.description, None)
+        (distribution, DCT.title, resource_dict.get('name_translated')),
+        (distribution, DCT.description, resource_dict.get('description_translated'))
       ]
+      for item in items:
+        triples = odm_rdf_helper.split_multilingual_object_into_triples(item)
+        for triple in triples:
+          g.add(triple)
+
       self._add_triples_from_dict(resource_dict, distribution, items)
 
       #  Language
