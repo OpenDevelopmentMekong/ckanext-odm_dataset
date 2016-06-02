@@ -53,7 +53,13 @@ class ODMDCATBasicProfileDataset(RDFProfile):
     g.add((dataset_ref, DCT.type, Literal(dataset_dict.get('type', 'dataset'))))
     g.add((dataset_ref, RDF.type, DCAT.Dataset))
 
+    items = [
+      (dataset_ref, DCT.title, dataset_dict.get('title_translated') or dataset_dict.get('title')),
+      (dataset_ref, DCT.description, dataset_dict.get('notes_translated') or dataset_dict.get('notes'))
+    ]
+
     raw_triples = odm_rdf_helper.get_triples_by_dataset_type(dataset_ref,dataset_dict,dataset_dict['type'])
+    raw_triples.extend(items)
 
     for raw_triple in raw_triples:
       triples = odm_rdf_helper.split_multilingual_object_into_triples(raw_triple)
@@ -107,8 +113,8 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       g.add((distribution, RDF.type, DCAT.Distribution))
 
       items = [
-        (distribution, DCT.title, resource_dict.get('name_translated')),
-        (distribution, DCT.description, resource_dict.get('description_translated'))
+        (distribution, DCT.title, resource_dict.get('name_translated') or resource_dict.get('name')),
+        (distribution, DCT.description, resource_dict.get('description_translated') or resource_dict.get('description'))
       ]
       for item in items:
         triples = odm_rdf_helper.split_multilingual_object_into_triples(item)

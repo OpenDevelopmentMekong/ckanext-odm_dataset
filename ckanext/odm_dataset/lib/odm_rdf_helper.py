@@ -572,8 +572,6 @@ def get_triples_by_dataset_type(subject, dataset_dict, dataset_type):
   # Basic fields
   triples_by_dataset_type = {
       "dataset": [
-          (subject, DCT.title, dataset_dict.get('title_translated')),
-          (subject, DCT.description, dataset_dict.get('notes_translated')),
           (subject, CRO.copyright, dataset_dict.get('copyright')),
           (subject, DOAP.version, dataset_dict.get('version')),
           (subject, EBUCORE.contact, dataset_dict.get('contact')),
@@ -588,9 +586,7 @@ def get_triples_by_dataset_type(subject, dataset_dict, dataset_type):
       ],
       "library_record": [
           (subject, AGLS.documentType, dataset_dict.get('document_type')),
-          (subject, DCT.title, dataset_dict.get('title_translated')),
           (subject, GC.shortTitle, dataset_dict.get('marc21_246')),
-          (subject, DCT.description, dataset_dict.get('notes_translated')),
           (subject, CRO.copyright, dataset_dict.get('copyright')),
           (subject, DOAP.version, dataset_dict.get('version')),
           (subject, EBUCORE.contact, dataset_dict.get('contact')),
@@ -612,9 +608,7 @@ def get_triples_by_dataset_type(subject, dataset_dict, dataset_type):
       "laws_record": [
           (subject, AGLS.documentType, dataset_dict.get('document_type')),
           (subject, DBPEDIA.documentNumber, dataset_dict.get('odm_document_number')),
-          (subject, DCT.title, dataset_dict.get('title_translated')),
           (subject, GC.shortTitle, dataset_dict.get('odm_short_title')),
-          (subject, DCT.description, dataset_dict.get('notes_translated')),
           (subject, CRO.copyright, dataset_dict.get('copyright')),
           (subject, EBUCORE.contact, dataset_dict.get('contact')),
           (subject, SKOS.changeNote, dataset_dict.get(
