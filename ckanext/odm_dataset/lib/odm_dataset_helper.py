@@ -224,6 +224,6 @@ def urlencode(value):
   value = re.sub(' ','-',value)
   pattern = re.compile('[^a-zA-Z0-9_-]', re.UNICODE)
   value = re.sub(pattern, '', value)
-  return value.lower()
+  return value.lower()[0:99]
 
 session = {}
