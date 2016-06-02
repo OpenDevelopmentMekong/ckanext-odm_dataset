@@ -159,3 +159,6 @@ class TestHelpers(unittest.TestCase):
 
     value = odm_dataset_helper.urlencode('Hectare forest cover by province in Cambodia (1973 - 2014)')
     assert value == 'hectare-forest-cover-by-province-in-cambodia-1973---2014'
+
+    value = odm_dataset_helper.urlencode('Lessons learnt of communal land titling for indigenous community in La In Village Ratanakiri province, northeast cambodai')
+    assert value == 'lessons-learnt-of-communal-land-titling-for-indigenous-community-in-la-in-village-ratanakiri-provin'
