@@ -691,6 +691,31 @@ def get_namespaces_by_dataset_type(dataset_type):
           'skos': SKOS,
           'soron': SORON,
           'dc': DC
+      },
+      "all": {
+        'agls': AGLS,
+        'bibo': BIBO,
+        'bibframe': BIBFRAME,
+        'dbpedia': DBPEDIA,
+        'gc': GC,
+        'dct': DCT,
+        'dcat': DCAT,
+        'foaf': FOAF,
+        'mrel': MREL,
+        'schema': SCHEMA,
+        'cro': CRO,
+        'doap': DOAP,
+        'ebucore': EBUCORE,
+        'dqm': DQM,
+        'dq': DQ,
+        'omn': OMN,
+        'opus': OPUS,
+        'pproc': PPROC,
+        'md': MD,
+        'gn': GN,
+        'skos': SKOS,
+        'soron': SORON,
+        'dc': DC
       }
   }
 

@@ -154,6 +154,8 @@ class ODMDCATBasicProfileDataset(RDFProfile):
 
     g = self.g
 
+    namespaces = odm_rdf_helper.get_namespaces_by_dataset_type('all')
+
     for prefix, namespace in namespaces.iteritems():
       g.bind(prefix, namespace)
 
