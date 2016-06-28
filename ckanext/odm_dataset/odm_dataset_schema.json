@@ -302,7 +302,12 @@
 		"field_name": "author_email",
 		"label": "Author email",
     "preset": "auto_author_email"
-	}],
+	}, {
+		"field_name": "odm_db_table",
+    "label": "Database table?",
+    "preset": "odm_db_table",
+    "help_text": "INTERNAL USE ONLY: Select true if this record contains CSV and/or XLS resources available in the datastore."
+  }],
 	"resource_fields": [{
 		"field_name": "url",
 		"label": "URL",

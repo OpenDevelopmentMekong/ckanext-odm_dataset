@@ -51,4 +51,6 @@ echo _('Maintainer email');
 echo _('Name');
 echo _('Format');
 echo _("Resource's languages");
+echo _("INTERNAL USE ONLY: Select true if this record contains CSV and/or XLS resources available in the datastore.");
+echo _("Database table?");
 ?>

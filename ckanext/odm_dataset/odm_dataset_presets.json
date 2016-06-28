@@ -238,6 +238,12 @@
 			"form_snippet": "odm_copyright.html"
 		}
 	}, {
+		"preset_name": "odm_db_table",
+		"values": {
+			"validators": "scheming_required",
+			"form_snippet": "odm_db_table.html"
+		}
+	},{
 		"preset_name": "odm_resource_name",
 		"values": {
 			"form_snippet": "odm_resource_name.html"
