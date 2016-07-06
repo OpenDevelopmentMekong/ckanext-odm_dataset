@@ -11,6 +11,7 @@ import urlparse
 import genshi
 import datetime
 import re
+import uuid
 
 log = logging.getLogger(__name__)
 
@@ -225,5 +226,14 @@ def urlencode(value):
   pattern = re.compile('[^a-zA-Z0-9_-]', re.UNICODE)
   value = re.sub(pattern, '', value)
   return value.lower()[0:99]
+
+def if_empty_new_id(value):
+
+  if DEBUG:
+    log.debug('if_empty_new_id: %s', value)
+
+  if not value:
+    value = str(uuid.uuid4());
+  return value
 
 session = {}
