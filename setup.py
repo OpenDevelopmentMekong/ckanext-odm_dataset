@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.9.6'
+version = '1.9.7'
 
 setup(
     name='ckanext-odm_dataset',
@@ -17,7 +17,7 @@ setup(
     license='AGPL3',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     namespace_packages=['ckanext'],
-    include_package_data=True,
+    include_package_data=Tmrue,
     zip_safe=False,
     install_requires=[
         # -*- Extra requirements: -*-
