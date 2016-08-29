@@ -28,8 +28,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
-  plugins.implements(plugins.IPackageController, inherit=True)
-  plugins.implements(plugins.IResourceController, inherit=True)
+  plugins.implements(plugins.IPackageController, inherit=True
 
   def __init__(self, *args, **kwargs):
 
@@ -88,34 +87,26 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       odm_dataset_helper.session['last_dataset'] = None
       odm_dataset_helper.session.save()
 
-  def after_create(self, context, pkg_dict):
+  def after_create(self, context, pkg_dict_or_resource):
 
-    dataset_type = context['package'].type if 'package' in context else pkg_dict['type']
+    dataset_type = context['package'].type if 'package' in context else pkg_dict_or_resource['type']
     if dataset_type == 'dataset':
-      log.info('after_create: %s', pkg_dict['name'])
+      log.info('after_create: %s', pkg_dict_or_resource['name'])
 
-      odm_dataset_helper.session['last_dataset'] = pkg_dict
+      odm_dataset_helper.session['last_dataset'] = pkg_dict_or_resource
       odm_dataset_helper.session.save()
 
       # Create default Issue
       review_system = h.asbool(config.get("ckanext.issues.review_system", False))
       if review_system:
-        if pkg_dict['type'] == 'dataset':
-          odm_dataset_helper.create_default_issue_dataset(pkg_dict)
+        if pkg_dict_or_resource['type'] == 'dataset':
+          odm_dataset_helper.create_default_issue_dataset(pkg_dict_or_resource)
 
-  def after_update(self, context, pkg_dict):
+  def after_update(self, context, pkg_dict_or_resource):
 
-    dataset_type = context['package'].type if 'package' in context else pkg_dict['type']
+    dataset_type = context['package'].type if 'package' in context else pkg_dict_or_resource['type']
     if dataset_type == 'dataset':
-      log.info('after_update: %s', pkg_dict['name'])
+      log.info('after_update: %s', pkg_dict_or_resource['name'])
 
-      odm_dataset_helper.session['last_dataset'] = pkg_dict
+      odm_dataset_helper.session['last_dataset'] = pkg_dict_or_resource
       odm_dataset_helper.session.save()
-
-  # IResourceController
-  def before_update(self, context, current, resource):
-
-    log.info('before_update: %s', current['name'])
-
-    resource['name'] = resource['name'] or current['name']
-    resource['description'] = resource['description'] or current['description']
