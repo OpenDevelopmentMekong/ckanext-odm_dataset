@@ -127,7 +127,7 @@
 			"form_snippet": "fluent_text_single_res_name.html",
 			"display_snippet": "fluent_title_fallback.html",
 			"error_snippet": "fluent_text_single.html",
-			"validators": "if_empty_same_as(name) fluent_text",
+			"validators": "fluent_text",
 			"output_validators": "fluent_core_translated_output"
 		}
 	},{
@@ -169,7 +169,7 @@
 			"form_snippet": "fluent_markdown_single_res_description.html",
 			"display_snippet": "fluent_notes_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
-			"validators": "if_empty_same_as(description) fluent_text",
+			"validators": "fluent_text",
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {

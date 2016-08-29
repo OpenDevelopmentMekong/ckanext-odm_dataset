@@ -29,6 +29,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
   plugins.implements(plugins.IPackageController, inherit=True)
+  plugins.implements(plugins.IResourceController, inherit=True)
 
   def __init__(self, *args, **kwargs):
 
@@ -110,3 +111,11 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
       odm_dataset_helper.session['last_dataset'] = pkg_dict
       odm_dataset_helper.session.save()
+
+  # IResourceController
+  def before_update(self, context, current, resource):
+
+    log.info('before_update: %s', current['name'])
+
+    resource['name'] = resource['name'] or current['name']
+    resource['description'] = resource['description'] or current['description']
