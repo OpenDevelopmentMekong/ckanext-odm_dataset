@@ -29,6 +29,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
   plugins.implements(plugins.IPackageController, inherit=True)
+  plugins.implements(plugins.IResourceController, inherit=True)
 
   def __init__(self, *args, **kwargs):
 
@@ -80,7 +81,9 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   # IPackageController
   def before_create(self, context, resource):
 
-    dataset_type = context['package'].type if 'package' in context else ''
+    if 'package' in context:
+      dataset_type = context['package'].type
+
     if dataset_type == 'dataset':
       log.info('before_create')
 
@@ -89,7 +92,11 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   def after_create(self, context, pkg_dict_or_resource):
 
-    dataset_type = context['package'].type if 'package' in context else pkg_dict_or_resource['type']
+    if 'package' in context:
+      dataset_type = context['package'].type
+    elif 'type' in pkg_dict_or_resource:
+      dataset_type = pkg_dict_or_resource['type']
+
     if dataset_type == 'dataset':
       log.info('after_create: %s', pkg_dict_or_resource['name'])
 
@@ -104,9 +111,20 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
   def after_update(self, context, pkg_dict_or_resource):
 
-    dataset_type = context['package'].type if 'package' in context else pkg_dict_or_resource['type']
+    if 'package' in context:
+      dataset_type = context['package'].type
+    elif 'type' in pkg_dict_or_resource:
+      dataset_type = pkg_dict_or_resource['type']
+
     if dataset_type == 'dataset':
       log.info('after_update: %s', pkg_dict_or_resource['name'])
 
       odm_dataset_helper.session['last_dataset'] = pkg_dict_or_resource
       odm_dataset_helper.session.save()
+
+  def before_update(self, context, current, resource):
+
+    log.info('before_update: %s', current['name'])
+
+    resource['name'] = resource['name'] or current['name']
+    resource['description'] = resource['description'] or current['description']
