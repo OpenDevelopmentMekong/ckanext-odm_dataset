@@ -28,7 +28,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
-  plugins.implements(plugins.IPackageController, inherit=True
+  plugins.implements(plugins.IPackageController, inherit=True)
 
   def __init__(self, *args, **kwargs):
 
