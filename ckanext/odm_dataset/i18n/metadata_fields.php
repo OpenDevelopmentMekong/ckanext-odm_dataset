@@ -53,4 +53,7 @@ echo _('Format');
 echo _("Resource's languages");
 echo _("INTERNAL USE ONLY: Select true if this record contains CSV and/or XLS resources available in the datastore.");
 echo _("Database table?");
+echo _("Unclear copyright");
+echo _("To be determined");
+echo _("License definitions and additional information can be found at http://opendefinition.org/");
 ?>

@@ -1,271 +1,281 @@
-# 
+#
 # Translators:
 # Theint Naing Yoon <yoon@phandeeyar.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
-"POT-Creation-Date: 2016-05-17 15:07+0200\n"
-"PO-Revision-Date: 2016-05-19 09:11+0000\n"
+"POT-Creation-Date: 2016-10-04 19:07+0200\n"
+"PO-Revision-Date: 2016-10-04 19:07+0200\n"
 "Last-Translator: Theint Naing Yoon <yoon@phandeeyar.org>\n"
-"Language-Team: Burmese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/my/)\n"
+"Language-Team: Burmese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/"
+"language/my/)\n"
+"Language: my\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ../../../ckanext\n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: odm_dataset/i18n/metadata_fields.php:2
-#: odm_dataset/templates/macros/form.html:22
+#: odm_dataset/i18n/metadata_fields.php:3
 msgid "Title"
 msgstr "ခေါင်းစဥ်"
 
-#: odm_dataset/i18n/metadata_fields.php:3
+#: odm_dataset/i18n/metadata_fields.php:4
 msgid "URL"
 msgstr "URL"
 
-#: odm_dataset/i18n/metadata_fields.php:4
+#: odm_dataset/i18n/metadata_fields.php:5
 msgid "Description"
 msgstr "ဖော်ပြချက်"
 
-#: odm_dataset/i18n/metadata_fields.php:5
+#: odm_dataset/i18n/metadata_fields.php:6
 msgid "Topics"
 msgstr "ခေါင်းစဉ်များ"
 
-#: odm_dataset/i18n/metadata_fields.php:6
+#: odm_dataset/i18n/metadata_fields.php:7
 msgid "License"
 msgstr "လိုင်စင်"
 
-#: odm_dataset/i18n/metadata_fields.php:7
+#: odm_dataset/i18n/metadata_fields.php:8
 msgid "Copyright"
 msgstr "မူပိုင်ခွင့်"
 
-#: odm_dataset/i18n/metadata_fields.php:8
+#: odm_dataset/i18n/metadata_fields.php:9
 msgid "Access and use constraints"
 msgstr "ရယူခြင်းနှင့် အကန့်အသတ်များအသုံးပြုခြင်း"
 
-#: odm_dataset/i18n/metadata_fields.php:9
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:18
+#: odm_dataset/i18n/metadata_fields.php:10
 msgid "Organization"
 msgstr "အဖွဲ့အစည်း"
 
-#: odm_dataset/i18n/metadata_fields.php:10
+#: odm_dataset/i18n/metadata_fields.php:11
 msgid "Version"
 msgstr "မူကွဲ"
 
-#: odm_dataset/i18n/metadata_fields.php:11
+#: odm_dataset/i18n/metadata_fields.php:12
 msgid "Contact"
 msgstr "ဆက်သွယ်ရန်"
 
-#: odm_dataset/i18n/metadata_fields.php:12
+#: odm_dataset/i18n/metadata_fields.php:13
 msgid "Language"
 msgstr "ဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:13
+#: odm_dataset/i18n/metadata_fields.php:14
 msgid "Burmese"
 msgstr "ဗမာဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:14
+#: odm_dataset/i18n/metadata_fields.php:15
 msgid "English"
 msgstr "အင်္ဂလိပ်ဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:15
+#: odm_dataset/i18n/metadata_fields.php:16
 msgid "Khmer"
 msgstr "ခမာဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:16
+#: odm_dataset/i18n/metadata_fields.php:17
 msgid "Lao"
 msgstr "လာအိုဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:17
+#: odm_dataset/i18n/metadata_fields.php:18
 msgid "Thai"
 msgstr "ထိုင်းဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:18
+#: odm_dataset/i18n/metadata_fields.php:19
 msgid "Vietnamese"
 msgstr "ဗီယက်နမ်ဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:19
+#: odm_dataset/i18n/metadata_fields.php:20
 msgid "Chinese"
 msgstr "တရုတ်ဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:20
+#: odm_dataset/i18n/metadata_fields.php:21
 msgid "French"
 msgstr "ပြင်သစ်ဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:21
+#: odm_dataset/i18n/metadata_fields.php:22
 msgid "German"
 msgstr "ဂျာမန်ဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:22
+#: odm_dataset/i18n/metadata_fields.php:23
 msgid "Japanese"
 msgstr "ဂျပန်ဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:23
+#: odm_dataset/i18n/metadata_fields.php:24
 msgid "Korean"
 msgstr "ကိုရီးယားဘာသာစကား"
 
-#: odm_dataset/i18n/metadata_fields.php:24
+#: odm_dataset/i18n/metadata_fields.php:25
 msgid "Other"
 msgstr "အခြား"
 
-#: odm_dataset/i18n/metadata_fields.php:25
+#: odm_dataset/i18n/metadata_fields.php:26
 msgid "Date created"
 msgstr "ဖန်တီးသည့်ရက်စွဲ"
 
-#: odm_dataset/i18n/metadata_fields.php:26
+#: odm_dataset/i18n/metadata_fields.php:27
 msgid "Date uploaded"
 msgstr "တင်သည့်ရက်စွဲ"
 
-#: odm_dataset/i18n/metadata_fields.php:27
+#: odm_dataset/i18n/metadata_fields.php:28
 msgid "Date modified"
 msgstr "ပြန်လည်ပြင်ဆင်သည့်ရက်စွဲ"
 
-#: odm_dataset/i18n/metadata_fields.php:28
+#: odm_dataset/i18n/metadata_fields.php:29
 msgid "Temporal range"
 msgstr "ယာယီ အပိုင်းအခြား"
 
-#: odm_dataset/i18n/metadata_fields.php:29
+#: odm_dataset/i18n/metadata_fields.php:30
 msgid "Geographic area (spatial range)"
 msgstr "ပထဝီဧရိယာ (spatial range)"
 
-#: odm_dataset/i18n/metadata_fields.php:30
+#: odm_dataset/i18n/metadata_fields.php:31
 msgid "Global"
 msgstr "ကမ္ဘာတစ်ဝှမ်း"
 
-#: odm_dataset/i18n/metadata_fields.php:31
+#: odm_dataset/i18n/metadata_fields.php:32
 msgid "ASEAN"
 msgstr "အာစီယံ"
 
-#: odm_dataset/i18n/metadata_fields.php:32
+#: odm_dataset/i18n/metadata_fields.php:33
 msgid "Greater Mekong Subregion (GMS)"
 msgstr "Greater Mekong Subregion (GMS)"
 
-#: odm_dataset/i18n/metadata_fields.php:33
+#: odm_dataset/i18n/metadata_fields.php:34
 msgid "Lower Mekong Basin"
 msgstr "Lower Mekong Basin"
 
-#: odm_dataset/i18n/metadata_fields.php:34
+#: odm_dataset/i18n/metadata_fields.php:35
 msgid "Lower Mekong countries"
 msgstr "မဲခေါင်အောက်ပိုင်းနိုင်ငံများ"
 
-#: odm_dataset/i18n/metadata_fields.php:35
+#: odm_dataset/i18n/metadata_fields.php:36
 msgid "Cambodia"
 msgstr "ကမ္ဘောဒီးယား"
 
-#: odm_dataset/i18n/metadata_fields.php:36
+#: odm_dataset/i18n/metadata_fields.php:37
 msgid "Vietnam"
 msgstr "ဗီယက်နမ်"
 
-#: odm_dataset/i18n/metadata_fields.php:37
+#: odm_dataset/i18n/metadata_fields.php:38
 msgid "Laos"
 msgstr "လာအို "
 
-#: odm_dataset/i18n/metadata_fields.php:38
+#: odm_dataset/i18n/metadata_fields.php:39
 msgid "Thailand"
 msgstr "ထိုင်း"
 
-#: odm_dataset/i18n/metadata_fields.php:39
+#: odm_dataset/i18n/metadata_fields.php:40
 msgid "Myanmar"
 msgstr "မြန်မာ"
 
-#: odm_dataset/i18n/metadata_fields.php:40
+#: odm_dataset/i18n/metadata_fields.php:41
 msgid "Accuracy"
 msgstr "တိကျမှန်ကန်မှု"
 
-#: odm_dataset/i18n/metadata_fields.php:41
+#: odm_dataset/i18n/metadata_fields.php:42
 msgid "Logical Consistency"
 msgstr "ကျိုးကြောင်းဆီလျော်မှုရှိမရှိ"
 
-#: odm_dataset/i18n/metadata_fields.php:42
+#: odm_dataset/i18n/metadata_fields.php:43
 msgid "Completeness"
 msgstr "ပြည့်စုံမှု"
 
-#: odm_dataset/i18n/metadata_fields.php:43
+#: odm_dataset/i18n/metadata_fields.php:44
 msgid "Process(es)"
 msgstr "ဖြစ်စဉ် (များ)"
 
-#: odm_dataset/i18n/metadata_fields.php:44
+#: odm_dataset/i18n/metadata_fields.php:45
 msgid "Source(s)"
 msgstr "ရင်းမြစ်များ"
 
-#: odm_dataset/i18n/metadata_fields.php:45
+#: odm_dataset/i18n/metadata_fields.php:46
 msgid "Metadata reference information"
 msgstr "Metadata ကိုရည်ညွှန်းသော သတင်းအချက်အလက်"
 
-#: odm_dataset/i18n/metadata_fields.php:46
+#: odm_dataset/i18n/metadata_fields.php:47
 msgid "Attributes"
 msgstr "၀ိသေသများ"
 
-#: odm_dataset/i18n/metadata_fields.php:47
+#: odm_dataset/i18n/metadata_fields.php:48
 msgid "Legacy reference document"
 msgstr "ဆက်ခံရည်ညွှန်းစာတမ်း"
 
-#: odm_dataset/i18n/metadata_fields.php:48
+#: odm_dataset/i18n/metadata_fields.php:49
 msgid "Maintainer"
 msgstr "ထိန်းသိမ်းစောင့်ရှောက်သူ"
 
-#: odm_dataset/i18n/metadata_fields.php:49
+#: odm_dataset/i18n/metadata_fields.php:50
 msgid "Maintainer email"
 msgstr "ထိန်းသိမ်းစောင့်ရှောက်သူ၏ အီးမေးလ်"
 
-#: odm_dataset/i18n/metadata_fields.php:50
+#: odm_dataset/i18n/metadata_fields.php:51
 msgid "Name"
 msgstr "အမည်"
 
-#: odm_dataset/i18n/metadata_fields.php:51
+#: odm_dataset/i18n/metadata_fields.php:52
 msgid "Format"
 msgstr "ပုံစံ"
 
-#: odm_dataset/i18n/metadata_fields.php:52
+#: odm_dataset/i18n/metadata_fields.php:53
 msgid "Resource's languages"
 msgstr "ရင်းမြစ်၏ ဘာသာစကားများ"
 
-#: odm_dataset/lib/odm_dataset_helper.py:22
+#: odm_dataset/i18n/metadata_fields.php:54
 msgid ""
-"Thank you for uploading this item. Instructions about vetting system "
-"available on "
-"https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
-msgstr "ဤအကြောင်းအရာကို တင်ပေးသည့်အတွက်ကျေးဇူးတင်ပါတယ်။ လေ့လာစီစစ်ခြင်းစနစ်အတွက် လမ်းညွှန်ကို https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets တွင်ကြည့်ရှုနိုင်သည်။"
+"INTERNAL USE ONLY: Select true if this record contains CSV and/or XLS resources available in the "
+"datastore."
+msgstr ""
 
-#: odm_dataset/templates/package/edit_base.html:6
-msgid "Record not multilingual compliant!!"
-msgstr "Record not multilingual compliant!!"
+#: odm_dataset/i18n/metadata_fields.php:55
+msgid "Database table?"
+msgstr ""
 
-#: odm_dataset/templates/package/edit_base.html:8
+#: odm_dataset/i18n/metadata_fields.php:56
+msgid "Unclear copyright"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:57
+msgid "To be determined"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:58
+msgid "License definitions and additional information can be found at http://opendefinition.org/"
+msgstr ""
+
+#: odm_dataset/lib/odm_dataset_helper.py:23
 msgid ""
-"This record has not been migrated yet. In case you want to save it, make "
-"sure that data is fille properly before pressing the UPDATE button. Follow "
-"the instructions on "
-"https://wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually:"
-msgstr "ဤမှတ်တမ်းကို မပြောင်းရွှေ့ရသေးပါ။ အကယ်၍ သိမ်းဆည်းထားလိုပါက UPDATE ခလုတ်ကိုမနှိပ်မီ ကောင်းမွန်စွာဖြည့်စွက်ထားရန်လိုအပ်ပါသည်။ https://wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually: တွင်အညွှန်းကိုဖတ်ရှုနိုင်ပါသည်။"
+"Thank you for uploading this item. Instructions about vetting system available on https://wiki."
+"opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
+msgstr ""
+"ဤအကြောင်းအရာကို တင်ပေးသည့်အတွက်ကျေးဇူးတင်ပါတယ်။ လေ့လာစီစစ်ခြင်းစနစ်အတွက် လမ်းညွှန်ကို https://wiki.opendevelopmentmekong."
+"net/partners:content_review#instructions_for_default_issue_on_datasets တွင်ကြည့်ရှုနိုင်သည်။"
 
-#: odm_dataset/templates/scheming/display_snippets/fluent_markdown_fallback.html:5
-#: odm_dataset/templates/scheming/display_snippets/fluent_text_fallback.html:5
-msgid ""
-"Multilingual Field: No Data for the current selected language has been "
-"entered yet"
-msgstr "ဘာသာစကား၂မျိုးအသုံးရန်- လက်ရှိရွေးချယ်ထားသော ဘာသာစကားအတွက် data များထည့်သွင်းခြင်းမပြုရသေးပါ။"
+#~ msgid "Record not multilingual compliant!!"
+#~ msgstr "Record not multilingual compliant!!"
 
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:22
-#: odm_dataset/templates/scheming/form_snippets/organization.html:27
-msgid "No organization"
-msgstr "အဖွဲ့အစည်းမရှိပါ။"
+#~ msgid ""
+#~ "This record has not been migrated yet. In case you want to save it, make sure that data is "
+#~ "fille properly before pressing the UPDATE button. Follow the instructions on https://wiki."
+#~ "opendevelopmentmekong.net/partners:enabling_multilingual_support_manually:"
+#~ msgstr ""
+#~ "ဤမှတ်တမ်းကို မပြောင်းရွှေ့ရသေးပါ။ အကယ်၍ သိမ်းဆည်းထားလိုပါက UPDATE ခလုတ်ကိုမနှိပ်မီ ကောင်းမွန်စွာဖြည့်စွက်ထားရန်လိုအပ်ပါသည်။ https://"
+#~ "wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually: "
+#~ "တွင်အညွှန်းကိုဖတ်ရှုနိုင်ပါသည်။"
 
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:36
-#: odm_dataset/templates/scheming/form_snippets/organization.html:49
-msgid "Visibility"
-msgstr "မြင်နိုင်မှု"
+#~ msgid "Multilingual Field: No Data for the current selected language has been entered yet"
+#~ msgstr "ဘာသာစကား၂မျိုးအသုံးရန်- လက်ရှိရွေးချယ်ထားသော ဘာသာစကားအတွက် data များထည့်သွင်းခြင်းမပြုရသေးပါ။"
 
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
-#: odm_dataset/templates/scheming/form_snippets/organization.html:52
-msgid "Private"
-msgstr "Private"
+#~ msgid "No organization"
+#~ msgstr "အဖွဲ့အစည်းမရှိပါ။"
 
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
-#: odm_dataset/templates/scheming/form_snippets/organization.html:52
-msgid "Public"
-msgstr "Public"
+#~ msgid "Visibility"
+#~ msgstr "မြင်နိုင်မှု"
+
+#~ msgid "Private"
+#~ msgstr "Private"
+
+#~ msgid "Public"
+#~ msgstr "Public"
