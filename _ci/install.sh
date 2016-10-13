@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
 set -e
+
+echo "updating setuptools"
+pip install -U setuptools
+
 echo "Installing dependencies"
 pip install -r dev-requirements.txt
 

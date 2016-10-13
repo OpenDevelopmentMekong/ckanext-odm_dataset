@@ -13,7 +13,7 @@
 			"vi": "Tiêu đề ",
 			"my": "ခေါင်းစဥ်"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
     "form_placeholder": "Name given to the dataset.",
 		"form_attrs": {
       "data-module": "slug-preview-target"
@@ -42,7 +42,7 @@
 			"vi": "Mô tả",
 			"my": "ဖော်ပြချက်"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
     "form_placeholder": "Short description explaining the content and its origins."
 	}, {
 		"field_name": "taxonomy",
@@ -70,7 +70,7 @@
 			"vi": "Hạn chế truy cập và sử dụng",
 			"my": "ရယူခြင်းနှင့် အကန့်အသတ်များအသုံးပြုခြင်း"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "A few sentences describing legal considerations for people who access the website and/or use its contents."
 	}, {
 		"field_name": "owner_org",
@@ -92,7 +92,7 @@
 			"vi": "Liên hệ",
 			"my": "ဆက်သွယ်ရန်"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Contact information for the individual or organization that is responsible for or most knowledgeable about the dataset. This could be the author of a report, the contact information for the relevant department of an organization that produced a report, or the data analyst, mapper or researcher that produced a dataset or report."
 	}, {
 		"field_name": "odm_language",
@@ -212,7 +212,7 @@
 			"vi": "Độ chính xác",
 			"my": "တိကျမှန်ကန်မှု"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Details on the level of accuracy of the dataset and any existing issues."
 	}, {
 		"field_name": "odm_logical_consistency",
@@ -224,7 +224,7 @@
 			"vi": "Tính nhất quán logic",
 			"my": "ကျိုးကြောင်းဆီလျော်မှုရှိမရှိ"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Issues with logical consistency in the dataset and the steps, if any, being taken to validate its content."
 	}, {
 		"field_name": "odm_completeness",
@@ -236,7 +236,7 @@
 			"vi": "Đầy đủ",
 			"my": "ပြည့်စုံမှု"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Brief description of the level of completeness of the dataset's contents and the steps, if any, being taken to make the dataset more complete."
 	}, {
 		"field_name": "odm_process",
@@ -248,7 +248,7 @@
 			"vi": "(Các ) quy trình thu thập và xử lý dữ liệu",
 			"my": "ဖြစ်စဉ် (များ)"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "The steps taken to acquire, aggregate, or transform any of the resources in the dataset."
 	}, {
 		"field_name": "odm_source",
@@ -260,7 +260,7 @@
 			"vi": "(Các) nguồn",
 			"my": "ရင်းမြစ်များ"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Ordered citations for all information sources that went into producing the dataset."
 	}, {
 		"field_name": "odm_metadata_reference_information",
@@ -272,7 +272,7 @@
 			"vi": "Thông tin tham khảo Metadata.",
 			"my": "Metadata ကိုရည်ညွှန်းသော သတင်းအချက်အလက်"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Information about how up-to-date the metadata is and who is responsible for maintaining it."
 	}, {
 		"field_name": "odm_attributes",
@@ -284,7 +284,7 @@
 			"vi": "Thuộc tính",
 			"my": "၀ိသေသများ"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Details about the information content of the dataset."
 	}, {
 		"field_name": "odm_reference_document",
@@ -326,7 +326,7 @@
 			"vi": "Tên",
 			"my": "အမည်"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "eg. January 2011 Gold Prices"
 	}, {
 		"field_name": "description_translated",
@@ -338,7 +338,7 @@
 			"vi": "Mô tả",
 			"my": "ဖော်ပြချက်"
 		},
-		"form_languages": ["en", "th", "km", "vi"],
+		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Some useful notes about the data"
 	}, {
 		"field_name": "format",
