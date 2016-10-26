@@ -1,0 +1,12 @@
+{% block package_metadata_fields_odm_library_relationship_target %}
+	<div class="control-group">
+		<label class="control-label" for="field-odm_library_relationship_target">{{ h.scheming_language_text(field.label) }}</label>
+		<div class="controls control-full">
+			<select multiple id="field-odm_library_relationship_target" name="{{ h.scheming_language_text(field.field_name) }}" data-module="autocomplete" placeholder="{{ _(h.scheming_language_text(field.form_placeholder)) }}">
+				{% for dataset in h.odm_nav_get_all_datasets() %}
+					<option value="{{ dataset }}">{{ dataset }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+{% endblock %}
