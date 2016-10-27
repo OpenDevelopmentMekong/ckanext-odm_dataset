@@ -74,7 +74,10 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_dataset_map_odm_spatial_range': odm_dataset_helper.map_odm_spatial_range,
       'odm_dataset_map_odm_language': odm_dataset_helper.map_odm_language,
       'odm_dataset_convert_to_multilingual': odm_dataset_helper.convert_to_multilingual,
-      'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags
+      'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags,
+      'odm_dataset_get_resource_from_datatable': odm_dataset_helper.get_resource_from_datatable,
+      'odm_dataset_get_dataset_name': odm_dataset_helper.get_dataset_name,
+      'odm_dataset_get_dataset_notes': odm_dataset_helper.get_dataset_notes
     }
 
   # IPackageController

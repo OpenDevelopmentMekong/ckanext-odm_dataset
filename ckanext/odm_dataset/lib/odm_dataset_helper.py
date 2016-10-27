@@ -12,6 +12,7 @@ import genshi
 import datetime
 import re
 import uuid
+import ckan.plugins.toolkit as toolkit
 
 log = logging.getLogger(__name__)
 
@@ -235,5 +236,31 @@ def if_empty_new_id(value):
   if not value:
     value = str(uuid.uuid4());
   return value
+
+def get_resource_from_datatable(resource_id):
+  ''' pulls tabular data from datastore '''
+
+  result = toolkit.get_action('datastore_search')(data_dict={'resource_id': resource_id})
+
+  return result['records']
+
+def get_dataset_name(dataset_id):
+
+	dataset_dict = toolkit.get_action('package_show')(data_dict={'id':dataset_id})
+	return dataset_dict['name']
+
+def get_dataset_notes(dataset_id, truncate):
+
+	notes = None
+	dataset_dict = toolkit.get_action('package_show')(data_dict={'id':dataset_id})
+
+	if 'notes_translated' in dataset_dict :
+		lang = pylons.request.environ['CKAN_LANG']
+		if lang in dataset_dict['notes_translated']:
+			notes = dataset_dict['notes_translated'][lang]
+			if truncate == True and notes:
+				notes = notes[0:99]
+
+	return notes
 
 session = {}
