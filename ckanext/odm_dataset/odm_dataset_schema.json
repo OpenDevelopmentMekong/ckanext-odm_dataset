@@ -172,21 +172,6 @@
 		"required": "true",
 		"select_size": 4,
 		"choices": [{
-			"value": "global",
-			"label": "Global"
-		}, {
-			"value": "asean",
-			"label": "ASEAN"
-		}, {
-			"value": "gms",
-			"label": "Greater Mekong Subregion (GMS)"
-		}, {
-			"value": "lmb",
-			"label": "Lower Mekong Basin"
-		}, {
-			"value": "lmc",
-			"label": "Lower Mekong countries"
-		}, {
 			"value": "kh",
 			"label": "Cambodia"
 		}, {
