@@ -10,7 +10,8 @@ import mock
 import sys
 sys.modules['pylons'] = mock.MagicMock()
 sys.modules['ckan'] = mock.MagicMock()
-sys.modules['plugins.toolkit'] = mock.MagicMock()
+sys.modules['ckan.plugins'] = mock.MagicMock()
+sys.modules['ckan.plugins.toolkit'] = mock.MagicMock()
 sys.modules['genshi'] = mock.MagicMock()
 import odm_dataset_helper
 log = logging.getLogger(__name__)
