@@ -1,23 +1,23 @@
-#
+# 
 # Translators:
 # Theint Naing Yoon <yoon@phandeeyar.org>, 2016
+# Thet Aung <thetaung@phandeeyar.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
-"POT-Creation-Date: 2016-10-04 19:07+0200\n"
-"PO-Revision-Date: 2016-10-04 19:07+0200\n"
-"Last-Translator: Theint Naing Yoon <yoon@phandeeyar.org>\n"
-"Language-Team: Burmese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/"
-"language/my/)\n"
-"Language: my\n"
+"POT-Creation-Date: 2016-10-04 19:06+0200\n"
+"PO-Revision-Date: 2016-10-04 17:10+0000\n"
+"Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
+"Language-Team: Burmese (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/my/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ../../../ckanext\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: odm_dataset/i18n/metadata_fields.php:3
 msgid "Title"
@@ -33,7 +33,7 @@ msgstr "ဖော်ပြချက်"
 
 #: odm_dataset/i18n/metadata_fields.php:6
 msgid "Topics"
-msgstr "ခေါင်းစဉ်များ"
+msgstr "အကြောင်းအရာများ"
 
 #: odm_dataset/i18n/metadata_fields.php:7
 msgid "License"
@@ -45,7 +45,7 @@ msgstr "မူပိုင်ခွင့်"
 
 #: odm_dataset/i18n/metadata_fields.php:9
 msgid "Access and use constraints"
-msgstr "ရယူခြင်းနှင့် အကန့်အသတ်များအသုံးပြုခြင်း"
+msgstr "ရယူခြင်းနှင့် အသုံးပြုခြင်းဆိုင်ရာအကန့်အသတ်များ"
 
 #: odm_dataset/i18n/metadata_fields.php:10
 msgid "Organization"
@@ -137,15 +137,15 @@ msgstr "ကမ္ဘာတစ်ဝှမ်း"
 
 #: odm_dataset/i18n/metadata_fields.php:32
 msgid "ASEAN"
-msgstr "အာစီယံ"
+msgstr "အာဆီယံ"
 
 #: odm_dataset/i18n/metadata_fields.php:33
 msgid "Greater Mekong Subregion (GMS)"
-msgstr "Greater Mekong Subregion (GMS)"
+msgstr "မဲခေါင်မြစ်ဝှမ်းဒေသ (GMS)"
 
 #: odm_dataset/i18n/metadata_fields.php:34
 msgid "Lower Mekong Basin"
-msgstr "Lower Mekong Basin"
+msgstr "မဲခေါင်မြစ်ဝှမ်းအောက်ပိုင်း"
 
 #: odm_dataset/i18n/metadata_fields.php:35
 msgid "Lower Mekong countries"
@@ -225,8 +225,8 @@ msgstr "ရင်းမြစ်၏ ဘာသာစကားများ"
 
 #: odm_dataset/i18n/metadata_fields.php:54
 msgid ""
-"INTERNAL USE ONLY: Select true if this record contains CSV and/or XLS resources available in the "
-"datastore."
+"INTERNAL USE ONLY: Select true if this record contains CSV and/or XLS "
+"resources available in the datastore."
 msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:55
@@ -242,40 +242,14 @@ msgid "To be determined"
 msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:58
-msgid "License definitions and additional information can be found at http://opendefinition.org/"
+msgid ""
+"License definitions and additional information can be found at "
+"http://opendefinition.org/"
 msgstr ""
 
 #: odm_dataset/lib/odm_dataset_helper.py:23
 msgid ""
-"Thank you for uploading this item. Instructions about vetting system available on https://wiki."
-"opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
-msgstr ""
-"ဤအကြောင်းအရာကို တင်ပေးသည့်အတွက်ကျေးဇူးတင်ပါတယ်။ လေ့လာစီစစ်ခြင်းစနစ်အတွက် လမ်းညွှန်ကို https://wiki.opendevelopmentmekong."
-"net/partners:content_review#instructions_for_default_issue_on_datasets တွင်ကြည့်ရှုနိုင်သည်။"
-
-#~ msgid "Record not multilingual compliant!!"
-#~ msgstr "Record not multilingual compliant!!"
-
-#~ msgid ""
-#~ "This record has not been migrated yet. In case you want to save it, make sure that data is "
-#~ "fille properly before pressing the UPDATE button. Follow the instructions on https://wiki."
-#~ "opendevelopmentmekong.net/partners:enabling_multilingual_support_manually:"
-#~ msgstr ""
-#~ "ဤမှတ်တမ်းကို မပြောင်းရွှေ့ရသေးပါ။ အကယ်၍ သိမ်းဆည်းထားလိုပါက UPDATE ခလုတ်ကိုမနှိပ်မီ ကောင်းမွန်စွာဖြည့်စွက်ထားရန်လိုအပ်ပါသည်။ https://"
-#~ "wiki.opendevelopmentmekong.net/partners:enabling_multilingual_support_manually: "
-#~ "တွင်အညွှန်းကိုဖတ်ရှုနိုင်ပါသည်။"
-
-#~ msgid "Multilingual Field: No Data for the current selected language has been entered yet"
-#~ msgstr "ဘာသာစကား၂မျိုးအသုံးရန်- လက်ရှိရွေးချယ်ထားသော ဘာသာစကားအတွက် data များထည့်သွင်းခြင်းမပြုရသေးပါ။"
-
-#~ msgid "No organization"
-#~ msgstr "အဖွဲ့အစည်းမရှိပါ။"
-
-#~ msgid "Visibility"
-#~ msgstr "မြင်နိုင်မှု"
-
-#~ msgid "Private"
-#~ msgstr "Private"
-
-#~ msgid "Public"
-#~ msgstr "Public"
+"Thank you for uploading this item. Instructions about vetting system "
+"available on "
+"https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
+msgstr "ဤအကြောင်းအရာကို တင်ပေးသည့်အတွက်ကျေးဇူးတင်ပါသည်။ လေ့လာစီစစ်ခြင်းစနစ်အတွက် လမ်းညွှန်ကို https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets တွင်ကြည့်ရှုနိုင်ပါသည်။"
