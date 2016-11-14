@@ -306,19 +306,19 @@
     "preset_name": "odm_related_laws_records",
     "values": {
       "form_snippet": "odm_related_laws_records.html",
-      "validators": "scheming_required"
+      "validators": "scheming_required convert_to_list_if_string"
     }
   },{
     "preset_name": "odm_related_library_records",
     "values": {
       "form_snippet": "odm_related_library_records.html",
-      "validators": "scheming_required"
+      "validators": "scheming_required convert_to_list_if_string"
     }
   },{
     "preset_name": "odm_related_datasets",
     "values": {
       "form_snippet": "odm_related_datasets.html",
-      "validators": "scheming_required"
+      "validators": "scheming_required convert_to_list_if_string"
     }
   }]
 }
