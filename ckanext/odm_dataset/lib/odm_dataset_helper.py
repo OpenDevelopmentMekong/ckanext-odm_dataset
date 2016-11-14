@@ -44,7 +44,7 @@ def clean_taxonomy_tags(value):
 	'''Cleans taxonomy field before storing it'''
 
 	if isinstance(value, basestring):
-		 return json.dumps([value])
+		return json.dumps([value])
 
 	return json.dumps(list(value))
 
@@ -126,6 +126,8 @@ def convert_to_list(value):
 
 	if DEBUG:
 		log.debug('convert_to_list: %s', value)
+
+	value = json.dumps(value);
 
 	if isinstance(value, basestring):
 		new_value = value.replace("{","")
