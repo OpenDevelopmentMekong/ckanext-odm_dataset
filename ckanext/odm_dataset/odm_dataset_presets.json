@@ -303,6 +303,14 @@
 			}
 		}
  	},{
+		"preset_name": "odm_province",
+		"values": {
+			"form_snippet": "odm_province.html",
+			"display_snippet": "multiple_list.html",
+			"validators": "scheming_required",
+			"output_validators": "odm_dataset_convert_to_list"
+		}
+ 	},{
     "preset_name": "odm_related_laws_records",
     "values": {
       "form_snippet": "odm_related_laws_records.html",
