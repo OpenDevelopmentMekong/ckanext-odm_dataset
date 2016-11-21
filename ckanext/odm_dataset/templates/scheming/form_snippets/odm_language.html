@@ -10,7 +10,7 @@
       multiple
       name="{{ field.field_name }}"
 			placeholder="{{ field.form_placeholder }}"
-      data-module="odm_spatial_range-module autocomplete">
+      data-module="autocomplete">
 			{% for language in h.odm_dataset_get_resource_from_datatable(h.odm_dataset_get_resource_id_for_field('odm_language')) %}
 				{% if language['supported'] == 'yes' %}
 					<option {{"selected " if language['id'] in data[field.field_name] }} value="{{ language['id'] }}">{{ language['name'] }}</option>
