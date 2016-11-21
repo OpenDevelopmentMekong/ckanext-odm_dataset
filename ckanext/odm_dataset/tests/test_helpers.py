@@ -100,40 +100,6 @@ class TestHelpers(unittest.TestCase):
 		value = odm_dataset_helper.convert_to_multilingual('')
 		assert json.dumps(value) == json.dumps({"en": ''})
 
-	def test_map_odm_language(self):
-		"should return an array with valid language values when old values are passed"
-		value = odm_dataset_helper.map_odm_language(['Vietnamese'])
-		assert value == ['vi']
-		value = odm_dataset_helper.map_odm_language(['Khmer'])
-		assert value == ['km']
-		value = odm_dataset_helper.map_odm_language(['Khmer Lao'])
-		assert value == ['km','lo']
-
-		"should return the same value if a valid array with 2+ items is passed"
-		value = odm_dataset_helper.map_odm_language(['km','lo'])
-		assert value == ['km','lo']
-
-		"should ignore separation characters"
-		value = odm_dataset_helper.map_odm_language(['Khmer; Lao; German'])
-		assert value == ['km','lo','de']
-
-	def test_map_odm_spatial_range(self):
-		"should return an array with valid spatial range values when old values are passed"
-		value = odm_dataset_helper.map_odm_spatial_range(['Cambodia'])
-		assert value == ['kh']
-		value = odm_dataset_helper.map_odm_spatial_range(['Vietnam'])
-		assert value == ['vn']
-		value = odm_dataset_helper.map_odm_spatial_range(['Vietnam Global'])
-		assert value == ['vn','global']
-
-		"should return the same value if a valid array with 2+ is passed"
-		value = odm_dataset_helper.map_odm_spatial_range(['kh','asean'])
-		assert value == ['kh','asean']
-
-		"should ignore separation characters"
-		value = odm_dataset_helper.map_odm_spatial_range(['Cambodia; greater mekong subregion (gms); lower mekong countries'])
-		assert value == ['kh','gms','lmc']
-
 	def test_retrieve_taxonomy_from_tags(self):
 		"should return an array of taxonomic terms from an array of CKAN tags"
 		value = odm_dataset_helper.retrieve_taxonomy_from_tags([{

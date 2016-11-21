@@ -135,88 +135,6 @@ def convert_to_list(value):
 
 	return value
 
-def map_odm_spatial_range(value):
-
-	if DEBUG:
-		log.debug('map_odm_spatial_range: %s', value)
-
-	if not value:
-		return value
-
-	if type(value) is list and len(value) == 1:
-		value = value[0]
-
-	if type(value) is list and len(value) > 1:
-		return value
-
-	odm_spatial_range = []
-
-	if value.lower().find('laos') > -1 or value.lower().find('la') > -1:
-		odm_spatial_range.append('la')
-	if value.lower().find('vietnam') > -1 or value.lower().find('vn') > -1:
-		odm_spatial_range.append('vn')
-	if value.lower().find('thailand') > -1 or value.lower().find('th') > -1:
-		odm_spatial_range.append('th')
-	if value.lower().find('myanmar') > -1 or value.lower().find('mm') > -1:
-		odm_spatial_range.append('mm')
-	if value.lower().find('cambodia') > -1 or value.lower().find('kh') > -1:
-		odm_spatial_range.append('kh')
-	if value.lower().find('global') > -1:
-		odm_spatial_range.append('global')
-	if value.lower().find('asean') > -1:
-		odm_spatial_range.append('asean')
-	if value.lower().find('greater mekong subregion (gms)') > -1 or value.lower().find('gms') > -1:
-		odm_spatial_range.append('gms')
-	if value.lower().find('lower mekong basin') > -1 or value.lower().find('lmb') > -1:
-		odm_spatial_range.append('lmb')
-	if value.lower().find('lower mekong countries') > -1 or value.lower().find('lmc') > -1:
-		odm_spatial_range.append('lmc')
-
-	return odm_spatial_range
-
-def map_odm_language(value):
-
-	if DEBUG:
-		log.debug('map_odm_language: %s', value)
-
-	if not value:
-		return value
-
-	if type(value) is list and len(value) == 1:
-		value = value[0]
-
-	if type(value) is list and len(value) > 1:
-		return value
-
-	odm_language = []
-
-	if value.lower().find('km') > -1 or value.lower().find('khmer') > -1:
-		odm_language.append('km')
-	if value.lower().find('vi') > -1 or value.lower().find('vietnamese') > -1:
-		odm_language.append('vi')
-	if value.lower().find('en') > -1 or value.lower().find('english') > -1:
-		odm_language.append('en')
-	if value.lower().find('lo') > -1 or value.lower().find('lao') > -1:
-		odm_language.append('lo')
-	if value.lower().find('th') > -1 or value.lower().find('thai') > -1:
-		odm_language.append('th')
-	if value.lower().find('my') > -1 or value.lower().find('burmese') > -1:
-		odm_language.append('my')
-	if value.lower().find('zh') > -1 or value.lower().find('chinese') > -1:
-		odm_language.append('zh')
-	if value.lower().find('fr') > -1 or value.lower().find('french') > -1:
-		odm_language.append('fr')
-	if value.lower().find('de') > -1 or value.lower().find('german') > -1:
-		odm_language.append('de')
-	if value.lower().find('jp') > -1 or value.lower().find('japanese') > -1:
-		odm_language.append('jp')
-	if value.lower().find('ko') > -1 or value.lower().find('korean') > -1:
-		odm_language.append('ko')
-	if value.lower().find('other') > -1:
-		odm_language.append('other')
-
-	return odm_language
-
 def retrieve_taxonomy_from_tags(tags_array):
 	'''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
 
@@ -254,7 +172,7 @@ def if_empty_new_id(value):
 def get_resource_from_datatable(resource_id):
 	''' pulls tabular data from datastore '''
 
-	result = toolkit.get_action('datastore_search')(data_dict={'resource_id': resource_id})
+	result = toolkit.get_action('datastore_search')(data_dict={'resource_id': resource_id,'limit':1000})
 
 	return result['records']
 

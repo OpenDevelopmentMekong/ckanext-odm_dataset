@@ -1,0 +1,23 @@
+{% import 'macros/form.html' as form %}
+
+{%- set mapped_spatial_range_value = h.odm_dataset_map_odm_language(data[field.field_name]) -%}
+
+{%- call form.input_block(
+    "field-{{ field.field_name }}",
+    label=h.scheming_language_text(field.label),
+    classes=['control-full'],
+    error=errors[field.field_name],
+    is_required=h.scheming_field_required(field)) -%}
+    <select id="field-{{ field.field_name }}"
+      multiple
+      name="{{ field.field_name }}"
+			placeholder="{{ field.form_placeholder }}"
+      data-module="odm_spatial_range-module autocomplete">
+			{% for language in h.odm_dataset_get_resource_from_datatable(h.odm_dataset_get_resource_id_for_field('odm_language')) %}
+				{% if language['supported'] == 'yes' %}
+					<option {{"selected " if language['id'] in data[field.field_name] }} value="{{ language['id'] }}">{{ language['name'] }}</option>
+				{% endif %}
+			{% endfor %}
+    </select>
+    {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+{%- endcall -%}
