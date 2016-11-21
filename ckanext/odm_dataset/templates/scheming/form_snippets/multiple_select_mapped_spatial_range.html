@@ -2,7 +2,6 @@
 
 {% resource 'odm_dataset/odm_spatial_range-module.js' %}
 
-{%- set mapped_spatial_range_value = h.odm_dataset_map_odm_spatial_range(data[field.field_name]) -%}
 {%- call form.input_block(
     "field-{{ field.field_name }}",
     label=h.scheming_language_text(field.label),
@@ -10,17 +9,15 @@
     error=errors[field.field_name],
     is_required=h.scheming_field_required(field)) -%}
     <select id="field-{{ field.field_name }}"
-      multiple size="{{ field.get("select_size", 10) }}"
-      style="display: block"
+      multiple
       name="{{ field.field_name }}"
-      data-module="odm_spatial_range-module">
-      {%- for c in field.choices -%}
-          <option id="field-{{ field.field_name }}-{{ c.value }}"
-              value="{{ c.value }}"
-              {{"selected " if c.value in mapped_spatial_range_value }} />
-              {{ h.scheming_language_text(c.label) }}
-          </option>
-      {%- endfor -%}
+			placeholder="{{ field.form_placeholder }}"
+      data-module="odm_spatial_range-module autocomplete">
+			{% for country in h.odm_dataset_get_resource_from_datatable(h.odm_dataset_get_resource_id_for_field('odm_spatial_range')) %}
+				{% if country['supported'] == 'yes' %}
+					<option {{"selected " if country['id'] in data[field.field_name] }} value="{{ country['id'] }}">{{ country['name'] }}</option>
+				{% endif %}
+			{% endfor %}
     </select>
     {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {%- endcall -%}
