@@ -1,7 +1,5 @@
 {% import 'macros/form.html' as form %}
 
-{%- set mapped_spatial_range_value = h.odm_dataset_map_odm_language(data[field.field_name]) -%}
-
 {%- call form.input_block(
     "field-{{ field.field_name }}",
     label=h.scheming_language_text(field.label),
