@@ -286,7 +286,7 @@
 	},{
 		"preset_name": "odm_language",
 		"values": {
-			"form_snippet": "multiple_select_mapped_language.html",
+			"form_snippet": "odm_language.html",
 			"display_snippet": "multiple_list.html",
 			"validators": "scheming_required",
 			"output_validators": "odm_dataset_convert_to_list"
@@ -294,7 +294,7 @@
 	},{
 		"preset_name": "odm_spatial_range",
 		"values": {
-			"form_snippet": "multiple_select_mapped_spatial_range.html",
+			"form_snippet": "odm_spatial_range.html",
 			"display_snippet": "multiple_list.html",
 			"validators": "scheming_required",
 			"output_validators": "odm_dataset_convert_to_list",
