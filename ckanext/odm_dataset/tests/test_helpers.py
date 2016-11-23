@@ -129,12 +129,3 @@ class TestHelpers(unittest.TestCase):
 
 		value = odm_dataset_helper.urlencode('Lessons learnt of communal land titling for indigenous community in La In Village Ratanakiri province, northeast cambodai')
 		assert value == 'lessons-learnt-of-communal-land-titling-for-indigenous-community-in-la-in-village-ratanakiri-provin'
-
-	def test_convert_to_list(self):
-		"should remove brackets from a single-value string"
-		value = odm_dataset_helper.convert_to_list('{value}')
-		assert value == ['value']
-
-		"should remove brackets from a multiple-value string"
-		value = odm_dataset_helper.convert_to_list('{value,value2}')
-		assert value == ['value','value2']
