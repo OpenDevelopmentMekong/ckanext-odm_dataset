@@ -289,7 +289,7 @@
 			"form_snippet": "odm_language.html",
 			"display_snippet": "multiple_list.html",
 			"validators": "scheming_required",
-			"output_validators": "odm_dataset_convert_to_list"
+			"output_validators": "scheming_multiple_choice_output"
 		}
 	},{
 		"preset_name": "odm_spatial_range",
@@ -297,7 +297,7 @@
 			"form_snippet": "odm_spatial_range.html",
 			"display_snippet": "multiple_list.html",
 			"validators": "scheming_required",
-			"output_validators": "odm_dataset_convert_to_list",
+			"output_validators": "scheming_multiple_choice_output",
 			"form_attrs": {
 				"data-module": "odm_spatial_range-module"
 			}
@@ -308,7 +308,7 @@
 			"form_snippet": "odm_province.html",
 			"display_snippet": "multiple_list.html",
 			"validators": "scheming_required",
-			"output_validators": "odm_dataset_convert_to_list"
+			"output_validators": "scheming_multiple_choice_output"
 		}
  	},{
     "preset_name": "odm_related_laws_records",
@@ -316,7 +316,7 @@
       "form_snippet": "odm_related_laws_records.html",
 			"display_snippet": "multiple_list.html",
       "validators": "scheming_required",
-			"output_validators": "odm_dataset_convert_to_list"
+			"output_validators": "scheming_multiple_choice_output"
     }
   },{
     "preset_name": "odm_related_library_records",
@@ -324,7 +324,7 @@
       "form_snippet": "odm_related_library_records.html",
 			"display_snippet": "multiple_list.html",
       "validators": "scheming_required",
-			"output_validators": "odm_dataset_convert_to_list"
+			"output_validators": "scheming_multiple_choice_output"
     }
   },{
     "preset_name": "odm_related_datasets",
@@ -332,7 +332,7 @@
       "form_snippet": "odm_related_datasets.html",
 			"display_snippet": "multiple_list.html",
       "validators": "scheming_required",
-			"output_validators": "odm_dataset_convert_to_list"
+			"output_validators": "scheming_multiple_choice_output"
     }
   }]
 }
