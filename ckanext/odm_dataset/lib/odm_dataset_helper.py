@@ -127,11 +127,11 @@ def convert_to_list(value):
 	if DEBUG:
 		log.debug('convert_to_list: %s', value)
 
-	if isinstance(value, basestring):
-		new_value = value.replace("{","")
-		new_value = new_value.replace("}","")
-		new_value = new_value.split(",")
-		return new_value
+	# if isinstance(value, basestring):
+	# 	new_value = value.replace("{","")
+	# 	new_value = new_value.replace("}","")
+	# 	new_value = new_value.split(",")
+	# 	return new_value
 
 	return value
 
