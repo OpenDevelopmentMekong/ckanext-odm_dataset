@@ -606,7 +606,7 @@ def get_triples_by_dataset_type(subject, dataset_dict, dataset_type):
            dataset_dict.get('odm_reference_document'))
       ],
       "laws_record": [
-          (subject, AGLS.documentType, dataset_dict.get('document_type')),
+          (subject, AGLS.documentType, dataset_dict.get('odm_document_type')),
           (subject, DBPEDIA.documentNumber, dataset_dict.get('odm_document_number')),
           (subject, GC.shortTitle, dataset_dict.get('odm_short_title')),
           (subject, CRO.copyright, dataset_dict.get('copyright')),
