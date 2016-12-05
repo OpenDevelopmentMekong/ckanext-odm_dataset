@@ -4,3 +4,8 @@
 	color: #FF0000;
 	border-bottom: 1px solid #CCC;
 }
+
+.select2-disabled{
+	text-decoration: line-through;
+	color: #CCCCCC;
+}
