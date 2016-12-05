@@ -13,11 +13,11 @@ this.ckan.module('odm_spatial_range-module', function($, _) {
 						var countryCodesArray = countryCodes.split(",");
 						var intersection = $(countryCodesArray).filter(spatialRangeArray);
 						if (intersection.length===0){
-							$(this).prop('disabled', true);
+							$(this).attr('disabled', 'disabled');
 							//$(this).css('display', 'none');
 							console.log("hiding", $(this).val());
 						}else{
-							$(this).prop('disabled', false);
+							$(this).removeAttr('disabled');
 							//$(this).css('display', 'inline');
 							console.log("showing", $(this).val());
 						}
