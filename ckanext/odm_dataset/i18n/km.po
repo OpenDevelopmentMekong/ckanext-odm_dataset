@@ -1,6 +1,7 @@
-#
+# 
 # Translators:
 # ChandaraKhun <chandara@opendevcam.net>, 2016
+# Huy Eng Heng <huyeng_heng@yahoo.com>, 2016
 # ODM Cambodia <cambodia@opendevmekong.net>, 2015
 # Pinkie, 2016
 # svutha <svutha.ewmi@gmail.com>, 2016
@@ -8,19 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
 "POT-Creation-Date: 2016-10-04 19:06+0200\n"
-"PO-Revision-Date: 2016-10-04 19:06+0200\n"
-"Last-Translator: Alex Corbi <a.corbi@gmail.com>\n"
-"Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-"
-"odm_dataset/language/km/)\n"
-"Language: km\n"
+"PO-Revision-Date: 2016-12-05 12:06+0000\n"
+"Last-Translator: Huy Eng Heng <huyeng_heng@yahoo.com>\n"
+"Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-odm_dataset/language/km/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: km\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ../../../ckanext\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: odm_dataset/i18n/metadata_fields.php:3
 msgid "Title"
@@ -28,7 +28,7 @@ msgstr "ចំណងជើង"
 
 #: odm_dataset/i18n/metadata_fields.php:4
 msgid "URL"
-msgstr ""
+msgstr "អាសយដ្ឋាន URL"
 
 #: odm_dataset/i18n/metadata_fields.php:5
 msgid "Description"
@@ -52,7 +52,7 @@ msgstr "លក្ខខណ្ឌនៃការប្រើប្រាស់"
 
 #: odm_dataset/i18n/metadata_fields.php:10
 msgid "Organization"
-msgstr ""
+msgstr "អង្គភាព"
 
 #: odm_dataset/i18n/metadata_fields.php:11
 msgid "Version"
@@ -84,7 +84,7 @@ msgstr "ភាសា​ឡាវ"
 
 #: odm_dataset/i18n/metadata_fields.php:18
 msgid "Thai"
-msgstr ""
+msgstr "ថៃ"
 
 #: odm_dataset/i18n/metadata_fields.php:19
 msgid "Vietnamese"
@@ -92,23 +92,23 @@ msgstr "ភាសាវៀតណាម"
 
 #: odm_dataset/i18n/metadata_fields.php:20
 msgid "Chinese"
-msgstr ""
+msgstr "ចិន"
 
 #: odm_dataset/i18n/metadata_fields.php:21
 msgid "French"
-msgstr ""
+msgstr "បារាំង"
 
 #: odm_dataset/i18n/metadata_fields.php:22
 msgid "German"
-msgstr ""
+msgstr "អាឡឺម៉ង់"
 
 #: odm_dataset/i18n/metadata_fields.php:23
 msgid "Japanese"
-msgstr ""
+msgstr "ជប៉ុន"
 
 #: odm_dataset/i18n/metadata_fields.php:24
 msgid "Korean"
-msgstr ""
+msgstr "កូរ៉េ"
 
 #: odm_dataset/i18n/metadata_fields.php:25
 msgid "Other"
@@ -136,23 +136,23 @@ msgstr "តំបន់ភូមិសាស្រ្ត (ការលាតស�
 
 #: odm_dataset/i18n/metadata_fields.php:31
 msgid "Global"
-msgstr ""
+msgstr "សកល"
 
 #: odm_dataset/i18n/metadata_fields.php:32
 msgid "ASEAN"
-msgstr ""
+msgstr "អាស៊ាន"
 
 #: odm_dataset/i18n/metadata_fields.php:33
 msgid "Greater Mekong Subregion (GMS)"
-msgstr ""
+msgstr "មហាអនុតំបន់ទន្លេមេគង្គ (GMS)"
 
 #: odm_dataset/i18n/metadata_fields.php:34
 msgid "Lower Mekong Basin"
-msgstr ""
+msgstr "អាងទន្លេមេគង្គក្រោម"
 
 #: odm_dataset/i18n/metadata_fields.php:35
 msgid "Lower Mekong countries"
-msgstr ""
+msgstr "បណ្តាប្រទេសនៅតំបន់មេគង្គក្រោម"
 
 #: odm_dataset/i18n/metadata_fields.php:36
 msgid "Cambodia"
@@ -204,19 +204,19 @@ msgstr "លក្ខណៈសម្បត្តិ"
 
 #: odm_dataset/i18n/metadata_fields.php:48
 msgid "Legacy reference document"
-msgstr ""
+msgstr "ឈ្មោះឯកសារយោងរក្សាទុក"
 
 #: odm_dataset/i18n/metadata_fields.php:49
 msgid "Maintainer"
-msgstr ""
+msgstr "អ្នកថែទាំ"
 
 #: odm_dataset/i18n/metadata_fields.php:50
 msgid "Maintainer email"
-msgstr ""
+msgstr "អ៊ីម៉ែលរបស់អ្នកថែទាំ"
 
 #: odm_dataset/i18n/metadata_fields.php:51
 msgid "Name"
-msgstr ""
+msgstr "ឈ្មោះ"
 
 #: odm_dataset/i18n/metadata_fields.php:52
 msgid "Format"
@@ -228,34 +228,31 @@ msgstr "ភាសាធនធាន"
 
 #: odm_dataset/i18n/metadata_fields.php:54
 msgid ""
-"INTERNAL USE ONLY: Select true if this record contains CSV and/or XLS resources "
-"available in the datastore."
-msgstr ""
+"INTERNAL USE ONLY: Select true if this record contains CSV and/or XLS "
+"resources available in the datastore."
+msgstr "ប្រើផ្ទៃក្នុង: ជ្រើស​ true ប្រសិនបើកំណត់ត្រានេះមាន CSV និង / ឬធនធាន XLS​ ដែលមាននៅក្នុង ការឃ្លាំងទិន្នន័យ។"
 
 #: odm_dataset/i18n/metadata_fields.php:55
 msgid "Database table?"
-msgstr ""
+msgstr "តារាងមូលដ្ឋានទិន្នន័យ?"
 
 #: odm_dataset/i18n/metadata_fields.php:56
 msgid "Unclear copyright"
-msgstr ""
+msgstr "ការរក្សាសិទ្ធិមិនច្បាស់"
 
 #: odm_dataset/i18n/metadata_fields.php:57
 msgid "To be determined"
-msgstr ""
+msgstr "នឹងត្រូវបានកំណត់"
 
 #: odm_dataset/i18n/metadata_fields.php:58
 msgid ""
-"License definitions and additional information can be found at http://opendefinition.org/"
-msgstr ""
+"License definitions and additional information can be found at "
+"http://opendefinition.org/"
+msgstr "និយមន័យអាជ្ញាប័ណ្ណនិងព័ត៌មានបន្ថែមអាចត្រូវបានរកឃើញនៅ http://opendefinition.org/"
 
 #: odm_dataset/lib/odm_dataset_helper.py:23
 msgid ""
-"Thank you for uploading this item. Instructions about vetting system available on "
-"https://wiki.opendevelopmentmekong.net/partners:"
-"content_review#instructions_for_default_issue_on_datasets"
-msgstr ""
-
-#~ msgid ""
-#~ "Multilingual Field: No Data for the current selected language has been entered yet"
-#~ msgstr "វិស័យពហុភាសា៖ មិនមានទិន្នន័យ ដោយសារភាសាជ្រើសរើសនេះមិនទាន់ត្រូវបាន​បញ្ចូល​នៅឡើយ។"
+"Thank you for uploading this item. Instructions about vetting system "
+"available on "
+"https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
+msgstr "សូមអរគុណសម្រាប់ការផ្ទុកឡើង។ សេចក្តីណែនាំបន្ថែអំពីការប្រើប្រាស់អាចរកបាននៅលើ https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets"
