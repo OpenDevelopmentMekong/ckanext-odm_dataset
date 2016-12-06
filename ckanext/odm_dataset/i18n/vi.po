@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
-"POT-Creation-Date: 2016-10-04 19:07+0200\n"
-"PO-Revision-Date: 2016-10-04 19:07+0200\n"
+"POT-Creation-Date: 2016-12-06 15:30+0100\n"
+"PO-Revision-Date: 2016-12-06 15:30+0100\n"
 "Last-Translator: Linh Do <linh@nature.org.vn>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/open-development-mekong/"
 "odm-ckanext-odm_dataset/language/vi/)\n"
@@ -23,6 +23,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: odm_dataset/i18n/metadata_fields.php:3
+#: odm_dataset/templates/macros/form.html:22
 msgid "Title"
 msgstr "Tiêu đề"
 
@@ -51,6 +52,7 @@ msgid "Access and use constraints"
 msgstr "Lưu ý khi tiếp cận và sử dụng dữ liệu"
 
 #: odm_dataset/i18n/metadata_fields.php:10
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:18
 msgid "Organization"
 msgstr "Tổ chức"
 
@@ -250,7 +252,7 @@ msgid ""
 "opendefinition.org/"
 msgstr ""
 
-#: odm_dataset/lib/odm_dataset_helper.py:23
+#: odm_dataset/lib/odm_dataset_helper.py:24
 msgid ""
 "Thank you for uploading this item. Instructions about vetting system "
 "available on https://wiki.opendevelopmentmekong.net/partners:"
@@ -260,33 +262,45 @@ msgstr ""
 "kiểm duyệt thông tin của hệ thống tại https://wiki.opendevelopmentmekong.net/"
 "partners:content_review#instructions_for_default_issue_on_datasets"
 
-#~ msgid "Record not multilingual compliant!!"
-#~ msgstr "Tài liệu không tương thích đa ngôn ngữ"
+#: odm_dataset/templates/package/edit_base.html:6
+msgid "Record not multilingual compliant!!"
+msgstr "Tài liệu không tương thích đa ngôn ngữ"
 
-#~ msgid ""
-#~ "This record has not been migrated yet. In case you want to save it, make "
-#~ "sure that data is fille properly before pressing the UPDATE button. "
-#~ "Follow the instructions on https://wiki.opendevelopmentmekong.net/"
-#~ "partners:enabling_multilingual_support_manually:"
-#~ msgstr ""
-#~ "Tài liệu này chưa được chuyển đi.  Nếu bạn muốn lưu tài liệu, cần đảm bảo "
-#~ "rằng đã điền đủ thông tin và nhấn nút CẬP NHẬT. Tham  khảo thêm hướng dẫn "
-#~ "tại https://wiki.opendevelopmentmekong.net/partners:"
-#~ "enabling_multilingual_support_manually:"
+#: odm_dataset/templates/package/edit_base.html:8
+msgid ""
+"This record has not been migrated yet. In case you want to save it, make "
+"sure that data is fille properly before pressing the UPDATE button. Follow "
+"the instructions on https://wiki.opendevelopmentmekong.net/partners:"
+"enabling_multilingual_support_manually:"
+msgstr ""
+"Tài liệu này chưa được chuyển đi.  Nếu bạn muốn lưu tài liệu, cần đảm bảo "
+"rằng đã điền đủ thông tin và nhấn nút CẬP NHẬT. Tham  khảo thêm hướng dẫn "
+"tại https://wiki.opendevelopmentmekong.net/partners:"
+"enabling_multilingual_support_manually:"
 
-#~ msgid ""
-#~ "Multilingual Field: No Data for the current selected language has been "
-#~ "entered yet"
-#~ msgstr "Mục Đa ngôn ngữ: Hiện không có dữ liệu theo ngôn ngữ yêu cầu"
+#: odm_dataset/templates/scheming/display_snippets/fluent_markdown_fallback.html:5
+#: odm_dataset/templates/scheming/display_snippets/fluent_text_fallback.html:5
+msgid ""
+"Multilingual Field: No Data for the current selected language has been "
+"entered yet"
+msgstr "Mục Đa ngôn ngữ: Hiện không có dữ liệu theo ngôn ngữ yêu cầu"
 
-#~ msgid "No organization"
-#~ msgstr "Không có tổ chức nào"
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:22
+#: odm_dataset/templates/scheming/form_snippets/organization.html:27
+msgid "No organization"
+msgstr "Không có tổ chức nào"
 
-#~ msgid "Visibility"
-#~ msgstr "Chế độ hiển thị"
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:36
+#: odm_dataset/templates/scheming/form_snippets/organization.html:49
+msgid "Visibility"
+msgstr "Chế độ hiển thị"
 
-#~ msgid "Private"
-#~ msgstr "Cá nhân"
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
+#: odm_dataset/templates/scheming/form_snippets/organization.html:52
+msgid "Private"
+msgstr "Cá nhân"
 
-#~ msgid "Public"
-#~ msgstr "Công khai"
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
+#: odm_dataset/templates/scheming/form_snippets/organization.html:52
+msgid "Public"
+msgstr "Công khai"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-odm_dataset\n"
-"POT-Creation-Date: 2016-10-04 19:06+0200\n"
-"PO-Revision-Date: 2016-10-04 19:06+0200\n"
+"POT-Creation-Date: 2016-12-06 15:29+0100\n"
+"PO-Revision-Date: 2016-12-06 15:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,6 +16,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: odm_dataset/i18n/metadata_fields.php:3
+#: odm_dataset/templates/macros/form.html:22
 msgid "Title"
 msgstr ""
 
@@ -44,6 +45,7 @@ msgid "Access and use constraints"
 msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:10
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:18
 msgid "Organization"
 msgstr ""
 
@@ -243,9 +245,48 @@ msgid ""
 "opendefinition.org/"
 msgstr ""
 
-#: odm_dataset/lib/odm_dataset_helper.py:23
+#: odm_dataset/lib/odm_dataset_helper.py:24
 msgid ""
 "Thank you for uploading this item. Instructions about vetting system "
 "available on https://wiki.opendevelopmentmekong.net/partners:"
 "content_review#instructions_for_default_issue_on_datasets"
+msgstr ""
+
+#: odm_dataset/templates/package/edit_base.html:6
+msgid "Record not multilingual compliant!!"
+msgstr ""
+
+#: odm_dataset/templates/package/edit_base.html:8
+msgid ""
+"This record has not been migrated yet. In case you want to save it, make "
+"sure that data is fille properly before pressing the UPDATE button. Follow "
+"the instructions on https://wiki.opendevelopmentmekong.net/partners:"
+"enabling_multilingual_support_manually:"
+msgstr ""
+
+#: odm_dataset/templates/scheming/display_snippets/fluent_markdown_fallback.html:5
+#: odm_dataset/templates/scheming/display_snippets/fluent_text_fallback.html:5
+msgid ""
+"Multilingual Field: No Data for the current selected language has been "
+"entered yet"
+msgstr ""
+
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:22
+#: odm_dataset/templates/scheming/form_snippets/organization.html:27
+msgid "No organization"
+msgstr ""
+
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:36
+#: odm_dataset/templates/scheming/form_snippets/organization.html:49
+msgid "Visibility"
+msgstr ""
+
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
+#: odm_dataset/templates/scheming/form_snippets/organization.html:52
+msgid "Private"
+msgstr ""
+
+#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
+#: odm_dataset/templates/scheming/form_snippets/organization.html:52
+msgid "Public"
 msgstr ""
