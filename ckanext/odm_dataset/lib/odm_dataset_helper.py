@@ -127,16 +127,18 @@ def convert_to_list(value):
 	if DEBUG:
 		log.debug('convert_to_list: %s', value)
 
-	if not isinstance(value, basestring):
-		value = str(value)
+	result = list()
 
-	if isinstance(value, basestring):
+	if isinstance(value, set):
+		for item in value:
+			result.append(item)
+
+	elif isinstance(value, basestring):
 		new_value = value.replace("{","")
 		new_value = new_value.replace("}","")
-		new_value = new_value.split(",")
-		return new_value
+		result = new_value.split(",")
 
-	return value
+	return result
 
 def retrieve_taxonomy_from_tags(tags_array):
 	'''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
