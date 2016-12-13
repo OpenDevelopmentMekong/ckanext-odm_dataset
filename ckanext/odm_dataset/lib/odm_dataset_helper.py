@@ -130,7 +130,8 @@ def convert_to_list(value):
 	result = list()
 
 	if isinstance(value, list):
-		return value
+		for item in value:
+			result.append(str(item))
 
 	if isinstance(value, set):
 		for item in value:
