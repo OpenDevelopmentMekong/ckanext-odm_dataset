@@ -121,6 +121,20 @@ def convert_to_multilingual(data):
 
 	return multilingual_data
 
+def convert_to_list(value):
+	'''Converts strings to list'''
+
+	if DEBUG:
+		log.debug('convert_to_list: %s', value)
+
+	if isinstance(value, basestring):
+		new_value = value.replace("{","")
+		new_value = new_value.replace("}","")
+		new_value = new_value.split(",")
+		return new_value
+
+	return value
+
 def retrieve_taxonomy_from_tags(tags_array):
 	'''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
 
