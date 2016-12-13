@@ -125,7 +125,7 @@ def convert_to_list(value):
 	'''Converts strings to list'''
 
 	if DEBUG:
-		log.debug('convert_to_list: %s', value)
+		log.info('convert_to_list: %s', value)
 
 	result = list()
 
@@ -141,7 +141,6 @@ def convert_to_list(value):
 		new_value = new_value.replace("}","")
 		result = new_value.split(",")
 
-	log.debug(result)
 	return result
 
 def retrieve_taxonomy_from_tags(tags_array):
