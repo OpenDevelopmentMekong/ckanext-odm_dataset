@@ -158,3 +158,13 @@ class TestHelpers(unittest.TestCase):
 		"should handle lists as well"
 		value = odm_dataset_helper.convert_to_list("{de}")
 		assert value == ["de"]
+
+		"should handle list of unicode strings"
+		value = odm_dataset_helper.convert_to_list("[u'de', u'ja']")
+		log.debug(value)
+		assert value == ["de","ja"]
+
+		"should handle list of unicode strings"
+		value = odm_dataset_helper.convert_to_list("[u'de']")
+		log.debug(value)
+		assert value == ["de"]
