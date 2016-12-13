@@ -130,43 +130,43 @@ class TestHelpers(unittest.TestCase):
 		value = odm_dataset_helper.urlencode('Lessons learnt of communal land titling for indigenous community in La In Village Ratanakiri province, northeast cambodai')
 		assert value == 'lessons-learnt-of-communal-land-titling-for-indigenous-community-in-la-in-village-ratanakiri-provin'
 
-	def test_convert_to_list(self):
+	def test_sanitize_list(self):
 		"should handle a single-value string"
-		value = odm_dataset_helper.convert_to_list('en')
-		assert value == ['en']
+		value = odm_dataset_helper.sanitize_list('en')
+		assert value == '["en"]'
 
 		"should remove brackets from a single-value string"
-		value = odm_dataset_helper.convert_to_list('{value}')
-		assert value == ['value']
+		value = odm_dataset_helper.sanitize_list('{value}')
+		assert value == '["value"]'
 
 		"should remove brackets from a multiple-value string"
-		value = odm_dataset_helper.convert_to_list("{fr,ja}")
-		assert value == ['fr','ja']
+		value = odm_dataset_helper.sanitize_list("{fr,ja}")
+		assert value == '["fr", "ja"]'
 
 		"should handle 'json' objects as well"
-		value = odm_dataset_helper.convert_to_list({'value','value2'})
-		assert value == ['value2','value']
+		value = odm_dataset_helper.sanitize_list({'value','value2'})
+		assert value == '["value2", "value"]'
 
 		"should handle 'json' objects as well"
-		value = odm_dataset_helper.convert_to_list('{value}')
-		assert value == ['value']
+		value = odm_dataset_helper.sanitize_list('{value}')
+		assert value == '["value"]'
 
 		"should handle lists as well"
-		value = odm_dataset_helper.convert_to_list(['value','value2'])
-		assert value == ['value','value2']
+		value = odm_dataset_helper.sanitize_list(['value','value2'])
+		assert value == '["value", "value2"]'
 
 		"should handle unicode lists as well"
-		value = odm_dataset_helper.convert_to_list([u'value',u'value2'])
-		assert value == ['value','value2']
+		value = odm_dataset_helper.sanitize_list([u'value',u'value2'])
+		assert value == '["value", "value2"]'
 
 		"should handle lists as well"
-		value = odm_dataset_helper.convert_to_list("{de,en}")
-		assert value == ["de","en"]
+		value = odm_dataset_helper.sanitize_list("{de,en}")
+		assert value == '["de", "en"]'
 
 		"should handle list of unicode strings"
-		value = odm_dataset_helper.convert_to_list("[u'de', u'ja']")
-		assert value == ["de","ja"]
+		value = odm_dataset_helper.sanitize_list("[u'de', u'ja']")
+		assert value == '["de", "ja"]'
 
 		"should handle list of unicode strings"
-		value = odm_dataset_helper.convert_to_list("[u'de']")
-		assert value == ["de"]
+		value = odm_dataset_helper.sanitize_list("[u'de']")
+		assert value == '["de"]'

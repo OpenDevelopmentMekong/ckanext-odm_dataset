@@ -121,13 +121,13 @@ def convert_to_multilingual(data):
 
 	return multilingual_data
 
-def convert_to_list(value):
+def sanitize_list(value):
 	'''Converts strings to list'''
 
 	if DEBUG:
-		log.info('convert_to_list: %s', value)
+		log.info('sanitize_list: %s', value)
 
-	result = list()
+	result = []
 
 	if isinstance(value, list):
 		for item in value:
@@ -146,8 +146,6 @@ def convert_to_list(value):
 		new_value = new_value.replace("{","")
 		new_value = new_value.replace("}","")
 		result = new_value.split(",")
-		for item in result:
-			item = str(result)
 
 	return json.dumps(result)
 
