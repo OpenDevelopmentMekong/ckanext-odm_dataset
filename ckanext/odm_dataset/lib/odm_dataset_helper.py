@@ -149,7 +149,7 @@ def convert_to_list(value):
 		for item in result:
 			item = str(result)
 
-	return result
+	return json.dumps(result)
 
 def retrieve_taxonomy_from_tags(tags_array):
 	'''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''

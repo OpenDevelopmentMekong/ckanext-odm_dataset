@@ -140,8 +140,8 @@ class TestHelpers(unittest.TestCase):
 		assert value == ['value']
 
 		"should remove brackets from a multiple-value string"
-		value = odm_dataset_helper.convert_to_list('{value,value2}')
-		assert value == ['value','value2']
+		value = odm_dataset_helper.convert_to_list("{fr,ja}")
+		assert value == ['fr','ja']
 
 		"should handle 'json' objects as well"
 		value = odm_dataset_helper.convert_to_list({'value','value2'})
