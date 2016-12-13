@@ -288,7 +288,7 @@
 		"values": {
 			"form_snippet": "odm_language.html",
 			"display_snippet": "multiple_list.html",
-			"validators": "scheming_required",
+			"validators": "scheming_required odm_dataset_convert_to_list",
 			"output_validators": "scheming_multiple_choice_output"
 		}
 	},{
@@ -323,7 +323,7 @@
     "values": {
       "form_snippet": "odm_related_library_records.html",
 			"display_snippet": "multiple_list.html",
-      "validators": "odm_dataset_convert_to_list scheming_required",
+      "validators": "scheming_required",
 			"output_validators": "scheming_multiple_choice_output"
     }
   },{
