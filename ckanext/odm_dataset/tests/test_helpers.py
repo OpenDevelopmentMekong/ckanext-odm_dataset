@@ -120,7 +120,7 @@ class TestHelpers(unittest.TestCase):
 		assert value == []
 
 	def test_urlencode(self):
-		"should strim anything besides alphanum chars, hypens and underscores"
+		"should trim anything besides alphanum chars, hypens and underscores"
 		value = odm_dataset_helper.urlencode('sub-decree-no-157-on-establishment-of-neang-kok-koh-kong-sez')
 		assert value == 'sub-decree-no-157-on-establishment-of-neang-kok-koh-kong-sez'
 
@@ -131,6 +131,10 @@ class TestHelpers(unittest.TestCase):
 		assert value == 'lessons-learnt-of-communal-land-titling-for-indigenous-community-in-la-in-village-ratanakiri-provin'
 
 	def test_convert_to_list(self):
+		"should handle a single-value string"
+		value = odm_dataset_helper.convert_to_list('en')
+		assert value == ['en']
+
 		"should remove brackets from a single-value string"
 		value = odm_dataset_helper.convert_to_list('{value}')
 		assert value == ['value']
@@ -139,32 +143,30 @@ class TestHelpers(unittest.TestCase):
 		value = odm_dataset_helper.convert_to_list('{value,value2}')
 		assert value == ['value','value2']
 
-		"should handle json objects as well"
+		"should handle 'json' objects as well"
 		value = odm_dataset_helper.convert_to_list({'value','value2'})
 		assert value == ['value2','value']
 
-		"should handle json objects as well"
+		"should handle 'json' objects as well"
 		value = odm_dataset_helper.convert_to_list('{value}')
 		assert value == ['value']
 
-		"should handle json objects as well"
-		value = odm_dataset_helper.convert_to_list('{value,value2}')
+		"should handle lists as well"
+		value = odm_dataset_helper.convert_to_list(['value','value2'])
+		assert value == ['value','value2']
+
+		"should handle unicode lists as well"
+		value = odm_dataset_helper.convert_to_list([u'value',u'value2'])
 		assert value == ['value','value2']
 
 		"should handle lists as well"
-		value = odm_dataset_helper.convert_to_list(list(['value','value2']))
-		assert value == ['value','value2']
-
-		"should handle lists as well"
-		value = odm_dataset_helper.convert_to_list("{de}")
-		assert value == ["de"]
+		value = odm_dataset_helper.convert_to_list("{de,en}")
+		assert value == ["de","en"]
 
 		"should handle list of unicode strings"
 		value = odm_dataset_helper.convert_to_list("[u'de', u'ja']")
-		log.debug(value)
 		assert value == ["de","ja"]
 
 		"should handle list of unicode strings"
 		value = odm_dataset_helper.convert_to_list("[u'de']")
-		log.debug(value)
 		assert value == ["de"]

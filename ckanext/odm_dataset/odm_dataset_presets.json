@@ -288,8 +288,7 @@
 		"values": {
 			"form_snippet": "odm_language.html",
 			"display_snippet": "multiple_list.html",
-			"validators": "scheming_required odm_dataset_convert_to_list",
-			"output_validators": "scheming_multiple_choice_output"
+			"validators": "scheming_required odm_dataset_convert_to_list"
 		}
 	},{
 		"preset_name": "odm_spatial_range",
