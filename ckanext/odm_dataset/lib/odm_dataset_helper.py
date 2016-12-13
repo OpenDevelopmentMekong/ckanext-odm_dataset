@@ -129,15 +129,19 @@ def convert_to_list(value):
 
 	result = list()
 
+	if isinstance(value, list):
+		return value
+
 	if isinstance(value, set):
 		for item in value:
 			result.append(item)
 
-	elif isinstance(value, basestring):
+	if isinstance(value, basestring):
 		new_value = value.replace("{","")
 		new_value = new_value.replace("}","")
 		result = new_value.split(",")
 
+	log.debug(result)
 	return result
 
 def retrieve_taxonomy_from_tags(tags_array):

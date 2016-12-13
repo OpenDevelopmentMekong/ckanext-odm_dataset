@@ -141,4 +141,20 @@ class TestHelpers(unittest.TestCase):
 
 		"should handle json objects as well"
 		value = odm_dataset_helper.convert_to_list({'value','value2'})
+		assert value == ['value2','value']
+
+		"should handle json objects as well"
+		value = odm_dataset_helper.convert_to_list('{value}')
+		assert value == ['value']
+
+		"should handle json objects as well"
+		value = odm_dataset_helper.convert_to_list('{value,value2}')
 		assert value == ['value','value2']
+
+		"should handle lists as well"
+		value = odm_dataset_helper.convert_to_list(list(['value','value2']))
+		assert value == ['value','value2']
+
+		"should handle lists as well"
+		value = odm_dataset_helper.convert_to_list("{de}")
+		assert value == ["de"]
