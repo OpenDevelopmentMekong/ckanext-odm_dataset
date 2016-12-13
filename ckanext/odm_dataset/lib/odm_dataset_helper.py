@@ -128,7 +128,7 @@ def convert_to_list(value):
 		log.debug('convert_to_list: %s', value)
 
 	if not isinstance(value, basestring):
-		value = json.dump(value)
+		value = json.dumps(value)
 
 	if isinstance(value, basestring):
 		new_value = value.replace("{","")
