@@ -52,7 +52,7 @@ def get_localized_tag(tag):
 	'''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
 	if DEBUG:
-		log.debug('odm_dataset_get_localized_tag: %s', tag)
+		log.info('odm_dataset_get_localized_tag: %s', tag)
 
 	desired_lang_code = pylons.request.environ['CKAN_LANG']
 
@@ -71,7 +71,7 @@ def get_current_language():
 	'''Returns the current language code'''
 
 	if DEBUG:
-		log.debug('get_current_language')
+		log.info('get_current_language')
 
 	return pylons.request.environ['CKAN_LANG']
 
@@ -79,7 +79,7 @@ def get_value_for_current_language(value):
 	'''Returns the corresponding value on the current language or the string if non-multilingual'''
 
 	if DEBUG:
-		log.debug('get_value_for_current_language')
+		log.info('get_value_for_current_language')
 
 	try:
 		value = json.loads(value);
@@ -96,7 +96,7 @@ def get_localized_tags_string(tags_string):
 	'''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
 
 	if DEBUG:
-		log.debug('get_localized_tags_string: %s', tags_string)
+		log.info('get_localized_tags_string: %s', tags_string)
 
 	translated_array = []
 	for tag in tags_string.split(', '):
@@ -111,7 +111,7 @@ def convert_to_multilingual(data):
 	'''Converts strings to multilingual with the current language set'''
 
 	if DEBUG:
-		log.debug('convert_to_multilingual: %s', data)
+		log.info('convert_to_multilingual: %s', data)
 
 	if isinstance(data, basestring):
 		multilingual_data = {}
@@ -121,11 +121,39 @@ def convert_to_multilingual(data):
 
 	return multilingual_data
 
+def sanitize_list(value):
+	'''Converts strings to list'''
+
+	if DEBUG:
+		log.info('sanitize_list: %s', value)
+
+	result = []
+
+	if isinstance(value, list):
+		for item in value:
+			result.append(str(item))
+
+	if isinstance(value, set):
+		for item in value:
+			result.append(item)
+
+	if isinstance(value, basestring):
+		new_value = value.encode("ascii")
+		new_value = new_value.replace("[u'","")
+		new_value = new_value.replace(" u'","")
+		new_value = new_value.replace("']","")
+		new_value = new_value.replace("'","")
+		new_value = new_value.replace("{","")
+		new_value = new_value.replace("}","")
+		result = new_value.split(",")
+
+	return json.dumps(result)
+
 def retrieve_taxonomy_from_tags(tags_array):
 	'''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
 
 	if DEBUG:
-		log.debug('map_odm_language: %s', tags_array)
+		log.info('map_odm_language: %s', tags_array)
 
 	if type(tags_array) is not list:
 		return []
@@ -149,7 +177,7 @@ def urlencode(value):
 def if_empty_new_id(value):
 
 	if DEBUG:
-		log.debug('if_empty_new_id: %s', value)
+		log.info('if_empty_new_id: %s', value)
 
 	if not value:
 		value = str(uuid.uuid4());
