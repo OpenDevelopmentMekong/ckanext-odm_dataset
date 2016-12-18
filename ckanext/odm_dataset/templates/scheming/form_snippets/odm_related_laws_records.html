@@ -2,12 +2,18 @@
 	<div class="control-group">
 		<label class="control-label" for="field-{{ field.field_name }}">{{ h.scheming_language_text(field.label) }}</label>
 		<div class="controls control-full">
-			<select multiple id="field-{{ field.field_name }}" name="{{ h.scheming_language_text(field.field_name) }}" data-module="autocomplete" placeholder="{{ _(h.scheming_language_text(field.form_placeholder)) }}">
-				{% for dataset in h.odm_nav_get_all_laws_records() %}
+			<select multiple
+				id="field-{{ field.field_name }}"
+				name="{{ h.scheming_language_text(field.field_name) }}"
+				data-module="autocomplete"
+				placeholder="{{ _(h.scheming_language_text(field.form_placeholder)) }}"
+				class="odm_spatial_range-specific">
+				{% for dataset in h.odm_nav_get_all_laws_records_complete() %}
 					<option
 					 	id="field-{{ field.field_name }}-{{ dataset }}"
 						{{"selected " if dataset in data[field.field_name] }}
-						value="{{ dataset }}">{{ dataset }}
+						value="{{ dataset['name'] }}"
+						data-country_codes="{{ dataset['odm_spatial_range'] | join }}">{{ dataset['title'] }}
 					</option>
 				{% endfor %}
 			</select>
