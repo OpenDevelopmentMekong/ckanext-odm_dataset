@@ -574,7 +574,7 @@ def get_triples_by_dataset_type(subject, dataset_dict, dataset_type):
       "dataset": [
           (subject, CRO.copyright, dataset_dict.get('copyright')),
           (subject, DOAP.version, dataset_dict.get('version')),
-          (subject, EBUCORE.contact, dataset_dict.get('contact')),
+          (subject, EBUCORE.contact, dataset_dict.get('odm_contact')),
           (subject, DQM.accuracy, dataset_dict.get('odm_accuracy')),
           (subject, DQ.logicalConsistency,
            dataset_dict.get('odm_logical_consistency')),
@@ -589,7 +589,7 @@ def get_triples_by_dataset_type(subject, dataset_dict, dataset_type):
           (subject, GC.shortTitle, dataset_dict.get('marc21_246')),
           (subject, CRO.copyright, dataset_dict.get('copyright')),
           (subject, DOAP.version, dataset_dict.get('version')),
-          (subject, EBUCORE.contact, dataset_dict.get('contact')),
+          (subject, EBUCORE.contact, dataset_dict.get('odm_contact')),
           (subject, MD.useconstraints, dataset_dict.get(
               'odm_access_and_use_constraints')),
           (subject, OPUS.author, dataset_dict.get('marc21_100')),
@@ -610,7 +610,7 @@ def get_triples_by_dataset_type(subject, dataset_dict, dataset_type):
           (subject, DBPEDIA.documentNumber, dataset_dict.get('odm_document_number')),
           (subject, GC.shortTitle, dataset_dict.get('odm_short_title')),
           (subject, CRO.copyright, dataset_dict.get('copyright')),
-          (subject, EBUCORE.contact, dataset_dict.get('contact')),
+          (subject, EBUCORE.contact, dataset_dict.get('odm_contact')),
           (subject, SKOS.changeNote, dataset_dict.get(
               'odm_laws_previous_changes_notes')),
           (subject, SORON.citedBy, dataset_dict.get(
