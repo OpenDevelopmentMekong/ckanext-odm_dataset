@@ -102,8 +102,11 @@ class ODMDCATBasicProfileDataset(RDFProfile):
       g.add((dataset_ref, DC.language, Literal(item.upper())))
 
     # Dates
-    items = odm_rdf_helper.get_date_fields_by_dataset_type(dataset_dict['type'])
-    self._add_date_triples_from_dict(dataset_dict, dataset_ref, items)
+    try:
+      items = odm_rdf_helper.get_date_fields_by_dataset_type(dataset_dict['type'])
+      self._add_date_triples_from_dict(dataset_dict, dataset_ref, items)
+    except ValueError:
+      log.debug("Error adding date triples for dataset "  + dataset_dict['id'])
 
     # Resources
     for resource_dict in dataset_dict.get('resources', []):
@@ -121,7 +124,11 @@ class ODMDCATBasicProfileDataset(RDFProfile):
         for triple in triples:
           g.add(triple)
 
-      self._add_triples_from_dict(resource_dict, distribution, items)
+      try:
+        self._add_triples_from_dict(resource_dict, distribution, items)
+      except ValueError:
+        log.debug("Error adding triples for dataset "  + dataset_dict['id'])
+
 
       #  Language
       for item in resource_dict.get('odm_language', []):
