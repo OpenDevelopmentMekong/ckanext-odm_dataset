@@ -149,6 +149,15 @@ def sanitize_list(value):
 
 	return json.dumps(result)
 
+def fluent_required(value):
+	'''Checks that the value inputed is a json object with at least "en" among its keys'''
+
+	if DEBUG:
+		log.info('fluent_required: %s', value)
+
+	if not value['en']:
+		raise Invalid("This multilingual field is mandatory. Please specify the english content first")
+
 def retrieve_taxonomy_from_tags(tags_array):
 	'''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
 

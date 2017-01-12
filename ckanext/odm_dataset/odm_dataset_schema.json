@@ -184,6 +184,7 @@
 			"my": "ဖြစ်စဉ် (များ)"
 		},
 		"form_languages": ["en", "th", "km", "vi", "my"],
+		"validators": "odm_dataset_fluent_required",
 		"form_placeholder": "The steps taken to acquire, aggregate, or transform any of the resources in the dataset."
 	}, {
 		"field_name": "odm_source",
@@ -196,6 +197,7 @@
 			"my": "ရင်းမြစ်များ"
 		},
 		"form_languages": ["en", "th", "km", "vi", "my"],
+		"validators": "odm_dataset_fluent_required",
 		"form_placeholder": "Ordered citations for all information sources that went into producing the dataset."
 	}, {
 		"field_name": "odm_metadata_reference_information",
