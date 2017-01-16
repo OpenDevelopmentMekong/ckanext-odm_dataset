@@ -171,7 +171,7 @@ class TestHelpers(unittest.TestCase):
 		value = odm_dataset_helper.sanitize_list("[u'de']")
 		assert value == '["de"]'
 
-	def test_fluent_required(self):
+	def test_fluent_required_no_json(self):
 		"should throw an error if value is not a json object"
 		exception = False;
 		try:
@@ -180,18 +180,38 @@ class TestHelpers(unittest.TestCase):
 			exception = True;
 		assert exception
 
+	def test_fluent_required_no_en_object(self):
 		"should throw an error if key 'en' is not on the object"
 		exception = False;
 		try:
-			value = odm_dataset_helper.fluent_required({"km":"some km value"})
+			value = odm_dataset_helper.fluent_required('{"km":"some km value"}')
 		except Exception:
 			exception = True;
 		assert exception
 
-		"should not throw an error if value is right"
+	def test_fluent_required_empty_en_object(self):
+		"should throw an error if key 'en' is nempty"
+		exception = False;
+		try:
+			value = odm_dataset_helper.fluent_required('{"km":"some km value","en":""}')
+		except Exception:
+			exception = True;
+		assert exception
+
+	def test_fluent_required_no_string(self):
+		"should throw an error if value is not passed as string"
 		exception = False;
 		try:
 			value = odm_dataset_helper.fluent_required({"en":"some en value"})
+		except Exception:
+			exception = True;
+		assert exception == True
+
+	def test_fluent_required_valid(self):
+		"should not throw an error if value is right"
+		exception = False;
+		try:
+			value = odm_dataset_helper.fluent_required('{"en":"some en value"}')
 		except Exception:
 			exception = True;
 		assert exception == False
