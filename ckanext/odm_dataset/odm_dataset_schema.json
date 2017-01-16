@@ -175,7 +175,7 @@
 		"form_placeholder": "Brief description of the level of completeness of the dataset's contents and the steps, if any, being taken to make the dataset more complete."
 	}, {
 		"field_name": "odm_process",
-		"preset": "fluent_markdown_single",
+		"preset": "fluent_markdown_single_mandatory",
 		"label": {
 			"en": "Process(s)",
 			"th": "Process(s)",
@@ -184,11 +184,10 @@
 			"my": "ဖြစ်စဉ် (များ)"
 		},
 		"form_languages": ["en", "th", "km", "vi", "my"],
-		"validators": "odm_dataset_fluent_required",
 		"form_placeholder": "The steps taken to acquire, aggregate, or transform any of the resources in the dataset."
 	}, {
 		"field_name": "odm_source",
-		"preset": "fluent_markdown_single",
+		"preset": "fluent_markdown_single_mandatory",
 		"label": {
 			"en": "Source(s)",
 			"th": "แหล่งที่มา",
@@ -197,7 +196,6 @@
 			"my": "ရင်းမြစ်များ"
 		},
 		"form_languages": ["en", "th", "km", "vi", "my"],
-		"validators": "odm_dataset_fluent_required",
 		"form_placeholder": "Ordered citations for all information sources that went into producing the dataset."
 	}, {
 		"field_name": "odm_metadata_reference_information",
