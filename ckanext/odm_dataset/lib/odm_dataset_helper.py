@@ -13,6 +13,7 @@ import datetime
 import re
 import uuid
 import ckan.plugins.toolkit as toolkit
+from ckan.plugins.toolkit import Invalid
 
 log = logging.getLogger(__name__)
 
@@ -148,6 +149,24 @@ def sanitize_list(value):
 		result = new_value.split(",")
 
 	return json.dumps(result)
+
+def fluent_required(value):
+	'''Checks that the value inputed is a json object with at least "en" among its keys'''
+
+	if DEBUG:
+		log.info('fluent_required: %s', value)
+
+	value_json = {}
+
+	try:
+		value_json = json.loads(value);
+	except:
+		raise Invalid("This multilingual field is mandatory. Please specify the english content first")
+
+	if not value_json['en']:
+		raise Invalid("This multilingual field is mandatory. Please specify the english content first")
+
+	return value
 
 def retrieve_taxonomy_from_tags(tags_array):
 	'''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
