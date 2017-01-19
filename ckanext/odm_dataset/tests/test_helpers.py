@@ -182,6 +182,7 @@ class TestHelpers(unittest.TestCase):
 
 	def test_fluent_required_no_en_object(self):
 		"should throw an error if key 'en' is not on the object"
+		sys.modules['pylons'].request.environ = {'CKAN_LANG':'en'}
 		exception = False;
 		try:
 			value = odm_dataset_helper.fluent_required('{"km":"some km value"}')
@@ -191,6 +192,7 @@ class TestHelpers(unittest.TestCase):
 
 	def test_fluent_required_empty_en_object(self):
 		"should throw an error if key 'en' is nempty"
+		sys.modules['pylons'].request.environ = {'CKAN_LANG':'en'}
 		exception = False;
 		try:
 			value = odm_dataset_helper.fluent_required('{"km":"some km value","en":""}')
@@ -200,6 +202,7 @@ class TestHelpers(unittest.TestCase):
 
 	def test_fluent_required_no_string(self):
 		"should throw an error if value is not passed as string"
+		sys.modules['pylons'].request.environ = {'CKAN_LANG':'en'}
 		exception = False;
 		try:
 			value = odm_dataset_helper.fluent_required({"en":"some en value"})
@@ -209,6 +212,7 @@ class TestHelpers(unittest.TestCase):
 
 	def test_fluent_required_valid(self):
 		"should not throw an error if value is right"
+		sys.modules['pylons'].request.environ = {'CKAN_LANG':'en'}
 		exception = False;
 		try:
 			value = odm_dataset_helper.fluent_required('{"en":"some en value"}')
