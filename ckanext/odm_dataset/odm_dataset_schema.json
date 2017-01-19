@@ -253,7 +253,7 @@
 		"preset": "resource_url_upload"
 	}, {
 		"field_name": "name_translated",
-		"preset": "fluent_core_res_name_translated_single",
+		"preset": "fluent_core_res_name_translated_single_mandatory",
 		"label": {
 			"en": "Name",
 			"th": "Name",
@@ -265,7 +265,7 @@
 		"form_placeholder": "eg. January 2011 Gold Prices"
 	}, {
 		"field_name": "description_translated",
-		"preset": "fluent_core_res_description_translated_markdown_single",
+		"preset": "fluent_core_res_description_translated_markdown_single_mandatory",
 		"label": {
 			"en": "Description",
 			"th": "Description",
@@ -281,8 +281,9 @@
 		"preset": "resource_format_autocomplete"
 	}, {
 		"field_name": "odm_language",
+		"preset": "odm_language",
+		"required": "true",
     "label": "Resource's languages",
-		"form_placeholder": "Language(s) of the resource.",
-		"preset": "odm_language"
+		"form_placeholder": "Language(s) of the resource."
 	}]
 }
