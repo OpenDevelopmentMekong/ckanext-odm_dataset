@@ -179,7 +179,8 @@ def record_does_not_exist_yet(value, context):
 
 	try:
 		package = logic.get_action('package_show')(context, {"id":value})
-
+		if package["state"] == "draft":
+			found = False
 	except logic.NotFound:
 		found = False
 
