@@ -13,6 +13,7 @@ import datetime
 import re
 import uuid
 import ckan.plugins.toolkit as toolkit
+import ckan.logic as logic
 from ckan.plugins.toolkit import Invalid
 
 log = logging.getLogger(__name__)
@@ -165,6 +166,25 @@ def fluent_required(value):
 
 	if not value_json[get_current_language()]:
 		raise Invalid("This multilingual field is mandatory. Please specify a value")
+
+	return value
+
+def record_does_not_exist_yet(value, context):
+	'''Checks whether the value corresponds to an existing record name, if so raises Invalid'''
+
+	found = True
+
+	if DEBUG:
+		log.info('record_does_not_exist_yet: %s', value)
+
+	try:
+    package = logic.get_action('package_show')(context, {"id":value})
+
+  except logic.NotFound:
+		found = False
+
+	if found:
+		raise Invalid("There is a record already with tha name, please adapt URL.")
 
 	return value
 
