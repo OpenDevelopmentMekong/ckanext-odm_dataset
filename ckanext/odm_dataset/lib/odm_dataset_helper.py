@@ -178,9 +178,9 @@ def record_does_not_exist_yet(value, context):
 		log.info('record_does_not_exist_yet: %s', value)
 
 	try:
-    package = logic.get_action('package_show')(context, {"id":value})
+		package = logic.get_action('package_show')(context, {"id":value})
 
-  except logic.NotFound:
+	except logic.NotFound:
 		found = False
 
 	if found:
