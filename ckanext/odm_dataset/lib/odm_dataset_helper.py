@@ -177,10 +177,10 @@ def record_does_not_exist_yet(value, context):
 	if DEBUG:
 		log.info('record_does_not_exist_yet: %s %s', value, context)
 
-	current_package = context['package']
-
-	if current_package['name'] == value:
-		return value
+	if 'package' in context:
+		current_package = context['package']
+		if current_package['name'] == value:
+			return value
 
 	try:
 		package = toolkit.get_action('package_show')(context, {'id': value})
