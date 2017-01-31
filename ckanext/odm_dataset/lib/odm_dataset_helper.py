@@ -183,7 +183,7 @@ def record_does_not_exist_yet(value, context):
 		if current_package.name == value:
 			return value
 
-	s = """SELECT count(p.id) as pkg_count FROM package p
+	s = """SELECT * FROM package p
 					WHERE p.name = '%(name)s'""" % {'name': value}
 	count = model.Session.execute(s).rowcount
 
