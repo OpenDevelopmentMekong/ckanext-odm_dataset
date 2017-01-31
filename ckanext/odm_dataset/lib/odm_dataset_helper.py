@@ -12,6 +12,7 @@ import genshi
 import datetime
 import re
 import uuid
+import ckan.model as model
 import ckan.plugins.toolkit as toolkit
 import ckan.logic as logic
 from ckan.plugins.toolkit import Invalid
@@ -182,12 +183,18 @@ def record_does_not_exist_yet(value, context):
 		if current_package.name == value:
 			return value
 
-	try:
-		package = toolkit.get_action('package_show')(context, {'id': value})
-		if package["state"] == "draft":
-			found = False
-	except logic.NotFound:
-		found = False
+	s = """SELECT count(p.id) as pkg_count FROM package p
+					 WHERE p.name = %(name)s""" % {'name': value}
+	res_ids = model.Session.execute(s).fetchall()
+
+	log.info(res_ids)
+
+	# try:
+	# 	package = toolkit.get_action('package_show')(context, {'id': value})
+	# 	if package["state"] == "draft":
+	# 		found = False
+	# except logic.NotFound:
+	# 	found = False
 
 	if found:
 		raise Invalid("There is a record already with that name, please adapt URL.")

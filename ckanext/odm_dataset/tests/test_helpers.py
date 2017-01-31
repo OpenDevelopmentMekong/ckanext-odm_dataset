@@ -11,6 +11,7 @@ import sys
 sys.modules['pylons'] = mock.MagicMock()
 sys.modules['ckan'] = mock.MagicMock()
 sys.modules['ckan.plugins'] = mock.MagicMock()
+sys.modules['ckan.model'] = mock.MagicMock()
 sys.modules['ckan.logic'] = mock.MagicMock()
 sys.modules['ckan.plugins.toolkit'] = mock.MagicMock()
 sys.modules['genshi'] = mock.MagicMock()
