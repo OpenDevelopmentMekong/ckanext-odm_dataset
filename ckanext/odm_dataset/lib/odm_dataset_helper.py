@@ -185,16 +185,9 @@ def record_does_not_exist_yet(value, context):
 
 	s = """SELECT count(p.id) as pkg_count FROM package p
 					WHERE p.name = '%(name)s'""" % {'name': value}
-	log.info(model.Session.execute(s).rowcount)
+	count = model.Session.execute(s).rowcount
 
-	# try:
-	# 	package = toolkit.get_action('package_show')(context, {'id': value})
-	# 	if package["state"] == "draft":
-	# 		found = False
-	# except logic.NotFound:
-	# 	found = False
-
-	if found:
+	if count > 0:
 		raise Invalid("There is a record already with that name, please adapt URL.")
 
 	return value
