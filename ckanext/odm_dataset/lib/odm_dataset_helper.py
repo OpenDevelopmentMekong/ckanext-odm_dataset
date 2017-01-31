@@ -184,10 +184,8 @@ def record_does_not_exist_yet(value, context):
 			return value
 
 	s = """SELECT count(p.id) as pkg_count FROM package p
-					 WHERE p.name = '%(name)s'""" % {'name': value}
-	res_ids = model.Session.execute(s).fetchall()
-
-	log.info(res_ids.count())
+					WHERE p.name = '%(name)s'""" % {'name': value}
+	log.info(model.Session.execute(s).rowcount)
 
 	# try:
 	# 	package = toolkit.get_action('package_show')(context, {'id': value})
