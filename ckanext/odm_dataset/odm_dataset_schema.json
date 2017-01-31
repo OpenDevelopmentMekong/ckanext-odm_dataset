@@ -31,7 +31,7 @@
 		"label": "URL",
 		"preset": "dataset_slug",
 		"form_placeholder": "eg. my-dataset",
-    "validators": "if_empty_same_as(title) odm_dataset_if_empty_new_id odm_dataset_urlencode"
+    "validators": "if_empty_same_as(title) odm_dataset_if_empty_new_id odm_dataset_urlencode odm_dataset_record_does_not_exist_yet"
 	}, {
 		"field_name": "notes_translated",
 		"preset": "fluent_core_notes_translated_markdown_single",

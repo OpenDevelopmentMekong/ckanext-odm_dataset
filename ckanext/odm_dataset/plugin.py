@@ -60,7 +60,8 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_dataset_urlencode': odm_dataset_helper.urlencode,
       'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags,
       'odm_dataset_sanitize_list': odm_dataset_helper.sanitize_list,
-      'odm_dataset_fluent_required': odm_dataset_helper.fluent_required
+      'odm_dataset_fluent_required': odm_dataset_helper.fluent_required,
+			'odm_dataset_record_does_not_exist_yet': odm_dataset_helper.record_does_not_exist_yet
     }
 
   # ITemplateHelpers

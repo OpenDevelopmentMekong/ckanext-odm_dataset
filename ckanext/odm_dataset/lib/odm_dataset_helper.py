@@ -12,7 +12,9 @@ import genshi
 import datetime
 import re
 import uuid
+import ckan.model as model
 import ckan.plugins.toolkit as toolkit
+import ckan.logic as logic
 from ckan.plugins.toolkit import Invalid
 
 log = logging.getLogger(__name__)
@@ -168,6 +170,28 @@ def fluent_required(value):
 
 	return value
 
+def record_does_not_exist_yet(value, context):
+	'''Checks whether the value corresponds to an existing record name, if so raises Invalid'''
+
+	found = True
+
+	if DEBUG:
+		log.info('record_does_not_exist_yet: %s %s', value, context)
+
+	if 'package' in context:
+		current_package = context['package']
+		if current_package.name == value:
+			return value
+
+	s = """SELECT * FROM package p
+					WHERE p.name = '%(name)s'""" % {'name': value}
+	count = model.Session.execute(s).rowcount
+
+	if count > 0:
+		raise Invalid("There is a record already with that name, please adapt URL.")
+
+	return value
+
 def retrieve_taxonomy_from_tags(tags_array):
 	'''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
 
@@ -188,6 +212,10 @@ def get_current_time():
 	return datetime.datetime.utcnow().isoformat()
 
 def urlencode(value):
+
+	if DEBUG:
+		log.info('urlencode: %s', value)
+
 	value = re.sub(' ','-',value)
 	pattern = re.compile('[^a-zA-Z0-9_-]', re.UNICODE)
 	value = re.sub(pattern, '', value)

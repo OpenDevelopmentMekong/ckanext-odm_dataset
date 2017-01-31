@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
-"POT-Creation-Date: 2016-12-06 15:30+0100\n"
-"PO-Revision-Date: 2016-12-06 15:30+0100\n"
+"POT-Creation-Date: 2017-01-31 17:35+0100\n"
+"PO-Revision-Date: 2017-01-31 17:35+0100\n"
 "Last-Translator: Huy Eng Heng <huyeng_heng@yahoo.com>\n"
 "Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-"
 "odm_dataset/language/km/)\n"
@@ -253,7 +253,7 @@ msgid ""
 "org/"
 msgstr "និយមន័យអាជ្ញាប័ណ្ណនិងព័ត៌មានបន្ថែមអាចត្រូវបានរកឃើញនៅ http://opendefinition.org/"
 
-#: odm_dataset/lib/odm_dataset_helper.py:24
+#: odm_dataset/lib/odm_dataset_helper.py:27
 msgid ""
 "Thank you for uploading this item. Instructions about vetting system available on "
 "https://wiki.opendevelopmentmekong.net/partners:"
