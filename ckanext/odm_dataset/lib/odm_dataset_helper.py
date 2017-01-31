@@ -186,6 +186,7 @@ def record_does_not_exist_yet(value, context):
 	s = """SELECT * FROM package p
 					WHERE p.name = '%(name)s'""" % {'name': value}
 	count = model.Session.execute(s).rowcount
+	log.info(count)
 
 	if count > 0:
 		raise Invalid("There is a record already with that name, please adapt URL.")
