@@ -208,6 +208,10 @@ def get_current_time():
 	return datetime.datetime.utcnow().isoformat()
 
 def urlencode(value):
+
+	if DEBUG:
+		log.info('urlencode: %s', value)
+
 	value = re.sub(' ','-',value)
 	pattern = re.compile('[^a-zA-Z0-9_-]', re.UNICODE)
 	value = re.sub(pattern, '', value)

@@ -14,7 +14,7 @@
 	}, {
 		"preset_name": "dataset_slug",
 		"values": {
-			"validators": "not_empty unicode name_validator package_name_validator odm_dataset_record_does_not_exist_yet",
+			"validators": "not_empty unicode name_validator package_name_validator",
 			"form_snippet": "slug.html"
 		}
 	}, {
