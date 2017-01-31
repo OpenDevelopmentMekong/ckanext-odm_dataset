@@ -175,10 +175,15 @@ def record_does_not_exist_yet(value, context):
 	found = True
 
 	if DEBUG:
-		log.info('record_does_not_exist_yet: %s', context)
+		log.info('record_does_not_exist_yet: %s %s', value, context)
+
+	current_package = context['package']
+
+	if current_package['name'] = value:
+		return value
 
 	try:
-		package = logic.get_action('package_show')(context, {"id":value})
+		package = toolkit.get_action('package_show')(context, {'id': value})
 		if package["state"] == "draft":
 			found = False
 	except logic.NotFound:
