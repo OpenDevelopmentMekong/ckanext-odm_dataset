@@ -184,7 +184,7 @@ def record_does_not_exist_yet(value, context):
 		found = False
 
 	if found:
-		raise Invalid("There is a record already with tha name, please adapt URL.")
+		raise Invalid("There is a record already with that name, please adapt URL.")
 
 	return value
 
