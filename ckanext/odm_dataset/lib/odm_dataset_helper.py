@@ -179,7 +179,7 @@ def record_does_not_exist_yet(value, context):
 
 	if 'package' in context:
 		current_package = context['package']
-		if current_package['name'] == value:
+		if current_package.name == value:
 			return value
 
 	try:
