@@ -163,10 +163,10 @@ def fluent_required(value):
 	try:
 		value_json = json.loads(value);
 	except:
-		raise Invalid("This multilingual field is mandatory. Please specify a value")
+		raise Invalid("This multilingual field is mandatory. Please specify a value, at least in English.")
 
-	if not value_json[get_current_language()]:
-		raise Invalid("This multilingual field is mandatory. Please specify a value")
+	if not value_json["en"]:
+		raise Invalid("This multilingual field is mandatory. Please specify a value, at least in English.")
 
 	return value
 
