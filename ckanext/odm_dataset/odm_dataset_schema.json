@@ -265,7 +265,7 @@
 		"form_placeholder": "eg. January 2011 Gold Prices"
 	}, {
 		"field_name": "description_translated",
-		"preset": "fluent_core_res_description_translated_markdown_single_mandatory",
+		"preset": "fluent_core_res_description_translated_markdown_single",
 		"label": {
 			"en": "Description",
 			"th": "Description",
