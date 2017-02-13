@@ -253,7 +253,7 @@
 		"preset": "resource_url_upload"
 	}, {
 		"field_name": "name_translated",
-		"preset": "fluent_core_res_name_translated_single_mandatory",
+		"preset": "fluent_core_res_name_translated_single",
 		"label": {
 			"en": "Name",
 			"th": "Name",
