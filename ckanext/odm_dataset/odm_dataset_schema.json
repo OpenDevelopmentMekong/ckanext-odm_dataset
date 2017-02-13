@@ -5,8 +5,8 @@
 	"about_url": "http://github.com/open-data/ckanext-scheming",
 	"dataset_fields": [{
 		"field_name": "title_translated",
-		"preset": "fluent_core_title_translated_single",
 		"required": "true",
+		"preset": "fluent_core_title_translated_single",
 		"label": {
 			"en": "Title",
 			"th": "หัวข้อ",
@@ -38,7 +38,6 @@
 	}, {
 		"field_name": "notes_translated",
 		"preset": "fluent_core_notes_translated_markdown_single",
-		"required": "false",
 		"label": {
 			"en": "Description",
 			"th": "รายละเอียด",
@@ -69,7 +68,6 @@
 	}, {
 		"field_name": "odm_access_and_use_constraints",
 		"preset": "fluent_markdown_single",
-		"required": "false",
 		"label": {
 			"en": "Access and use constraints",
 			"th": "การเข้าถึงและข้อจำกัด",
@@ -93,7 +91,6 @@
 	}, {
 		"field_name": "odm_contact",
     "preset": "fluent_markdown_single",
-		"required": "false",
 		"label": {
 			"en": "Contact",
 			"th": "ข้อมูลติดต่อ",
@@ -117,25 +114,21 @@
 		"preset": "odm_date"
 	}, {
 		"field_name": "odm_date_uploaded",
-		"required": "false",
 		"label": "Date uploaded",
 		"form_placeholder": "Date a new version or update of the dataset was uploaded.",
 		"preset": "odm_date_uploaded"
 	}, {
 		"field_name": "odm_date_modified",
-		"required": "false",
 		"label": "Date modified",
 		"form_placeholder": "Date a new version or update of the dataset was uploaded.",
 		"preset": "odm_date_modified"
 	}, {
 		"field_name": "odm_temporal_range",
-		"required": "true",
 		"label": "Temporal range",
 		"form_placeholder": "The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31).",
 		"preset": "odm_date_range"
 	}, {
 		"field_name": "spatial",
-		"required": "false",
 		"label": "Spatial data",
 		"form_placeholder": "A valid GEOJSON string describing the dataset boundaries",
 		"preset": "spatial"
@@ -147,14 +140,12 @@
 		"required": "true"
 	},{
 		"field_name": "odm_province",
-		"required": "false",
 		"label": "Province(s)",
 		"form_placeholder": "The province(s) this dataset relates to",
 		"preset": "odm_province"
 	},{
 		"field_name": "odm_accuracy",
 		"preset": "fluent_text_single",
-		"required": "false",
 		"label": {
 			"en": "Accuracy",
 			"th": "ความถูกต้อง",
@@ -167,7 +158,6 @@
 	}, {
 		"field_name": "odm_logical_consistency",
 		"preset": "fluent_markdown_single",
-		"required": "false",
 		"label": {
 			"en": "Logical Consistency",
 			"th": "ความสอดคล้องเชิงตรรกะ",
@@ -180,7 +170,6 @@
 	}, {
 		"field_name": "odm_completeness",
 		"preset": "fluent_markdown_single",
-		"required": "false",
 		"label": {
 			"en": "Completeness",
 			"th": "ความสมบูรณ์",
@@ -219,7 +208,6 @@
 	}, {
 		"field_name": "odm_metadata_reference_information",
 		"preset": "fluent_markdown_single",
-		"required": "false",
 		"label": {
 			"en": "Metadata Reference Information",
 			"th": "ข้อมูลอ้างอิงข้อมูลเมตา",
@@ -232,7 +220,6 @@
 	}, {
 		"field_name": "odm_attributes",
 		"preset": "fluent_markdown_single",
-		"required": "false",
 		"label": {
 			"en": "Attributes",
 			"th": "คุณสมบัติ",
@@ -244,7 +231,6 @@
 		"form_placeholder": "Details about the information content of the dataset."
 	}, {
 		"field_name": "odm_reference_document",
-		"required": "false",
 		"label": "Legacy reference document",
 		"form_placeholder": "e.g Tong_Min_Group_Engineering__21.06.2011.pdf"
 	}, {
@@ -269,20 +255,17 @@
     "preset": "auto_author_email"
 	}, {
 		"field_name": "odm_db_table",
-		"required": "false",
     "label": "Database table?",
     "preset": "odm_db_table",
     "help_text": "INTERNAL USE ONLY: Select true if this record contains CSV and/or XLS resources available in the datastore."
   }],
 	"resource_fields": [{
 		"field_name": "url",
-		"required": "true",
 		"label": "URL",
 		"preset": "resource_url_upload"
 	}, {
 		"field_name": "name_translated",
 		"preset": "fluent_core_res_name_translated_single",
-		"required": "false",
 		"label": {
 			"en": "Name",
 			"th": "Name",
@@ -295,7 +278,6 @@
 	}, {
 		"field_name": "description_translated",
 		"preset": "fluent_core_res_description_translated_markdown_single",
-		"required": "false",
 		"label": {
 			"en": "Description",
 			"th": "Description",
@@ -307,7 +289,6 @@
 		"form_placeholder": "Some useful notes about the data"
 	}, {
 		"field_name": "format",
-		"required": "false",
 		"label": "Format",
 		"preset": "resource_format_autocomplete"
 	}, {
