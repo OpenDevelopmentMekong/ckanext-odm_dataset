@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block secondary_content %}
+	{% if dataset_type == 'dataset' and not h.odm_dataset_check_required_fields(pkg) %}
+		{% block inconsistency_disclaimer %}
+			<h2 class="module-heading"><i class="icon-alert"></i> {{ _("Record metadata not complete!!") }}</h2>
+			<div class="disclaimer">
+				<p>{{ _('This record is missing some mandatory fields, please complete.') }}</p>
+			</div>
+		{% endblock %}
+	{% endif %}
+
+	{{super()}}
+
+{% endblock %}
