@@ -5,7 +5,8 @@
 	"about_url": "http://github.com/open-data/ckanext-scheming",
 	"dataset_fields": [{
 		"field_name": "title_translated",
-		"required": "true",
+		"validate": "true",
+		"multilingual": "true",
 		"preset": "fluent_core_title_translated_single",
 		"label": {
 			"en": "Title",
@@ -51,17 +52,20 @@
 		"field_name": "taxonomy",
 		"label": "Topics",
 		"preset": "odm_taxonomy",
+		"validate": "true",
     "required": "true",
 		"form_placeholder": "e.g. economy, mental health, government"
 	}, {
 		"field_name": "license_id",
 		"required": "true",
+		"validate": "true",
 		"label": "License",
 		"preset": "odm_license",
 		"help_text": "License definitions and additional information can be found at http://opendefinition.org/"
 	}, {
 		"field_name": "odm_copyright",
 		"required": "true",
+		"validate": "true",
 		"label": "Copyright",
 		"preset": "odm_copyright",
 		"help_text": "Select 'Yes', 'No', 'Unclear copyright' or 'To be determined' about the copyright of the dataset. If copyright of any type is present, describe further in Access and User Constraints."
@@ -81,12 +85,14 @@
 		"field_name": "owner_org",
 		"label": "Organization",
 		"required": "true",
+		"validate": "true",
 		"preset": "dataset_organization"
 	}, {
 		"field_name": "version",
 		"label": "Version",
 		"validators": "scheming_required unicode package_version_validator",
 		"form_placeholder": "Dataset's version (eg. 1.0)",
+		"validate": "true",
 		"required": "true"
 	}, {
 		"field_name": "odm_contact",
@@ -103,6 +109,7 @@
 	}, {
 		"field_name": "odm_language",
 		"label": "Language",
+		"validate": "true",
 		"required": "true",
 		"form_placeholder": "Language(s) of the dataset, including resources within dataset.",
 		"preset": "odm_language"
@@ -110,6 +117,7 @@
 		"field_name": "odm_date_created",
 		"label": "Date created",
 		"form_placeholder": "Date the dataset was first Published by its creator.",
+		"validate": "true",
 		"required": "true",
 		"preset": "odm_date"
 	}, {
@@ -137,6 +145,7 @@
 		"label": "Geographic area (spatial range)",
 		"form_placeholder": "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos).",
 		"preset": "odm_spatial_range",
+		"validate": "true",
 		"required": "true"
 	},{
 		"field_name": "odm_province",
@@ -182,7 +191,8 @@
 	}, {
 		"field_name": "odm_process",
 		"preset": "fluent_markdown_single_mandatory",
-		"required": "true",
+		"validate": "true",
+		"multilingual": "true",
 		"label": {
 			"en": "Process(s)",
 			"th": "Process(s)",
@@ -195,7 +205,8 @@
 	}, {
 		"field_name": "odm_source",
 		"preset": "fluent_markdown_single_mandatory",
-		"required": "true",
+		"validate": "true",
+		"multilingual": "true",
 		"label": {
 			"en": "Source(s)",
 			"th": "แหล่งที่มา",
@@ -236,21 +247,25 @@
 	}, {
 		"field_name": "maintainer",
 		"required": "true",
+		"validate": "true",
 		"label": "Maintainer",
     "preset": "auto_maintainer"
 	}, {
 		"field_name": "maintainer_email",
 		"required": "true",
+		"validate": "true",
 		"label": "Maintainer email",
     "preset": "auto_maintainer_email"
 	}, {
 		"field_name": "author",
 		"required": "true",
+		"validate": "true",
 		"label": "Author",
     "preset": "auto_author"
 	}, {
 		"field_name": "author_email",
 		"required": "true",
+		"validate": "true",
 		"label": "Author email",
     "preset": "auto_author_email"
 	}, {
@@ -266,6 +281,8 @@
 	}, {
 		"field_name": "name_translated",
 		"preset": "fluent_core_res_name_translated_single",
+		"validate": "true",
+		"multilingual": "true",
 		"label": {
 			"en": "Name",
 			"th": "Name",
@@ -278,6 +295,8 @@
 	}, {
 		"field_name": "description_translated",
 		"preset": "fluent_core_res_description_translated_markdown_single",
+		"validate": "true",
+		"multilingual": "true",
 		"label": {
 			"en": "Description",
 			"th": "Description",
@@ -294,6 +313,7 @@
 	}, {
 		"field_name": "odm_language",
 		"preset": "odm_language",
+		"validate": "true",
 		"required": "true",
     "label": "Resource's languages",
 		"form_placeholder": "Language(s) of the resource."

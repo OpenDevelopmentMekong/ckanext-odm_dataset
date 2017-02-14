@@ -1,13 +1,18 @@
 {% ckan_extends %}
 
 {% block secondary_content %}
-	{% if dataset_type == 'dataset' and not h.odm_dataset_check_required_fields(pkg) %}
-		{% block inconsistency_disclaimer %}
-			<h2 class="module-heading"><i class="icon-alert"></i> {{ _("Record metadata not complete!!") }}</h2>
-			<div class="disclaimer">
-				<p>{{ _('This record is missing some mandatory fields, please complete.') }}</p>
-			</div>
-		{% endblock %}
+
+	{% if dataset_type == 'dataset' %}
+		{% set missing_dataset = h.odm_dataset_validate_fields(pkg) %}
+		{% if missing_dataset["package"] or missing_dataset["resources"] %}
+			{% block inconsistency_disclaimer_dataset %}
+				<h2 class="module-heading"><i class="icon-alert"></i> {{ _("Record metadata not complete!!") }}</h2>
+				<div class="disclaimer">
+					<p>{{ _('This dataset is missing some mandatory fields, please complete:') }}</p>
+					<p>{{ h.odm_dataset_validate_fields(pkg) }}</p>
+				</div>
+			{% endblock %}
+		{% endif %}
 	{% endif %}
 
 	{{super()}}
