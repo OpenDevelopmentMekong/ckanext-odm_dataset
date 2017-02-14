@@ -314,7 +314,6 @@
 		"field_name": "odm_language",
 		"preset": "odm_language",
 		"validate": "true",
-		"required": "true",
     "label": "Resource's languages",
 		"form_placeholder": "Language(s) of the resource."
 	}]
