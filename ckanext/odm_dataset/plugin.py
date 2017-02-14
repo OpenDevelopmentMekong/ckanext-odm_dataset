@@ -80,7 +80,8 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_dataset_get_resource_from_datatable': odm_dataset_helper.get_resource_from_datatable,
       'odm_dataset_get_dataset_name': odm_dataset_helper.get_dataset_name,
       'odm_dataset_get_dataset_notes': odm_dataset_helper.get_dataset_notes,
-      'odm_dataset_get_resource_id_for_field' : odm_dataset_config.get_resource_id_for_field
+      'odm_dataset_get_resource_id_for_field' : odm_dataset_config.get_resource_id_for_field,
+      'odm_dataset_validate_fields' : odm_dataset_helper.validate_fields
     }
 
   # IPackageController
