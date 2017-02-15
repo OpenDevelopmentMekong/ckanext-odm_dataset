@@ -305,6 +305,11 @@
 			"form_snippet": "author_email.html"
 		}
 	},{
+		"preset_name": "odm_date_created",
+		"values": {
+			"form_snippet": "odm_date_created.html"
+		}
+	},{
 		"preset_name": "odm_date_uploaded",
 		"values": {
 			"form_snippet": "odm_date_uploaded.html"
