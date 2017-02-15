@@ -283,21 +283,25 @@
 	}, {
 		"preset_name": "auto_maintainer",
 		"values": {
+			"display_snippet": "text.html",
 			"form_snippet": "maintainer.html"
 		}
 	}, {
 		"preset_name": "auto_maintainer_email",
 		"values": {
+			"display_snippet": "text.html",
 			"form_snippet": "maintainer_email.html"
 		}
 	},{
 		"preset_name": "auto_author",
 		"values": {
+			"display_snippet": "text.html",
 			"form_snippet": "author.html"
 		}
 	}, {
 		"preset_name": "auto_author_email",
 		"values": {
+			"display_snippet": "text.html",
 			"form_snippet": "author_email.html"
 		}
 	},{
