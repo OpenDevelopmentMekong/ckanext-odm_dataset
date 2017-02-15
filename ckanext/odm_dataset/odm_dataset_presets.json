@@ -350,6 +350,14 @@
 			"output_validators": "scheming_multiple_choice_output"
     }
   },{
+    "preset_name": "odm_related_laws_records_and_agreements",
+    "values": {
+      "form_snippet": "odm_related_laws_records_and_agreements.html",
+			"display_snippet": "multiple_list.html",
+      "validators": "scheming_required odm_dataset_sanitize_list",
+			"output_validators": "scheming_multiple_choice_output"
+    }
+  },{
     "preset_name": "odm_related_agreements",
     "values": {
       "form_snippet": "odm_related_agreements.html",
