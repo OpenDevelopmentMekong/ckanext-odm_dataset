@@ -127,7 +127,7 @@
 			"form_snippet": "fluent_text_single_res_name.html",
 			"display_snippet": "fluent_name_fallback.html",
 			"error_snippet": "fluent_text_single.html",
-			"validators": "if_empty_same_as(name) fluent_text",
+			"validators": "if_empty_same_as(name) odm_dataset_convert_to_multilingual fluent_text",
 			"output_validators": "fluent_core_translated_output"
 		}
 	},{
@@ -136,7 +136,7 @@
 			"form_snippet": "fluent_text_single_res_name_mandatory.html",
 			"display_snippet": "fluent_name_fallback.html",
 			"error_snippet": "fluent_text_single.html",
-			"validators": "if_empty_same_as(name) fluent_text odm_dataset_fluent_required",
+			"validators": "if_empty_same_as(name) odm_dataset_convert_to_multilingual fluent_text odm_dataset_fluent_required",
 			"output_validators": "fluent_core_translated_output"
 		}
 	},{
