@@ -295,7 +295,7 @@
 	}, {
 		"field_name": "name",
 		"required": "true",
-		"label": "name",
+		"label": "Name",
 		"preset": "text"
 	},{
 		"field_name": "description_translated",
@@ -314,7 +314,7 @@
 	}, {
 		"field_name": "description",
 		"required": "true",
-		"label": "description",
+		"label": "Description",
 		"preset": "text"
 	}, {
 		"field_name": "format",
