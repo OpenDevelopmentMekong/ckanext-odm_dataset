@@ -295,7 +295,7 @@
 	}, {
 		"field_name": "name",
 		"label": "Name",
-		"preset": "text"
+		"preset": "text_hidden"
 	},{
 		"field_name": "description_translated",
 		"preset": "fluent_core_res_description_translated_markdown_single",
@@ -313,7 +313,7 @@
 	}, {
 		"field_name": "description",
 		"label": "Description",
-		"preset": "text"
+		"preset": "text_hidden"
 	}, {
 		"field_name": "format",
 		"label": "Format",
