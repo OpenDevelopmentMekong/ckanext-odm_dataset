@@ -125,18 +125,18 @@
 		"preset_name": "fluent_core_res_name_translated_single",
 		"values": {
 			"form_snippet": "fluent_text_single_res_name.html",
-			"display_snippet": "fluent_title_fallback.html",
+			"display_snippet": "fluent_name_fallback.html",
 			"error_snippet": "fluent_text_single.html",
-			"validators": "fluent_text",
+			"validators": "if_empty_same_as(name) odm_dataset_convert_to_multilingual fluent_text",
 			"output_validators": "fluent_core_translated_output"
 		}
 	},{
 		"preset_name": "fluent_core_res_name_translated_single_mandatory",
 		"values": {
 			"form_snippet": "fluent_text_single_res_name_mandatory.html",
-			"display_snippet": "fluent_title_fallback.html",
+			"display_snippet": "fluent_name_fallback.html",
 			"error_snippet": "fluent_text_single.html",
-			"validators": "fluent_text odm_dataset_fluent_required",
+			"validators": "if_empty_same_as(name) odm_dataset_convert_to_multilingual fluent_text odm_dataset_fluent_required",
 			"output_validators": "fluent_core_translated_output"
 		}
 	},{
@@ -185,18 +185,18 @@
 		"preset_name": "fluent_core_res_description_translated_markdown_single",
 		"values": {
 			"form_snippet": "fluent_markdown_single_res_description.html",
-			"display_snippet": "fluent_notes_fallback.html",
+			"display_snippet": "fluent_description_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
-			"validators": "fluent_text",
+			"validators": "if_empty_same_as(description) odm_dataset_convert_to_multilingual fluent_text",
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {
 		"preset_name": "fluent_core_res_description_translated_markdown_single_mandatory",
 		"values": {
 			"form_snippet": "fluent_markdown_single_res_description_mandatory.html",
-			"display_snippet": "fluent_notes_fallback.html",
+			"display_snippet": "fluent_description_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
-			"validators": "fluent_text odm_dataset_fluent_required",
+			"validators": "if_empty_same_as(description) odm_dataset_convert_to_multilingual fluent_text odm_dataset_fluent_required",
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {
@@ -305,6 +305,11 @@
 			"form_snippet": "author_email.html"
 		}
 	},{
+		"preset_name": "odm_date_created",
+		"values": {
+			"form_snippet": "odm_date_created.html"
+		}
+	},{
 		"preset_name": "odm_date_uploaded",
 		"values": {
 			"form_snippet": "odm_date_uploaded.html"
@@ -345,6 +350,22 @@
     "preset_name": "odm_related_laws_records",
     "values": {
       "form_snippet": "odm_related_laws_records.html",
+			"display_snippet": "multiple_list.html",
+      "validators": "scheming_required odm_dataset_sanitize_list",
+			"output_validators": "scheming_multiple_choice_output"
+    }
+  },{
+    "preset_name": "odm_related_laws_records_and_agreements",
+    "values": {
+      "form_snippet": "odm_related_laws_records_and_agreements.html",
+			"display_snippet": "multiple_list.html",
+      "validators": "scheming_required odm_dataset_sanitize_list",
+			"output_validators": "scheming_multiple_choice_output"
+    }
+  },{
+    "preset_name": "odm_related_agreements",
+    "values": {
+      "form_snippet": "odm_related_agreements.html",
 			"display_snippet": "multiple_list.html",
       "validators": "scheming_required odm_dataset_sanitize_list",
 			"output_validators": "scheming_multiple_choice_output"

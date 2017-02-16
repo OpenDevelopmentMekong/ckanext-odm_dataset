@@ -293,6 +293,10 @@
 		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "eg. January 2011 Gold Prices"
 	}, {
+		"field_name": "name",
+		"label": "Name",
+		"preset": "text_hidden"
+	},{
 		"field_name": "description_translated",
 		"preset": "fluent_core_res_description_translated_markdown_single",
 		"validate": "true",
@@ -306,6 +310,10 @@
 		},
 		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Some useful notes about the data"
+	}, {
+		"field_name": "description",
+		"label": "Description",
+		"preset": "text_hidden"
 	}, {
 		"field_name": "format",
 		"label": "Format",
