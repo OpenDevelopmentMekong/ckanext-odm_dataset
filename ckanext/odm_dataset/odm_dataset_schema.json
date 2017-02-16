@@ -296,7 +296,7 @@
 		"field_name": "name",
 		"required": "true",
 		"label": "name",
-		"preset": "text_hidden"
+		"preset": "text"
 	},{
 		"field_name": "description_translated",
 		"preset": "fluent_core_res_description_translated_markdown_single",
@@ -315,7 +315,7 @@
 		"field_name": "description",
 		"required": "true",
 		"label": "description",
-		"preset": "text_hidden"
+		"preset": "text"
 	}, {
 		"field_name": "format",
 		"label": "Format",
