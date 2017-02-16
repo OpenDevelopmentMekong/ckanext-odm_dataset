@@ -294,7 +294,6 @@
 		"form_placeholder": "eg. January 2011 Gold Prices"
 	}, {
 		"field_name": "name",
-		"required": "true",
 		"label": "Name",
 		"preset": "text"
 	},{
@@ -313,7 +312,6 @@
 		"form_placeholder": "Some useful notes about the data"
 	}, {
 		"field_name": "description",
-		"required": "true",
 		"label": "Description",
 		"preset": "text"
 	}, {
