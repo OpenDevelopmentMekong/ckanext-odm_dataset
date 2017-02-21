@@ -386,5 +386,12 @@
       "validators": "scheming_required odm_dataset_sanitize_list",
 			"output_validators": "scheming_multiple_choice_output"
     }
+  },{
+    "preset_name": "version_hidden",
+    "values": {
+      "form_snippet": "version_hidden.html",
+      "display_snippet": "text.html",
+      "validators": "scheming_required"
+    }
   }]
 }
