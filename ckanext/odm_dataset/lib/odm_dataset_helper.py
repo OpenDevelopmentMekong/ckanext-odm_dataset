@@ -18,6 +18,9 @@ import ckan.plugins.toolkit as toolkit
 import ckan.logic as logic
 from ckan.plugins.toolkit import Invalid
 
+import ckan.lib.navl.dictization_functions as df
+missing = df.missing
+
 log = logging.getLogger(__name__)
 
 def create_default_issue_dataset(pkg_info):
