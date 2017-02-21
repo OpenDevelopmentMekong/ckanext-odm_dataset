@@ -111,6 +111,17 @@ def get_localized_tags_string(tags_string):
 
 	return ','.join(translated_array)
 
+def if_empty_same_as_if_not_empty(other_key):
+
+    def callable(key, data, errors, context):
+        value = data.get(key)
+        if not value or value is missing:
+					value_replacement = data[key[:-1] + (other_key,)]
+					if value_replacement:
+            data[key] = value_replacement
+
+    return callable
+
 def convert_to_multilingual(data):
 	'''Converts strings to multilingual with the current language set'''
 
