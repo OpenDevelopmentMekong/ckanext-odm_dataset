@@ -62,7 +62,8 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_dataset_sanitize_list': odm_dataset_helper.sanitize_list,
 			'odm_dataset_convert_to_multilingual': odm_dataset_helper.convert_to_multilingual,
 			'odm_dataset_if_empty_same_as_name_if_not_empty': odm_dataset_helper.if_empty_same_as_name_if_not_empty,
-      'odm_dataset_fluent_required': odm_dataset_helper.fluent_required,
+			'odm_dataset_if_empty_same_as_description_if_not_empty': odm_dataset_helper.if_empty_same_as_description_if_not_empty,
+			'odm_dataset_fluent_required': odm_dataset_helper.fluent_required,
 			'odm_dataset_record_does_not_exist_yet': odm_dataset_helper.record_does_not_exist_yet
     }
 
