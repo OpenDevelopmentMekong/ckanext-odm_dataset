@@ -18,6 +18,9 @@ import ckan.plugins.toolkit as toolkit
 import ckan.logic as logic
 from ckan.plugins.toolkit import Invalid
 
+import ckan.lib.navl.dictization_functions as df
+missing = df.missing
+
 log = logging.getLogger(__name__)
 
 def create_default_issue_dataset(pkg_info):
@@ -110,6 +113,28 @@ def get_localized_tags_string(tags_string):
 		return ''
 
 	return ','.join(translated_array)
+
+def if_empty_same_as_name_if_not_empty(key, data, errors, context):
+
+	if DEBUG:
+		log.info('if_empty_same_as_name_if_not_empty: %s', key)
+
+	value = data.get(key)
+	if not value or value is missing:
+		value_replacement = data[key[:-1] + ("name",)]
+		if value_replacement:
+			data[key] = value_replacement
+
+def if_empty_same_as_description_if_not_empty(key, data, errors, context):
+
+	if DEBUG:
+		log.info('if_empty_same_as_description_if_not_empty: %s', key)
+
+	value = data.get(key)
+	if not value or value is missing:
+		value_replacement = data[key[:-1] + ("description",)]
+		if value_replacement:
+			data[key] = value_replacement
 
 def convert_to_multilingual(data):
 	'''Converts strings to multilingual with the current language set'''

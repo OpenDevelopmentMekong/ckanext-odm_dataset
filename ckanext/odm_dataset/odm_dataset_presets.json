@@ -127,7 +127,7 @@
 			"form_snippet": "fluent_text_single_res_name.html",
 			"display_snippet": "fluent_name_fallback.html",
 			"error_snippet": "fluent_text_single.html",
-			"validators": "if_empty_same_as(name) odm_dataset_convert_to_multilingual fluent_text",
+			"validators": "odm_dataset_if_empty_same_as_name_if_not_empty odm_dataset_convert_to_multilingual fluent_text",
 			"output_validators": "fluent_core_translated_output"
 		}
 	},{
@@ -136,7 +136,7 @@
 			"form_snippet": "fluent_text_single_res_name_mandatory.html",
 			"display_snippet": "fluent_name_fallback.html",
 			"error_snippet": "fluent_text_single.html",
-			"validators": "if_empty_same_as(name) odm_dataset_convert_to_multilingual fluent_text odm_dataset_fluent_required",
+			"validators": "odm_dataset_if_empty_same_as_name_if_not_empty odm_dataset_convert_to_multilingual fluent_text odm_dataset_fluent_required",
 			"output_validators": "fluent_core_translated_output"
 		}
 	},{
@@ -187,7 +187,7 @@
 			"form_snippet": "fluent_markdown_single_res_description.html",
 			"display_snippet": "fluent_description_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
-			"validators": "if_empty_same_as(description) odm_dataset_convert_to_multilingual fluent_text",
+			"validators": "odm_dataset_if_empty_same_as_description_if_not_empty odm_dataset_convert_to_multilingual fluent_text",
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {
@@ -196,7 +196,7 @@
 			"form_snippet": "fluent_markdown_single_res_description_mandatory.html",
 			"display_snippet": "fluent_description_fallback.html",
 			"error_snippet": "fluent_markdown_single.html",
-			"validators": "if_empty_same_as(description) odm_dataset_convert_to_multilingual fluent_text odm_dataset_fluent_required",
+			"validators": "odm_dataset_if_empty_same_as_description_if_not_empty odm_dataset_convert_to_multilingual fluent_text odm_dataset_fluent_required",
 			"output_validators": "fluent_core_translated_output"
 		}
 	}, {
@@ -385,6 +385,13 @@
 			"display_snippet": "multiple_list.html",
       "validators": "scheming_required odm_dataset_sanitize_list",
 			"output_validators": "scheming_multiple_choice_output"
+    }
+  },{
+    "preset_name": "version_hidden",
+    "values": {
+      "form_snippet": "version_hidden.html",
+      "display_snippet": "text.html",
+      "validators": "scheming_required"
     }
   }]
 }
