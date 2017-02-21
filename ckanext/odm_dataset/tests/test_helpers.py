@@ -15,6 +15,10 @@ sys.modules['ckan.model'] = mock.MagicMock()
 sys.modules['ckan.logic'] = mock.MagicMock()
 sys.modules['ckan.plugins.toolkit'] = mock.MagicMock()
 sys.modules['genshi'] = mock.MagicMock()
+sys.modules['ckan.lib'] = mock.MagicMock()
+sys.modules['ckan.lib.navl'] = mock.MagicMock()
+sys.modules['ckan.lib.navl.dictization_functions'] = mock.MagicMock()
+
 import odm_dataset_helper
 log = logging.getLogger(__name__)
 
