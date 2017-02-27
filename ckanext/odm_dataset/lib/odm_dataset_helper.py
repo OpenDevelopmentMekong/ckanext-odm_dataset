@@ -78,7 +78,7 @@ def get_current_language():
 	'''Returns the current language code'''
 
 	if DEBUG:
-		log.info('get_current_language')
+		log.info('get_current_language %s', pylons.request.environ['CKAN_LANG'])
 
 	return pylons.request.environ['CKAN_LANG']
 
