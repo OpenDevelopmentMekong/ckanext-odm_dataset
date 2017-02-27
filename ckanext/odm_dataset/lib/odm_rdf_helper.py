@@ -618,7 +618,8 @@ def get_triples_by_dataset_type(subject, dataset_dict, dataset_type):
           (subject, SKOS.note, dataset_dict.get('odm_laws_notes')),
           (subject, PPROC.documentReference,
            dataset_dict.get('odm_reference_document'))
-      ]
+      ],
+      "agreement": []
   }
 
   return triples_by_dataset_type[dataset_type]
@@ -692,6 +693,7 @@ def get_namespaces_by_dataset_type(dataset_type):
           'soron': SORON,
           'dc': DC
       },
+      "agreement": {},
       "all": {
         'agls': AGLS,
         'bibo': BIBO,
@@ -735,6 +737,7 @@ def get_date_fields_by_dataset_type(dataset_type):
           ('marc21_260c', DCT.issued, None),
           ('odm_date_uploaded', SCHEMA.uploadDate, None)
       ],
+      "agreement": [],
       "laws_record": [
           ('odm_promulgation_date', BIBFRAME.legalDate, None)
       ]
