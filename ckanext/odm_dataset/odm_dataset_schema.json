@@ -279,10 +279,6 @@
 		"label": "URL",
 		"preset": "resource_url_upload"
 	}, {
-		"field_name": "name",
-		"label": "Name",
-		"preset": "text_hidden"
-	}, {
 		"field_name": "name_translated",
 		"preset": "fluent_core_res_name_translated_single",
 		"validate": "true",
@@ -297,8 +293,8 @@
 		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "eg. January 2011 Gold Prices"
 	}, {
-		"field_name": "description",
-		"label": "Description",
+		"field_name": "name",
+		"label": "Name",
 		"preset": "text_hidden"
 	}, {
 		"field_name": "description_translated",
@@ -314,6 +310,10 @@
 		},
 		"form_languages": ["en", "th", "km", "vi", "my"],
 		"form_placeholder": "Some useful notes about the data"
+	}, {
+		"field_name": "description",
+		"label": "Description",
+		"preset": "text_hidden"
 	}, {
 		"field_name": "format",
 		"label": "Format",
