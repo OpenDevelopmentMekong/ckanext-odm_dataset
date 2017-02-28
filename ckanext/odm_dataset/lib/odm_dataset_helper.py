@@ -78,26 +78,9 @@ def get_current_language():
 	'''Returns the current language code'''
 
 	if DEBUG:
-		log.info('get_current_language')
+		log.info('get_current_language %s', pylons.request.environ['CKAN_LANG'])
 
 	return pylons.request.environ['CKAN_LANG']
-
-def get_value_for_current_language(value):
-	'''Returns the corresponding value on the current language or the string if non-multilingual'''
-
-	if DEBUG:
-		log.info('get_value_for_current_language')
-
-	try:
-		value = json.loads(value);
-
-		if isinstance(value, basestring):
-			return value
-
-		return value[get_current_language()] or ""
-	except:
-
-		return ""
 
 def get_localized_tags_string(tags_string):
 	'''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''

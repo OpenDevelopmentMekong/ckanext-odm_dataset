@@ -74,13 +74,6 @@ class TestHelpers(unittest.TestCase):
 		lang = odm_dataset_helper.get_current_language()
 		assert lang == 'en'
 
-	def test_get_value_for_current_language(self):
-		"should return the corresponding value to the current language from a json object (multilingual)"
-		sys.modules['pylons'].request.environ = {'CKAN_LANG':'en'}
-
-		value = odm_dataset_helper.get_value_for_current_language('{"en": "en_text", "km": "km_text"}')
-		assert value == 'en_text'
-
 	def test_convert_to_multilingual(self):
 		"should return a multilingual compliant dict out of a non-multilingual compliant one"
 		sys.modules['pylons'].request.environ = {'CKAN_LANG':'en'}
