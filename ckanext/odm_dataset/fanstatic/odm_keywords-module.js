@@ -5,11 +5,13 @@ this.ckan.module('odm_keywords-module', function($, _) {
     },
 		initialize: function() {
 
-			console.log('odm_keywords-module init for '+ $(this.options.field_id));
+			console.log('odm_keywords-module init');
 
-			$('[id^='+this.options.field_id+']').select2({
-			  tags: true,
-			  tokenSeparators: [',', ' ']
+			$('[id^='+this.options.field_id+']').each(function(){
+				$(this).select2({
+				  tags: true,
+				  tokenSeparators: [',', ' ']
+				});
 			});
 
     }
