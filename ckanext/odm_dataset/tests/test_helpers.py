@@ -43,7 +43,7 @@ class TestHelpers(unittest.TestCase):
 	def test_convert_csv_to_array(self):
 		"should output a json string with an array of tags passed as csv string"
 		json_array_from_csv = odm_dataset_helper.convert_csv_to_array('tag1, tag2')
-		assert json_array_from_csv == '["tag1", "tag2"]'
+		assert json_array_from_csv == ["tag1", "tag2"]
 
 	def test_get_localized_tag_found_translation(self):
 		"should return the translated tag if translation found"
