@@ -1,5 +1,7 @@
 {% import 'macros/form.html' as form %}
 
+{% resource 'odm_dataset/odm_keywords-module.js' %}
+
 {%- call form.input_block(
     "field-{{ field.field_name }}",
     label=h.scheming_language_text(field.label),

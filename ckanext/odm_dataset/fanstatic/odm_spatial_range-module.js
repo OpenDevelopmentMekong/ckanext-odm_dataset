@@ -5,6 +5,8 @@ this.ckan.module('odm_spatial_range-module', function($, _) {
     },
 		initialize: function() {
 
+			console.log('odm_spatial_range-module init for '+ $(this.options.field_id));
+
 			var adaptFields = function(spatialRangeField){
 				var spatialRangeArray = spatialRangeField.val();
 				$('.odm_spatial_range-specific').each(function(){
