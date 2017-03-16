@@ -1,4 +1,4 @@
-this.ckan.module('odm_keywords_field', function($, _) {
+this.ckan.module('odm_keywords-module', function($, _) {
 	return {
     options: {
       id: ''
