@@ -11,7 +11,8 @@
     <input type="text" id="field-{{ field.field_name }}"
       name="{{ field.field_name }}"
 			placeholder="{{ field.form_placeholder }}"
-      data-module="autocomplete odm_keywords-module">
+      data-module="autocomplete odm_keywords-module"
+      value="{{ data.get(field.field_name)}}">
     </input>
     {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {%- endcall -%}
