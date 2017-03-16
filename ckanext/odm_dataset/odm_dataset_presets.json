@@ -393,5 +393,12 @@
       "display_snippet": "text.html",
       "validators": "scheming_required"
     }
+  },{
+    "preset_name": "odm_keywords",
+    "values": {
+      "form_snippet": "odm_keywords.html",
+      "display_snippet": "multiple_list.html",
+      "validators": "scheming_required"
+    }
   }]
 }
