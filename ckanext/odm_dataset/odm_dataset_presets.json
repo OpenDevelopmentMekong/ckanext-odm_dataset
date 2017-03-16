@@ -398,7 +398,7 @@
     "values": {
       "form_snippet": "odm_keywords.html",
       "display_snippet": "multiple_list.html",
-      "validators": "scheming_required odm_dataset_convert_csv_to_array",
+      "validators": "scheming_required",
 			"form_attrs": {
 				"data-module": "odm_keywords-module"
 			}
