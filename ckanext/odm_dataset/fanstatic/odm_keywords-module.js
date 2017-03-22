@@ -2,14 +2,13 @@ function initMultiSelect(tSel) {
   tSel.select2('destroy');
   tSel.select2({
       tags: true,
-      tokenSeparators: [',', ';'],
-      dropdownCss: {display:'none'}
+      tokenSeparators: [',', ';']
   });
 
   //manual add new values by Enter
   (function (t) {
       $('#s2id_' + t.attr('id')).on('keyup', function(e) {
-          if(e.keyCode === 13 || e.keyCode === 9){
+          if(e.keyCode === 13){
               //add new value
               t.val(t.val() + ',' + $('#s2id_' + t.attr('id') + ' input ').val());
 
