@@ -9,7 +9,7 @@ function initMultiSelect(tSel) {
   //manual add new values by Enter
   (function (t) {
       $('#s2id_' + t.attr('id')).on('keyup', function(e) {
-          if(e.keyCode === 13){
+          if(e.keyCode === 13 || e.keyCode === 9){
               //add new value
               t.val(t.val() + ',' + $('#s2id_' + t.attr('id') + ' input ').val());
 
