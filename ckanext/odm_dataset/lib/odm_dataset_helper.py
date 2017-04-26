@@ -55,6 +55,11 @@ def clean_taxonomy_tags(value):
 
 	return json.dumps(list(value))
 
+def convert_csv_to_array(value):
+	'''Splits elements of a csv string'''
+
+	return list(value.replace(" ", "").split(','))
+
 def get_localized_tag(tag):
 	'''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 

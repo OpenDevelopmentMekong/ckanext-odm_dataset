@@ -4,8 +4,8 @@ this.ckan.module('daterangepicker-module', function($, _) {
       id: ''
     },
 		initialize: function() {
+			console.log('daterangepicker-module init for '+ this.options.field_id);
       $('[id^='+this.options.field_id+']').each(function(){
-      	console.log('daterangepicker-module init for '+ $(this));
         $(this).daterangepicker({
           format: 'MM/DD/YYYY'
         });

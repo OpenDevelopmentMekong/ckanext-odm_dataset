@@ -4,8 +4,8 @@ this.ckan.module('datepicker-module', function($, _) {
       id: ''
     },
 		initialize: function() {
+			console.log('datepicker-module init for '+ this.options.field_id);
       $('[id^='+this.options.field_id+']').each(function(){
-      	console.log('datepicker-module init for '+ $(this));
         $(this).daterangepicker({
            singleDatePicker: true,
            showDropdowns: true,
