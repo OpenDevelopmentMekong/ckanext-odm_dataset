@@ -2,6 +2,8 @@
 
 {% resource 'odm_dataset/odm_keywords-module.js' %}
 
+{% set value = data.get(field.field_name) or "" %}
+
 {%- call form.input_block(
     "field-{{ field.field_name }}",
     label=h.scheming_language_text(field.label),
@@ -12,7 +14,7 @@
       name="{{ field.field_name }}"
 			placeholder="{{ field.form_placeholder }}"
       data-module="autocomplete odm_keywords-module"
-      value="{{ data.get(field.field_name)}}">
+      value="{{ value }}">
     </input>
     {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {%- endcall -%}
