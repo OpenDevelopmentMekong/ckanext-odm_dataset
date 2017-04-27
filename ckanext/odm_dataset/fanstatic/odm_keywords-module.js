@@ -16,7 +16,7 @@ function initMultiSelect(tSel) {
 				  },
 				  multiple: true,
 				  ajax: {
-				    url: 'https://solr.pp.opendevelopmentmekong.net/solr/collection1/select?q=*%3A*&fq=extras_odm_keywords%3A*&wt=json&indent=true&facet=true&facet.field=extras_odm_keywords',
+				    url: 'https://solr.opendevelopmentmekong.net/solr/collection1/select?q=*%3A*&fq=extras_odm_keywords%3A*&wt=json&indent=true&facet=true&facet.field=extras_odm_keywords',
 				    dataType: "json",
 				    data: function(term, page) {
 				      return {
