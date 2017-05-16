@@ -2,7 +2,7 @@
 
 {% block secondary_content %}
 
-	{% if dataset_type == 'dataset' %}
+	{% if dataset_type == 'dataset' and c.userobj %}
 		{% set missing_dataset = h.odm_dataset_validate_fields(pkg) %}
 		{% if missing_dataset["package"] or missing_dataset["resources"] %}
 			{% block inconsistency_disclaimer_dataset %}
