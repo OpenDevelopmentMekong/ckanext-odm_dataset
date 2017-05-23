@@ -307,17 +307,20 @@
 	},{
 		"preset_name": "odm_date_created",
 		"values": {
-			"form_snippet": "odm_date_created.html"
+			"form_snippet": "odm_date_created.html",
+			"output_validators": "odm_dataset_harmonize_date"
 		}
 	},{
 		"preset_name": "odm_date_uploaded",
 		"values": {
-			"form_snippet": "odm_date_uploaded.html"
+			"form_snippet": "odm_date_uploaded.html",
+			"output_validators": "odm_dataset_harmonize_date"
 		}
 	},{
 		"preset_name": "odm_date_modified",
 		"values": {
-			"form_snippet": "odm_date_modified.html"
+			"form_snippet": "odm_date_modified.html",
+			"output_validators": "odm_dataset_harmonize_date"
 		}
 	},{
 		"preset_name": "odm_language",
