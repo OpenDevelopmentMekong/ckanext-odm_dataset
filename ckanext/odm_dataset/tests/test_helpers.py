@@ -224,12 +224,17 @@ class TestHelpers(unittest.TestCase):
 			exception = True;
 		assert exception == False
 
-	def test_harmonize_date(self):
-		"should not throw an error and return the date in the wished format YYYY-mm-dd"
-		value = odm_dataset_helper.harmonize_date('08/05/2016')
-		assert value == '2016-08-05'
+	def test_date_to_iso(self):
+		"should not throw an error and return the date in the wished format YYYY-mm-ddT"
+		value = odm_dataset_helper.date_to_iso('08/05/2016')
+		assert value == '2016-08-05T00:00:00'
 
-	def test_harmonize_date_other_entry_format(self):
+	def test_date_to_iso_other_entry_format(self):
 		"should return same value if date does not comply to expected"
-		value = odm_dataset_helper.harmonize_date('08-05-2016')
+		value = odm_dataset_helper.date_to_iso('08-05-2016')
 		assert value == '08-05-2016'
+
+	def test_date_to_iso_entry_isoformat(self):
+		"should return same value if date does not comply to expected"
+		value = odm_dataset_helper.date_to_iso('2016-08-05T10:00:00')
+		assert value == '2016-08-05T10:00:00'

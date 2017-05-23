@@ -262,7 +262,7 @@ def get_current_time():
 
 	return datetime.datetime.utcnow().isoformat()
 
-def harmonize_date(date):
+def date_to_iso(date):
 	''' Converts the date format from MM/DD/YYYY to YYYY-mm-dd,
 			if the entered format does not correspond, it returns the same value'''
 
@@ -271,7 +271,7 @@ def harmonize_date(date):
 	except ValueError:
 		return date
 
-	return new_date.strftime('%Y-%m-%d')
+	return new_date.isoformat()
 
 def urlencode(value):
 

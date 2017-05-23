@@ -66,7 +66,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 			'odm_dataset_fluent_required': odm_dataset_helper.fluent_required,
 			'odm_dataset_record_does_not_exist_yet': odm_dataset_helper.record_does_not_exist_yet,
       'odm_dataset_convert_csv_to_array': odm_dataset_helper.convert_csv_to_array,
-      'odm_dataset_harmonize_date': odm_dataset_helper.harmonize_date
+      'odm_dataset_date_to_iso': odm_dataset_helper.date_to_iso
     }
 
   # ITemplateHelpers
