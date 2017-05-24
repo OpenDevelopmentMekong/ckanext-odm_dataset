@@ -262,14 +262,17 @@ def get_current_time():
 
 	return datetime.datetime.utcnow().isoformat()
 
-def date_to_iso(date):
+def date_to_iso(value):
 	''' Converts the date format from MM/DD/YYYY to YYYY-mm-dd,
 			if the entered format does not correspond, it returns the same value'''
 
+	if DEBUG:
+		log.info('date_to_iso: %s', value)
+
 	try:
-		new_date = datetime.datetime.strptime(date,"%m/%d/%Y")
+		new_date = datetime.datetime.strptime(value,"%m/%d/%Y")
 	except ValueError:
-		return date
+		return value
 
 	return new_date.isoformat()
 
