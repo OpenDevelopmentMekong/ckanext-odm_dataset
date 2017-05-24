@@ -5,8 +5,6 @@
 
 {% import 'macros/form.html' as form %}
 
-{% set iso_date = h.odm_dataset_date_to_iso(data.get(field.field_name, '')) %}
-
 {% block package_metadata_fields_odm_date %}
 {{ form.input(
 	field.field_name,
@@ -14,7 +12,7 @@
 	label=h.scheming_language_text(field.label),
 	id='field-'+field.field_name,
 	placeholder=h.scheming_language_text(field.form_placeholder),
-	value=iso_date,
+	value=data.get(field.field_name, ''),
 	error=errors.odm_date_created,
 	classes=['control-full'],
 	attrs={'data-module': 'datepicker-module','data-module-field_id':'field-'+field.field_name})
