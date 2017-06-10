@@ -25,7 +25,7 @@ log = logging.getLogger(__name__)
 class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
   '''OD Mekong dataset plugin.'''
 
-  plugins.implements(plugins.IValidators, inherit=True)
+  plugins.implements(plugins.IValidators)
   plugins.implements(plugins.IConfigurer)
   plugins.implements(plugins.ITemplateHelpers)
   plugins.implements(plugins.IRoutes, inherit=True)
@@ -60,11 +60,11 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_dataset_urlencode': odm_dataset_helper.urlencode,
       'odm_dataset_clean_taxonomy_tags': odm_dataset_helper.clean_taxonomy_tags,
       'odm_dataset_sanitize_list': odm_dataset_helper.sanitize_list,
-			'odm_dataset_convert_to_multilingual': odm_dataset_helper.convert_to_multilingual,
-			'odm_dataset_if_empty_same_as_name_if_not_empty': odm_dataset_helper.if_empty_same_as_name_if_not_empty,
-			'odm_dataset_if_empty_same_as_description_if_not_empty': odm_dataset_helper.if_empty_same_as_description_if_not_empty,
-			'odm_dataset_fluent_required': odm_dataset_helper.fluent_required,
-			'odm_dataset_record_does_not_exist_yet': odm_dataset_helper.record_does_not_exist_yet,
+      'odm_dataset_convert_to_multilingual': odm_dataset_helper.convert_to_multilingual,
+      'odm_dataset_if_empty_same_as_name_if_not_empty': odm_dataset_helper.if_empty_same_as_name_if_not_empty,
+      'odm_dataset_if_empty_same_as_description_if_not_empty': odm_dataset_helper.if_empty_same_as_description_if_not_empty,
+      'odm_dataset_fluent_required': odm_dataset_helper.fluent_required,
+      'odm_dataset_record_does_not_exist_yet': odm_dataset_helper.record_does_not_exist_yet,
       'odm_dataset_convert_csv_to_array': odm_dataset_helper.convert_csv_to_array,
       'odm_dataset_date_to_iso': odm_dataset_helper.date_to_iso
     }
