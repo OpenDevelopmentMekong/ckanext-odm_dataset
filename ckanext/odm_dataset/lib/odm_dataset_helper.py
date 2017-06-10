@@ -266,17 +266,15 @@ def date_to_iso(value):
 	''' Converts the date format from MM/DD/YYYY to YYYY-mm-dd,
 			if the entered format does not correspond, it returns the same value'''
 
-	# if DEBUG:
-	# 	log.info('date_to_iso: %s', value)
-	# 
-	# try:
-	# 	new_date = datetime.datetime.strptime(value,"%m/%d/%Y")
-	# except ValueError:
-	# 	return value
-	# 
-	# return new_date.isoformat()
-	
-	return "01/01/2001"
+	if DEBUG:
+		log.info('date_to_iso: %s', value)
+
+	try:
+		new_date = datetime.datetime.strptime(value,"%m/%d/%Y")
+	except ValueError:
+		return value
+
+	return new_date.isoformat()
 
 def urlencode(value):
 
