@@ -217,7 +217,7 @@
 		"preset_name": "odm_date",
 		"values": {
 			"form_snippet": "odm_date.html",
-			"validators": "scheming_required",
+			"validators": "scheming_required odm_dataset_date_to_iso",
 			"output_validators": "odm_dataset_date_to_iso",
 			"form_attrs": {
 				"data-module": "datepicker-module"
