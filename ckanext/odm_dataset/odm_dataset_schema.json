@@ -119,8 +119,7 @@
 		"form_placeholder": "Date the dataset was first Published by its creator.",
 		"validate": "true",
 		"required": "true",
-		"preset": "odm_date",
-		"output_validators": "odm_dataset_date_to_iso"
+		"preset": "odm_date"
 	}, {
 		"field_name": "odm_date_uploaded",
 		"label": "Date uploaded",
