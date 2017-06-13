@@ -296,7 +296,7 @@ def datetime_to_date(value):
 	try:
 		date = dateutil.parser.parse(value)
 	except:
-		return valuea
+		return value
 
 	return date.strftime("%Y-%m-%d")
 
