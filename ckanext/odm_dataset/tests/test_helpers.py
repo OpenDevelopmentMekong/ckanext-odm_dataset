@@ -249,6 +249,11 @@ class TestHelpers(unittest.TestCase):
 		value = odm_dataset_helper.date_to_iso(None)
 		assert value == None
 
+	def test_date_to_iso_entry_isoformat_yy(self):
+		"should return same value if date is None"
+		value = odm_dataset_helper.date_to_iso('06/12/08')
+		assert value == '2008-06-12T00:00:00'
+
 	def test_date_iso_to_years_iso(self):
 		"should return YYYY-mm-dd if value is in iso format"
 		value = odm_dataset_helper.datetime_to_date('2016-08-05T10:00:00')

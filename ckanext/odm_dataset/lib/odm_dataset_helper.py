@@ -270,11 +270,19 @@ def date_to_iso(value):
 	if DEBUG:
 		log.info('date_to_iso: %s', value)
 
+	could_not_parse_mdY = False
 	try:
 		new_date = datetime.datetime.strptime(value,"%m/%d/%Y")
-	except ValueError:
-		return value
-	except TypeError:
+	except:
+		could_not_parse_mdY = True
+
+	could_not_parse_mdy = False
+	try:
+		new_date = datetime.datetime.strptime(value,"%m/%d/%y")
+	except:
+		could_not_parse_mdy = True
+
+	if could_not_parse_mdY and could_not_parse_mdy:
 		return value
 
 	return new_date.isoformat()
