@@ -10,7 +10,6 @@ import logging
 import urlparse
 import genshi
 import datetime
-import dateutil.parser
 import re
 import uuid
 import os
