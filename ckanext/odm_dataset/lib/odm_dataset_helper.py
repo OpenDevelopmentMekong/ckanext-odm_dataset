@@ -295,12 +295,8 @@ def datetime_to_date(value):
 
 	try:
 		date = dateutil.parser.parse(value)
-	except ValueError:
-		return value
-	except TypeError:
-		return value
-	except AttributeError:
-		return value
+	except:
+		return valuea
 
 	return date.strftime("%Y-%m-%d")
 
