@@ -273,6 +273,8 @@ def date_to_iso(value):
 		new_date = datetime.datetime.strptime(value,"%m/%d/%Y")
 	except ValueError:
 		return value
+	except TypeError:
+		return value
 
 	return new_date.isoformat()
 

@@ -243,3 +243,8 @@ class TestHelpers(unittest.TestCase):
 		"should return same value if date does not comply to expected"
 		value = odm_dataset_helper.date_to_iso('2016-08-05T10:00:00')
 		assert value == '2016-08-05T10:00:00'
+
+	def test_date_to_iso_entry_isoformat_none(self):
+		"should return same value if date is None"
+		value = odm_dataset_helper.date_to_iso(None)
+		assert value == None
