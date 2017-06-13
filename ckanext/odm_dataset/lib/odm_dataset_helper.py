@@ -287,19 +287,6 @@ def date_to_iso(value):
 
 	return new_date.isoformat()
 
-def datetime_to_date(value):
-	''' Formats a datetime and outputs only date '''
-
-	if DEBUG:
-		log.info('datetime_to_date: %s', value)
-
-	try:
-		date = dateutil.parser.parse(value)
-	except:
-		return value
-
-	return date.strftime("%Y-%m-%d")
-
 def urlencode(value):
 
 	if DEBUG:

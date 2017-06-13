@@ -310,7 +310,6 @@
 		"preset_name": "odm_date_created",
 		"values": {
 			"form_snippet": "odm_date_created.html",
-			"display_snippet": "odm_iso_date.html",
 			"validators": "scheming_required",
 			"output_validators": "odm_dataset_date_to_iso"
 		}
