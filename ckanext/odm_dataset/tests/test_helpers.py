@@ -248,3 +248,23 @@ class TestHelpers(unittest.TestCase):
 		"should return same value if date is None"
 		value = odm_dataset_helper.date_to_iso(None)
 		assert value == None
+
+	def test_date_iso_to_years_iso(self):
+		"should return YYYY-mm-dd if value is in iso format"
+		value = odm_dataset_helper.datetime_to_date('2016-08-05T10:00:00')
+		assert value == '2016-08-05'
+
+	def test_date_iso_to_years_not_iso(self):
+		"should return same value if date is not iso"
+		value = odm_dataset_helper.datetime_to_date('05/21/2016')
+		assert value == '2016-05-21'
+
+	def test_date_iso_to_years_not_iso_2(self):
+		"should return same value if date is not iso"
+		value = odm_dataset_helper.datetime_to_date('21/05/2016')
+		assert value == '2016-05-21'
+
+	def test_date_iso_to_years_none(self):
+		"should return same value if date is None"
+		value = odm_dataset_helper.datetime_to_date(None)
+		assert value == None

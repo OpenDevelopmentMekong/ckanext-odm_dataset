@@ -10,6 +10,7 @@ import logging
 import urlparse
 import genshi
 import datetime
+import dateutil.parser
 import re
 import uuid
 import os
@@ -277,6 +278,23 @@ def date_to_iso(value):
 		return value
 
 	return new_date.isoformat()
+
+def datetime_to_date(value):
+	''' Formats a datetime and outputs only date '''
+
+	if DEBUG:
+		log.info('datetime_to_date: %s', value)
+
+	try:
+		date = dateutil.parser.parse(value)
+	except ValueError:
+		return value
+	except TypeError:
+		return value
+	except AttributeError:
+		return value
+
+	return date.strftime("%Y-%m-%d")
 
 def urlencode(value):
 
