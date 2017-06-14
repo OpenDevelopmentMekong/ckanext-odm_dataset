@@ -218,6 +218,7 @@
 		"values": {
 			"form_snippet": "odm_date.html",
 			"validators": "scheming_required",
+			"output_validators": "odm_dataset_date_to_iso",
 			"form_attrs": {
 				"data-module": "datepicker-module"
 			}
@@ -227,6 +228,7 @@
 		"values": {
 			"form_snippet": "odm_date_range.html",
 			"validators": "scheming_required",
+			"output_validators": "odm_dataset_date_range_to_iso",
 			"form_attrs": {
 				"data-module": "daterangepicker-module"
 			}
@@ -307,17 +309,23 @@
 	},{
 		"preset_name": "odm_date_created",
 		"values": {
-			"form_snippet": "odm_date_created.html"
+			"form_snippet": "odm_date_created.html",
+			"validators": "scheming_required",
+			"output_validators": "odm_dataset_date_to_iso"
 		}
 	},{
 		"preset_name": "odm_date_uploaded",
 		"values": {
-			"form_snippet": "odm_date_uploaded.html"
+			"form_snippet": "odm_date_uploaded.html",
+			"validators": "scheming_required",
+			"output_validators": "odm_dataset_date_to_iso"
 		}
 	},{
 		"preset_name": "odm_date_modified",
 		"values": {
-			"form_snippet": "odm_date_modified.html"
+			"form_snippet": "odm_date_modified.html",
+			"validators": "scheming_required",
+			"output_validators": "odm_dataset_date_to_iso"
 		}
 	},{
 		"preset_name": "odm_language",

@@ -10,6 +10,7 @@ import logging
 import urlparse
 import genshi
 import datetime
+from dateutil import parser
 import re
 import uuid
 import os
@@ -258,9 +259,40 @@ def retrieve_taxonomy_from_tags(tags_array):
 
 	return taxonomy
 
-def get_current_time():
+def get_current_date():
 
-	return datetime.datetime.utcnow().isoformat()
+	return datetime.datetime.utcnow().strftime("%Y-%m-%d")
+
+def date_to_iso(value):
+	''' Converts the date format from MM/DD/YYYY to YYYY-mm-dd,
+			if the entered format does not correspond, it returns the same value'''
+
+	if DEBUG:
+		log.info('date_to_iso: %s', value)
+
+	try:
+		date = parser.parse(value)
+	except:
+		return value
+
+	return date.strftime("%Y-%m-%d")
+
+def date_range_to_iso(value):
+	''' Converts the date format from MM/DD/YYYY - MM/DD/YYYY to YYYY-mm-dd - YYYY-mm-dd,
+			if the entered format does not correspond, it returns the same value'''
+
+	if DEBUG:
+		log.info('date_range_to_iso: %s', value)
+
+	pieces = value.split(" - ")
+	if len(pieces) != 2:
+		return value
+
+	pieces_iso = []
+	for piece in pieces:
+		pieces_iso.append(date_to_iso(piece))
+
+	return " - ".join(pieces_iso)
 
 def urlencode(value):
 
