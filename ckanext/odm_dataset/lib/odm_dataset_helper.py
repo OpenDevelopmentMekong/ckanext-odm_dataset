@@ -307,4 +307,16 @@ def get_dataset_notes(dataset_id, truncate):
 
 	return notes
 
+def remove_topics(value):
+
+	topics = toolkit.get_action('tag_list')(data_dict={"vocabulary_id":"taxonomy"})
+	lowercase_topics = [x.lower() for x in topics]
+	tags = value.split(",")
+	clean_tags = []
+	for tag in tags:
+		if tag.lower() not in lowercase_topics:
+			clean_tags.append(tag)
+
+	return ",".join(clean_tags)
+
 session = {}
