@@ -225,14 +225,24 @@ class TestHelpers(unittest.TestCase):
 		assert exception == False
 
 	def test_date_to_iso(self):
-		"should not throw an error and return the date in the wished format YYYY-mm-ddTH:M:S"
+		"should not throw an error and return the date in the wished format YYYY-mm-dd"
 		value = odm_dataset_helper.date_to_iso('08/05/2016')
-		assert value == '2016-08-05T00:00:00'
+		assert value == '2016-08-05'
 
 	def test_date_to_iso_2(self):
-		"should not throw an error and return the date in the wished format YYYY-mm-ddTH:M:S"
+		"should not throw an error and return the date in the wished format YYYY-mm-dd"
 		value = odm_dataset_helper.date_to_iso('06/12/2008')
-		assert value == '2008-06-12T00:00:00'
+		assert value == '2008-06-12'
+
+	def test_date_to_iso_3(self):
+		"should not throw an error and return the date in the wished format YYYY-mm-dd"
+		value = odm_dataset_helper.date_to_iso('01/12/2016')
+		assert value == '2016-01-12'
+
+	def test_date_to_iso_4(self):
+		"should not throw an error and return the date in the wished format YYYY-mm-dd"
+		value = odm_dataset_helper.date_to_iso('04/26/2016')
+		assert value == '2016-04-26'
 
 	def test_date_to_iso_other_entry_format(self):
 		"should return same value if date does not comply to expected"
@@ -241,8 +251,8 @@ class TestHelpers(unittest.TestCase):
 
 	def test_date_to_iso_entry_isoformat(self):
 		"should return same value if date does not comply to expected"
-		value = odm_dataset_helper.date_to_iso('2016-08-05T10:00:00')
-		assert value == '2016-08-05T10:00:00'
+		value = odm_dataset_helper.date_to_iso('2016-08-05')
+		assert value == '2016-08-05'
 
 	def test_date_to_iso_entry_isoformat_none(self):
 		"should return same value if date is None"
@@ -252,4 +262,19 @@ class TestHelpers(unittest.TestCase):
 	def test_date_to_iso_entry_isoformat_yy(self):
 		"should return same value if date is None"
 		value = odm_dataset_helper.date_to_iso('06/12/08')
-		assert value == '2008-06-12T00:00:00'
+		assert value == '2008-06-12'
+
+	def test_date_range_to_iso(self):
+		"should not throw an error and return the date in the wished format YYYY-mm-dd - YYYY-mm-dd"
+		value = odm_dataset_helper.date_range_to_iso('06/12/2008 - 08/14/2018')
+		assert value == '2008-06-12 - 2018-08-14'
+
+	def test_date_range_to_iso_2(self):
+		"should not throw an error and return the date in the wished format YYYY-mm-dd - YYYY-mm-dd"
+		value = odm_dataset_helper.date_range_to_iso('01/01/2001 - 12/25/2018')
+		assert value == '2001-01-01 - 2018-12-25'
+
+	def test_date_range_to_iso_other_format(self):
+		"should not throw an error and return the same date range as inputted"
+		value = odm_dataset_helper.date_range_to_iso('2001-01-01 - 2018-12-25')
+		assert value == '2001-01-01 - 2018-12-25'

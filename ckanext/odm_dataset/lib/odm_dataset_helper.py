@@ -284,7 +284,24 @@ def date_to_iso(value):
 	if could_not_parse_mdY and could_not_parse_mdy:
 		return value
 
-	return new_date.isoformat()
+	return new_date.strftime("%Y-%m-%d")
+
+def date_range_to_iso(value):
+	''' Converts the date format from MM/DD/YYYY - MM/DD/YYYY to YYYY-mm-dd - YYYY-mm-dd,
+			if the entered format does not correspond, it returns the same value'''
+
+	if DEBUG:
+		log.info('date_range_to_iso: %s', value)
+
+	pieces = value.split(" - ")
+	if len(pieces) != 2:
+		return value
+
+	pieces_iso = []
+	for piece in pieces:
+		pieces_iso.append(date_to_iso(piece))
+
+	return " - ".join(pieces_iso)
 
 def urlencode(value):
 
