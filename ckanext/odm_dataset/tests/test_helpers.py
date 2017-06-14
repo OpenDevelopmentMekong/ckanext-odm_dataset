@@ -274,6 +274,11 @@ class TestHelpers(unittest.TestCase):
 		value = odm_dataset_helper.date_range_to_iso('01/01/2001 - 12/25/2018')
 		assert value == '2001-01-01 - 2018-12-25'
 
+	def test_date_range_to_iso_3(self):
+		"should not throw an error and return the date in the wished format YYYY-mm-dd - YYYY-mm-dd"
+		value = odm_dataset_helper.date_range_to_iso('01/01/1930 - 07/12/2009')
+		assert value == '1930-01-01 - 2009-07-12'
+
 	def test_date_range_to_iso_other_format(self):
 		"should not throw an error and return the same date range as inputted"
 		value = odm_dataset_helper.date_range_to_iso('2001-01-01 - 2018-12-25')
