@@ -398,7 +398,7 @@
     "values": {
       "form_snippet": "odm_keywords.html",
       "display_snippet": "text.html",
-      "validators": "scheming_required",
+      "validators": "scheming_required odm_dataset_remove_topics",
 			"form_attrs": {
 				"data-module": "odm_keywords-module"
 			}
