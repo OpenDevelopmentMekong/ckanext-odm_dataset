@@ -258,9 +258,9 @@ def retrieve_taxonomy_from_tags(tags_array):
 
 	return taxonomy
 
-def get_current_time():
+def get_current_date():
 
-	return datetime.datetime.utcnow().isoformat()
+	return datetime.datetime.utcnow().strftime("%Y-%m-%d")
 
 def date_to_iso(value):
 	''' Converts the date format from MM/DD/YYYY to YYYY-mm-dd,
