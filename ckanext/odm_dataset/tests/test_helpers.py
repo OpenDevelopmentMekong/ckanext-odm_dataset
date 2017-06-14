@@ -244,6 +244,11 @@ class TestHelpers(unittest.TestCase):
 		value = odm_dataset_helper.date_to_iso('04/26/2016')
 		assert value == '2016-04-26'
 
+	def test_date_to_iso_5(self):
+		"should not throw an error and return the date in the wished format YYYY-mm-dd"
+		value = odm_dataset_helper.date_to_iso('2017-06-13T15:55:32.361724')
+		assert value == '2017-06-13'
+
 	def test_date_to_iso_other_entry_format(self):
 		"should return same value if date does not comply to expected"
 		value = odm_dataset_helper.date_to_iso('08-05-2016')
