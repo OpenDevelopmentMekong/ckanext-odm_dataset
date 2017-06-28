@@ -67,7 +67,7 @@ function initMultiSelect(tSel) {
     }
   });
 
-	tSel.on("select2:select", function (evt) {
+	tSel.on("select2-selecting", function (evt) {
 		console.log(evt);
 	  var element = evt.params.data.element;
 	  var $element = $(element);
