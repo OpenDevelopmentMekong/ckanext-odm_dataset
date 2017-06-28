@@ -67,7 +67,7 @@ function initMultiSelect(tSel) {
     }
   });
 
-	var handleKeyEvent = function(e,t){
+	function handleKeyEvent(e,t){
 		if(e.keyCode === 13 || e.keyCode === 188){
 
 			var newValue = $('#s2id_' + t.attr('id') + ' input ').val();
@@ -92,18 +92,17 @@ function initMultiSelect(tSel) {
 		}
 	}
 
-  //manual add new values by Enter
   (function (t) {
     $('#s2id_' + t.attr('id')).on('keydown', function(e) {
 			console.log("keydown: " + e.keyCode);
-      handleKeyEvent();
+      handleKeyEvent(e,t);
     });
   })(tSel);
 
 	(function (t) {
     $('#s2id_' + t.attr('id')).on('keyup', function(e) {
 			console.log("keyup: " + e.keyCode);
-      handleKeyEvent();
+      handleKeyEvent(e,t);
     });
   })(tSel);
 
