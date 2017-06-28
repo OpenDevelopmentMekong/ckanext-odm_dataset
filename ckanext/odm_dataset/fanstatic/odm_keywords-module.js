@@ -3,7 +3,6 @@ function initMultiSelect(tSel) {
 	tSel.select2('destroy');
   tSel.select2({
       tags: true,
-      tokenSeparators: [',', ';'],
 			createSearchChoice: function(term, data) {
 		    if ($(data).filter(function() {
 		      return this.text.localeCompare(term) === 0;
