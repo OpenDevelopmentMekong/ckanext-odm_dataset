@@ -74,9 +74,12 @@ function initMultiSelect(tSel) {
 
 				var newValue = $('#s2id_' + t.attr('id') + ' input ').val();
 				var enteredTaxonomies = $('#field-taxonomy').val();
+				var enteredTaxonomiesLowerCase = numbers.map(function(x) {
+				   return x.toLowerCase();
+				});
 
-				if (enteredTaxonomies.indexOf(newValue) > -1){
-					alerts("keyword " +  newValue + " has been already entered on the topic field.");
+				if (enteredTaxonomiesLowerCase.indexOf(newValue) > -1){
+					alert("keyword " +  newValue + " has been already entered on the topic field.");
 				}else{
 					t.val(t.val() + ',' + newValue);
 
