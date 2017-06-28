@@ -3,7 +3,7 @@ function initMultiSelect(tSel) {
 	tSel.select2('destroy');
   tSel.select2({
       tags: true,
-      tokenSeparators: null,
+      tokenSeparators: [",",";"],
 			maximumSelectionLength: 5,
 			createSearchChoice: function(term, data) {
 		    if ($(data).filter(function() {
@@ -78,13 +78,9 @@ function initMultiSelect(tSel) {
 
 		if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
 			alert("keyword " +  newValue + " has been already entered on the topic field.");
-		}else{
-
-		  newValue.detach();
-		  $(this).append(newValue);
-		  $(this).trigger("change");
-
+			evt.stopPropagation();
 		}
+
 	});
 
 }
