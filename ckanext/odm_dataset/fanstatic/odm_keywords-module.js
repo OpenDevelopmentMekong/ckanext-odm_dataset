@@ -4,6 +4,7 @@ function initMultiSelect(tSel) {
   tSel.select2({
       tags: true,
       tokenSeparators: null,
+			maximumSelectionLength: 5,
 			createSearchChoice: function(term, data) {
 		    if ($(data).filter(function() {
 		      return this.text.localeCompare(term) === 0;
@@ -66,11 +67,14 @@ function initMultiSelect(tSel) {
     }
   });
 
+	tSel.on("select2:select", function (evt) {
+		console.log(evt.data);
+	});
+
   //manual add new values by Enter
   (function (t) {
     $('#s2id_' + t.attr('id')).on('keyup', function(e) {
       if(e.keyCode === 13){
-        //add new value
 
 				var newValue = $('#s2id_' + t.attr('id') + ' input ').val();
 				var enteredTaxonomies = $('#field-taxonomy').val();
