@@ -67,34 +67,47 @@ function initMultiSelect(tSel) {
     }
   });
 
+	var handleKeyEvent = function(e,t){
+		if(e.keyCode === 13 || e.keyCode === 188){
+
+			var newValue = $('#s2id_' + t.attr('id') + ' input ').val();
+			var enteredTaxonomies = $('#field-taxonomy').val();
+			var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
+				 return term.toLowerCase();
+			});
+
+			if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
+				alert("keyword " +  newValue + " has been already entered on the topic field.");
+			}else{
+				t.val(t.val() + ',' + newValue);
+
+				//refresh select2
+				initMultiSelect(t);
+
+				//get focus to select2 last position
+				t.select2("close");
+				t.select2("open");
+			}
+
+		}
+	}
+
   //manual add new values by Enter
   (function (t) {
     $('#s2id_' + t.attr('id')).on('keydown', function(e) {
-			console.log(e.keyCode);
-      if(e.keyCode === 13 || e.keyCode === 188){
-
-				var newValue = $('#s2id_' + t.attr('id') + ' input ').val();
-				var enteredTaxonomies = $('#field-taxonomy').val();
-				var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
-				   return term.toLowerCase();
-				});
-
-				if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
-					alert("keyword " +  newValue + " has been already entered on the topic field.");
-				}else{
-					t.val(t.val() + ',' + newValue);
-
-	        //refresh select2
-	        initMultiSelect(t);
-
-	        //get focus to select2 last position
-	        t.select2("close");
-	        t.select2("open");
-				}
-
-      }
+			console.log("keydown: " + e.keyCode);
+      handleKeyEvent();
     });
   })(tSel);
+
+	(function (t) {
+    $('#s2id_' + t.attr('id')).on('keyup', function(e) {
+			console.log("keyup: " + e.keyCode);
+      handleKeyEvent();
+    });
+  })(tSel);
+
+
 }
 this.ckan.module('odm_keywords-module', function($, _) {
 	return {
