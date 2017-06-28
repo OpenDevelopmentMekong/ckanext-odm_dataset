@@ -76,7 +76,7 @@ function initMultiSelect(tSel) {
 				var enteredTaxonomies = $('#field-taxonomy').val();
 
 				if (enteredTaxonomies.indexOf(newValue) > -1){
-					alerts("keyword " +  newValue # " has been already entered on the topic field.");
+					alerts("keyword " +  newValue + " has been already entered on the topic field.");
 				}else{
 					t.val(t.val() + ',' + newValue);
 
