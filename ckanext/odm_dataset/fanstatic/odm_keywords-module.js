@@ -3,6 +3,7 @@ function initMultiSelect(tSel) {
 	tSel.select2('destroy');
   tSel.select2({
       tags: true,
+      tokenSeparators: null,
 			createSearchChoice: function(term, data) {
 		    if ($(data).filter(function() {
 		      return this.text.localeCompare(term) === 0;
@@ -68,7 +69,7 @@ function initMultiSelect(tSel) {
   //manual add new values by Enter
   (function (t) {
     $('#s2id_' + t.attr('id')).on('keyup', function(e) {
-      if(e.keyCode === 13 || e.keyCode === 188 || e.keyCode === 186){
+      if(e.keyCode === 13){
         //add new value
 
 				var newValue = $('#s2id_' + t.attr('id') + ' input ').val();
