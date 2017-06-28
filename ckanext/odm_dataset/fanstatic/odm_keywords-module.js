@@ -3,7 +3,8 @@ function initMultiSelect(tSel) {
 	tSel.select2('destroy');
   tSel.select2({
       tags: true,
-      tokenSeparators: [',', ';'],
+      tokenSeparators: [",",";"],
+			maximumSelectionLength: 5,
 			createSearchChoice: function(term, data) {
 		    if ($(data).filter(function() {
 		      return this.text.localeCompare(term) === 0;
@@ -66,22 +67,22 @@ function initMultiSelect(tSel) {
     }
   });
 
-  //manual add new values by Enter
-  (function (t) {
-    $('#s2id_' + t.attr('id')).on('keyup', function(e) {
-      if(e.keyCode === 13){
-        //add new value
-        t.val(t.val() + ',' + $('#s2id_' + t.attr('id') + ' input ').val());
+	tSel.on("select2-selecting", function (evt) {
 
-        //refresh select2
-        initMultiSelect(t);
+	  var newValue = evt.val;
 
-        //get focus to select2 last position
-        t.select2("close");
-        t.select2("open");
-      }
-    });
-  })(tSel);
+		var enteredTaxonomies = $('#field-taxonomy').val();
+		var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
+			 return term.toLowerCase();
+		});
+
+		if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
+			alert("keyword " +  newValue + " has been already entered on the topic field.");
+			evt.preventDefault();
+		}
+
+	});
+
 }
 this.ckan.module('odm_keywords-module', function($, _) {
 	return {
