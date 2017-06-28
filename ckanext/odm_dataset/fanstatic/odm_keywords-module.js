@@ -67,14 +67,10 @@ function initMultiSelect(tSel) {
     }
   });
 
-	tSel.on("select2:select", function (evt) {
-		console.log(evt.data);
-	});
-
   //manual add new values by Enter
   (function (t) {
     $('#s2id_' + t.attr('id')).on('keyup', function(e) {
-      if(e.keyCode === 13){
+      if(e.keyCode === 13 || e.keyCode === 188){
 
 				var newValue = $('#s2id_' + t.attr('id') + ' input ').val();
 				var enteredTaxonomies = $('#field-taxonomy').val();
