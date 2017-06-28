@@ -71,14 +71,23 @@ function initMultiSelect(tSel) {
     $('#s2id_' + t.attr('id')).on('keyup', function(e) {
       if(e.keyCode === 13){
         //add new value
-        t.val(t.val() + ',' + $('#s2id_' + t.attr('id') + ' input ').val());
 
-        //refresh select2
-        initMultiSelect(t);
+				var newValue = $('#s2id_' + t.attr('id') + ' input ').val();
+				var enteredTaxonomies = $('#field-taxonomy').val();
 
-        //get focus to select2 last position
-        t.select2("close");
-        t.select2("open");
+				if (enteredTaxonomies.indexOf(newValue) > -1){
+					alerts("keyword " +  newValue # " has been already entered on the topic field.");
+				}else{
+					t.val(t.val() + ',' + newValue);
+
+	        //refresh select2
+	        initMultiSelect(t);
+
+	        //get focus to select2 last position
+	        t.select2("close");
+	        t.select2("open");
+				}
+
       }
     });
   })(tSel);
