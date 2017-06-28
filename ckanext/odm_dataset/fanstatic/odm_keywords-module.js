@@ -78,7 +78,7 @@ function initMultiSelect(tSel) {
 
 		if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
 			alert("keyword " +  newValue + " has been already entered on the topic field.");
-			evt.stopPropagation();
+			evt.preventDefault();
 		}
 
 	});
