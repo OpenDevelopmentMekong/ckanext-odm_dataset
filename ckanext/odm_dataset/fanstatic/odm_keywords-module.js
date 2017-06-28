@@ -68,21 +68,20 @@ function initMultiSelect(tSel) {
   });
 
 	tSel.on("select2-selecting", function (evt) {
-		console.log(evt);
-	  var element = evt.params.data.element;
-	  var $element = $(element);
+
+	  var newValue = evt.val;
 
 		var enteredTaxonomies = $('#field-taxonomy').val();
 		var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
 			 return term.toLowerCase();
 		});
 
-		if (enteredTaxonomiesLowerCase.indexOf($element.toLowerCase()) > -1){
-			alert("keyword " +  $element + " has been already entered on the topic field.");
+		if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
+			alert("keyword " +  newValue + " has been already entered on the topic field.");
 		}else{
 
-		  $element.detach();
-		  $(this).append($element);
+		  newValue.detach();
+		  $(this).append(newValue);
 		  $(this).trigger("change");
 
 		}
