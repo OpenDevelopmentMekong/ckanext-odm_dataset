@@ -3,10 +3,11 @@
 {% block secondary_content %}
 	
 	{% if not c.userobj %}
-	<h1>{{pkg}}</h1>
+
 	{% set destination = h.odm_dataset_detail_page_url(pkg) %}
 	<script type="text/javascript">
-			window.location.href = "{{ destination }}"
+			//window.location.href = "{{ destination }}"
+			alert({{ destination }})
 	</script>
 	{% endif %}
 
