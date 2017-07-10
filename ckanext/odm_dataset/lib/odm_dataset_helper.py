@@ -325,6 +325,6 @@ def detail_page_url(pkg):
 	#config_var_name = 'wp.dataset_detail_page_'+organization.name
 	#detail_page_url = config.get('wp.dataset_detail_page_'+organization.name)
 	#return detail_page_url + "?id=" + pkg.name
-	return pkg
+	return pkg.organization
 	
 session = {}
