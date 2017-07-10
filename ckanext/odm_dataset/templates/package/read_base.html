@@ -1,6 +1,16 @@
 {% ckan_extends %}
 
 {% block secondary_content %}
+	
+	{% if not c.userobj %}
+
+	{% set destination = h.odm_dataset_detail_page_url(pkg) %}
+		{% if destination %}
+			<script type="text/javascript">
+				window.location.href = "{{ destination }}"
+			</script>
+		{% endif %}
+	{% endif %}
 
 	{% if dataset_type == 'dataset' and c.userobj %}
 		{% set missing_dataset = h.odm_dataset_validate_fields(pkg) %}
