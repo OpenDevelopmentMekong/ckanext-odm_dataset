@@ -318,5 +318,11 @@ def remove_topics(value):
 			clean_tags.append(tag)
 
 	return ",".join(clean_tags)
-
+	
+def detail_page_url(pkg):
+	
+	organization = pkg.owner_org
+	detail_page_url = config.get('wp.dataset_detail_page_'+organization)
+	return detail_page_url + "?id=" + pkg.name
+	
 session = {}

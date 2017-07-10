@@ -3,7 +3,8 @@
 {% block secondary_content %}
 	
 	{% if not c.userobj %}
-	{% set destination = "http://example2.com" %}
+	<h1>{{pkg}}</h1>
+	{% set destination = "h.odm_dataset_detail_page_url(pkg)" %}
 	<script type="text/javascript">
 			window.location.href = "{{ destination }}"
 	</script>
