@@ -2,6 +2,16 @@
 
 {% block secondary_content %}
 
+	<script type="text/javascript">
+	    console.log("blablabla")
+	</script>
+	{% if not c.userobj %}
+	<h1>redirect</h1>
+	<script type="text/javascript">
+	    window.location.href = "http://example.com"
+	</script>
+	{% endif %}
+
 	{% if dataset_type == 'dataset' and c.userobj %}
 		{% set missing_dataset = h.odm_dataset_validate_fields(pkg) %}
 		{% if missing_dataset["package"] or missing_dataset["resources"] %}
