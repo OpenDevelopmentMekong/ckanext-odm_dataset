@@ -66,8 +66,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_dataset_fluent_required': odm_dataset_helper.fluent_required,
       'odm_dataset_record_does_not_exist_yet': odm_dataset_helper.record_does_not_exist_yet,
       'odm_dataset_convert_csv_to_array': odm_dataset_helper.convert_csv_to_array,
-      'odm_dataset_remove_topics': odm_dataset_helper.remove_topics,
-      'odm_dataset_detail_page_url': odm_dataset_helper.detail_page_url
+      'odm_dataset_remove_topics': odm_dataset_helper.remove_topics
     }
 
   # ITemplateHelpers
@@ -86,7 +85,8 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       'odm_dataset_get_dataset_name': odm_dataset_helper.get_dataset_name,
       'odm_dataset_get_dataset_notes': odm_dataset_helper.get_dataset_notes,
       'odm_dataset_get_resource_id_for_field' : odm_dataset_config.get_resource_id_for_field,
-      'odm_dataset_validate_fields' : odm_dataset_helper.validate_fields
+      'odm_dataset_validate_fields' : odm_dataset_helper.validate_fields,
+      'odm_dataset_detail_page_url': odm_dataset_helper.detail_page_url
     }
 
   # IPackageController
