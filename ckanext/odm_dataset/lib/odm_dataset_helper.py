@@ -321,7 +321,7 @@ def remove_topics(value):
 	
 def detail_page_url(pkg):
 	
-	organization = pkg.organization
+	#organization = pkg.organization
 	#detail_page_url = config.get('wp.dataset_detail_page_'+organization["name"])
 	#return detail_page_url + "?id=" + pkg.name
 	return pkg
