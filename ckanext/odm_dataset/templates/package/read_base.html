@@ -1,6 +1,13 @@
 {% ckan_extends %}
 
 {% block secondary_content %}
+	
+	{% if not c.userobj %}
+	{% set destination = "http://example2.com" %}
+	<script type="text/javascript">
+			window.location.href = "{{ destination }}"
+	</script>
+	{% endif %}
 
 	{% if dataset_type == 'dataset' and c.userobj %}
 		{% set missing_dataset = h.odm_dataset_validate_fields(pkg) %}
