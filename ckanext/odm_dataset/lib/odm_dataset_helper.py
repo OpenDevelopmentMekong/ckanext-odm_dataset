@@ -17,6 +17,7 @@ import ckan.model as model
 import ckan.plugins.toolkit as toolkit
 import ckan.logic as logic
 from ckan.plugins.toolkit import Invalid
+from pylons import config
 
 import ckan.lib.navl.dictization_functions as df
 missing = df.missing
@@ -325,8 +326,7 @@ def detail_page_url(pkg):
 	config_var_name = 'wp.dataset_detail_page_' + organization["name"]
 	if not config_var_name:
 		config_var_name = 'wp.dataset_detail_page_mekong-organization'
-	#detail_page_url = config.get(config_var_name)
-	#return detail_page_url + "?id=" + pkg["name"]
-	return config_var_name
+	detail_page_url = config.get(config_var_name)
+	return detail_page_url + "?id=" + pkg["name"]	
 	
 session = {}
