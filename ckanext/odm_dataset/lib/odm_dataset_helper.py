@@ -327,6 +327,8 @@ def detail_page_url(pkg):
 	if not config_var_name:
 		config_var_name = 'wp.dataset_detail_page_mekong-organization'
 	detail_page_url = config.get(config_var_name)
+	if not detail_page_url:
+		return None
 	return detail_page_url + "?id=" + pkg["name"]	
 	
 session = {}
