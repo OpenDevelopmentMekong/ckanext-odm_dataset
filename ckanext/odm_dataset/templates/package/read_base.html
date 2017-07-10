@@ -6,9 +6,7 @@
 
 	{% set destination = h.odm_dataset_detail_page_url(pkg) %}
 	<script type="text/javascript">
-		dest = {{ destination }}
-			//window.location.href = "{{ destination }}"
-		alert(dest)
+		window.location.href = "{{ destination }}"
 	</script>
 	{% endif %}
 
