@@ -5,9 +5,10 @@
 	{% if not c.userobj %}
 
 	{% set destination = h.odm_dataset_detail_page_url(pkg) %}
-	<script type="text/javascript">
+	<h1>{{destination}}</h1>
+	<!-- <script type="text/javascript">
 		window.location.href = "{{ destination }}"
-	</script>
+	</script> -->
 	{% endif %}
 
 	{% if dataset_type == 'dataset' and c.userobj %}
