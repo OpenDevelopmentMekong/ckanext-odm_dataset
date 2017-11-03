@@ -1,4 +1,6 @@
-ckan.module('datepicker-module', function(jQuery) {
+"use strict";
+
+var module = ckan.module('datepicker-module', function($) {
 	return {
 		initialize: function() {
 			console.log('datepicker-module init for '+ this.options.field_id);
@@ -13,4 +15,7 @@ ckan.module('datepicker-module', function(jQuery) {
   };
 });
 
-console.log('datepicker-module loaded');
+$( document ).ready(function() {
+  console.log(module);
+	module.initialize();
+});

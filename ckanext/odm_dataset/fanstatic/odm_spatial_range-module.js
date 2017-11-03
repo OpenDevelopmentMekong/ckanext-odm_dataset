@@ -1,4 +1,6 @@
-ckan.module('odm_spatial_range-module', function(jQuery) {
+"use strict";
+
+var module = ckan.module('odm_spatial_range-module', function($) {
 	return {
 		initialize: function() {
 
@@ -30,4 +32,7 @@ ckan.module('odm_spatial_range-module', function(jQuery) {
   };
 });
 
-console.log('odm_spatial_range-module loaded');
+$( document ).ready(function() {
+  console.log(module);
+	module.initialize();
+});

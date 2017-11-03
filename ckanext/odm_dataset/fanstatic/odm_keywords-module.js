@@ -1,4 +1,6 @@
-function initMultiSelect(tSel) {
+"use strict";
+
+function initMultiSelect(tSel,$) {
 
 	tSel.select2('destroy');
   tSel.select2({
@@ -84,16 +86,19 @@ function initMultiSelect(tSel) {
 	});
 
 }
-ckan.module('odm_keywords-module', function(jQuery) {
+var module = ckan.module('odm_keywords-module', function($) {
 	return {
 		initialize: function() {
 
 			console.log('odm_keywords-module init');
 
-			initMultiSelect(this.el);
+			initMultiSelect(this.el,$);
 
     }
   };
 });
 
-console.log('odm_keywords-module loaded');
+$( document ).ready(function() {
+  console.log(module);
+	module.initialize();
+});
