@@ -84,7 +84,7 @@ function initMultiSelect(tSel) {
 	});
 
 }
-this.ckan.module('odm_keywords-module', function($, _) {
+ckan.module('odm_keywords-module', function($, _) {
 	return {
     options: {
       id: ''

@@ -1,4 +1,4 @@
-this.ckan.module('daterangepicker-module', function($, _) {
+ckan.module('daterangepicker-module', function($, _) {
 	return {
     options: {
       id: ''

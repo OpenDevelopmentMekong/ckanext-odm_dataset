@@ -1,4 +1,4 @@
-this.ckan.module('odm_spatial_range-module', function($, _) {
+ckan.module('odm_spatial_range-module', function($, _) {
 	return {
     options: {
       id: ''
