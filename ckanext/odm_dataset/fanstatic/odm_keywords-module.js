@@ -86,9 +86,6 @@ function initMultiSelect(tSel) {
 }
 ckan.module('odm_keywords-module', function(jQuery) {
 	return {
-    options: {
-      id: ''
-    },
 		initialize: function() {
 
 			console.log('odm_keywords-module init');

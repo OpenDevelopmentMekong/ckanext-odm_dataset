@@ -1,8 +1,5 @@
 ckan.module('datepicker-module', function(jQuery) {
 	return {
-    options: {
-      id: ''
-    },
 		initialize: function() {
 			console.log('datepicker-module init for '+ this.options.field_id);
       $('[id^='+this.options.field_id+']').each(function(){
