@@ -1,4 +1,4 @@
-this.ckan.module('datepicker-module', function($, _) {
+ckan.module('datepicker-module', function(jQuery) {
 	return {
     options: {
       id: ''
