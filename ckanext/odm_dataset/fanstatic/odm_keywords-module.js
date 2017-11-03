@@ -74,18 +74,21 @@ function initMultiSelect(tSel,$) {
 	  var newValue = evt.val;
 
 		var enteredTaxonomies = $('#field-taxonomy').val();
-		var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
-			 return term.toLowerCase();
-		});
+		if (enteredTaxonomies){
+			var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
+				 return term.toLowerCase();
+			});
 
-		if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
-			alert("keyword " +  newValue + " has been already entered on the topic field.");
-			evt.preventDefault();
+			if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
+				alert("keyword " +  newValue + " has been already entered on the topic field.");
+				evt.preventDefault();
+			}
 		}
 
 	});
 
 }
+
 ckan.module('odm_keywords-module', function($) {
 	return {
 		initialize: function() {
