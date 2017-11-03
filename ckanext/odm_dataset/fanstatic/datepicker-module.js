@@ -15,3 +15,5 @@ this.ckan.module('datepicker-module', function($, _) {
     }
   };
 });
+
+console.log('datepicker-module loaded');

@@ -32,3 +32,5 @@ this.ckan.module('odm_spatial_range-module', function($, _) {
     }
   };
 });
+
+console.log('odm_spatial_range-module loaded');

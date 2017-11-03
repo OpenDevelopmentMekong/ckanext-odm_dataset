@@ -13,3 +13,5 @@ this.ckan.module('daterangepicker-module', function($, _) {
     }
   };
 });
+
+console.log('daterangepicker-module loaded');

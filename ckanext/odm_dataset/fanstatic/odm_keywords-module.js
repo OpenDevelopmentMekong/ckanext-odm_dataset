@@ -98,3 +98,5 @@ this.ckan.module('odm_keywords-module', function($, _) {
     }
   };
 });
+
+console.log('odm_keywords-module loaded');
