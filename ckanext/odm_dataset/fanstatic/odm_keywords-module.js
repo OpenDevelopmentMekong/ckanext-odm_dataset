@@ -74,6 +74,8 @@ function initMultiSelect(tSel,$) {
 	  var newValue = evt.val;
 
 		var enteredTaxonomies = $('#field-taxonomy').val();
+
+		console.log("comparing " + newValue + " with " + enteredTaxonomies);
 		if (enteredTaxonomies){
 			var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
 				 return term.toLowerCase();
