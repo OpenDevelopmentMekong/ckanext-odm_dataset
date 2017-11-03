@@ -86,7 +86,7 @@ function initMultiSelect(tSel,$) {
 	});
 
 }
-var module = ckan.module('odm_keywords-module', function($) {
+ckan.module('odm_keywords-module', function($) {
 	return {
 		initialize: function() {
 
@@ -96,9 +96,4 @@ var module = ckan.module('odm_keywords-module', function($) {
 
     }
   };
-});
-
-$( document ).ready(function() {
-  console.log(module);
-	module.initialize();
 });
