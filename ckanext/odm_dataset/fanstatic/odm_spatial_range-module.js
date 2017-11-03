@@ -1,4 +1,5 @@
 ckan.module('odm_spatial_range-module', function(jQuery) {
+	console.log(called);
 	return {
     options: {
       id: ''
