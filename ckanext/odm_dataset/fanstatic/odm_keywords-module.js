@@ -1,4 +1,6 @@
-function initMultiSelect(tSel) {
+"use strict";
+
+function initMultiSelect(tSel,$) {
 
 	tSel.select2('destroy');
   tSel.select2({
@@ -72,28 +74,30 @@ function initMultiSelect(tSel) {
 	  var newValue = evt.val;
 
 		var enteredTaxonomies = $('#field-taxonomy').val();
-		var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
-			 return term.toLowerCase();
-		});
 
-		if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
-			alert("keyword " +  newValue + " has been already entered on the topic field.");
-			evt.preventDefault();
+		console.log("comparing " + newValue + " with " + enteredTaxonomies);
+		if (enteredTaxonomies){
+			var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
+				 return term.toLowerCase();
+			});
+
+			if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
+				alert("keyword " +  newValue + " has been already entered on the topic field.");
+				evt.preventDefault();
+			}
 		}
 
 	});
 
 }
-this.ckan.module('odm_keywords-module', function($, _) {
+
+ckan.module('odm_keywords-module', function($) {
 	return {
-    options: {
-      id: ''
-    },
 		initialize: function() {
 
 			console.log('odm_keywords-module init');
 
-			initMultiSelect(this.el);
+			initMultiSelect(this.el,$);
 
     }
   };
