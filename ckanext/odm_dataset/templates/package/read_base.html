@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block secondary_content %}
-	
+
 	{% if not c.userobj %}
 
 	{% set destination = h.odm_dataset_detail_page_url(pkg) %}
@@ -12,6 +12,7 @@
 		{% endif %}
 	{% endif %}
 
+{#
 	{% if dataset_type == 'dataset' and c.userobj %}
 		{% set missing_dataset = h.odm_dataset_validate_fields(pkg) %}
 		{% if missing_dataset["package"] or missing_dataset["resources"] %}
@@ -24,6 +25,7 @@
 			{% endblock %}
 		{% endif %}
 	{% endif %}
+#}
 
 	{{super()}}
 
