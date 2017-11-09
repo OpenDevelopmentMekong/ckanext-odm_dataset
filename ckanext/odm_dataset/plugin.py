@@ -19,7 +19,7 @@ import time
 from urlparse import urlparse
 import json
 import collections
-from distutils.util import strtobool
+#from distutils.util import strtobool
 
 log = logging.getLogger(__name__)
 
@@ -110,10 +110,10 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       odm_dataset_helper.session.save()
 
       # Create default Issue
-      review_system = strtobool(config.get("ckanext.issues.review_system", False))
-      if review_system:
-        if pkg_dict['type'] == 'dataset':
-          odm_dataset_helper.create_default_issue_dataset(pkg_dict)
+      #review_system = strtobool(config.get("ckanext.issues.review_system", False))
+      #if review_system:
+      if pkg_dict['type'] == 'dataset':
+        odm_dataset_helper.create_default_issue_dataset(pkg_dict)
 
   def after_update(self, context, pkg_dict):
 
