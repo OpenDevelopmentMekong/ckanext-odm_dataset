@@ -109,7 +109,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
       odm_dataset_helper.session.save()
 
       # Create default Issue
-      review_system = toolkit.asbool(config.get("ckanext.issues.review_system", False))
+      review_system = config.get("ckanext.issues.review_system", False) == "true"
       if review_system:
         if pkg_dict['type'] == 'dataset':
           odm_dataset_helper.create_default_issue_dataset(pkg_dict)
