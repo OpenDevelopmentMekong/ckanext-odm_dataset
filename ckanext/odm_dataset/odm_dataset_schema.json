@@ -86,7 +86,7 @@
 		"label": "Organization",
 		"required": "true",
 		"validate": "true",
-		"preset": "dataset_organization"
+		"preset": "odm_organization"
 	}, {
 		"field_name": "version",
 		"label": "Version",
