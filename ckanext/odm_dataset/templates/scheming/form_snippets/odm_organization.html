@@ -12,7 +12,7 @@
 {%- set org_required = not h.check_config_permission('create_unowned_dataset')
     or h.scheming_field_required(field) -%}
 
-{% set show_public_visibility_option = dataset_has_organization or (organizations_available and (user_is_sysadmin or dataset_is_draft)) %}
+{% set show_public_visibility_option = organizations_available and user_is_sysadmin %}
 
 {% macro _organization() %}
   {% set existing_org = data.owner_org or data.group_id %}
