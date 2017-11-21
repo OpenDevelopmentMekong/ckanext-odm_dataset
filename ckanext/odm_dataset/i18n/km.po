@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ODM ckanext-odm_dataset\n"
-"POT-Creation-Date: 2017-11-21 09:59+0100\n"
-"PO-Revision-Date: 2017-11-21 09:59+0100\n"
+"POT-Creation-Date: 2017-11-21 10:56+0100\n"
+"PO-Revision-Date: 2017-11-21 10:56+0100\n"
 "Last-Translator: Huy Eng Heng <huyeng_heng@yahoo.com>\n"
 "Language-Team: Khmer (http://www.transifex.com/open-development-mekong/odm-ckanext-"
 "odm_dataset/language/km/)\n"
@@ -267,6 +267,100 @@ msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:62
 msgid "Keywords"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:63
+msgid "Name given to the dataset."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:64
+msgid "eg. my-dataset"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:65
+msgid "Short description explaining the content and its origins."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:66
+msgid "e.g. economy, mental health, government"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:67
+msgid ""
+"A few sentences describing legal considerations for people who access the website and/"
+"or use its contents."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:68
+msgid "Dataset's version (eg. 1.0)"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:69
+msgid "Date the dataset was first Published by its creator."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:70
+msgid "The period of time for which the dataset is relevant (i.e. 2011-01-01:2011-12-31)."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:71
+msgid "A valid GEOJSON string describing the dataset boundaries"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:72
+msgid "The geographic area that the dataset is relevant to (i.e. Cambodia, Laos)."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:73
+msgid "The province(s) this dataset relates to"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:74
+msgid ""
+"Issues with logical consistency in the dataset and the steps, if any, being taken to "
+"validate its content."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:75
+msgid ""
+"Brief description of the level of completeness of the dataset's contents and the steps, "
+"if any, being taken to make the dataset more complete."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:76
+msgid ""
+"The steps taken to acquire, aggregate, or transform any of the resources in the dataset."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:77
+msgid ""
+"Ordered citations for all information sources that went into producing the dataset."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:78
+msgid ""
+"Information about how up-to-date the metadata is and who is responsible for maintaining "
+"it."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:79
+msgid "Details about the information content of the dataset."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:80
+msgid "e.g Tong_Min_Group_Engineering__21.06.2011.pdf"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:81
+msgid "eg. January 2011 Gold Prices"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:82
+msgid "Some useful notes about the data"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:83
+msgid "Language(s) of the resource."
 msgstr ""
 
 #: odm_dataset/lib/odm_dataset_helper.py:32
