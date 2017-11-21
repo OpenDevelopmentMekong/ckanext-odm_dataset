@@ -28,9 +28,7 @@ def create_default_issue_dataset(pkg_info):
 	''' Uses CKAN API to add a default Issue as part of the vetting workflow for datasets'''
 	try:
 
-		extra_vars = {
-			't0': toolkit._("Thank you for uploading this item. Instructions about vetting system available on https://wiki.opendevelopmentmekong.net/partners:content_review#instructions_for_default_issue_on_datasets")
-		}
+		extra_vars = {}
 
 		issue_message = ckan.lib.base.render('messages/default_issue_dataset.txt',extra_vars=extra_vars)
 
