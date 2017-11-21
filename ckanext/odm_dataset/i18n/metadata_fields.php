@@ -56,4 +56,8 @@ echo _("Database table?");
 echo _("Unclear copyright");
 echo _("To be determined");
 echo _("License definitions and additional information can be found at http://opendefinition.org/");
+echo _('Province(s)');
+echo _('Yes');
+echo _('No');
+echo _('Keywords');
 ?>
