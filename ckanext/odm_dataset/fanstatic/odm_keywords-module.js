@@ -5,8 +5,6 @@ var field;
 function getCurrentTerm(){
 	var items = field.val().split(",");
 
-	console.log(items);
-
 	if (items.length > 0){
 		return items[items.lenght-1];
 	}
@@ -35,6 +33,20 @@ function initMultiSelect(tSel,$) {
 		  ajax: {
 		    url: 'https://solr.opendevelopmentmekong.net/solr/collection1/select?fq=extras_odm_keywords%3A*&wt=json&indent=true&facet=true&facet.field=extras_odm_keywords',
 		    dataType: "json",
+				sortResults: function(results, container, query) {
+						if (query.term) {
+								return results.sort(function(a, b) {
+										if (a.text.length > b.text.length) {
+												return 1;
+										} else if (a.text.length < b.text.length) {
+												return -1;
+										} else {
+												return 0;
+										}
+								});
+						}
+						return results;
+				},
 		    data: function(term, page) {
 		      return {
 		        q: term
