@@ -1,7 +1,21 @@
 "use strict";
 
-function initMultiSelect(tSel,$) {
+var field;
 
+function getCurrentTerm(){
+	var items = field.val().split(",");
+
+	console.log(items);
+
+	if (items.length > 0){
+		return items[items.lenght-1];
+	}
+	return items[0];
+
+}
+
+function initMultiSelect(tSel,$) {
+	field = tSel;
 	tSel.select2('destroy');
   tSel.select2({
       tags: true,
@@ -19,7 +33,7 @@ function initMultiSelect(tSel,$) {
 		  },
 		  multiple: true,
 		  ajax: {
-		    url: 'https://solr.opendevelopmentmekong.net/solr/collection1/select?q=' + this.text + '&fq=extras_odm_keywords%3A*&wt=json&indent=true&facet=true&facet.field=extras_odm_keywords',
+		    url: 'https://solr.opendevelopmentmekong.net/solr/collection1/select?q=' + getCurrentTerm() + '&fq=extras_odm_keywords%3A*&wt=json&indent=true&facet=true&facet.field=extras_odm_keywords',
 		    dataType: "json",
 		    data: function(term, page) {
 		      return {
