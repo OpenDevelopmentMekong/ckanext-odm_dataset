@@ -15,7 +15,7 @@
       data-module="odm_spatial_range-module autocomplete">
 			{% for country in h.odm_dataset_get_resource_from_datatable(h.odm_dataset_get_resource_id_for_field('odm_spatial_range')) %}
 				{% if country['supported'] == 'yes' %}
-					<option {{"selected " if country['id'] in data[field.field_name] }} value="{{ country['id'] }}">{{ country['name'] }}</option>
+					<option {{"selected " if country['id'] in data[field.field_name] }} value="{{ country['id'] }}">{{ _(country['name']) }}</option>
 				{% endif %}
 			{% endfor %}
     </select>

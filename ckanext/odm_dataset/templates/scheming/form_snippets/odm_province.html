@@ -14,7 +14,7 @@
       data-module="autocomplete">
 			{% for province in h.odm_dataset_get_resource_from_datatable(h.odm_dataset_get_resource_id_for_field('odm_province')) %}
 				{% if province['supported'] == 'yes' %}
-					<option {{"selected " if province['id'] in data[field.field_name] }} data-country_codes="{{ province['country_codes'] }}" value="{{ province['id'] }}">{{ province['name'] }}</option>
+					<option {{"selected " if province['id'] in data[field.field_name] }} data-country_codes="{{ province['country_codes'] }}" value="{{ province['id'] }}">{{ _(province['name']) }}</option>
 				{% endif %}
 			{% endfor %}
     </select>
