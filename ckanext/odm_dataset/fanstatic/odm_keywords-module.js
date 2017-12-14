@@ -1,4 +1,6 @@
-function initMultiSelect(tSel) {
+"use strict";
+
+function initMultiSelect(tSel,$) {
 
 	tSel.select2('destroy');
   tSel.select2({
@@ -17,7 +19,7 @@ function initMultiSelect(tSel) {
 		  },
 		  multiple: true,
 		  ajax: {
-		    url: 'https://solr.opendevelopmentmekong.net/solr/collection1/select?q=*%3A*&fq=extras_odm_keywords%3A*&wt=json&indent=true&facet=true&facet.field=extras_odm_keywords',
+		    url: 'https://solr.opendevelopmentmekong.net/solr/collection1/select?fq=extras_odm_keywords%3A*&wt=json&indent=true&facet=true&facet.field=extras_odm_keywords',
 		    dataType: "json",
 		    data: function(term, page) {
 		      return {
@@ -72,28 +74,30 @@ function initMultiSelect(tSel) {
 	  var newValue = evt.val;
 
 		var enteredTaxonomies = $('#field-taxonomy').val();
-		var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
-			 return term.toLowerCase();
-		});
 
-		if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
-			alert("keyword " +  newValue + " has been already entered on the topic field.");
-			evt.preventDefault();
+		console.log("comparing " + newValue + " with " + enteredTaxonomies);
+		if (enteredTaxonomies){
+			var enteredTaxonomiesLowerCase = enteredTaxonomies.map(function(term) {
+				 return term.toLowerCase();
+			});
+
+			if (enteredTaxonomiesLowerCase.indexOf(newValue.toLowerCase()) > -1){
+				alert("keyword " +  newValue + " has been already entered on the topic field.");
+				evt.preventDefault();
+			}
 		}
 
 	});
 
 }
-this.ckan.module('odm_keywords-module', function($, _) {
+
+ckan.module('odm_keywords-module', function($) {
 	return {
-    options: {
-      id: ''
-    },
 		initialize: function() {
 
 			console.log('odm_keywords-module init');
 
-			initMultiSelect(this.el);
+			initMultiSelect(this.el,$);
 
     }
   };

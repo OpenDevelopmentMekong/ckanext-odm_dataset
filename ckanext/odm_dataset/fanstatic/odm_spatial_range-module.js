@@ -1,8 +1,7 @@
-this.ckan.module('odm_spatial_range-module', function($, _) {
+"use strict";
+
+ckan.module('odm_spatial_range-module', function($) {
 	return {
-    options: {
-      id: ''
-    },
 		initialize: function() {
 
 			console.log('odm_spatial_range-module init');

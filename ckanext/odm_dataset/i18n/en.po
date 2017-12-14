@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-odm_dataset\n"
-"POT-Creation-Date: 2017-01-31 17:34+0100\n"
-"PO-Revision-Date: 2017-01-31 17:34+0100\n"
+"POT-Creation-Date: 2017-12-01 17:58+0100\n"
+"PO-Revision-Date: 2017-12-01 17:58+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,7 +16,6 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: odm_dataset/i18n/metadata_fields.php:3
-#: odm_dataset/templates/macros/form.html:22
 msgid "Title"
 msgstr ""
 
@@ -45,7 +44,6 @@ msgid "Access and use constraints"
 msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:10
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:18
 msgid "Organization"
 msgstr ""
 
@@ -61,47 +59,47 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:14
+#: odm_dataset/i18n/metadata_fields.php:14 odm_dataset/i18n/odm_language.php:10
 msgid "Burmese"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:15
+#: odm_dataset/i18n/metadata_fields.php:15 odm_dataset/i18n/odm_language.php:4
 msgid "English"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:16
+#: odm_dataset/i18n/metadata_fields.php:16 odm_dataset/i18n/odm_language.php:7
 msgid "Khmer"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:17
+#: odm_dataset/i18n/metadata_fields.php:17 odm_dataset/i18n/odm_language.php:9
 msgid "Lao"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:18
+#: odm_dataset/i18n/metadata_fields.php:18 odm_dataset/i18n/odm_language.php:11
 msgid "Thai"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:19
+#: odm_dataset/i18n/metadata_fields.php:19 odm_dataset/i18n/odm_language.php:12
 msgid "Vietnamese"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:20
+#: odm_dataset/i18n/metadata_fields.php:20 odm_dataset/i18n/odm_language.php:13
 msgid "Chinese"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:21
+#: odm_dataset/i18n/metadata_fields.php:21 odm_dataset/i18n/odm_language.php:5
 msgid "French"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:22
+#: odm_dataset/i18n/metadata_fields.php:22 odm_dataset/i18n/odm_language.php:3
 msgid "German"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:23
+#: odm_dataset/i18n/metadata_fields.php:23 odm_dataset/i18n/odm_language.php:6
 msgid "Japanese"
 msgstr ""
 
-#: odm_dataset/i18n/metadata_fields.php:24
+#: odm_dataset/i18n/metadata_fields.php:24 odm_dataset/i18n/odm_language.php:8
 msgid "Korean"
 msgstr ""
 
@@ -150,6 +148,7 @@ msgid "Lower Mekong countries"
 msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:36
+#: odm_dataset/i18n/odm_spatial_range.php:4
 msgid "Cambodia"
 msgstr ""
 
@@ -162,10 +161,12 @@ msgid "Laos"
 msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:39
+#: odm_dataset/i18n/odm_spatial_range.php:12
 msgid "Thailand"
 msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:40
+#: odm_dataset/i18n/odm_spatial_range.php:9
 msgid "Myanmar"
 msgstr ""
 
@@ -218,7 +219,7 @@ msgid "Format"
 msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:53
-msgid "Resource's languages"
+msgid "Resource\\s languages"
 msgstr ""
 
 #: odm_dataset/i18n/metadata_fields.php:54
@@ -245,48 +246,941 @@ msgid ""
 "opendefinition.org/"
 msgstr ""
 
-#: odm_dataset/lib/odm_dataset_helper.py:27
+#: odm_dataset/i18n/metadata_fields.php:59
+msgid "Province(s)"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:60
+msgid "Yes"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:61
+msgid "No"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:62
+msgid "Keywords"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:63
+msgid "Name given to the dataset."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:64
+msgid "eg. my-dataset"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:65
+msgid "Short description explaining the content and its origins."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:66
+msgid "e.g. economy, mental health, government"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:67
 msgid ""
-"Thank you for uploading this item. Instructions about vetting system "
-"available on https://wiki.opendevelopmentmekong.net/partners:"
-"content_review#instructions_for_default_issue_on_datasets"
+"A few sentences describing legal considerations for people who access the "
+"website and/or use its contents."
 msgstr ""
 
-#: odm_dataset/templates/package/edit_base.html:6
-msgid "Record not multilingual compliant!!"
+#: odm_dataset/i18n/metadata_fields.php:68
+msgid "Dataset\"s version (eg. 1.0)"
 msgstr ""
 
-#: odm_dataset/templates/package/edit_base.html:8
+#: odm_dataset/i18n/metadata_fields.php:69
+msgid "Date the dataset was first Published by its creator."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:70
 msgid ""
-"This record has not been migrated yet. In case you want to save it, make "
-"sure that data is fille properly before pressing the UPDATE button. Follow "
-"the instructions on https://wiki.opendevelopmentmekong.net/partners:"
-"enabling_multilingual_support_manually:"
+"The period of time for which the dataset is relevant (i.e. "
+"2011-01-01:2011-12-31)."
 msgstr ""
 
-#: odm_dataset/templates/scheming/display_snippets/fluent_markdown_fallback.html:5
-#: odm_dataset/templates/scheming/display_snippets/fluent_text_fallback.html:5
+#: odm_dataset/i18n/metadata_fields.php:71
+msgid "A valid GEOJSON string describing the dataset boundaries"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:72
 msgid ""
-"Multilingual Field: No Data for the current selected language has been "
-"entered yet"
+"The geographic area that the dataset is relevant to (i.e. Cambodia, Laos)."
 msgstr ""
 
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:22
-#: odm_dataset/templates/scheming/form_snippets/organization.html:27
-msgid "No organization"
+#: odm_dataset/i18n/metadata_fields.php:73
+msgid "The province(s) this dataset relates to"
 msgstr ""
 
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:36
-#: odm_dataset/templates/scheming/form_snippets/organization.html:49
-msgid "Visibility"
+#: odm_dataset/i18n/metadata_fields.php:74
+msgid ""
+"Issues with logical consistency in the dataset and the steps, if any, being "
+"taken to validate its content."
 msgstr ""
 
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
-#: odm_dataset/templates/scheming/form_snippets/organization.html:52
-msgid "Private"
+#: odm_dataset/i18n/metadata_fields.php:75
+msgid ""
+"Brief description of the level of completeness of the dataset\"s contents "
+"and the steps, if any, being taken to make the dataset more complete."
 msgstr ""
 
-#: odm_dataset/templates/scheming/form_snippets/odm_organization.html:39
-#: odm_dataset/templates/scheming/form_snippets/organization.html:52
-msgid "Public"
+#: odm_dataset/i18n/metadata_fields.php:76
+msgid ""
+"The steps taken to acquire, aggregate, or transform any of the resources in "
+"the dataset."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:77
+msgid ""
+"Ordered citations for all information sources that went into producing the "
+"dataset."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:78
+msgid ""
+"Information about how up-to-date the metadata is and who is responsible for "
+"maintaining it."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:79
+msgid "Details about the information content of the dataset."
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:80
+msgid "e.g Tong_Min_Group_Engineering__21.06.2011.pdf"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:81
+msgid "eg. January 2011 Gold Prices"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:82
+msgid "Some useful notes about the data"
+msgstr ""
+
+#: odm_dataset/i18n/metadata_fields.php:83
+msgid "Language(s) of the resource."
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:3
+msgid "Ayeyarwady"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:4
+msgid "Bago"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:5
+msgid "Chin"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:6
+msgid "Kachin"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:7
+msgid "Kayah"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:8
+msgid "Kayin"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:9
+msgid "Magway"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:10
+msgid "Mandalay"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:11
+msgid "Mon"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:12
+msgid "Naypyitaw"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:13
+msgid "Rakhine"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:14
+msgid "Sagaing"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:15
+msgid "Shan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:16
+msgid "Tanintharyi"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:17
+msgid "Yangon"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:18
+msgid "Kampong Cham"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:19
+msgid "Kampong Chhnang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:20
+msgid "Kampong Speu"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:21
+msgid "Kampong Thom"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:22
+msgid "Kandal"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:23
+msgid "Koh Kong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:24
+msgid "Kratie"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:25
+msgid "Mondulkiri"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:26
+msgid "Pursat"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:27
+msgid "Preah Vihear"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:28
+msgid "Prey Veng"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:29
+msgid "Stung Treng"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:30
+msgid "Svay Rieng"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:31
+msgid "Takeo"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:32
+msgid "Kampot"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:33
+msgid "Phnom Penh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:34
+msgid "Ratanakiri"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:35
+msgid "Siem Reap"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:36
+msgid "Banteay Meanchey"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:37
+msgid "Kep"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:38
+msgid "Oddar Meanchey"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:39
+msgid "Preah Sihanouk"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:40
+msgid "Battambang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:41
+msgid "Pailin"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:42
+msgid "Tboung Khmum"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:43
+msgid "Attapu"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:44
+msgid "Bokèo"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:45
+msgid "Borikhamxai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:46
+msgid "Champasak"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:47
+msgid "Houaphan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:48
+msgid "Khammouan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:49
+msgid "Louang Namtha"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:50
+msgid "Louangphabang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:51
+msgid "Oudômxai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:52
+msgid "Phôngsali"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:53
+msgid "Salavan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:54
+msgid "Savannakhét"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:55
+msgid "Vientiane"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:56
+msgid "Vientiane [Prefecture]"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:57
+msgid "Xaignabouli"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:58
+msgid "Xaisômboun"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:59
+msgid "Xékong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:60
+msgid "Xiangkhouang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:61
+msgid "Amnat Charoen"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:62
+msgid "Ang Thong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:63
+msgid "Krung Thep Maha Nakhon [Bangkok]"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:64
+msgid "Bueng Kan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:65
+msgid "Buri Ram"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:66
+msgid "Chachoengsao"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:67
+msgid "Chai Nat"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:68
+msgid "Chanthaburi"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:69
+msgid "Chiang Mai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:70
+msgid "Chiang Rai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:71
+msgid "Chon Buri"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:72
+msgid "Chumphon"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:73
+msgid "Kalasin"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:74
+msgid "Kamphaeng Phet"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:75
+msgid "Kanchanaburi"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:76
+msgid "Khon Kaen"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:77
+msgid "Krabi"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:78
+msgid "Lampang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:79
+msgid "Lamphun"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:80
+msgid "Loei"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:81
+msgid "Lop Buri"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:82
+msgid "Mae Hong Son"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:83
+msgid "Maha Sarakham"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:84
+msgid "Mukdahan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:85
+msgid "Nakhon Nayok"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:86
+msgid "Nakhon Pathom"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:87
+msgid "Nakhon Phanom"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:88
+msgid "Nakhon Ratchasima"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:89
+msgid "Nakhon Sawan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:90
+msgid "Nakhon Si Thammarat"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:91
+msgid "Nan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:92
+msgid "Narathiwat"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:93
+msgid "Nong Bua Lam Phu"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:94
+msgid "Nong Khai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:95
+msgid "Nonthaburi"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:96
+msgid "Pathum Thani"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:97
+msgid "Pattani"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:98
+msgid "Phangnga"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:99
+msgid "Phatthalung"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:100
+msgid "Phatthaya"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:101
+msgid "Phayao"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:102
+msgid "Phetchabun"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:103
+msgid "Phetchaburi"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:104
+msgid "Phichit"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:105
+msgid "Phitsanulok"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:106
+msgid "Phra Nakhon Si Ayutthaya"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:107
+msgid "Phrae"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:108
+msgid "Phuket"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:109
+msgid "Prachin Buri"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:110
+msgid "Prachuap Khiri Khan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:111
+msgid "Ranong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:112
+msgid "Ratchaburi"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:113
+msgid "Rayong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:114
+msgid "Roi Et"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:115
+msgid "Sa Kaeo"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:116
+msgid "Sakon Nakhon"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:117
+msgid "Samut Prakan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:118
+msgid "Samut Sakhon"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:119
+msgid "Samut Songkhram"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:120
+msgid "Saraburi"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:121
+msgid "Satun"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:122
+msgid "Si Sa Ket"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:123
+msgid "Sing Buri"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:124
+msgid "Songkhla"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:125
+msgid "Sukhothai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:126
+msgid "Suphan Buri"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:127
+msgid "Surat Thani"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:128
+msgid "Surin"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:129
+msgid "Tak"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:130
+msgid "Trang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:131
+msgid "Trat"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:132
+msgid "Ubon Ratchathani"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:133
+msgid "Udon Thani"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:134
+msgid "Uthai Thani"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:135
+msgid "Uttaradit"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:136
+msgid "Yala"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:137
+msgid "Yasothon"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:138
+msgid "An Giang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:139
+msgid "Ba Ria-Vung Tau"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:140
+msgid "Bac Giang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:141
+msgid "Bac Kan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:142
+msgid "Bac Lieu"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:143
+msgid "Bac Ninh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:144
+msgid "Ben Tre"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:145
+msgid "Binh Dinh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:146
+msgid "Binh Duong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:147
+msgid "Binh Phuoc"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:148
+msgid "Binh Thuan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:149
+msgid "Ca Mau"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:150
+msgid "Can Tho"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:151
+msgid "Cao Bang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:152
+msgid "Da Nang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:153
+msgid "Dak Lak"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:154
+msgid "Dak Nong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:155
+msgid "Dien Bien"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:156
+msgid "Dong Nai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:157
+msgid "Dong Thap"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:158
+msgid "Gia Lai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:159
+msgid "Ha Giang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:160
+msgid "Ha Nam"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:161
+msgid "Ha Noi"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:162
+msgid "Ha Tinh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:163
+msgid "Hai Duong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:164
+msgid "Hai Phong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:165
+msgid "Hau Giang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:166
+msgid "Ho Chi Minh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:167
+msgid "Hoa Binh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:168
+msgid "Hung Yen"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:169
+msgid "Khanh Hoa"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:170
+msgid "Kien Giang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:171
+msgid "Kon Tum"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:172
+msgid "Lai Chau"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:173
+msgid "Lam Dong"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:174
+msgid "Lang Son"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:175
+msgid "Lao Cai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:176
+msgid "Long An"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:177
+msgid "Nam Dinh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:178
+msgid "Nghe An"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:179
+msgid "Ninh Binh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:180
+msgid "Ninh Thuan"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:181
+msgid "Phu Tho"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:182
+msgid "Phu Yen"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:183
+msgid "Quang Binh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:184
+msgid "Quang Nam"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:185
+msgid "Quang Ngai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:186
+msgid "Quang Ninh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:187
+msgid "Quang Tri"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:188
+msgid "Soc Trang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:189
+msgid "Son La"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:190
+msgid "Tay Ninh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:191
+msgid "Thai Binh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:192
+msgid "Thai Nguyen"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:193
+msgid "Thanh Hoa"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:194
+msgid "Thua Thien-Hue"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:195
+msgid "Tien Giang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:196
+msgid "Tra Vinh"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:197
+msgid "Tuyen Quang"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:198
+msgid "Vinh Long"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:199
+msgid "Vinh Phuc"
+msgstr ""
+
+#: odm_dataset/i18n/odm_provinces.php:200
+msgid "Yen Bai"
+msgstr ""
+
+#: odm_dataset/i18n/odm_spatial_range.php:3
+msgid "Brunei"
+msgstr ""
+
+#: odm_dataset/i18n/odm_spatial_range.php:5
+msgid "Christmas Island"
+msgstr ""
+
+#: odm_dataset/i18n/odm_spatial_range.php:6
+msgid "Cocos Islands"
+msgstr ""
+
+#: odm_dataset/i18n/odm_spatial_range.php:7
+msgid "East timor"
+msgstr ""
+
+#: odm_dataset/i18n/odm_spatial_range.php:8
+msgid "Lao People\\s Democratic Republic"
+msgstr ""
+
+#: odm_dataset/i18n/odm_spatial_range.php:10
+msgid "Philippines"
+msgstr ""
+
+#: odm_dataset/i18n/odm_spatial_range.php:11
+msgid "Singapore"
+msgstr ""
+
+#: odm_dataset/i18n/odm_spatial_range.php:13
+msgid "Viet Nam"
 msgstr ""
