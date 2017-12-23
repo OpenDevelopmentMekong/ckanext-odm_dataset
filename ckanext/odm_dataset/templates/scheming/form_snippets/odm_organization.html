@@ -11,7 +11,7 @@
 {%- set user_is_sysadmin = h.check_access('sysadmin') %}
 {%- set org_required = not h.check_config_permission('create_unowned_dataset')
     or h.scheming_field_required(field) -%}
-
+{% set is_private_record = (True == data.private|trim) %}
 {% set show_public_visibility_option = organizations_available and user_is_sysadmin %}
 
 {% macro _organization() %}
@@ -51,8 +51,8 @@
       <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
       <div class="controls">
         <select id="field-private" name="private">
-					<option value="False" {% if False == data.private|trim %}selected="selected"{% endif %}>{{ _('Public') }}</option>
-					<option value="True" {% if True == data.private|trim %}selected="selected"{% endif %}>{{ _('Private') }}</option>
+					<option value="False" {% if not is_private_record %}selected="selected"{% endif %}>{{ _('Public') }}</option>
+					<option value="True" {% if is_private_record %}selected="selected"{% endif %}>{{ _('Private') }}</option>
         </select>
       </div>
     </div>
