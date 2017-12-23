@@ -11,7 +11,7 @@
 {%- set user_is_sysadmin = h.check_access('sysadmin') %}
 {%- set org_required = not h.check_config_permission('create_unowned_dataset')
     or h.scheming_field_required(field) -%}
-{% set is_private_record = (True == data.private|trim) %}
+{% set is_private_record = data.private %}
 {% set show_public_visibility_option = organizations_available and user_is_sysadmin %}
 
 {% macro _organization() %}
