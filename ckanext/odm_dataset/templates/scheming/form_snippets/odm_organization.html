@@ -47,13 +47,11 @@
   {% endcall %}
 
   {% block package_metadata_fields_visibility %}
-    <div class="control-group">
+    <div class="control-group {% if not show_public_visibility_option %}hidden{% endif%}">
       <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
       <div class="controls">
         <select id="field-private" name="private">
-					{% if show_public_visibility_option %}
-						<option value="False" {% if True == data.private|trim %}selected="selected"{% endif %}>{{ _('Public') }}</option>
-		      {% endif %}
+					<option value="False" {% if True == data.private|trim %}selected="selected"{% endif %}>{{ _('Public') }}</option>
 					<option value="True" {% if True == data.private|trim %}selected="selected"{% endif %}>{{ _('Private') }}</option>
         </select>
       </div>
