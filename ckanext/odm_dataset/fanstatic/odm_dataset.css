@@ -9,3 +9,7 @@
 	text-decoration: line-through;
 	color: #CCCCCC;
 }
+
+.hidden{
+	visibility: hidden;
+}
