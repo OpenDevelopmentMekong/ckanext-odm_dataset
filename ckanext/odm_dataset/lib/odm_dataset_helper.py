@@ -63,7 +63,7 @@ def get_localized_tag(tag):
 	'''Looks for a term translation for the specified tag. Returns the tag untranslated if no term found'''
 
 	if DEBUG:
-		log.info('odm_dataset_get_localized_tag: %s', tag)
+		log.info('odm_dataset_get_localized_tag: %s', str(tag))
 
 	desired_lang_code = pylons.request.environ['CKAN_LANG']
 
@@ -82,7 +82,7 @@ def get_current_language():
 	'''Returns the current language code'''
 
 	if DEBUG:
-		log.info('get_current_language %s', pylons.request.environ['CKAN_LANG'])
+		log.info('get_current_language %s', str(pylons.request.environ['CKAN_LANG']))
 
 	return pylons.request.environ['CKAN_LANG']
 
@@ -90,7 +90,7 @@ def get_localized_tags_string(tags_string):
 	'''Returns a comma separated string with the translation of the tags specified. Calls get_localized_tag'''
 
 	if DEBUG:
-		log.info('get_localized_tags_string: %s', tags_string)
+		log.info('get_localized_tags_string: %s', str(tags_string))
 
 	translated_array = []
 	for tag in tags_string.split(', '):
@@ -104,7 +104,7 @@ def get_localized_tags_string(tags_string):
 def if_empty_same_as_name_if_not_empty(key, data, errors, context):
 
 	if DEBUG:
-		log.info('if_empty_same_as_name_if_not_empty: %s', key)
+		log.info('if_empty_same_as_name_if_not_empty: %s', str(key))
 
 	value = data.get(key)
 	if not value or value is missing:
@@ -115,7 +115,7 @@ def if_empty_same_as_name_if_not_empty(key, data, errors, context):
 def if_empty_same_as_description_if_not_empty(key, data, errors, context):
 
 	if DEBUG:
-		log.info('if_empty_same_as_description_if_not_empty: %s', key)
+		log.info('if_empty_same_as_description_if_not_empty: %s', str(key))
 
 	value = data.get(key)
 	if not value or value is missing:
@@ -127,8 +127,8 @@ def convert_to_multilingual(data):
 	'''Converts strings to multilingual with the current language set'''
 
 	if DEBUG:
-		log.info('convert_to_multilingual: %s', data)
-
+		log.info('convert_to_multilingual: %s', str(data))
+	
 	if isinstance(data, basestring):
 		multilingual_data = {}
 		multilingual_data[get_current_language()] = data;
@@ -141,7 +141,7 @@ def sanitize_list(value):
 	'''Converts strings to list'''
 
 	if DEBUG:
-		log.info('sanitize_list: %s', value)
+		log.info('sanitize_list: %s', str(value))
 
 	result = []
 
@@ -169,7 +169,7 @@ def fluent_required(value):
 	'''Checks that the value inputed is a json object with at least "en" among its keys'''
 
 	if DEBUG:
-		log.info('fluent_required: %s', value)
+		log.info('fluent_required: %s', str(value))
 
 	value_json = {}
 
@@ -187,7 +187,7 @@ def validate_fields(package):
 	'''Checks that the package has all fields marked with validate = true on schema'''
 
 	if DEBUG:
-		log.info('validate_fields: %s', package)
+		log.info('validate_fields: %s', str(package))
 
 	missing = dict({"package" : [], "resources": [] })
 
@@ -216,7 +216,7 @@ def validate_fields(package):
 								missing["resources"].append(resource_field["field_name"])
 
 		except ValueError as e:
-			log.info('invalid json: %s' % e)
+			log.info('invalid json: %s' % str(e))
 
 	return missing
 
@@ -226,7 +226,7 @@ def record_does_not_exist_yet(value, context):
 	found = True
 
 	if DEBUG:
-		log.info('record_does_not_exist_yet: %s %s', value, context)
+		log.info('record_does_not_exist_yet: %s %s', str(value), str(context))
 
 	if 'package' in context:
 		current_package = context['package']
@@ -246,7 +246,7 @@ def retrieve_taxonomy_from_tags(tags_array):
 	'''Looks into the dataset's tags and set the taxonomy array out of their display_name property'''
 
 	if DEBUG:
-		log.info('map_odm_language: %s', tags_array)
+		log.info('map_odm_language: %s', str(tags_array))
 
 	if type(tags_array) is not list:
 		return []
@@ -264,7 +264,7 @@ def get_current_time():
 def urlencode(value):
 
 	if DEBUG:
-		log.info('urlencode: %s', value)
+		log.info('urlencode: %s', str(value))
 
 	value = re.sub(' ','-',value)
 	pattern = re.compile('[^a-zA-Z0-9_-]', re.UNICODE)
@@ -274,7 +274,7 @@ def urlencode(value):
 def if_empty_new_id(value):
 
 	if DEBUG:
-		log.info('if_empty_new_id: %s', value)
+		log.info('if_empty_new_id: %s', str(value))
 
 	if not value:
 		value = str(uuid.uuid4());
@@ -330,3 +330,4 @@ def detail_page_url(pkg):
 	return detail_page_url + "?id=" + pkg["name"]
 
 session = {}
+
