@@ -96,8 +96,10 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     if dataset_type == 'dataset':
       log.info('before_create')
 
-      odm_dataset_helper.session['last_dataset'] = None
-      odm_dataset_helper.session.save()
+      try:
+        odm_dataset_helper.session['last_dataset'] = None
+        odm_dataset_helper.session.save()
+      except TypeError: pass
 
   def after_create(self, context, pkg_dict):
 
@@ -105,10 +107,12 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     if dataset_type == 'dataset':
       log.info('after_create: %s', pkg_dict['name'])
 
-      odm_dataset_helper.session['last_dataset'] = pkg_dict
-      odm_dataset_helper.session.save()
-
-      # Create default Issue
+      try:
+        odm_dataset_helper.session['last_dataset'] = pkg_dict
+        odm_dataset_helper.session.save()
+      except TypeError: pass
+      
+  # Create default Issue
       review_system = toolkit.asbool(config.get("ckanext.issues.review_system", False))
       if review_system:
         if pkg_dict['type'] == 'dataset':
@@ -120,5 +124,7 @@ class OdmDatasetPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     if dataset_type == 'dataset':
       log.info('after_update: %s', pkg_dict['name'])
 
-      odm_dataset_helper.session['last_dataset'] = pkg_dict
-      odm_dataset_helper.session.save()
+      try:
+        odm_dataset_helper.session['last_dataset'] = pkg_dict
+        odm_dataset_helper.session.save()
+      except TypeError: pass

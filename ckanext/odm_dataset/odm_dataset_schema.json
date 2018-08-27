@@ -285,9 +285,8 @@
 		"preset": "resource_url_upload"
 	}, {
 		"field_name": "name_translated",
-		"preset": "fluent_core_res_name_translated_single",
+		"preset": "fluent_text_single",
 		"validate": "true",
-		"multilingual": "true",
 		"label": {
 			"en": "Name",
 			"th": "Name",
@@ -303,9 +302,8 @@
 		"preset": "text_hidden"
 	}, {
 		"field_name": "description_translated",
-		"preset": "fluent_core_res_description_translated_markdown_single",
+		"preset": "fluent_markdown_single",
 		"validate": "true",
-		"multilingual": "true",
 		"label": {
 			"en": "Description",
 			"th": "Description",

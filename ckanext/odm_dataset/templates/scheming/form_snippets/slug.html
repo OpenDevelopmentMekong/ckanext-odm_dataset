@@ -1,9 +1,9 @@
 {% import 'macros/form.html' as form %}
 
-{%- if 'dataset_type' in schema %}
-    {%- set controller = 'package' -%}
-    {%- set module_placeholder = '<dataset>' -%}
-{%- elif 'organization_type' in schema %}
+{%- set controller = 'package' -%}
+{%- set module_placeholder = '<dataset>' -%}
+
+{%- if 'organization_type' in schema %}
     {%- set controller = 'organization' -%}
     {%- set module_placeholder = '<organization>' -%}
 {%- elif 'group_type' in schema -%}
